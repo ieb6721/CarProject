@@ -59,6 +59,7 @@ html, body {
 .acc li {
   list-style-type: none;
   padding: 0;
+   border-top: 2px solid #666;
 }
 
 .acc_ctrl {
@@ -216,7 +217,7 @@ em {
 /* 신청자 정보  */
 .pannel4 {
    width: 980px;
-   height: 816px;
+   height: 950px;
 }
 .applicant_box {
     padding: 26px 88px;
@@ -224,48 +225,7 @@ em {
     width: 900px;
 }
 
-.applicant_box dl {
-	width:804px;
-	height: 70px;
-	float: left;
-    display: inline;
 
-}
-
-.applicant_box dl dt {
-	width:140px;
-	height: 19px;
-	font-size: 18px;
-	margin-top: 10px;
-	float: left;
-    display: inline;
-}
-.applicant_box dl dd {
-	float: left;
-    display: inline;
-    width:664px;
-    height: 46px;
-}
-.overlap {
-	width: 210px;
-	height: 46px;
-
-}
-.input {
-    position: relative;
-    top: -22px;
-    
-}
-.radio input {
-	position: relative;
-    top: 20px;
-    width: 17px;
-	
-       
-}
-#uGenderM, #uGenderW {
-	position: relative;
-}
 
 
 
@@ -397,66 +357,27 @@ position: relative;
             </li>
             <li>
                <button class="acc_ctrl">
-                  <h2 class="sel text-left">시승 희망일</h2>
-               </button>
-               <div class="pannel3 acc_panel">
-                  
-               </div>
-            </li>
-            <li>
-               <button class="acc_ctrl">
-                  <h2 class="sel text-left">신청자 정보</h2>
+                  <h2 class="sel text-left">신청자 정보 & 시승 희망일</h2>
                </button>
                <div class="pannel4 acc_panel">
                   <div class="applicant_box">
-                  	<dl>
-                  		<dt>성명</dt>
-                  		<dd>
-                  			<div class="overlap on">
-                  				<label for="uname"></label> 
-                  				<input class="input" name="uname" id="uname" type="text" value="" maxlength="15">
-                  			</div>
-                  		</dd>
-                  	</dl>
-                  	<dl>
-                  		<dt>성별</dt>
-                  		<dd>
-                  			<span class="radio"><input id="uGenderM" name="uGender" value="M" type="radio"> 
-                  				<label for="uGenderM">남</label>
-                  			</span>
-                  			<span class="radio"><input id="uGenderW" name="uGender" value="W" type="radio"> 
-                  				<label for="uGenderW">여</label>
-                  			</span>
-                  		</dd>
-                  	</dl>
-                  	<dl>
-                  		<dt>생년월일</dt>
-                  		<dd></dd>
-                  	</dl>
-                  	<dl>
-                  		<dt>연락처</dt>
-                  		<dd></dd>
-                  	</dl>
-                  	<dl>
-                  		<dt>이메일</dt>
-                  		<dd></dd>
-                  	</dl>
-                  	<dl>
-                  		<dt>동승자</dt>
-                  		<dd></dd>
-                  	</dl>
-                  	<dl>
-                  		<dt>시승방법</dt>
-                  		<dd></dd>
-                  	</dl>
-                  	<dl>
-                  		<dt>구입 예정일</dt>
-                  		<dd></dd>
-                  	</dl>
-                  	<dl>
-                  		<dt>구매 방법</dt>
-                  		<dd></dd>
-                  	</dl>
+                  	<form class="form-horizontal">
+					    <div class="form-group">
+					      <label class="control-label col-sm-2" for="res_name">성명</label>
+					      <div class="col-sm-10">
+					        <input type="text" class="form-control" id="res_name" name="res_name">
+					      </div>
+					    </div>
+					    <div class="form-group">
+					      <label class="control-label col-sm-2" for="pwd">성별</label>
+					      <div class="col-sm-10">          
+							<label class="radio-inline">
+							<input type="radio" name="optradio" checked>남자</label>
+							<label class="radio-inline">
+							<input type="radio" name="optradio">여자</label>					     
+						  </div>
+					    </div>			    
+					  </form>             
                   </div>
                </div>
             </li>
@@ -612,12 +533,12 @@ position: relative;
                               </table>
                               <!-- 마케팅약관 안내 문구 -->
 
-                              <ul class="tip">
-                                 <li>*광고/정보 수신 및 마케팅 활용에 동의하신 고객님께서는 인생뽑차에서 제공하는 특별한
-                                    혜택, 이벤트, 경품 등에 관한 다양한 정보를 받으실 수 있습니다.</li>
-                                 <li>*귀하는인생뽑차의 서비스 이용에 필요한 최소한의 개인정보 수집 · 이용에 동의하지 않을
-                                    권리가 있으며, 동의 거부 시 거부한 내용에 대해 서비스가 제한될 수 있습니다.</li>
-                              </ul>
+                              <dt class="tip">
+                                 <dl>*광고/정보 수신 및 마케팅 활용에 동의하신 고객님께서는 인생뽑차에서 제공하는 특별한
+                                    혜택, 이벤트, 경품 등에 관한 다양한 정보를 받으실 수 있습니다.</dl>
+                                 <dl>*귀하는인생뽑차의 서비스 이용에 필요한 최소한의 개인정보 수집 · 이용에 동의하지 않을
+                                    권리가 있으며, 동의 거부 시 거부한 내용에 대해 서비스가 제한될 수 있습니다.</dl>
+                              </dt>
                               
                               
                            </div>
