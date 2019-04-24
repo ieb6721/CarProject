@@ -1,0 +1,92 @@
+.accordion {
+  width: 80%;
+  margin: 0px auto;
+  border: 1px solid #000;
+  box-sizing: border-box;
+  text-align: left;
+}
+.accordion-title {
+  position: relative;
+  display: block;
+  padding: 8px 16px;
+  color: #fff;
+  background-color: #000;
+  cursor: pointer;
+}
+.accordion-title:after, .accordion-title.active:after {
+  position: absolute;
+  right: 16px;
+  color: #fff;
+}
+.accordion-title:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 16px;
+  bottom: 0;
+  margin: auto;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  vertical-align: middle;
+  transition: 0.2s;
+  transform: rotate(45deg);
+}
+.accordion-title.active:after {
+  transform: rotate(-135deg);
+}
+.accordion-list {
+  display: none;
+  margin-left: 0;
+}
+.accordion-list ul {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+}
+.accordion-list li {
+  padding: 8px;
+  border-bottom: 1px dashed #000;
+}
+.accordion-list li:last-child {
+  border-bottom: none;
+}
+
+.accordion-list li .item{
+	display: inline-block;
+	margin-left: 50px;
+	vertical-align: top;
+	line-height: 24px;	
+}
+
+.accordion-list li .name{
+	margin-left: 0px;
+	font-size: 16px;
+	font-weight: bold;	
+	width: 300px;
+}
+
+.accordion-list li .fuel{
+	width: 80px;
+	text-align: center;	
+}
+
+.accordion-list li .engine{
+	width: 48px;
+	text-align: right;	
+}
+
+.accordion-list li .mileage{
+	width: 63px;
+	text-align: right;	
+}
+
+.accordion-list li .price{
+	width: 80px;
+	text-align: right;
+	font-size: 14px;
+	font-weight: bold;
+	font-family: Century Gothic,arial,tahoma;
+	color: #0375e0;	
+}
