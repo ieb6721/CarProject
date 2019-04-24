@@ -76,100 +76,17 @@ tbody {
     vertical-align: middle;
 }
 
-.pay_btn {
-	margin: 10px 0;
+.buttonGroup{
+	padding-top: 50px;
 }
 
-@import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css);
-@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);
-
-
-.mrng-60-top {
-	margin-top: 60px;
-}
-
-/* Global Button Styles */
-a.animated-button:link, a.animated-button:visited {
-	position: relative;
-	display: block;
-	margin: 30px auto 0;
-	padding: 14px 15px;
-	color: #fff;
-	font-size:14px;
-	font-weight: bold;
-	text-align: center;
-	text-decoration: none;
-	text-transform: uppercase;
-	overflow: hidden;
-	letter-spacing: .08em;
-	border-radius: 0;
-	text-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.2);
-	-webkit-transition: all 1s ease;
-	-moz-transition: all 1s ease;
-	-o-transition: all 1s ease;
-	transition: all 1s ease;
-}
-a.animated-button:link:after, a.animated-button:visited:after {
-	content: "";
-	position: absolute;
-	height: 0%;
-	left: 50%;
-	top: 50%;
-	width: 150%;
-	z-index: -1;
-	-webkit-transition: all 0.75s ease 0s;
-	-moz-transition: all 0.75s ease 0s;
-	-o-transition: all 0.75s ease 0s;
-	transition: all 0.75s ease 0s;
-}
-a.animated-button:link:hover, a.animated-button:visited:hover {
-	color: #FFF;
-	text-shadow: none;
-}
-a.animated-button:link:hover:after, a.animated-button:visited:hover:after {
-	height: 450%;
-}
-a.animated-button:link, a.animated-button:visited {
-	position: relative;
-	display: block;
-	margin: 50px auto 0;
-	padding: 14px 15px;
-	color: black;
-	font-size:14px;
-	border-radius: 0;
-	font-weight: bold;
-	text-align: center;
-	text-decoration: none;
-	text-transform: uppercase;
-	overflow: hidden;
-	letter-spacing: .08em;
-	text-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.2);
-	-webkit-transition: all 1s ease;
-	-moz-transition: all 1s ease;
-	-o-transition: all 1s ease;
-	transition: all 1s ease;
-}
-
-/* Victoria Buttons */
-
-a.animated-button.victoria-btn {
-	border: 2px solid #D24D57;
-}
-a.animated-button.victoria-btn:after {
-	background: #D24D57;
-	opacity: .5;
-	-moz-transform: translateY(-50%) translateX(-50%) rotate(90deg);
-	-ms-transform: translateY(-50%) translateX(-50%) rotate(90deg);
-	-webkit-transform: translateY(-50%) translateX(-50%) rotate(90deg);
-	transform: translateY(-50%) translateX(-50%) rotate(90deg);
-}
-a.animated-button.victoria-btn:hover:after {
-	opacity: 1;
-	height: 600% !important;
+.footer-socials .fa {
+   line-height: inherit;
 }
 
 
 </style>
+<link rel="stylesheet" href="css/style-button.css">
 </head>
 <body>
    <header>
@@ -258,32 +175,25 @@ a.animated-button.victoria-btn:hover:after {
 					<jsp:include page="car_estimate_slider.jsp"></jsp:include>
 				</div>
 				<div class="col-sm-6" style="border: 1px solid; width: 50%; height: 150px;">
-						<div class="row text-center">
-							<div class="col-md-3 col-sm-3 col-xs-6">
-								<a href="#" class="btn btn-sm animated-button victoria-btn" type="radio" name="month">
-									<input type="radio" checked="checked">36개월
-								</a>
-							</div>
-
-							<div class="col-md-3 col-sm-3 col-xs-6">
-								<a href="#" class="btn btn-sm animated-button victoria-btn" type="radio" name="month">
-									<input type="radio">48개월
-								</a>
-							</div>
-
-							<div class="col-md-3 col-sm-3 col-xs-6">
-								<a href="#" class="btn btn-sm animated-button victoria-btn" type="radio" name="month">
-									<input type="radio">60개월
-								</a>
-							</div>
-
-							<div class="col-md-3 col-sm-3 col-xs-6">
-								<a href="#" class="btn btn-sm animated-button victoria-btn" type="radio" name="month">
-									<input type="radio">120개월
-								</a>
-							</div>
-						</div>
+					<div id="content">
+						<form>
+							<section class="buttonGroup">
+								<span>
+									<a class="buttonGroup-button" data-buttonGroup="0">36개월</a>
+								</span> 
+								<span>
+									<a class="buttonGroup-button" data-buttonGroup="0">48개월</a>
+								</span>
+								<span>
+									<a class="buttonGroup-button" data-buttonGroup="0">60개월</a>
+								</span> 
+								<span>
+									<a class="buttonGroup-button" data-buttonGroup="0">120개월</a>
+								</span> 								
+							</section>
+						</form>
 					</div>
+				</div>
 				<div class="col-sm-12"
 					style="border: 1px solid; width: 100%; height: 50px; background-color: #b4babf; text-align: right;">
 					<strong>월 납입금액 : 123,456,789원</strong>
@@ -300,9 +210,9 @@ a.animated-button.victoria-btn:hover:after {
 					<table class="table">
 						<tr>
 							<th>차량 가격</th><td class="text-right">49,970,000</td>
-						</tr>
-							<th>옵션가격</th><td class="text-right">570,000</td>
+						</tr>							
 						<tr>
+							<th>옵션가격</th><td class="text-right">570,000</td>
 						</tr>
 						<tr>
 							<th>총 금액</th><td class="text-right">50,540,000</td>
@@ -318,9 +228,9 @@ a.animated-button.victoria-btn:hover:after {
 					<table class="table">
 						<tr>
 							<th>초기 납입금</th><td class="text-right">10,000,000</td>
-						</tr>
-							<th>할부 원금</th><td class="text-right">40,540,000</td>
+						</tr>							
 						<tr>
+							<th>할부 원금</th><td class="text-right">40,540,000</td>
 						</tr>
 						<tr>
 							<th>할부 기간</th><td class="text-right">60개월</td>
@@ -334,13 +244,14 @@ a.animated-button.victoria-btn:hover:after {
 
 				<div class="pay_btn text-center">
 					<button class="btn btn-md btn-info"
-						onclick="location='car_estimate.jsp'">구매</button>
+						onclick="location='car_estimate.jsp'">견적 요청</button>
 					<button class="btn btn-md btn-danger"
 						onclick="javascript:history.back()">취소</button>
 				</div>
+				<br>
 			</div>
 
-			<div class="col-sm-6 estimate">
+			<div class="col-sm-6" style="padding-left: 100px;">
 				<img src="http://autoimg.danawa.com/photo/3652/model_360.png"
 					width="80%">
 
@@ -355,7 +266,7 @@ a.animated-button.victoria-btn:hover:after {
 						<div class="sin__desc">
 							<button class="btn btn-md btn-warning">브랜드 정보</button>
 							<button class="btn btn-md btn-success"
-								onclick="javascript:history.back()">목록</button>							
+								onclick="location.href='car.jsp'">목록</button>							
 						</div>
 						<br>
 					</div>
@@ -369,5 +280,6 @@ a.animated-button.victoria-btn:hover:after {
    
 
 <script  src="js/index.js"></script>
+<script  src="js/index-button.js"></script>
 </body>
 </html>
