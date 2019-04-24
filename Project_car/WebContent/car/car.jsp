@@ -177,7 +177,7 @@ div.price input {
 									<div class="product-width col-md-6 col-xl-4 col-lg-6">
 										<div class="product-wrapper mb-35">
 											<div class="product-img">
-												<a href="product-details.html"> <img
+												<a href="car_detail.jsp"> <img
 													src="../images/car_img/product/product-1.jpg" alt="">
 												</a>
 												<div class="product-item-dec">
