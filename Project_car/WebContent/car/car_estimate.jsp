@@ -84,7 +84,9 @@ tbody {
    line-height: inherit;
 }
 
-
+.total{
+	background-color: #F2F2F2;
+}
 </style>
 <link rel="stylesheet" href="css/style-button.css">
 </head>
@@ -214,7 +216,7 @@ tbody {
 						<tr>
 							<th>옵션가격</th><td class="text-right">570,000</td>
 						</tr>
-						<tr>
+						<tr class="total">
 							<th>총 금액</th><td class="text-right">50,540,000</td>
 						</tr>
 					</table>
@@ -235,7 +237,7 @@ tbody {
 						<tr>
 							<th>할부 기간</th><td class="text-right">60개월</td>
 						</tr>
-						<tr>
+						<tr class="total">
 							<th>월 납입 금액</th><td class="text-right">675,000</td>
 						</tr>
 					</table>					
