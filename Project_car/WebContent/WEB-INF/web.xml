@@ -7,7 +7,7 @@
   	<servlet-class>com.sist.controller.DispatcherServlet</servlet-class>
   	<init-param>
   		<param-name>xmlPath</param-name>
-  		<param-value>C:\git\Project_car\Project_car\WebContent\WEB-INF\application.xml</param-value>
+  		<param-value>C:\git\Car_Project\Project_car\WebContent\WEB-INF\application.xml</param-value>
   	</init-param>
   </servlet>
   <servlet-mapping>
