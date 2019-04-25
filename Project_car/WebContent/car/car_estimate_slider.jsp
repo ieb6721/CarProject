@@ -19,7 +19,7 @@
 	<input type="range" value="3825" step="25" min="1000" max="12600">
 	<small id="helper" class="slideRight">Slide to get started
 		&#x2192;</small>
-	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js' />
-	<script src="js/index-slider.js" />
+	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+	<script src="js/index-slider.js"></script>
 </body>
 </html>
