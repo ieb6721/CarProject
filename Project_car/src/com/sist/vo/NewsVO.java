@@ -1,12 +1,11 @@
 package com.sist.vo;
 
-import java.util.Date;
-
 public class NewsVO {
 	private String title;
 	private String thumbnail_img;
+	private String detail_img;
 	private String content;
-	private Date date;
+	private String news_date;
 	private String reporter;
 	private String news_company;
 	
@@ -28,12 +27,7 @@ public class NewsVO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Date getDate() {
-		return date;
-	}
-	public void setDate(Date date) {
-		this.date = date;
-	}
+	
 	public String getReporter() {
 		return reporter;
 	}
@@ -45,6 +39,18 @@ public class NewsVO {
 	}
 	public void setNews_company(String news_company) {
 		this.news_company = news_company;
+	}
+	public String getDetail_img() {
+		return detail_img;
+	}
+	public void setDetail_img(String detail_img) {
+		this.detail_img = detail_img;
+	}
+	public String getNews_date() {
+		return news_date;
+	}
+	public void setNews_date(String news_date) {
+		this.news_date = news_date;
 	}
 	
 }
