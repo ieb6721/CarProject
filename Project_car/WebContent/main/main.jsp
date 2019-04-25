@@ -22,6 +22,9 @@ header{
 	height: 135;
 }
 
+.fullrow{
+	height: 1750px;
+}
 .car-article-box{
 	height: 680px;
 	margin-bottom: 10px;
@@ -46,6 +49,28 @@ header{
 }
 .car-video1{
 	margin-bottom: 17px;
+}
+
+/* ========car-ranking=========*/
+.car-popularity-ranking{
+	border-bottom: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: gray;
+}
+.car-ranking{
+	width: 345px;
+	float: left;
+	padding-bottom: 10px;
+	border: 1px solid gray;
+	vertical-align:middle;
+}
+.car-ranking img{
+	padding-right:10px;
+	width: 120px;
+	float: left;
+}
+.compare{
+	padding-bottom: 10px;
 }
 </style>
 <!-- header.jsp -->
@@ -503,7 +528,56 @@ header{
 							</div>
 						</div>
 						</div>
-
+<!-- 인기 순위 =======================================================-->
+				<div class="car-popularity-ranking">
+					<div class="col-sm-6">
+					<h3 class="compare">국산차 인기 순위</h3>
+						<div class="car-ranking">
+							<img src="../images/aside/carcar.png">
+							차이름<br>가격<br>스펙
+						</div>
+						<div class="car-ranking">
+							<img src="../images/aside/carcar.png">
+							차이름<br>가격<br>스펙
+						</div>
+						<div class="car-ranking">
+							<img src="../images/aside/carcar.png">
+							차이름<br>가격<br>스펙
+						</div>
+						<div class="car-ranking">
+							<img src="../images/aside/carcar.png">
+							차이름<br>가격<br>스펙
+						</div>
+						<div class="car-ranking">
+							<img src="../images/aside/carcar.png">
+							차이름<br>가격<br>스펙
+						</div>
+					</div>
+					<div class="col-sm-6">
+					<h3 class="compare">수입차 인기 순위</h3>
+						<div class="car-ranking">
+							<img src="../images/aside/carcar.png">
+							차이름<br>가격<br>스펙
+						</div>
+						<div class="car-ranking">
+							<img src="../images/aside/carcar.png">
+							차이름<br>가격<br>스펙
+						</div>
+						<div class="car-ranking">
+							<img src="../images/aside/carcar.png">
+							차이름<br>가격<br>스펙
+						</div>
+						<div class="car-ranking">
+							<img src="../images/aside/carcar.png">
+							차이름<br>가격<br>스펙
+						</div>
+						<div class="car-ranking">
+							<img src="../images/aside/carcar.png">
+							차이름<br>가격<br>스펙
+						</div>
+						
+					</div>
+				</div>
 					</div>
 					<!-- article -->
 					
