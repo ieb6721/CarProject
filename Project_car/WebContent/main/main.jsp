@@ -21,6 +21,32 @@ header{
 	width: 218;
 	height: 135;
 }
+
+.car-article-box{
+	height: 680px;
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: gray;
+}
+
+.car-video-box{
+	height: 520px;
+	border-bottom: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: gray;
+}
+
+.box1{
+	width: 750px;
+	height: 315px;
+	margin-top: 20px;
+	margin-bottom: 5px;
+}
+.car-video1{
+	margin-bottom: 17px;
+}
 </style>
 <!-- header.jsp -->
 <jsp:include page="../cmmn/default-header.jsp"></jsp:include>
@@ -303,137 +329,184 @@ header{
 		<section>
 			<div class="row">
 				<div class="col-md-8">
-					<article class="blog-post">
-						<div class="blog-post-body">											
-							<h3>POST</h3>
-							<div class="single-slide col-sm-4">
-								<div class="main_acrticle">
-									<a class="main_article" href="#">
-									<div class="abc">
-									<img src="../images/main_img/main_article_sample.jpg" width="218" height="135" alt="Slide Image" /></a>
-									</div>
-									<div class="slide-text-container text-center">
-										<h5><a href="#">기사 제목<br>
-										<font size="1" color="gray">뉴스회사 | 등록일</font></a></h5>
-									</div>
-								</div>
-							</div><!-- /.single-slide -->
-							<div class="single-slide col-sm-4">
-								<div class="main_acrticle">
-									<a class="main_article" href="#"><img src="../images/main_img/main_article_sample.jpg" width="218" height="135" alt="Slide Image" /></a>
-									<div class="slide-text-container text-center">
-										<h5><a href="#">기사 제목<br>
-										<font size="1" color="gray">뉴스회사 | 등록일</font></a></h5>
-									</div>
-								</div>
-							</div><!-- /.single-slide -->
-							
-							<div class="single-slide col-sm-4">
-								<div class="main_acrticle">
-									<a class="main_article" href="#"><img src="../images/main_img/main_article_sample.jpg" width="218" height="135" alt="Slide Image" /></a>
-									<div class="slide-text-container text-center">
-										<h5><a href="#">기사 제목<br>
-										<font size="1" color="gray">뉴스회사 | 등록일</font></a></h5>
-									</div>
-								</div>
-							</div><!-- /.single-slide -->
-							
-							<div class="single-slide col-sm-4">
-								<div class="main_acrticle">
-									<a class="main_article" href="#"><img src="../images/main_img/main_article_sample.jpg" width="218" height="135" alt="Slide Image" /></a>
-									<div class="slide-text-container text-center">
-										<h5><a href="#">기사 제목<br>
-										<font size="1" color="gray">뉴스회사 | 등록일</font></a></h5>
-									</div>
-								</div>
-							</div><!-- /.single-slide -->
-							
-							<div class="single-slide col-sm-4">
-								<div class="main_acrticle">
-									<a class="main_article" href="#"><img src="../images/main_img/main_article_sample.jpg" width="218" height="135" alt="Slide Image" /></a>
-									<div class="slide-text-container text-center">
-										<h5><a href="#">기사 제목<br>
-										<font size="1" color="gray">뉴스회사 | 등록일</font></a></h5>
-									</div>
-								</div>
-							</div><!-- /.single-slide -->
-							
-							<div class="single-slide col-sm-4">
-								<div class="main_acrticle">
-									<a class="main_article" href="#"><img src="../images/main_img/main_article_sample.jpg" width="218" height="135" alt="Slide Image" /></a>
-									<div class="slide-text-container text-center">
-										<h5><a href="#">기사 제목<br>
-										<font size="1" color="gray">뉴스회사 | 등록일</font></a></h5>
-									</div>
-								</div>
-							</div><!-- /.single-slide -->
-							
-							<div class="single-slide col-sm-4">
-								<div class="main_acrticle">
-									<a class="main_article" href="#"><img src="../images/main_img/main_article_sample.jpg" width="218" height="135" alt="Slide Image" /></a>
-									<div class="slide-text-container text-center">
-										<h5><a href="#">기사 제목<br>
-										<font size="1" color="gray">뉴스회사 | 등록일</font></a></h5>
-									</div>
-								</div>
-							</div><!-- /.single-slide -->
-							
-							<div class="single-slide col-sm-4">
-								<div class="main_acrticle">
-									<a class="main_article" href="#"><img src="../images/main_img/main_article_sample.jpg" width="218" height="135" alt="Slide Image" /></a>
-									<div class="slide-text-container text-center">
-										<h5><a href="#">기사 제목<br>
-										<font size="1" color="gray">뉴스회사 | 등록일</font></a></h5>
-									</div>
-								</div>
-							</div><!-- /.single-slide -->
-							
-							<div class="single-slide col-sm-4">
-								<div class="main_acrticle">
-									<a class="main_article" href="#"><img src="../images/main_img/main_article_sample.jpg" width="218" height="135" alt="Slide Image" /></a>
-									<div class="slide-text-container text-center">
-										<h5><a href="#">기사 제목<br>
-										<font size="1" color="gray">뉴스회사 | 등록일</font></a></h5>
-									</div>
-								</div>
-							</div><!-- /.single-slide -->
-						</div>
-							
-							
-							
-							
-							
-						
-						<div class="blog-post-image">
-							<h3 class="text-center">자동차 관련 영상</h3>
-							<a href="post.html"><img src="../images/main_img/750x500-1.jpg" alt=""></a>
-						</div>						
-					</article>
-					<!-- article -->
-					<article class="blog-post">
-						<div class="blog-post-image">
-							<a href="post.html"><img src="../images/main_img/750x500-2.jpg" alt=""></a>
-						</div>
+					<div class="post">
 						<div class="blog-post-body">
-							<h2>
-								<a href="post.html">The Best Street Style Looks of London
-									Fashion Week</a>
-							</h2>
-							<div class="post-meta">
-								<span>by <a href="#">Jamie Mooze</a></span>/<span><i
-									class="fa fa-clock-o"></i>March 14, 2015</span>/<span><i
-									class="fa fa-comment-o"></i> <a href="#">343</a></span>
+						
+							<div class="car-article-box">
+								<h3>
+								POST
+								</h3>
+								<div class="single-slide col-sm-4">
+									<div class="main_acrticle">
+										<a class="main_article" href="#"><img
+											src="../images/main_img/main_article_sample.jpg" width="218"
+											height="135" alt="Slide Image" /></a>
+										<div class="slide-text-container text-center">
+											<h5>
+												<a href="#">기사 제목<br> <font size="1" color="gray">뉴스회사
+														| 등록일</font></a>
+											</h5>
+										</div>
+									</div>
+								</div>
+								<!-- /.single-slide -->
+
+								<div class="single-slide col-sm-4">
+									<div class="main_acrticle">
+										<a class="main_article" href="#"><img
+											src="../images/main_img/main_article_sample.jpg" width="218"
+											height="135" alt="Slide Image" /></a>
+										<div class="slide-text-container text-center">
+											<h5>
+												<a href="#">기사 제목<br> <font size="1" color="gray">뉴스회사
+														| 등록일</font></a>
+											</h5>
+										</div>
+									</div>
+								</div>
+								<!-- /.single-slide -->
+
+								<div class="single-slide col-sm-4">
+									<div class="main_acrticle">
+										<a class="main_article" href="#"><img
+											src="../images/main_img/main_article_sample.jpg" width="218"
+											height="135" alt="Slide Image" /></a>
+										<div class="slide-text-container text-center">
+											<h5>
+												<a href="#">기사 제목<br> <font size="1" color="gray">뉴스회사
+														| 등록일</font></a>
+											</h5>
+										</div>
+									</div>
+								</div>
+								<!-- /.single-slide -->
+
+								<div class="single-slide col-sm-4">
+									<div class="main_acrticle">
+										<a class="main_article" href="#"><img
+											src="../images/main_img/main_article_sample.jpg" width="218"
+											height="135" alt="Slide Image" /></a>
+										<div class="slide-text-container text-center">
+											<h5>
+												<a href="#">기사 제목<br> <font size="1" color="gray">뉴스회사
+														| 등록일</font></a>
+											</h5>
+										</div>
+									</div>
+								</div>
+								<!-- /.single-slide -->
+
+								<div class="single-slide col-sm-4">
+									<div class="main_acrticle">
+										<a class="main_article" href="#"><img
+											src="../images/main_img/main_article_sample.jpg" width="218"
+											height="135" alt="Slide Image" /></a>
+										<div class="slide-text-container text-center">
+											<h5>
+												<a href="#">기사 제목<br> <font size="1" color="gray">뉴스회사
+														| 등록일</font></a>
+											</h5>
+										</div>
+									</div>
+								</div>
+								<!-- /.single-slide -->
+
+								<div class="single-slide col-sm-4">
+									<div class="main_acrticle">
+										<a class="main_article" href="#"><img
+											src="../images/main_img/main_article_sample.jpg" width="218"
+											height="135" alt="Slide Image" /></a>
+										<div class="slide-text-container text-center">
+											<h5>
+												<a href="#">기사 제목<br> <font size="1" color="gray">뉴스회사
+														| 등록일</font></a>
+											</h5>
+										</div>
+									</div>
+								</div>
+								<!-- /.single-slide -->
+
+								<div class="single-slide col-sm-4">
+									<div class="main_acrticle">
+										<a class="main_article" href="#"><img
+											src="../images/main_img/main_article_sample.jpg" width="218"
+											height="135" alt="Slide Image" /></a>
+										<div class="slide-text-container text-center">
+											<h5>
+												<a href="#">기사 제목<br> <font size="1" color="gray">뉴스회사
+														| 등록일</font></a>
+											</h5>
+										</div>
+									</div>
+								</div>
+								<!-- /.single-slide -->
+
+								<div class="single-slide col-sm-4">
+									<div class="main_acrticle">
+										<a class="main_article" href="#"><img
+											src="../images/main_img/main_article_sample.jpg" width="218"
+											height="135" alt="Slide Image" /></a>
+										<div class="slide-text-container text-center">
+											<h5>
+												<a href="#">기사 제목<br> <font size="1" color="gray">뉴스회사
+														| 등록일</font></a>
+											</h5>
+										</div>
+									</div>
+								</div>
+								<!-- /.single-slide -->
+
+								<div class="single-slide col-sm-4">
+									<div class="main_acrticle">
+										<a class="main_article" href="#"><img
+											src="../images/main_img/main_article_sample.jpg" width="218"
+											height="135" alt="Slide Image" /></a>
+										<div class="slide-text-container text-center">
+											<h5>
+												<a href="#">기사 제목<br> <font size="1" color="gray">뉴스회사
+														| 등록일</font></a>
+											</h5>
+										</div>
+									</div>
+								</div>
+								<!-- /.single-slide -->
 							</div>
-							<p>Few months ago, we found ridiculously cheap plane tickets
-								for Boston and off we went. It was our first visit to the city
-								and, believe it or not, Stockholm in February was more pleasant
-								than Boston in March. It probably has a lot to do with the fact
-								that we arrived completely unprepared.</p>
-							<div class="read-more">
-								<a href="#">Continue Reading</a>
+							
+<!-- ============================================================================== -->
+						
+						<h3 class="movie-title">자동차 관련 영상</h3>
+						<div class="car-video-box">
+							<div class="box1">
+								<div class="col-sm-8">
+									<a><img src="../images/main_img/main_article_sample.jpg" alt="Slide Image" /></a>
+								</div>
+								<div class="col-sm-4 car-video1">
+									<a><img src="../images/main_img/main_article_sample.jpg" alt="Slide Image" /></a>
+								</div>
+								<div class="col-sm-4">
+									<a><img src="../images/main_img/main_article_sample.jpg" alt="Slide Image" /></a>
+								</div>
+							</div>
+							
+							<div class="box2">
+								<div class="col-sm-4">
+									<a><img src="../images/main_img/main_article_sample.jpg" alt="Slide Image" /></a>
+								</div>
+							
+								<div class="col-sm-4">
+									<a><img src="../images/main_img/main_article_sample.jpg" alt="Slide Image" /></a>
+								</div>
+							
+								<div class="car-video2 col-sm-4" id="car-video2">
+									<a><img src="../images/main_img/main_article_sample.jpg" alt="Slide Image" /></a>
+								</div>
 							</div>
 						</div>
-					</article>
+						</div>
+
+					</div>
+					<!-- article -->
+					
 				</div>
 				<!-- aside.jsp -->
 				<jsp:include page="../cmmn/default-aside.jsp"></jsp:include>
