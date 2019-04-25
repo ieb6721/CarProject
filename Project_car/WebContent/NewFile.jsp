@@ -30,7 +30,7 @@
 	    </div>
 	</div>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
-	<script >
+	<script>
 	    $(function () {
 	        $('#datepicker').datepicker({
 	            format: "dd/mm/yyyy",

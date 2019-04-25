@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -303,12 +304,8 @@ header{
 			<div class="row">
 				<div class="col-md-8">
 					<article class="blog-post">
-						<div class="blog-post-body">
-						
-						
-							<h3>
-								POST
-							</h3>
+						<div class="blog-post-body">											
+							<h3>POST</h3>
 							<div class="single-slide col-sm-4">
 								<div class="main_acrticle">
 									<a class="main_article" href="#">
@@ -321,7 +318,6 @@ header{
 									</div>
 								</div>
 							</div><!-- /.single-slide -->
-							
 							<div class="single-slide col-sm-4">
 								<div class="main_acrticle">
 									<a class="main_article" href="#"><img src="../images/main_img/main_article_sample.jpg" width="218" height="135" alt="Slide Image" /></a>
@@ -402,6 +398,11 @@ header{
 								</div>
 							</div><!-- /.single-slide -->
 						</div>
+							
+							
+							
+							
+							
 						
 						<div class="blog-post-image">
 							<h3 class="text-center">자동차 관련 영상</h3>
