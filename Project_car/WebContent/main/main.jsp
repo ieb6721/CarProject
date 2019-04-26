@@ -57,7 +57,7 @@ header{
 	border-bottom-color: gray;
 }
 .car-ranking:hover {
-	border: 1px solid blue;
+	border: 2px solid blue;
 }
 .car-ranking{
 	margin-bottom:5px;
@@ -65,7 +65,7 @@ header{
 	float: left;
 	padding-bottom: 10px;
 	vertical-align:middle;
-	border: 0.5px solid black;
+	border: 1px solid gray;
 }
 
 .car-ranking img{
