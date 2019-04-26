@@ -65,7 +65,8 @@ header{
 	float: left;
 	padding-bottom: 10px;
 	vertical-align:middle;
-	border: 1px solid gray;
+	border: 1px gray;
+	border-bottom-style: dotted;
 }
 
 .car-ranking img{
