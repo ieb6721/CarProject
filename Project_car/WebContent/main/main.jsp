@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
@@ -9,8 +10,7 @@
 <style type="text/css">
 .main_acrticle{
 	border: 1px solid #949393; 
-	padding: 0px;
-	margin-bottom:10px;
+	padding: 0px; margin-bottom:10px;
 } 
 header{
    width: 100%;
@@ -25,7 +25,7 @@ header{
 
 
 .fullrow{
-	height: 1750px;
+	height: 1820px;
 }
 .car-article-box{
 	height: 680px;
@@ -59,14 +59,21 @@ header{
 	border-bottom-style: solid;
 	border-bottom-color: gray;
 }
+.car-ranking:hover {
+	border: 2px solid blue;
+}
 .car-ranking{
+	margin-bottom:5px;
 	width: 345px;
 	float: left;
 	padding-bottom: 10px;
-	border: 1px solid gray;
 	vertical-align:middle;
+	border: 1px gray;
+	border-bottom-style: dotted;
 }
+
 .car-ranking img{
+	padding-top:20px;
 	padding-right:10px;
 	width: 120px;
 	float: left;
@@ -75,6 +82,7 @@ header{
 	padding-bottom: 10px;
 }
 </style>
+
 <!-- header.jsp -->
 <jsp:include page="../cmmn/default-header.jsp"></jsp:include>
 </head>
@@ -355,7 +363,7 @@ header{
 
 		<section>
 			<div class="row">
-				<div class="col-md-8">
+				<div class="col-md-8 fullrow">
 					<div class="post">
 						<div class="blog-post-body">
 						
@@ -527,48 +535,50 @@ header{
 					<div class="col-sm-6">
 					<h3 class="compare">국산차 인기 순위</h3>
 						<div class="car-ranking">
-							<img src="../images/aside/carcar.png">
-							차이름<br>가격<br>스펙
+							<a><img src="../images/aside/carcar.png">
+							<br>차이름<br>가격<br>스펙</a>
 						</div>
 						<div class="car-ranking">
-							<img src="../images/aside/carcar.png">
-							차이름<br>가격<br>스펙
+							<a><img src="../images/aside/carcar.png">
+							<br>차이름<br>가격<br>스펙</a>
 						</div>
 						<div class="car-ranking">
-							<img src="../images/aside/carcar.png">
-							차이름<br>가격<br>스펙
+							<a><img src="../images/aside/carcar.png">
+							<br>차이름<br>가격<br>스펙</a>
 						</div>
 						<div class="car-ranking">
-							<img src="../images/aside/carcar.png">
-							차이름<br>가격<br>스펙
+							<a><img src="../images/aside/carcar.png">
+							<br>차이름<br>가격<br>스펙</a>
 						</div>
 						<div class="car-ranking">
-							<img src="../images/aside/carcar.png">
-							차이름<br>가격<br>스펙
+							<a><img src="../images/aside/carcar.png">
+							<br>차이름<br>가격<br>스펙</a>
 						</div>
 					</div>
+					
 					<div class="col-sm-6">
 					<h3 class="compare">수입차 인기 순위</h3>
 						<div class="car-ranking">
-							<img src="../images/aside/carcar.png">
-							차이름<br>가격<br>스펙
+							<a><img src="../images/aside/carcar.png">
+							<br>차이름<br>가격<br>스펙</a>
 						</div>
 						<div class="car-ranking">
-							<img src="../images/aside/carcar.png">
-							차이름<br>가격<br>스펙
+							<a><img src="../images/aside/carcar.png">
+							<br>차이름<br>가격<br>스펙</a>
 						</div>
 						<div class="car-ranking">
-							<img src="../images/aside/carcar.png">
-							차이름<br>가격<br>스펙
+							<a><img src="../images/aside/carcar.png">
+							<br>차이름<br>가격<br>스펙</a>
 						</div>
 						<div class="car-ranking">
-							<img src="../images/aside/carcar.png">
-							차이름<br>가격<br>스펙
+							<a><img src="../images/aside/carcar.png">
+							<br>차이름<br>가격<br>스펙</a>
 						</div>
 						<div class="car-ranking">
-							<img src="../images/aside/carcar.png">
-							차이름<br>가격<br>스펙
+							<a><img src="../images/aside/carcar.png">
+							<br>차이름<br>가격<br>스펙</a>
 						</div>
+						
 						
 					</div>
 				</div>
