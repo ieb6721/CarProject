@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +22,7 @@ header{
 	width: 218;
 	height: 135;
 }
+
 
 .fullrow{
 	height: 1750px;
@@ -368,14 +370,13 @@ header{
 											height="135" alt="Slide Image" /></a>
 										<div class="slide-text-container text-center">
 											<h5>
-												<a href="#">기사 제목<br> <font size="1" color="gray">뉴스회사
+												<a href="#">기사제목<br> <font size="1" color="gray">뉴스회사
 														| 등록일</font></a>
 											</h5>
 										</div>
 									</div>
 								</div>
 								<!-- /.single-slide -->
-
 								<div class="single-slide col-sm-4">
 									<div class="main_acrticle">
 										<a class="main_article" href="#"><img
@@ -383,14 +384,13 @@ header{
 											height="135" alt="Slide Image" /></a>
 										<div class="slide-text-container text-center">
 											<h5>
-												<a href="#">기사 제목<br> <font size="1" color="gray">뉴스회사
+												<a href="#">기사제목<br> <font size="1" color="gray">뉴스회사
 														| 등록일</font></a>
 											</h5>
 										</div>
 									</div>
 								</div>
 								<!-- /.single-slide -->
-
 								<div class="single-slide col-sm-4">
 									<div class="main_acrticle">
 										<a class="main_article" href="#"><img
@@ -398,14 +398,13 @@ header{
 											height="135" alt="Slide Image" /></a>
 										<div class="slide-text-container text-center">
 											<h5>
-												<a href="#">기사 제목<br> <font size="1" color="gray">뉴스회사
+												<a href="#">기사제목<br> <font size="1" color="gray">뉴스회사
 														| 등록일</font></a>
 											</h5>
 										</div>
 									</div>
 								</div>
 								<!-- /.single-slide -->
-
 								<div class="single-slide col-sm-4">
 									<div class="main_acrticle">
 										<a class="main_article" href="#"><img
@@ -413,14 +412,13 @@ header{
 											height="135" alt="Slide Image" /></a>
 										<div class="slide-text-container text-center">
 											<h5>
-												<a href="#">기사 제목<br> <font size="1" color="gray">뉴스회사
+												<a href="#">기사제목<br> <font size="1" color="gray">뉴스회사
 														| 등록일</font></a>
 											</h5>
 										</div>
 									</div>
 								</div>
 								<!-- /.single-slide -->
-
 								<div class="single-slide col-sm-4">
 									<div class="main_acrticle">
 										<a class="main_article" href="#"><img
@@ -428,14 +426,13 @@ header{
 											height="135" alt="Slide Image" /></a>
 										<div class="slide-text-container text-center">
 											<h5>
-												<a href="#">기사 제목<br> <font size="1" color="gray">뉴스회사
+												<a href="#">기사제목<br> <font size="1" color="gray">뉴스회사
 														| 등록일</font></a>
 											</h5>
 										</div>
 									</div>
 								</div>
 								<!-- /.single-slide -->
-
 								<div class="single-slide col-sm-4">
 									<div class="main_acrticle">
 										<a class="main_article" href="#"><img
@@ -443,14 +440,13 @@ header{
 											height="135" alt="Slide Image" /></a>
 										<div class="slide-text-container text-center">
 											<h5>
-												<a href="#">기사 제목<br> <font size="1" color="gray">뉴스회사
+												<a href="#">기사제목<br> <font size="1" color="gray">뉴스회사
 														| 등록일</font></a>
 											</h5>
 										</div>
 									</div>
 								</div>
 								<!-- /.single-slide -->
-
 								<div class="single-slide col-sm-4">
 									<div class="main_acrticle">
 										<a class="main_article" href="#"><img
@@ -458,14 +454,13 @@ header{
 											height="135" alt="Slide Image" /></a>
 										<div class="slide-text-container text-center">
 											<h5>
-												<a href="#">기사 제목<br> <font size="1" color="gray">뉴스회사
+												<a href="#">기사제목<br> <font size="1" color="gray">뉴스회사
 														| 등록일</font></a>
 											</h5>
 										</div>
 									</div>
 								</div>
 								<!-- /.single-slide -->
-
 								<div class="single-slide col-sm-4">
 									<div class="main_acrticle">
 										<a class="main_article" href="#"><img
@@ -473,14 +468,13 @@ header{
 											height="135" alt="Slide Image" /></a>
 										<div class="slide-text-container text-center">
 											<h5>
-												<a href="#">기사 제목<br> <font size="1" color="gray">뉴스회사
+												<a href="#">기사제목<br> <font size="1" color="gray">뉴스회사
 														| 등록일</font></a>
 											</h5>
 										</div>
 									</div>
 								</div>
 								<!-- /.single-slide -->
-
 								<div class="single-slide col-sm-4">
 									<div class="main_acrticle">
 										<a class="main_article" href="#"><img
@@ -488,7 +482,7 @@ header{
 											height="135" alt="Slide Image" /></a>
 										<div class="slide-text-container text-center">
 											<h5>
-												<a href="#">기사 제목<br> <font size="1" color="gray">뉴스회사
+												<a href="#">기사제목<br> <font size="1" color="gray">뉴스회사
 														| 등록일</font></a>
 											</h5>
 										</div>

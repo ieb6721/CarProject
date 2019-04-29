@@ -18,7 +18,6 @@ public class XMLParser extends DefaultHandler {
 		try {
 			if(qName.equals("context:component-scan")) {
 				String pack = attributes.getValue("package-base");
-				System.out.println(pack);
 				list.add(pack);
 			}
 		} catch (Exception e) {}

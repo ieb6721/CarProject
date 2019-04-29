@@ -14,7 +14,7 @@ public class HandlerMapping {
 	public HandlerMapping(String path) {
 		try {
 			SAXParserFactory spf = SAXParserFactory.newInstance();
-//			path = "C:\\webDev\\webStudy2\\JSPFinalProject\\WebContent\\WEB-INF\\application.xml";
+
 			SAXParser sp = spf.newSAXParser();
 			XMLParser xp = new XMLParser();
 			sp.parse(new File(path), xp);
