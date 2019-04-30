@@ -223,9 +223,9 @@ div.blog-post-body ul li {
 								<h3 class="sidebar-widget">categories</h3>
 								<div class="widget-categories">
 									<ul>
-										<li><a href="environment_car.jsp">친환경 자동차란?</a></li>
-										<li><a href="env_car_list.jsp">친환경 자동차 구매</a></li>
-										<li><a href="env_car_charge.jsp">친환경 자동차 충전소</a></li>
+										<li><a href="environment_car.do">친환경 자동차란?</a></li>
+										<li><a href="env_car_list.do">친환경 자동차 구매</a></li>
+										<li><a href="env_car_charge.do">친환경 자동차 충전소</a></li>
 									</ul>
 								</div>
 							</div>

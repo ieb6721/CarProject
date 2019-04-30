@@ -7,25 +7,25 @@
 	var pageSubmitFn = function(menu) {
 		
 		if (menu === 'home') {
-			location.href = "../main/main.jsp";
+			location.href = "../main/main.do";
 		} else if (menu === 'about') {
-			location.href = "../about/about.jsp";
+			location.href = "../about/about.do";
 		} else if (menu === 'car') {
-			location.href = "../car/car.jsp";
+			location.href = "../car/car.do";
 		} else if (menu === 'environment') {
-			location.href = "../environment_car/environment_car.jsp";
+			location.href = "../environment_car/environment_car.do";
 		} else if (menu === 'guide') {
-			location.href = "../guide/guide.jsp";
+			location.href = "../guide/guide.do";
 		} else if (menu === 'reservation') {
-			location.href = "../reservation/reservation.jsp";
+			location.href = "../reservation/reservation.do";
 		} else if (menu === 'news') {
-			location.href = "../news/news.jsp";
+			location.href = "../news/news.do";
 		} else if (menu === 'accessory') {
-			location.href = "../acc/acc.jsp";
+			location.href = "../acc/acc.do";
 		} else if (menu === 'login') {
-			location.href = "../login/login.jsp";
+			location.href = "../login/login.do";
 		} else if (menu === 'registration') {
-			location.href = "../register/register.jsp";
+			location.href = "../register/register.do";
 		}
 	}
 	
