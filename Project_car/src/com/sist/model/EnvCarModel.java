@@ -16,7 +16,6 @@ public class EnvCarModel {
 		
 		List<Environment_infoVO> envInfo = EnvInfoDAO.envInfodata();
 		request.setAttribute("envInfo", envInfo);
-
 		return "environment_car.jsp";
 	}
 	

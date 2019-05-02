@@ -15,19 +15,20 @@ public class EnvInfoDAO {
 		   ssf=CreateSqlSessionFactory.getSsf();
 	   }
 	   
-	   public static List<Environment_infoVO> envInfodata() {
-		   List<Environment_infoVO> list = new ArrayList<Environment_infoVO>();
-		   SqlSession session = null;
-		   try {
-			  session = ssf.openSession();
-			   list = session.selectList("envInfoData");
-
+	public static List<Environment_infoVO> envInfodata() {
+		List<Environment_infoVO> list = new ArrayList<Environment_infoVO>();
+		SqlSession session = null;
+		try {
+			session = ssf.openSession();
+			list = session.selectList("envInfoData");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if (session != null) session.close();
+			if (session != null) {
+				session.close();
+			}
 		}
-		   
-		   return list;
-	   }
+
+		return list;
+	}
 }

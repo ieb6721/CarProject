@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 
 <html>
@@ -7,10 +8,12 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <title>인생뽑차</title>
-<meta name="description" content="Live Preview Of Oswan eCommerce HTML5 Template">
+<meta name="description"
+	content="Live Preview Of Oswan eCommerce HTML5 Template">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Favicon -->
-<link rel="shortcut icon" type="image/x-icon" href="../images/car_img/favicon.png">
+<link rel="shortcut icon" type="image/x-icon"
+	href="../images/car_img/favicon.png">
 
 <!-- all css here -->
 <link rel="stylesheet" href="../css/car_css/animate.css">
@@ -38,7 +41,7 @@
 		axisY :{
 			includeZero: false,
 			title: "배출량",
-			suffix: "mn"
+			suffix: "톤"
 		},
 		toolTip: {
 			shared: "true"
@@ -47,28 +50,84 @@
 			cursor:"pointer",
 			itemclick : toggleDataSeries
 		},
-		data: [
-			<c:forEach var="vo" items="${envInfo}" varStatus="s">
+		data: [		
 			{
 			type: "spline",
-			visible: false,
 			showInLegend: true,
-			yValueFormatString: "##.00mn",
-			name: <c:out value="${vo.year}"/>,
+			name: "CO",
 			dataPoints: [
-				{ label: "Ep. 1", y: 2.22 },
-				{ label: "Ep. 2", y: 2.20 },
-				{ label: "Ep. 3", y: 2.44 },
-				{ label: "Ep. 4", y: 2.45 },
-				{ label: "Ep. 5", y: 2.58 },
-				{ label: "Ep. 6", y: 2.44 },
-				{ label: "Ep. 7", y: 2.40 },
-				{ label: "Ep. 8", y: 2.72 },
-				{ label: "Ep. 9", y: 2.66 },
-				{ label: "Ep. 10", y: 3.04 }
+				<c:forEach var="vo" items="${envInfo}" varStatus="s">
+				{ label: "<c:out value="${vo.year}"/>", y: <c:out value="${vo.CO}"/> }
+				<c:if test="${not s.last}">,</c:if>
+				</c:forEach>
 			]
-			}<c:if test="${not s.last}">,</c:if>
-			</c:forEach>
+			},			
+			{
+				type: "spline",
+				showInLegend: true,
+				name: "NOx",
+				dataPoints: [
+					<c:forEach var="vo" items="${envInfo}" varStatus="s">
+					{ label: "<c:out value="${vo.year}"/>", y: <c:out value="${vo.NOx}"/> }
+					<c:if test="${not s.last}">,</c:if>
+					</c:forEach>
+				]
+			},
+			{
+				type: "spline",
+				showInLegend: true,
+				name: "SOx",
+				dataPoints: [
+					<c:forEach var="vo" items="${envInfo}" varStatus="s">
+					{ label: "<c:out value="${vo.year}"/>", y: <c:out value="${vo.SOx}"/> }
+					<c:if test="${not s.last}">,</c:if>
+					</c:forEach>
+				]
+			},				
+			{
+				type: "spline",
+				showInLegend: true,
+				name: "TSP",
+				dataPoints: [
+					<c:forEach var="vo" items="${envInfo}" varStatus="s">
+					{ label: "<c:out value="${vo.year}"/>", y: <c:out value="${vo.TSP}"/> }
+					<c:if test="${not s.last}">,</c:if>
+					</c:forEach>
+				]
+			},
+			{
+				type: "spline",
+				showInLegend: true,
+				name: "PM10",
+				dataPoints: [
+					<c:forEach var="vo" items="${envInfo}" varStatus="s">
+					{ label: "<c:out value="${vo.year}"/>", y: <c:out value="${vo.PM10}"/> }
+					<c:if test="${not s.last}">,</c:if>
+					</c:forEach>
+				]
+			},
+			{
+				type: "spline",
+				showInLegend: true,
+				name: "VOC",
+				dataPoints: [
+					<c:forEach var="vo" items="${envInfo}" varStatus="s">
+					{ label: "<c:out value="${vo.year}"/>", y: <c:out value="${vo.VOC}"/> }
+					<c:if test="${not s.last}">,</c:if>
+					</c:forEach>
+				]
+			},
+			{
+				type: "spline",
+				showInLegend: true,
+				name: "NH3",
+				dataPoints: [
+				<c:forEach var="vo" items="${envInfo}" varStatus="s">
+				{ label: "<c:out value="${vo.year}"/>", y: <c:out value="${vo.NH3}"/> }
+				<c:if test="${not s.last}">,</c:if>
+				</c:forEach>
+						]
+					}
 		]
 	});
 	chart.render();
@@ -87,14 +146,19 @@
 <jsp:include page="../cmmn/default-nav.jsp"></jsp:include>
 
 <style type="text/css">
-.col-lg-6 {width: 30%; }
-.product-price {padding-top: 10px; }
+.col-lg-6 {
+	width: 30%;
+}
+
+.product-price {
+	padding-top: 10px;
+}
+
 div.blog-post-body ul li {
 	text-align: left;
 	list-style: disc;
-    margin-left: 30px;
+	margin-left: 30px;
 }
-
 </style>
 </head>
 <body>
@@ -130,9 +194,9 @@ div.blog-post-body ul li {
 					</div>
 					<div class="col-lg-7">
 						<div class="shop-topbar-wrapper">
-							<div class="grid-list-options">친환경 자동차란?</div>						
+							<div class="grid-list-options">친환경 자동차란?</div>
 						</div>
-						
+
 						<article class="blog-post">
 							<div class="blog-post-body">
 								<h2>
@@ -154,17 +218,20 @@ div.blog-post-body ul li {
 								</a>
 							</div>
 						</article>
-						
+
 						<article class="blog-post">
 							<div class="blog-post-body">
 								<h2>
-									<a href="https://www.ev.or.kr/portal/ecoeffect?pMENUMST_ID=21541">전기차의 작동원리</a>
+									<a
+										href="https://www.ev.or.kr/portal/ecoeffect?pMENUMST_ID=21541">전기차의
+										작동원리</a>
 								</h2>
-								<p>▶ 전기차는 고전압 배터리에서 전기에너지를 전기모터로 공급하여 구동력을 발생시키는 차량으로, 화석연료를 전혀 사용하지 않는 무공해 차량입니다.</p>
+								<p>▶ 전기차는 고전압 배터리에서 전기에너지를 전기모터로 공급하여 구동력을 발생시키는 차량으로, 화석연료를
+									전혀 사용하지 않는 무공해 차량입니다.</p>
 								<ul>
-									<li>구분점  내연기관차와 달리 엔진이 없이 배터리와 모터만으로 차량 구동</li>
-									<li>구분점  엔진이 없으므로 대기오염물질과 온실가스를 배출하지 않음</li>
-									<li>구분점  배터리 용량에 따라 주행가능 거리에 차이가 있음</li>
+									<li>구분점 내연기관차와 달리 엔진이 없이 배터리와 모터만으로 차량 구동</li>
+									<li>구분점 엔진이 없으므로 대기오염물질과 온실가스를 배출하지 않음</li>
+									<li>구분점 배터리 용량에 따라 주행가능 거리에 차이가 있음</li>
 								</ul>
 							</div>
 							<div class="blog-post-image text-center">
@@ -173,7 +240,7 @@ div.blog-post-body ul li {
 								</a>
 							</div>
 						</article>
-						
+
 					</div>
 				</div>
 			</div>
