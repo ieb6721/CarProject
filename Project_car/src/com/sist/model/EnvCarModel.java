@@ -1,14 +1,22 @@
 package com.sist.model;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import com.sist.controller.RequestMapping;
+import com.sist.dao.*;
+import com.sist.vo.*;
 
 public class EnvCarModel {
 
 	@RequestMapping("environment_car/environment_car.do")
 	public String environmentModel1(HttpServletRequest request) {
-		System.out.println("친환경차 모델");
+		System.out.println("친환경차 정보");
+		
+		List<Environment_infoVO> envInfo = EnvInfoDAO.envInfodata();
+		request.setAttribute("envInfo", envInfo);
+
 		return "environment_car.jsp";
 	}
 	

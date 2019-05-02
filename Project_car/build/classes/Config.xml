@@ -15,6 +15,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<typeAliases>
 		<!-- VO 등록 -->
 		<typeAlias type="com.sist.vo.NewsVO" alias="NewsVO"/>
+		<typeAlias type="com.sist.vo.CarVO" alias="CarVO"/>
+		<typeAlias type="com.sist.vo.ChargeVO" alias="ChargeVO"/>
+		<typeAlias type="com.sist.vo.Environment_infoVO" alias="Environment_infoVO"/>
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
@@ -38,5 +41,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	</environments>
 	<mappers>
 		<mapper resource="com/sist/mapper/news-mapper.xml"/>
+		<mapper resource="com/sist/mapper/charge-mapper.xml"/>
+		<mapper resource="com/sist/mapper/Environment_info-mapper.xml"/>
 	</mappers>
 </configuration>
