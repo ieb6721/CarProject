@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
-<!doctype html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<!doctype html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <title>인생뽑차</title>
 <meta name="description"
@@ -24,21 +25,67 @@
 <script src="../js/car_js/vendor/modernizr-2.8.3.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script>
-   $(function() {
-      $('.acc_ctrl').on('click', function(e) {
-         e.preventDefault();
-         if ($(this).hasClass('active')) {
-            $(this).removeClass('active');
-            $(this).next().stop().slideUp(300);
-         } else {
-            $(this).addClass('active');
-            $(this).next().stop().slideDown(300);
-         }
-      });
-      
-   });
-   
 
+	$(function() {
+	   $('.acc_ctrl').on('click', function(e) {
+	      e.preventDefault();
+	      if ($(this).hasClass('active')) {
+	         $(this).removeClass('active');
+	         $(this).next().stop().slideUp(300);
+	      } else {
+	         $(this).addClass('active');
+	         $(this).next().stop().slideDown(300);
+	      }
+	   });
+	   /* 시승 모델  */
+	   $('.car_select').on('click', 'dd', function() {
+	         var name = $(this).text();
+	         
+	       if ($('.car_select > dd').hasClass('add_border')) {
+	            $('.car_select > dd').removeClass('add_border')
+	            $(this).addClass('add_border');
+	            $('.model_name').text(name);
+	            
+	         } else {
+	            $(this).addClass('add_border');
+	            $('.model_name').text(name); 
+	
+	         }
+	       
+	   });
+	   /* 시승 신청 최종 버튼 */
+	   $('.reqBtn_div').on('click', 'button', function() {
+	 	  	alert("클릭하셨습니다");  
+	
+	   	});     
+	   
+	   /* 시승 날짜 달력 이벤트 */
+	   $('.sel_date').click(function() {
+			var year = $(this).attr("year");
+			var month = $(this).attr("month");
+			var day = $(this).text();
+
+			$('.model_date').text(year + "년 " + month + "월 " + day + "일 ");					
+		});
+	   
+	   /* 신청자 정보 */
+	  
+	   $('.nextBtn').click(function() {
+		   var name = $('#res_name').val();
+		   var tel0 = $('.tel0').val();
+		   var tel1 = $('#tel1').val();
+		   var tel2 = $('#tel2').val();
+		  
+		   $('em.applicant_info').text(name + "\u00A0\u00A0"  + tel0 + "-" + tel1 + "-" +tel2);
+
+	   });
+	   
+	});
+
+	function change() {
+		var f=document.frm;
+		f.submit();
+	}
    
 </script>
 <style type="text/css">
@@ -57,25 +104,29 @@ html, body { height: 100%; margin: 0; padding: 0; width: 100%; }
 .acc_ctrl.active:before { -webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -ms-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg);}
 .acc_ctrl.active h2, .acc_ctrl:focus h2 { position: relative; }
 .acc_panel {  display: none; overflow: hidden; } /* background: #f2f2f2; */
-.con { padding-right: 15px; padding-left: 15px; margin-left: auto; margin-right: auto; padding-bottom: 200px; width: 1000px; }
+.con { padding-right: 15px; padding-left: 15px; margin-left: auto; margin-right: auto; padding-bottom: 50px; width: 1000px; }
 .container-fluid { position: relative; bottom: 50px; }
 .breadcrumb-area { width: 1950px; height: 531px; }
 em { font-size: 24px; display: block; color: #999999; line-height: 1em; padding-top: 12px; text-align: center; }
 .sel { font-size: 25px; }
 .rs { font-family: 'RenaultLife-Regular', 'RenaultSamsungMotors-Regular' !important; padding-top: 50px;
      padding-bottom: 50px; font-size: 40px; text-align: center;}
+.acc_ctrl em.model_name { position: absolute; right:66px; top:31px; color: black; }
+em.model_date{ position: absolute; right:66px; top:31px; color: black; }
 
 /* 시승 모델 */
 .pannel1 { height: 466px; }
 .car_select { overflow: hidden; width: 988px; margin-left: -8px; margin-top: -8px; }
 .car_select dt { position: relative; color: #666; line-height: 26px; font-size: 20px; padding-bottom: 40px; margin: 64px 0 0 51px; width: 196px; float: left; }
-.car_select dd { float: left; width: 230px; height: 200px; margin-left: 14px; margin-top: 25px; }
+.car_select dd { float: left; width: 230px; background: #f8f8f6; height: 200px; margin-left: 14px; margin-top: 25px; }
 .car_select dd a { padding: 46px 0; background-color: #f8f8f6; }
-.car_select dd a img { width: 220px; background-color: #f8f8f6; margin: 0 auto; }
-.car_select dd a p { font-size: 26px; margin-top: 10px; text-align: center; color: #363636; position: relative; }
+.car_select dd a img { width: 220px; height: 120px; background-color: #f8f8f6; margin: 0 auto; margin-top: 30px;}
+.car_select dd a p { font-size: 26px; margin-top: 10px; text-align: center; color: #363636; position: relative; font-family: RenaultLife-Regular;}
+.add_border{border: 3px solid #ffcc33;}
+
 /* --------------- */
 /* 신청자 정보  */
-.pannel4 { width: 980px; height: 800px; }
+.pannel4 { width: 980px; height: 700px; }
 .applicant_box { padding: 26px 88px; height: 800px; width: 900px; }
 input[type="radio"] { width: 20px; bottom: -12px; left: 20px; }
 select.form-control { width: 138px; float: left; margin-left: 11px; }
@@ -87,6 +138,7 @@ input[name="email2"] { float: left; width: 150px; margin-left: 30px; }
 div.form-group { margin-bottom: 40px; }
 label.control-label { font-size: 18px; }
 label.radio-inline {margin-right: 20px;}
+.applicant_info{position: absolute; right:66px; top:31px; color: black; }
 /* ---------------- */
 /* 개인 약관 */
 .pannel5 { height: 602px; }
@@ -100,6 +152,7 @@ label.radio-inline {margin-right: 20px;}
 input[id="agree1"], label[for="agree1"], 
 input[id="agree2"], label[for="agree2"],
 input[id="agree3"], label[for="agree3"] { position: relative; float: right; line-height: 1.6em; }
+.checks3{position:relative; left:650px;}
 #agree1 { top: -14px; }
 #agree2 { top: -14px; }
 #agree3 { width: 20px; top: -14px; }
@@ -107,436 +160,480 @@ input[id="agree3"], label[for="agree3"] { position: relative; float: right; line
 #adCheck2 { width: 26px; }
 /* ------------------ */
 /* 지도 */
-.pannel2 {height: 563px;}
+.pannel2 { height: 563px;}
 div#map { height:563px; width:970px;}
+.reserve_place{ position: absolute; right:66px; top:31px; color: black; }
 /* ------------------ */
 /* 예약 날짜 */
-.pannel3 { width: 980px; height: 600px; }
-
+.pannel3 { width: 980px; height: 450px; padding-top: 30px; padding-left: 160px;}
+#table_content { width: 700px; height: 300px; }
+.pannel3 h2 {float: left; padding-left: 60px;}
+.next_month_btn { padding: 0px; border: 0px; position: relative; top: 17px; left: 30px;}
+.next_month_btn img {width: 35px;}
+.prev_month_btn { padding: 0px; border: 0px; position: relative; top: 17px; left: 30px; float: left;}
+.prev_month_btn img {width: 35px;}
+.sel_date{ cursor: pointer; }
+.monthDiv{ margin-left: 180px;}
+select[name="month"] {position: relative; top: 14px; margin-left: 20px;}
 /* ------------------ */
-
- .wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
-    .wrap * {padding: 0;margin: 0;}
-    .wrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
-    .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
-    .info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
-    .info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
-    .info .close:hover {cursor: pointer;}
-    .info .body {position: relative;overflow: hidden;}
-    .info .desc {position: relative;margin: 13px 0 0 90px;height: 75px;}
-    .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
-    .desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
-    .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
-    .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
-    .info .link {color: #5085BB;}
+/* 시승 신청 버튼 */
+.reqBtn_div {margin-bottom: 50px;}
+.reqBtn{ background:#BDBDBD; border:none; width: 300px; height: 68px; font-size: 24px; padding:0 2em; cursor:pointer;
+         transition:800ms ease all; outline:none; }
+.reqBtn:hover{ background:#8C8C8C; }    
+/* ------------------ */
+.wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
+.wrap * {padding: 0;margin: 0;}
+.wrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
+.wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
+.info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
+.info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
+.info .close:hover {cursor: pointer;}
+.info .body {position: relative;overflow: hidden;}
+.info .desc {position: relative;margin: 13px 0 0 90px;height: 75px;}
+.desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+.desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
+.info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
+.info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
+.info .link {color: #5085BB;}
+/* 체크박스 */
+.where { display: block; margin: 25px 15px; font-size: 11px; color: #000; text-decoration: none; font-family: verdana; font-style: italic; }
+.checks {position: relative; left: 700px;}
+.checks input[type="checkbox"] { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip:rect(0,0,0,0);border: 0}
+.checks input[type="checkbox"] + label { display: inline-block; position: relative; cursor: pointer; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; }
+.checks input[type="checkbox"] + label:before {  /* 가짜 체크박스 */ content: ' '; display: inline-block; width: 21px;  /* 체크박스의 너비를 지정 */
+  												height: 21px;  /* 체크박스의 높이를 지정 */ line-height: 21px; /* 세로정렬을 위해 높이값과 일치 */ margin: -2px 8px 0 0;
+  												text-align: center;  vertical-align: middle; background: #fafafa; border: 1px solid #cacece; border-radius : 3px;
+ 												 box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05); }
+.checks input[type="checkbox"] + label:active:before,
+.checks input[type="checkbox"]:checked + label:active:before { box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);}
+.checks input[type="checkbox"]:checked + label:before {  /* 체크박스를 체크했을때 */  content: '\2714';  /* 체크표시 유니코드 사용 */ color: #99a1a7; text-shadow: 1px 1px #fff; background: #e9ecee;
+ 														 border-color: #adb8c0; box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1); }
+.checks.small input[type="checkbox"] + label { font-size: 12px; }
+.checks.small input[type="checkbox"] + label:before { width: 17px; height: 17px; line-height: 17px; font-size: 11px; }
+.checks.etrans input[type="checkbox"] + label { padding-left: 30px; }
+.checks.etrans input[type="checkbox"] + label:before { position: absolute; left: 0; top: 0; margin-top: 0; opacity: .6; box-shadow: none; border-color: #6cc0e5;
+														-webkit-transition: all .12s, border-color .08s; transition: all .12s, border-color .08s;}
+.checks.etrans input[type="checkbox"]:checked + label:before { position: absolute; content: ""; width: 10px; top: -5px; left: 5px; border-radius: 0;
+																opacity:1; background: transparent; border-color:transparent #6cc0e5 #6cc0e5 transparent;
+ 																 border-top-color:transparent; border-left-color:transparent; -ms-transform:rotate(45deg);
+  																-webkit-transform:rotate(45deg); transform:rotate(45deg); }
+.no-csstransforms .checks.etrans input[type="checkbox"]:checked + label:before { /*content:"\2713";*/ content: "\2714"; top: 0; left: 0; width: 21px;
+  																					line-height: 21px; color: #6cc0e5; text-align: center;border: 1px solid #6cc0e5; }
+/*----------------*/															
 </style>
 </head>
 <body>
    <jsp:include page="../cmmn/default-nav.jsp"></jsp:include>
    <div class="wrapper">
-      <div class="breadcrumb-area pt-255 pb-170"
-         style="background-image: url(../images/reservation_img/mainImg.jpg)">
+      
+      <div class="breadcrumb-area pt-255 pb-170" style="background-image: url(../images/reservation_img/mainImg.jpg)">
          <div class="container-fluid"></div>
       </div>
-
+      
       <div class="con">
-         <h2 class="rs">
-            시승 신청 <em>Book a Test Drive</em>
-         </h2>
-
+         <h2 class="rs">시승 신청 <em>Book a Test Drive</em></h2>
          <ul class="acc">
           <li>
-               <button class="acc_ctrl">
-                  <h2 class="sel text-left">시승 거점</h2>
-               </button>
-               <div id="map"></div>
-            </li>
-            <li>
-               <button class="acc_ctrl">
-                  <h2 class="sel text-left">시승 모델</h2>
-               </button>
-               <div class="pannel1 acc_panel">
-                  <div class="car_select">
-                     <dt>
-                        시승하실<br>모델을<br>선택하세요!
-                     </dt>
-                     <dd>
-                        <a><img src="../images/reservation_img/k5.PNG">
-                        <p>K5</p></a>
-                     </dd>
-                     <dd>
-                        <a><img src="../images/reservation_img/k5.PNG">
-                        <p>K5</p></a>
-                     </dd>
-                     <dd>
-                        <a><img src="../images/reservation_img/k5.PNG">
-                        <p>K5</p></a>
-                     </dd>
-                     <dd>
-                        <a><img src="../images/reservation_img/k5.PNG">
-                        <p>K5</p></a>
-                     </dd>
-                     <dd>
-                        <a><img src="../images/reservation_img/k5.PNG">
-                        <p>K5</p></a>
-                     </dd>
-                     <dd>
-                        <a><img src="../images/reservation_img/k5.PNG">
-                        <p>K5</p></a>
-                     </dd>
-                     <dd>
-                        <a><img src="../images/reservation_img/k5.PNG">
-                        <p>K5</p></a>
-                     </dd>
-                  </div>
-               </div>
-            </li>
-           
-            <li>
-               <button class="acc_ctrl">
-                  <h2 class="sel text-left">신청자 정보 & 시승 희망일</h2>
-               </button>
-               <div class="pannel4 acc_panel">
-                  <div class="applicant_box">
-                     <form class="form-horizontal">
-                        <div class="form-group">
-                           <label class="control-label col-sm-2" for="res_name">성명</label>
-                           <div class="col-sm-10">
-                              <input type="text" class="form-control" id="res_name"
-                                 name="res_name">
-                           </div>
-                        </div>
-                        <div class="form-group">
-                           <label class="control-label col-sm-2" for="pwd">성별</label>
-                           <div class="col-sm-10">
-                              <label class="radio-inline"> 남자 <input type="radio"
-                                 name="optradio" checked>
-                              </label> <label class="radio-inline"> <input type="radio"
-                                 name="optradio">여자
-                              </label>
-                           </div>
-                        </div>
-                        <div class="form-group">
-                           <label class="control-label col-sm-2" for="birth">생년월일</label>
-                           <select class="form-control">
-                              <option>년</option>
-                              <option>2019</option>
-                              <option>2018</option>
-                              <option>2017</option>
-                              <option>2016</option>
-                              <option>2015</option>
-                              <option>2014</option>
-                              <option>2013</option>
-                              <option>2012</option>
-                              <option>2011</option>
-                              <option>2010</option>
-                              <option>2009</option>
-                              <option>2008</option>
-                              <option>2007</option>
-                              <option>2006</option>
-                              <option>2005</option>
-                              <option>2004</option>
-                              <option>2003</option>
-                              <option>2002</option>
-                              <option>2001</option>
-                              <option>2000</option>
-                           </select> <select class="form-control">
-                              <option>월</option>
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                              <option>6</option>
-                              <option>7</option>
-                              <option>8</option>
-                              <option>9</option>
-                              <option>10</option>
-                              <option>11</option>
-                              <option>12</option>
-                           </select> <select class="form-control">
-                              <option>일</option>
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                              <option>6</option>
-                              <option>7</option>
-                              <option>8</option>
-                              <option>9</option>
-                              <option>10</option>
-                              <option>11</option>
-                              <option>12</option>
-                              <option>13</option>
-                              <option>14</option>
-                              <option>15</option>
-                              <option>16</option>
-                              <option>17</option>
-                              <option>18</option>
-                              <option>19</option>
-                              <option>20</option>
-                              <option>21</option>
-                              <option>22</option>
-                              <option>23</option>
-                              <option>24</option>
-                              <option>25</option>
-                              <option>26</option>
-                              <option>27</option>
-                              <option>28</option>
-                              <option>29</option>
-                              <option>30</option>
-                              <option>31</option>
+            <button class="acc_ctrl">
+               <h2 class="sel text-left">시승 거점</h2>
+               <em class="reserve_place"></em>
+            </button>
+            <div id="map"></div>
+          </li>
+          
+          <!-- 시승 모델 선택 -->       
+          <li>
+             <button class="acc_ctrl">
+                <h2 class="sel text-left">시승 모델</h2>            
+                <em class="model_name"></em>
+             </button>
+             <div class="pannel1 acc_panel">
+                <div class="car_select">
+                   <dt>시승하실<br>모델을<br>선택하세요!</dt>
+                   <dd>
+                      <a>
+                         <img src="../images/reservation_img/sm7.png">
+                         <p>SM7</p>
+                      </a>
+                   </dd>
+                   <dd>
+                      <a>
+                         <img src="../images/reservation_img/sm6.png">
+                         <p>SM6</p>
+                      </a>
+                   </dd>
+                   <dd>
+                      <a>
+                         <img src="../images/reservation_img/sm5.png">
+                         <p>SM5</p>
+                      </a>
+                   </dd>
+                   <dd>
+                      <a>
+                         <img src="../images/reservation_img/sm3.png">
+                        <p>SM3</p>
+                      </a>
+                   </dd>
+                   <dd>
+                      <a>
+                         <img src="../images/reservation_img/qm6.png">
+                         <p>QM6</p>
+                      </a>
+                   </dd>
+                   <dd>
+                      <a>
+                         <img src="../images/reservation_img/qm3.png">
+                         <p>QM3</p>
+                      </a>
+                   </dd>
+                </div>
+             </div>
+          </li>
 
-                           </select>
-                        </div>
-                        <div class="form-group">
-                           <label class="control-label col-sm-2" for="tel">연락처</label> <select
-                              class="form-control">
-                              <option>010</option>
-                              <option>011</option>
-                              <option>016</option>
-                              <option>017</option>
-                              <option>018</option>
-                              <option>019</option>
-                              <option>0502</option>
-                              <option>0505</option>
-                           </select> <input type="text" class="form-control" id="tel1" name="tel1">
-                           <input type="text" class="form-control" id="tel2" name="tel2">
-                        </div>
-                        <div class="form-group">
-                           <label class="control-label col-sm-2" for="email">이메일</label> <input
-                              type="text" class="form-control" id="email1" name="email1">
-                           <em class="em1">@</em> <input type="text" class="form-control"
-                              id="email2" name="email2">
-                        </div>
-                        <div class="form-group">
-                           <label class="control-label col-sm-2" for="passenger">동승자</label>
-                           <div class="col-sm-10">
-                              <label class="radio-inline"> 없음 <input type="radio"
-                                 name="passradio" checked>
-                              </label> <label class="radio-inline"> <input type="radio"
-                                 name="passradio">있음
-                              </label>
-                           </div>
-                        </div>
-                        <div class="form-group">
-                           <label class="control-label col-sm-2" for="purchaseDate">구입
-                              예정일</label>
-                           <div class="col-sm-10">
-                              <label class="radio-inline"> 1개월 이내 <input
-                                 type="radio" name="dateradio" checked>
-                              </label> <label class="radio-inline"> <input type="radio"
-                                 name="dateradio"> 3개월 이내
-                              </label> <label class="radio-inline"> <input type="radio"
-                                 name="dateradio"> 6개월 이내
-                              </label> <label class="radio-inline"> <input type="radio"
-                                 name="dateradio"> 1년 이내
-                              </label> <label class="radio-inline"> <input type="radio"
-                                 name="dateradio"> 계획 없음
-                              </label>
-                           </div>
-                        </div>
-                        <div class="form-group">
-                           <label class="control-label col-sm-2" for="purchasWay">구매
-                              방법</label>
-                           <div class="col-sm-10">
-                              <label class="radio-inline"> 현금 <input type="radio"
-                                 name="wayradio" checked>
-                              </label> <label class="radio-inline"> <input type="radio"
-                                 name="wayradio"> 할부
-                              </label> <label class="radio-inline"> <input type="radio"
-                                 name="wayradio"> 리스
-                              </label> <label class="radio-inline"> <input type="radio"
-                                 name="wayradio"> 장기렌트
-                              </label>
-                           </div>
-                        </div>
-                        <div class="form-group">
-                           <label class="control-label col-sm-2" for="purchasWay">시승 날짜</label>
+ 		  <!-- 시승 날짜 선택 -->        
+ 		  
+ 		<li>
+	 		<button class="acc_ctrl">
+	        	<h2 class="sel text-left">시승 날짜</h2>
+	            <em class="model_date"></em>                           
+	        </button>
+            <div class="pannel3 acc_panel" id="calendarDiv">
+	        	<div class="monthDiv">
+			    	<h2>${year }년 ${month }월</h2>
+			    </div>							      
+			<form action="reservation.do" method="post" name="frm">
+				<table>
+			 		<tr>
+			  			<td>      
+			  			 <select name="month" onchange="change()">
+					 	 	<c:forEach var="i" begin="1" end="12">
+								<option>${i }</option>
+							</c:forEach>
+			  			 </select>
+			  			</td>
+			 		</tr>
+				</table>
+			</form>
+				      <table id="table_content">
+						<tr>						
+							<c:forEach var="s" items="${strWeek }">		<!-- {"일", "월", "화", "수", "목", "금", "토"} -->
+								<c:choose>
+									<c:when test="${s eq '일' }">
+										<th class="text-center" style="color:red">${s }</th>
+									</c:when>
+									<c:otherwise>
+										<th class="text-center">${s }</th>
+									</c:otherwise>
+								</c:choose>								
+							</c:forEach>
+						</tr>
+						
+						<c:set var="week" value="${week-1 }" />			<!-- week = {"일=1", "월=2", "화=3", "수=4", "목=5", "금=6", "토=7"} -->
+						<c:forEach var="i" begin="1" end="${lastDay }">
+							<c:if test="${i==1 }">
+							
+								<!-- 요일 띄어놓기 -->
+								<tr height="45">
+									<c:forEach var="j" begin="1" end="${week }">	<!-- 1일 전의 날짜들 공백 채우기  -->
+										<td>&nbsp;</td>
+									</c:forEach>
+							</c:if>
+							<c:set var="color" value="white" />
+							<!-- String color="white" -->
+							
+							<c:if test="${i!=day }">
+								<c:set var="color" value="white" />
+							</c:if>
+							<td class="text-center" bgcolor="${color }">							
+								 <a class="sel_date" year="${year }" month="${month }">${i }</a>								
+							</td>
+							<c:set var="week" value="${week+1 }" />
+							<!-- week=week+1 -->
+							<c:if test="${week>6 }">				<!-- 토요일(7)보다 크면 한줄 내리기 -->
+								</tr>
+								
+								<c:set var="week" value="0" />		<!-- 일요일(0)부터 다시 시작 -->
+								<tr height="45">
+							</c:if>
+						</c:forEach>
+						</tr>
+					</table>
+				</div>
+			</li>
+          <!-- 신청자 정보 -->
+          <li>
+             <button class="acc_ctrl">
+                <h2 class="sel text-left">신청자 정보</h2>
+                <em class="applicant_info"></em>
+             </button>
+             <div class="pannel4 acc_panel">
+                <div class="applicant_box">
+                   <form class="form-horizontal">
+                      <div class="form-group">
+                         <label class="control-label col-sm-2" for="res_name">성명</label>
+                         <div class="col-sm-10">
+                            <input type="text" class="form-control" id="res_name" name="res_name">
+                         </div>
+                      </div>
+                      <div class="form-group">
+                         <label class="control-label col-sm-2" for="pwd">성별</label>
+                         <div class="col-sm-10">
+                            <label class="radio-inline"> 남자 
+                               <input type="radio" name="optradio" checked>
+                            </label> 
+                            <label class="radio-inline"> 여자
+                               <input type="radio" name="optradio"> 
+                            </label>
+                         </div>
+                      </div>
+                      <div class="form-group">
+                         <label class="control-label col-sm-2" for="birth">생년월일</label>
+                         <select class="form-control">
+                            <option>년</option>
+                               <c:forEach var="i" begin="1928" end="2019">
+                               	<option>${i }</option>
+                               </c:forEach>
+                         </select> 
+                         <select class="form-control">
+                            <option>월</option>
+                            <c:forEach var="i" begin="1" end="12">
+                               	<option>${i }</option>
+                            </c:forEach>
+                         </select> 
+                         <select class="form-control">
+                            <option>일</option>
+                            <c:forEach var="i" begin="1" end="31">                          
+                               	<option>${i }</option>                          
+                            </c:forEach>
+                         </select>
+                      </div>
+                      <div class="form-group">
+                         <label class="control-label col-sm-2" for="tel">연락처</label> 
+                      <select class="form-control tel0">
+                            <option value="010">010</option>
+                            <option value="011">011</option>
+                            <option value="016">016</option>
+                            <option value="017">017</option>
+                            <option value="018">018</option>
+                            <option value="019">019</option>
+                            <option value="052">0502</option>
+                            <option value="0505">0505</option>
+                      </select> 
+                         <input type="text" class="form-control" id="tel1" name="tel1">
+                         <input type="text" class="form-control" id="tel2" name="tel2">
+                      </div>
+                      <div class="form-group">
+                         <label class="control-label col-sm-2" for="email">이메일</label> 
+                         <input type="text" class="form-control" id="email1" name="email1">
+                         <em class="em1">@</em> 
+                         <input type="text" class="form-control" id="email2" name="email2">
+                      </div>
+                      <div class="form-group">
+                         <label class="control-label col-sm-2" for="passenger">동승자</label>
+                         <div class="col-sm-10">
+                            <label class="radio-inline"> 없음 <input type="radio" name="passradio" checked></label> 
+                            <label class="radio-inline"> 있음 <input type="radio" name="passradio"> </label>
+                         </div>
+                      </div>
+                      <div class="form-group">
+                         <label class="control-label col-sm-2" for="purchaseDate">구입 예정일</label>
+                         <div class="col-sm-10">
+                            <label class="radio-inline"> 1개월 이내 <input type="radio" name="dateradio" checked></label> 
+                            <label class="radio-inline"> 3개월 이내 <input type="radio" name="dateradio"></label> 
+                            <label class="radio-inline"> 6개월 이내 <input type="radio" name="dateradio"></label> 
+                            <label class="radio-inline"> 1년 이내    <input type="radio" name="dateradio"></label> 
+                            <label class="radio-inline"> 계획 없음   <input type="radio" name="dateradio"></label>
+                         </div>
+                      </div>
+                      <div class="form-group">
+                         <label class="control-label col-sm-2" for="purchasWay">구매 방법</label>
+                         <div class="col-sm-10">
+                            <label class="radio-inline"> 현금 <input type="radio" name="wayradio" checked></label> 
+                            <label class="radio-inline"> 할부 <input type="radio" name="wayradio"></label> 
+                            <label class="radio-inline"> 리스 <input type="radio" name="wayradio"></label>
+                            <label class="radio-inline"> 장기렌트 <input type="radio" name="wayradio"></label>
+                         </div>
+                      </div>
+                      <div class="text-center">
+				         <button type="button" class="btn btn-default nextBtn" width=60>다음</button>
+				      </div>
+                   </form>
+                </div>
+             </div>
+          </li>
+          
+          <!-- 개인정보 수집 -->
+          <li>
+             <button class="acc_ctrl">
+                <h2 class="sel text-left">개인정보 수집 및 이용 동의</h2>
+             </button>
+             <div class="pannel5 acc_panel">
+                <div class="step_con" style="display: block;">
+                   <dl>
+                      <dt class="dt1">개인정보 수집 및 이용에 대한 동의(필수)</dt>
+                      <dd>
+                         <div class="terms_box">
+                            <div class="terms_text">
+                               <strong>1. 수집하는 개인정보 항목</strong>
+                               <p>필수항목 : 이름, 성별, 생년월일, 연락처, 이메일, 접속 IP 정보, 서비스 이용기록(쿠키, 접속로그)</p>
+                               <strong>2. 개인정보의 수집 및 이용 목적</strong>
+                               <p>회사는 온라인을 통해 수집된 개인 정보를 다음의 목적을 위해 활용합니다. <br> 가. 본인확인<br>
+                                              시승 신청 진행을 위한 본인 식별 및 부정 이용방지 등을 위하여 사용 됩니다.<br> 나. 마케팅
+                                              및 광고에 활용<br> 새로운 정보의 업데이트나 이벤트 소식, 자동차 관리, 경품 당첨자 선정,
+                                              서비스 안내와 같은 정보를 문자, 이메일, 전화, 우편 등의 방법으로 제공 및 통계학적 분석을 위해 사용합니다.</p>
+                               <strong>3. 개인정보의 보유 및 이용기간</strong>
+                               <p>이용목적이 달성된 경우에는 해당 정보를 지체 없이 파기합니다. <br>※ 보존기간 : 시승 신청 후 1년 </p>
+                               <strong>4. 수집/이용에 동의하지 않으시는 경우에는 시승 신청을 이용 하실 수 없습니다.</strong>
+                               <p>※ 개인정보 처리에 대한 자세한 사항 확인은 인생뽑차 웹사이트 (https://localhost/TeamProject_Car/main/main.do)에서 하실 수 있습니다.</p>
+                            </div>
+                         </div>
+                         <div class="agree_chk">
+                            <div class="checks etrans">
+							  <input type="checkbox" id="ex_chk1"> 
+							  <label for="ex_chk1">개인정보 수집 및 이용에 동의합니다.</label> 
+							</div>
+                         </div>
+                      </dd>
+                      <dt class="dt1">개인정보 취급 위탁에 대한 동의(필수)</dt>
+                      <dd>
+                         <div class="terms_box">
+                            <div class="terms_text">
+                               <p>인생뽑차는 고객의 동의를 받은 경우에 한하여 수집한 개인정보를 다음과 같은 범위에서 취급위탁하고 있습니다.</p>
+                               <table class="terms_table_text table-bordered text-center">
+                                  <colgroup>
+                                     <col width="50%">
+                                     <col width="50%">
+                                  </colgroup>
+                                  <thead>
+                                     <tr>
+                                        <th class="text-center" scope="col">개인정보 취급위탁을 받는 자</th>
+                                        <th class="text-center" scope="col">개인정보 취급위탁을 하는 업무의 내용</th>
+                                     </tr>
+                                  </thead>
+                                  <tbody>
+                                     <tr>
+                                        <td>인생뽑차자동차 거점</td>
+                                        <td>고객이 선택한 거점 시승 신청 서비스 제공</td>
+                                     </tr>
+                                     <tr>
+                                        <td>㈜마더브레인</td>
+                                        <td>홈페이지 운영 및 유지보수</td>
+                                     </tr>
+                                     <tr>
+                                        <td>㈜아림디엠, 한국전산홈㈜</td>
+                                        <td>우편물 및 경품 배송업무 대행</td>
+                                     </tr>
+                                     <tr>
+                                        <td>Trans Cosmos Korea</td>
+                                        <td>차량구매 및 정비서비스 관련 고객 상담 업무</td>
+                                     </tr>
+                                     <tr>
+                                        <td>㈜삼성 SDS</td>
+                                        <td>전산시스템 운영 및 유지보수</td>
+                                     </tr>
+                                     <tr>
+                                        <td>㈜다우기술, ㈜ 세종텔레콤</td>
+                                        <td>SMS 발송 업무 대행</td>
+                                     </tr>
+                                     <tr>
+                                        <td>㈜ 아이뱅크</td>
+                                        <td>고객정보 분석 및 이메일 발송업무 대행</td>
+                                     </tr>
+                                  </tbody>
+                               </table>
+                            </div>
+                         </div>
+                         <div class="agree_chk">
+                            <div class="checks etrans">
+							  <input type="checkbox" id="ex_chk2"> 
+							  <label for="ex_chk2">개인정보 취급 위탁에 동의합니다.</label> 
+							</div>
+                         </div>
+                      </dd>
+
+                      <dt class="dt1">광고/정보 수신 및 마케팅 활용에 대한 안내 (선택)</dt>
+                      <dd>
+                         <div class="terms_box">
+                            <div class="terms_text">
+                               <p>
+                                  <!-- 04. 광고/정보 수신 및 마케팅 활용에 대한 안내(선택) -->
+                                  1. 수집?이용 목적: 새로운 정보의 업데이트나 이벤트 소식, 자동차 관리, 경품 당첨자 선정, 서비스
+                                     안내와 같은 정보를 문자, 이메일, 전화, 우편 등의 방법으로 제공하기 위해 사용합니다. <br>
+                                  2. 수집 항목: 성별, 생년월일, 이메일, 연락처 (휴대폰/자택), 주소<br> 
+                                  3. 보유 · 이용기간 : 수집일로부터 1년
+                               </p>
+                            </div>
+                         </div>
+                         <div class="agree_chk">
+                            <div class="checks etrans checks3">
+							  <input type="checkbox" id="ex_chk3"> 
+							  <label for="ex_chk3">광고/정보 수신 및 마케팅 활용에 전체 동의합니다.</label> 
+							</div>
+                         </div>
+                         <div class="agree_add">
+                            <table class="table1 terms_table_text table-bordered text-center">
+                               <thead>
+                                  <tr>
+                                     <th>SMS</th>
+                                     <th>E-mail</th>
+                                     <th>전화</th>
+                                     <th>우편</th>
+                                  </tr>
+                               </thead>
+                               <tbody>
+                                  <tr>
+                                     <td>
+                                        <span class="check">
+                                           <input class="common_check choice_check" id="adCheck1" type="checkbox" name="smsChk" value="Y">
+                                              <label for="adCheck1"></label>
+                                        </span>
+                                     </td>
+                                     <td>
+                                        <span class="check">
+                                           <input class="common_check choice_check" id="adCheck2" type="checkbox" name="emailChk" value="Y">
+                                              <label for="adCheck2"></label>
+                                        </span>
+                                     </td>
+                                     <td>
+                                        <span class="check">
+                                           <input class="common_check choice_check" id="adCheck3" type="checkbox" name="pNumberChk" value="Y">
+                                              <label for="adCheck3"></label>
+                                        </span>
+                                     </td>
+                                     <td>
+                                        <span class="check">
+                                           <input class="common_check choice_check" id="adCheck4" type="checkbox" name="postChk" value="Y">
+                                              <label for="adCheck4"></label>
+                                        </span>
+                                     </td>
+                                  </tr>
+                               </tbody>
+                            </table>
                             
-                     </form>
-                  </div>
-               </div>
-            </li>
-            <li>
-               <button class="acc_ctrl">
-                  <h2 class="sel text-left">개인정보 수집 및 이용 동의</h2>
-               </button>
-               <div class="pannel5 acc_panel">
-                  <div class="step_con" style="display: block;">
-                     <dl>
-                        <dt class="dt1">개인정보 수집 및 이용에 대한 동의(필수)</dt>
-                        <dd>
-                           <div class="terms_box">
-                              <div class="terms_text">
-                                 <strong>1. 수집하는 개인정보 항목</strong>
-                                 <p>필수항목 : 이름, 성별, 생년월일, 연락처, 이메일, 접속 IP 정보, 서비스 이용기록(쿠키,
-                                    접속로그)</p>
-                                 <strong>2. 개인정보의 수집 및 이용 목적</strong>
-                                 <p>
-                                    회사는 온라인을 통해 수집된 개인 정보를 다음의 목적을 위해 활용합니다. <br> 가. 본인확인<br>
-                                    시승 신청 진행을 위한 본인 식별 및 부정 이용방지 등을 위하여 사용 됩니다.<br> 나. 마케팅
-                                    및 광고에 활용<br> 새로운 정보의 업데이트나 이벤트 소식, 자동차 관리, 경품 당첨자 선정,
-                                    서비스 안내와 같은 정보를 문자, 이메일, 전화, 우편 등의 방법으로 제공 및 통계학적 분석을 위해
-                                    사용합니다.
-                                 </p>
-                                 <strong>3. 개인정보의 보유 및 이용기간</strong>
-                                 <p>
-                                    이용목적이 달성된 경우에는 해당 정보를 지체 없이 파기합니다. <br>※ 보존기간 : 시승 신청 후
-                                    1년
-                                 </p>
-                                 <strong>4. 수집/이용에 동의하지 않으시는 경우에는 시승 신청을 이용 하실 수
-                                    없습니다.</strong>
-                                 <p>※ 개인정보 처리에 대한 자세한 사항 확인은 르노삼성자동차 웹사이트
-                                    (www.http://localhost:8080/TeamProject_Car/main/main.jsp)에서
-                                    하실 수 있습니다.</p>
-                              </div>
-                           </div>
-                           <div class="agree_chk">
-                              <div class="check r">
-                                 <label class="agree1" for="agree1">개인정보 수집 및 이용에
-                                    동의합니다.</label> <input id="agree1" type="checkbox" class="checkbox">
-                              </div>
-                           </div>
-                        </dd>
-                        <dt class="dt1">개인정보 취급 위탁에 대한 동의(필수)</dt>
-                        <dd>
-                           <div class="terms_box">
-                              <div class="terms_text">
-                                 <p>인생뽑차는 고객의 동의를 받은 경우에 한하여 수집한 개인정보를 다음과 같은 범위에서 취급위탁하고
-                                    있습니다.</p>
-                                 <table class="terms_table_text table-bordered text-center">
-                                    <colgroup>
-                                       <col width="50%">
-                                       <col width="50%">
-                                    </colgroup>
-                                    <thead>
-                                       <tr>
-                                          <th class="text-center" scope="col">개인정보 취급위탁을 받는 자</th>
-                                          <th class="text-center" scope="col">개인정보 취급위탁을 하는 업무의
-                                             내용</th>
-                                       </tr>
-                                    </thead>
-                                    <tbody>
-                                       <tr>
-                                          <td>인생뽑차자동차 거점</td>
-                                          <td>고객이 선택한 거점 시승 신청 서비스 제공</td>
-                                       </tr>
-                                       <tr>
-                                          <td>㈜마더브레인</td>
-                                          <td>홈페이지 운영 및 유지보수</td>
-                                       </tr>
-                                       <tr>
-                                          <td>㈜아림디엠, 한국전산홈㈜</td>
-                                          <td>우편물 및 경품 배송업무 대행</td>
-                                       </tr>
-                                       <tr>
-                                          <td>Trans Cosmos Korea</td>
-                                          <td>차량구매 및 정비서비스 관련 고객 상담 업무</td>
-                                       </tr>
-                                       <tr>
-                                          <td>㈜삼성 SDS</td>
-                                          <td>전산시스템 운영 및 유지보수</td>
-                                       </tr>
-                                       <tr>
-                                          <td>㈜다우기술, ㈜ 세종텔레콤</td>
-                                          <td>SMS 발송 업무 대행</td>
-                                       </tr>
-                                       <tr>
-                                          <td>㈜ 아이뱅크</td>
-                                          <td>고객정보 분석 및 이메일 발송업무 대행</td>
-                                       </tr>
-                                    </tbody>
-                                 </table>
-                              </div>
-                           </div>
-                           <div class="agree_chk">
-                              <span class="check r"> <label class="agree1"
-                                 for="agree2">개인정보 취급 위탁에 동의합니다.</label> <input id="agree2"
-                                 type="checkbox" class="checkbox">
-                              </span>
-                           </div>
-                        </dd>
+                            <!-- 마케팅약관 안내 문구 -->
+                            <dt class="tip">
+                               <dl>*광고/정보 수신 및 마케팅 활용에 동의하신 고객님께서는 인생뽑차에서 제공하는 특별한 혜택, 이벤트, 경품 등에 관한 다양한 정보를 받으실 수 있습니다.</dl>
+                               <dl>*귀하는 인생뽑차의 서비스 이용에 필요한 최소한의 개인정보 수집 · 이용에 동의하지 않을 권리가 있으며, 동의 거부 시 거부한 내용에 대해 서비스가 제한될 수 있습니다.</dl>
+                            </dt>
+                         </div>
+                      </dd>
 
-                        <dt class="dt1">광고/정보 수신 및 마케팅 활용에 대한 안내 (선택)</dt>
-                        <dd>
-                           <div class="terms_box">
-                              <div class="terms_text">
-                                 <p>
-                                    <!-- 04. 광고/정보 수신 및 마케팅 활용에 대한 안내(선택) -->
-                                    1. 수집∙이용 목적: 새로운 정보의 업데이트나 이벤트 소식, 자동차 관리, 경품 당첨자 선정, 서비스
-                                    안내와 같은 정보를 문자, 이메일, 전화, 우편 등의 방법으로 제공하기 위해 사용합니다. <br>
-                                    2. 수집 항목: 성별, 생년월일, 이메일, 연락처 (휴대폰/자택), 주소<br> 3. 보유 ·
-                                    이용기간 : 수집일로부터 1년
-                                 </p>
-                              </div>
-                           </div>
-                           <div class="agree_chk">
-                              <span class="check r"> <label class="agree3"
-                                 for="agree3">광고/정보 수신 및 마케팅 활용에 전체 동의합니다.</label> <input
-                                 class="chekbox" id="agree3" type="checkbox">
-                              </span>
-                           </div>
-
-                           <div class="agree_add">
-                              <table
-                                 class="table1 terms_table_text table-bordered text-center">
-                                 <thead>
-                                    <tr>
-                                       <th>SMS</th>
-                                       <th>E-mail</th>
-                                       <th>전화</th>
-                                       <th>우편</th>
-                                    </tr>
-                                 </thead>
-                                 <tbody>
-                                    <tr>
-                                       <td><span class="check"><input
-                                             class="common_check choice_check" id="adCheck1"
-                                             type="checkbox" name="smsChk" value="Y"><label
-                                             for="adCheck1"></label></span></td>
-                                       <td><span class="check"><input
-                                             class="common_check choice_check" id="adCheck2"
-                                             type="checkbox" name="emailChk" value="Y"><label
-                                             for="adCheck2"></label></span></td>
-                                       <td><span class="check"><input
-                                             class="common_check choice_check" id="adCheck3"
-                                             type="checkbox" name="pNumberChk" value="Y"><label
-                                             for="adCheck3"></label></span></td>
-                                       <td><span class="check"><input
-                                             class="common_check choice_check" id="adCheck4"
-                                             type="checkbox" name="postChk" value="Y"><label
-                                             for="adCheck4"></label></span></td>
-
-                                    </tr>
-                                 </tbody>
-                              </table>
-                              <!-- 마케팅약관 안내 문구 -->
-
-                              <dt class="tip">
-                                 <dl>*광고/정보 수신 및 마케팅 활용에 동의하신 고객님께서는 인생뽑차에서 제공하는 특별한 혜택,
-                                    이벤트, 경품 등에 관한 다양한 정보를 받으실 수 있습니다.
-                                 </dl>
-                                 <dl>*귀하는인생뽑차의 서비스 이용에 필요한 최소한의 개인정보 수집 · 이용에 동의하지 않을 권리가
-                                    있으며, 동의 거부 시 거부한 내용에 대해 서비스가 제한될 수 있습니다.
-                                 </dl>
-                              </dt>
-
-
-                           </div>
-                        </dd>
-
-                     </dl>
-                  </div>
-               </div>
-            </li>
-
-         </ul>
+                   </dl>
+                </div>
+             </div>
+          </li>
+        </ul>
          
+        <!-- 시승 신청 버튼 -->
+        <div class="text-center reqBtn_div">
+             <button type="button" class="reqBtn">시승 신청</button>
+        </div>
+        
          
       </div>
    </div>
+   <jsp:include page="../cmmn/default-footer.jsp"></jsp:include>
    <!-- all js here -->
    <script src="../js/car_js/vendor/jquery-1.12.0.min.js"></script>
    <script src="../js/car_js/popper.js"></script>
@@ -550,61 +647,65 @@ div#map { height:563px; width:970px;}
    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMlLa3XrAmtemtf97Z2YpXwPLlimRK7Pk"></script>
    <script src="../js/car_js/main.js"></script>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5fd1db160519b45c84fe544350d7d8da"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5fd1db160519b45c84fe544350d7d8da&libraries=services"></script>
 <script>
-var mapContainer = document.getElementById('map'), // 지도의 중심좌표
-mapOption = { 
-    center: new daum.maps.LatLng(33.451475, 126.570528), // 지도의 중심좌표
-    level: 3 // 지도의 확대 레벨
-}; 
+   var iwRemoveable = true;
 
-var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+   //마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
+   var infowindow = new daum.maps.InfoWindow({zIndex:1, removable : iwRemoveable});
+   
+   var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+       mapOption = {
+           center: new daum.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+           level: 3 // 지도의 확대 레벨
+       };  
+   
+   // 지도를 생성합니다    
+   var map = new daum.maps.Map(mapContainer, mapOption); 
+   
+   // 장소 검색 객체를 생성합니다
+   var ps = new daum.maps.services.Places(); 
+   
+   // 키워드로 장소를 검색합니다
+   ps.keywordSearch('삼성자동차대리점', placesSearchCB); 
+   
+   // 키워드 검색 완료 시 호출되는 콜백함수 입니다
+   function placesSearchCB (data, status, pagination) {
+       if (status === daum.maps.services.Status.OK) {
+   
+           // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+           // LatLngBounds 객체에 좌표를 추가합니다
+           var bounds = new daum.maps.LatLngBounds();
+   
+           for (var i=0; i<data.length; i++) {
+               displayMarker(data[i]);    
+               bounds.extend(new daum.maps.LatLng(data[i].y, data[i].x));
+           }       
+   
+           // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
+           map.setBounds(bounds);
+       } 
+   }
+   // 지도에 마커를 표시하는 함수입니다
+   function displayMarker(place) {
+      
+       // 마커를 생성하고 지도에 표시합니다
+       var marker = new daum.maps.Marker({
+           map: map,
+           position: new daum.maps.LatLng(place.y, place.x),
+           
+       });
+   
+       // 마커에 클릭이벤트를 등록합니다
+       daum.maps.event.addListener(marker, 'click', function() {
+           // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+           infowindow.setContent('<div style="padding:5px;font-size:12px;height:60px;width:170px;"><br>' + place.place_name + '</div>');
+           infowindow.open(map, marker);
+           
+           $('.reserve_place').text(place.place_name);
+       });
+   }
 
-//지도에 마커를 표시합니다 
-var marker = new daum.maps.Marker({
-map: map, 
-position: new daum.maps.LatLng(33.450701, 126.570667)
-});
-
-//커스텀 오버레이에 표시할 컨텐츠 입니다
-//커스텀 오버레이는 아래와 같이 사용자가 자유롭게 컨텐츠를 구성하고 이벤트를 제어할 수 있기 때문에
-//별도의 이벤트 메소드를 제공하지 않습니다 
-var content = '<div class="wrap">' + 
-        '    <div class="info">' + 
-        '        <div class="title">' + 
-        '            카카오 스페이스닷원' + 
-        '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
-        '        </div>' + 
-        '        <div class="body">' + 
-        '            <div class="img">' +
-        '                <img src="http://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">' +
-        '           </div>' + 
-        '            <div class="desc">' + 
-        '                <div class="ellipsis">제주특별자치도 제주시 첨단로 242</div>' + 
-        '                <div class="jibun ellipsis">(우) 63309 (지번) 영평동 2181</div>' + 
-        '                <div><a href="http://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' + 
-        '            </div>' + 
-        '        </div>' + 
-        '    </div>' +    
-        '</div>';
-
-//마커 위에 커스텀오버레이를 표시합니다
-//마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
-var overlay = new daum.maps.CustomOverlay({
-content: content,
-map: map,
-position: marker.getPosition()       
-});
-
-//마커를 클릭했을 때 커스텀 오버레이를 표시합니다
-daum.maps.event.addListener(marker, 'click', function() {
-overlay.setMap(map);
-});
-
-//커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
-function closeOverlay() {
-overlay.setMap(null);     
-}
 </script>
 
 </body>
