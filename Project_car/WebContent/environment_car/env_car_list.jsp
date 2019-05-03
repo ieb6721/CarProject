@@ -1997,26 +1997,7 @@ div.price input {
 		</div>
 	</div>
 	<jsp:include page="../cmmn/default-footer.jsp"></jsp:include>
-	<div class="footer-bottom ptb-35 black-bg">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-12">
-					<div class="copyright">
-						<p>
-							©Copyright, 2018 All Rights Reserved by <a
-								href="https://freethemescloud.com/">Free themes Cloud</a>
-						</p>
-					</div>
-				</div>
-				<div class="col-md-4 col-12">
-					<div class="footer-payment-method">
-						<a href="#"><img alt=""
-							src="../images/car_img/icon-img/payment.png"></a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	
 	<!-- all js here -->
 	<script src="../js/car_js/bootstrap.min.js"></script>
 	<script src="../js/car_js/isotope.pkgd.min.js"></script>

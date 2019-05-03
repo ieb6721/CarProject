@@ -15,14 +15,17 @@ public class ChargeDAO {
 		   ssf=CreateSqlSessionFactory.getSsf();
 	   }
 	   
-	public static List<ChargeVO> chargeData() {
+	public static List<ChargeVO> chargeData(String loc) {
 		List<ChargeVO> list = new ArrayList<ChargeVO>();
 		SqlSession session = null;
+		
 		try {
 			session = ssf.openSession();
-			list = session.selectList("chargeData");
+			list = session.selectList("chargeData", loc);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
+			
 		} finally {
 			if (session != null) {
 				session.close();
