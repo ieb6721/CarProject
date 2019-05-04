@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
-<!doctype html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!doctype html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <title>인생뽑차</title>
 <meta name="description"
@@ -25,7 +25,6 @@
 <script src="../js/car_js/vendor/modernizr-2.8.3.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script>
-
 	$(function() {
 	   $('.acc_ctrl').on('click', function(e) {
 	      e.preventDefault();
@@ -33,59 +32,160 @@
 	         $(this).removeClass('active');
 	         $(this).next().stop().slideUp(300);
 	      } else {
+	    	  if ($(this).hasClass('acc_ctrl')) {
+	    		  $(this).addClass('active');
+	 	         $(this).next().stop().slideDown(300);
+	 	        /* 달력  */
+	 	         var m=$('#m').val();
+	 	         $.ajax({	 	        	
+	 	        	 type : "POST",
+	 	        	 url : "calendar.do",
+	 	        	 data : {"m":m},
+	 	        	 success : function(res) {
+	 	        		 $('#print').html(res);
+	 	        	 }
+	 	        	 
+	 	         });
+	 	         
+	    	  }
 	         $(this).addClass('active');
 	         $(this).next().stop().slideDown(300);
 	      }
 	   });
+	   
+	   /* 달력  */
+	   $('#m').change(function(){
+		    var month=$('#m').val();
+		    var year=$('#m').attr("year");
+	         $.ajax({
+	        	
+	        	 type : "POST",
+	        	 url : "calendar.do",
+	        	 data : {"month":month,"year":year},
+	        	 success : function(res) {
+	        		 $('#print').html(res);
+	        	 }
+	        	 
+	         });
+	   });
+	   
 	   /* 시승 모델  */
 	   $('.car_select').on('click', 'dd', function() {
-	         var name = $(this).text();
+	         var name = $(this).text().trim();
 	         
 	       if ($('.car_select > dd').hasClass('add_border')) {
 	            $('.car_select > dd').removeClass('add_border')
 	            $(this).addClass('add_border');
-	            $('.model_name').text(name);
-	            
+	            $('.model_name').text(name);	 
+	            $('#modelData').val(name);
 	         } else {
 	            $(this).addClass('add_border');
 	            $('.model_name').text(name); 
-	
+	            $('#modelData').val(name);
+	     		
 	         }
 	       
 	   });
-	   /* 시승 신청 최종 버튼 */
-	   $('.reqBtn_div').on('click', 'button', function() {
-	 	  	alert("클릭하셨습니다");  
 	
-	   	});     
-	   
-	   /* 시승 날짜 달력 이벤트 */
-	   $('.sel_date').click(function() {
-			var year = $(this).attr("year");
-			var month = $(this).attr("month");
-			var day = $(this).text();
-
-			$('.model_date').text(year + "년 " + month + "월 " + day + "일 ");					
-		});
-	   
-	   /* 신청자 정보 */
-	  
+	   /* 신청자 정보 */	  
 	   $('.nextBtn').click(function() {
 		   var name = $('#res_name').val();
+		   var id = $('#memberId').val();
 		   var tel0 = $('.tel0').val();
 		   var tel1 = $('#tel1').val();
 		   var tel2 = $('#tel2').val();
+		   var email1 = $('#email1').val();
+		   var email2 = $('#email2').val();
 		  
-		   $('em.applicant_info').text(name + "\u00A0\u00A0"  + tel0 + "-" + tel1 + "-" +tel2);
-
+		   if (name.trim() === "") {
+			   alert("이름을 입력해주세요!");
+		   } else if (id.trim() === "") {
+			   alert("회원 아이디를 입력해주세요!");
+		   } else if (tel1.trim() === "" || tel2.trim() === "") {
+			   alert("전화번호를 입력해주세요!");
+		   } else if (email1.trim() === "" || email2.trim() === "") {
+			   alert("이메일을 입력해주세요!");
+		   }
+		      
+		   $('em.applicant_info').text(name + "\u00A0\u00A0"  + tel0 + "-" + tel1 + "-" +tel2);   
+		   
 	   });
 	   
+	   /* 개인정보 약관 전부 체크 */
+	   var confirmChk = "체크 완료";
+	   
+	   $('#ex_chk4').on('click', function() {
+		  var chk = $(this).is(":checked");
+		 
+		  if (chk) {
+			  $('.checks input').prop('checked', true);
+		  	  $('.private_chk').text(confirmChk);
+		  } else {
+			  $('.checks input').prop('checked', false);
+			  $('.private_chk').text("");
+		  }
+		  	  	
+	   });
+	   
+	   /* 개인정보 약관 체크 여부 */
+	   $('.checks').on('click', 'input', function() {
+		 	if ($("input:checkbox[id='ex_chk1']").is(":checked") === true && $("input:checkbox[id='ex_chk2']").is(":checked") === true)  {
+		 		 $('.private_chk').text(confirmChk);
+		 	} else 
+		 		$('.private_chk').text("");
+	   });
+	   
+	   
+	   /* 시승 신청 최종 버튼 */
+	   $('.reqBtn_div').on('click', 'button', function() {
+		   var name = $('#res_name').val();
+		   var id = $('#memberId').val();
+		   var tel0 = $('.tel0').val();
+		   var tel1 = $('#tel1').val();
+		   var tel2 = $('#tel2').val();
+		   var email1 = $('#email1').val();
+		   var email2 = $('#email2').val();
+		   
+		   if ($('.reserve_place').text() === "") {
+			   alert("시승하실 장소를 선택해주세요!");
+			   return false;
+		   } else if ($('.model_name').text() === "") {
+			   alert("시승하실 모델을 선택해주세요!");
+			   return false;
+		   } else if ($('.model_date').text() === "") {
+			   alert("시승 날짜를 선택해주세요!");
+			   return false;
+		   } else if (name.trim() === "") {
+			   alert("신청자 정보의 이름을 입력해주세요!");
+			   return false;
+		   } else if (id.trim() === "") {
+			   alert("신청자 정보의 회원 아이디를 입력해주세요!");
+			   return false;
+		   }  else if (tel1.trim() === "" || tel2.trim() === "") {
+			   alert("신청자 정보의 전화번호를 입력해주세요!");
+			   return false;
+		   } else if (email1.trim() === "" || email2.trim() === "") {
+			   alert("신청자 정보의 이메일을 입력해주세요!");
+			   return false;
+		   } else if ($('.applicant_info').text()==="") {
+			   alert('신청자 정보의 다음 버튼을 눌러주세요!')
+			   return false;
+		   } else if ($("input:checkbox[id='ex_chk1']").is(":checked") === false) {
+			   alert('개인정보 수집에 동의해주세요!');
+			   return false;
+		   } else if ($("input:checkbox[id='ex_chk2']").is(":checked") === false) {
+			   alert('개인정보 취급 위탁에 동의해주세요!');
+			   return false;
+		   } else {
+			   alert('예약이 완료되었습니다. 관리자가 승인할 때까지 기다려주세요!');	
+			   return true;
+		   }
+		
+		     
+	   	});     
+	   	   	 	   
 	});
-
-	function change() {
-		var f=document.frm;
-		f.submit();
-	}
+	
    
 </script>
 <style type="text/css">
@@ -113,7 +213,6 @@ em { font-size: 24px; display: block; color: #999999; line-height: 1em; padding-
      padding-bottom: 50px; font-size: 40px; text-align: center;}
 .acc_ctrl em.model_name { position: absolute; right:66px; top:31px; color: black; }
 em.model_date{ position: absolute; right:66px; top:31px; color: black; }
-
 /* 시승 모델 */
 .pannel1 { height: 466px; }
 .car_select { overflow: hidden; width: 988px; margin-left: -8px; margin-top: -8px; }
@@ -123,14 +222,14 @@ em.model_date{ position: absolute; right:66px; top:31px; color: black; }
 .car_select dd a img { width: 220px; height: 120px; background-color: #f8f8f6; margin: 0 auto; margin-top: 30px;}
 .car_select dd a p { font-size: 26px; margin-top: 10px; text-align: center; color: #363636; position: relative; font-family: RenaultLife-Regular;}
 .add_border{border: 3px solid #ffcc33;}
-
 /* --------------- */
 /* 신청자 정보  */
-.pannel4 { width: 980px; height: 700px; }
+.pannel4 { width: 980px; height: 750px; }
 .applicant_box { padding: 26px 88px; height: 800px; width: 900px; }
 input[type="radio"] { width: 20px; bottom: -12px; left: 20px; }
 select.form-control { width: 138px; float: left; margin-left: 11px; }
 input[name="res_name"] { width: 134px; }
+input[name="memberId"] { width: 200px; }
 input[name="tel1"], input[name="tel2"] { float: left; width: 138px; margin-left: 11px; }
 input[name="email1"] { float: left; width: 150px; margin-left: 11px; }
 input[name="email2"] { float: left; width: 150px; margin-left: 30px; }
@@ -141,7 +240,7 @@ label.radio-inline {margin-right: 20px;}
 .applicant_info{position: absolute; right:66px; top:31px; color: black; }
 /* ---------------- */
 /* 개인 약관 */
-.pannel5 { height: 602px; }
+.pannel5 { height: 702px; }
 .step_con { padding-left: 10px; }
 .terms_box { width: 536px; height: 80px; border: 1px solid black; overflow: auto; }
 .dt1 { margin-top: 40px; margin-bottom: 20px; font-size: 16px; font-family: NanumGothic; }
@@ -152,17 +251,20 @@ label.radio-inline {margin-right: 20px;}
 input[id="agree1"], label[for="agree1"], 
 input[id="agree2"], label[for="agree2"],
 input[id="agree3"], label[for="agree3"] { position: relative; float: right; line-height: 1.6em; }
-.checks3{position:relative; left:650px;}
 #agree1 { top: -14px; }
 #agree2 { top: -14px; }
 #agree3 { width: 20px; top: -14px; }
 .agree_chk { position: relative; bottom: 55px; right: 30px; }
 #adCheck2 { width: 26px; }
+div.checks3 {position: relative; left: 640px;}
+div.agree_chkAll{     position: relative; bottom: 90px; right: 81px;}
+.private_chk{position: absolute; right:66px; top:31px; color: black; }
 /* ------------------ */
 /* 지도 */
 .pannel2 { height: 563px;}
 div#map { height:563px; width:970px;}
 .reserve_place{ position: absolute; right:66px; top:31px; color: black; }
+
 /* ------------------ */
 /* 예약 날짜 */
 .pannel3 { width: 980px; height: 450px; padding-top: 30px; padding-left: 160px;}
@@ -175,6 +277,8 @@ div#map { height:563px; width:970px;}
 .sel_date{ cursor: pointer; }
 .monthDiv{ margin-left: 180px;}
 select[name="month"] {position: relative; top: 14px; margin-left: 20px;}
+.monthTable{ float:left; }
+h2.monthH2{padding-left: 30px;}
 /* ------------------ */
 /* 시승 신청 버튼 */
 .reqBtn_div {margin-bottom: 50px;}
@@ -220,7 +324,9 @@ select[name="month"] {position: relative; top: 14px; margin-left: 20px;}
   																-webkit-transform:rotate(45deg); transform:rotate(45deg); }
 .no-csstransforms .checks.etrans input[type="checkbox"]:checked + label:before { /*content:"\2713";*/ content: "\2714"; top: 0; left: 0; width: 21px;
   																					line-height: 21px; color: #6cc0e5; text-align: center;border: 1px solid #6cc0e5; }
-/*----------------*/															
+
+/*----------------*/
+															
 </style>
 </head>
 <body>
@@ -230,408 +336,344 @@ select[name="month"] {position: relative; top: 14px; margin-left: 20px;}
       <div class="breadcrumb-area pt-255 pb-170" style="background-image: url(../images/reservation_img/mainImg.jpg)">
          <div class="container-fluid"></div>
       </div>
+      <form action="reservation_ok.do" name="writeform" method="post"> 
+      <input type="hidden" name="modelData" id="modelData">
+      <input type="hidden" name="calendarData" id="calendarData">
+      <input type="hidden" name="agencyData" id="agencyData">
       
-      <div class="con">
-         <h2 class="rs">시승 신청 <em>Book a Test Drive</em></h2>
-         <ul class="acc">
-          <li>
-            <button class="acc_ctrl">
-               <h2 class="sel text-left">시승 거점</h2>
-               <em class="reserve_place"></em>
-            </button>
-            <div id="map"></div>
-          </li>
-          
-          <!-- 시승 모델 선택 -->       
-          <li>
-             <button class="acc_ctrl">
-                <h2 class="sel text-left">시승 모델</h2>            
-                <em class="model_name"></em>
-             </button>
-             <div class="pannel1 acc_panel">
-                <div class="car_select">
-                   <dt>시승하실<br>모델을<br>선택하세요!</dt>
-                   <dd>
-                      <a>
-                         <img src="../images/reservation_img/sm7.png">
-                         <p>SM7</p>
-                      </a>
-                   </dd>
-                   <dd>
-                      <a>
-                         <img src="../images/reservation_img/sm6.png">
-                         <p>SM6</p>
-                      </a>
-                   </dd>
-                   <dd>
-                      <a>
-                         <img src="../images/reservation_img/sm5.png">
-                         <p>SM5</p>
-                      </a>
-                   </dd>
-                   <dd>
-                      <a>
-                         <img src="../images/reservation_img/sm3.png">
-                        <p>SM3</p>
-                      </a>
-                   </dd>
-                   <dd>
-                      <a>
-                         <img src="../images/reservation_img/qm6.png">
-                         <p>QM6</p>
-                      </a>
-                   </dd>
-                   <dd>
-                      <a>
-                         <img src="../images/reservation_img/qm3.png">
-                         <p>QM3</p>
-                      </a>
-                   </dd>
-                </div>
-             </div>
-          </li>
-
- 		  <!-- 시승 날짜 선택 -->        
- 		  
- 		<li>
-	 		<button class="acc_ctrl">
-	        	<h2 class="sel text-left">시승 날짜</h2>
-	            <em class="model_date"></em>                           
-	        </button>
-            <div class="pannel3 acc_panel" id="calendarDiv">
-	        	<div class="monthDiv">
-			    	<h2>${year }년 ${month }월</h2>
-			    </div>							      
-			<form action="reservation.do" method="post" name="frm">
-				<table>
-			 		<tr>
-			  			<td>      
-			  			 <select name="month" onchange="change()">
-					 	 	<c:forEach var="i" begin="1" end="12">
-								<option>${i }</option>
-							</c:forEach>
-			  			 </select>
-			  			</td>
-			 		</tr>
-				</table>
-			</form>
-				      <table id="table_content">
-						<tr>						
-							<c:forEach var="s" items="${strWeek }">		<!-- {"일", "월", "화", "수", "목", "금", "토"} -->
-								<c:choose>
-									<c:when test="${s eq '일' }">
-										<th class="text-center" style="color:red">${s }</th>
-									</c:when>
-									<c:otherwise>
-										<th class="text-center">${s }</th>
-									</c:otherwise>
-								</c:choose>								
-							</c:forEach>
-						</tr>
-						
-						<c:set var="week" value="${week-1 }" />			<!-- week = {"일=1", "월=2", "화=3", "수=4", "목=5", "금=6", "토=7"} -->
-						<c:forEach var="i" begin="1" end="${lastDay }">
-							<c:if test="${i==1 }">
-							
-								<!-- 요일 띄어놓기 -->
-								<tr height="45">
-									<c:forEach var="j" begin="1" end="${week }">	<!-- 1일 전의 날짜들 공백 채우기  -->
-										<td>&nbsp;</td>
-									</c:forEach>
-							</c:if>
-							<c:set var="color" value="white" />
-							<!-- String color="white" -->
-							
-							<c:if test="${i!=day }">
-								<c:set var="color" value="white" />
-							</c:if>
-							<td class="text-center" bgcolor="${color }">							
-								 <a class="sel_date" year="${year }" month="${month }">${i }</a>								
-							</td>
-							<c:set var="week" value="${week+1 }" />
-							<!-- week=week+1 -->
-							<c:if test="${week>6 }">				<!-- 토요일(7)보다 크면 한줄 내리기 -->
-								</tr>
-								
-								<c:set var="week" value="0" />		<!-- 일요일(0)부터 다시 시작 -->
-								<tr height="45">
-							</c:if>
-						</c:forEach>
-						</tr>
+	      
+	      <div class="con">
+	         <h2 class="rs">시승 신청 <em>Book a Test Drive</em></h2>	    
+	         <ul class="acc">
+	          <li>
+	            <button class="acc_ctrl">
+	               <h2 class="sel text-left">시승 거점</h2>
+	               <em class="reserve_place"></em>
+	            </button>
+	            <div id="map"></div>
+	          </li>
+	          
+	          <!-- 시승 모델 선택 -->       
+	          <li>
+	             <button class="acc_ctrl">
+	                <h2 class="sel text-left">시승 모델</h2>            
+	                <em class="model_name"></em>
+	             </button>
+	             <div class="pannel1 acc_panel">
+	                <div class="car_select">
+	                   <dt>시승하실<br>모델을<br>선택하세요!</dt>
+	                   <dd>
+	                      <a>
+	                         <img src="../images/reservation_img/sm7.png">
+	                         <p>SM7</p>
+	                      </a>
+	                   </dd>
+	                   <dd>
+	                      <a>
+	                         <img src="../images/reservation_img/sm6.png">
+	                         <p>SM6</p>
+	                      </a>
+	                   </dd>
+	                   <dd>
+	                      <a>
+	                         <img src="../images/reservation_img/sm5.png">
+	                         <p>SM5</p>
+	                      </a>
+	                   </dd>
+	                   <dd>
+	                      <a>
+	                         <img src="../images/reservation_img/sm3.png">
+	                        <p>SM3</p>
+	                      </a>
+	                   </dd>
+	                   <dd>
+	                      <a>
+	                         <img src="../images/reservation_img/qm6.png">
+	                         <p>QM6</p>
+	                      </a>
+	                   </dd>
+	                   <dd>
+	                      <a>
+	                         <img src="../images/reservation_img/qm3.png">
+	                         <p>QM3</p>
+	                      </a>
+	                   </dd>
+	                </div>
+	             </div>
+	          </li>
+	
+	 		  <!-- 시승 날짜 선택 -->        
+	 		  
+	 		<li>
+		 		<button class="acc_ctrl acc_ctrl1">
+		        	<h2 class="sel text-left">시승 날짜</h2>
+		            <em class="model_date"></em>                           
+		        </button>
+	            <div class="pannel3 acc_panel" id="calendarDiv">
+		        	<div class="monthDiv">
+				    	<h2>${year }년</h2>
+				    </div>							      
+				<!-- <form action="reservation.do" method="post" name="frm"> -->
+					<table class="monthTable">
+				 		<tr>
+				  			<td>      
+				  			 <select name="month" id="m" year="${year }">
+						 	 	<c:forEach var="i" begin="1" end="12">
+									<option value="${i }">${i } </option>
+								</c:forEach>
+				  			 </select>
+				  			</td>
+				 		</tr>
 					</table>
-				</div>
-			</li>
-          <!-- 신청자 정보 -->
-          <li>
-             <button class="acc_ctrl">
-                <h2 class="sel text-left">신청자 정보</h2>
-                <em class="applicant_info"></em>
-             </button>
-             <div class="pannel4 acc_panel">
-                <div class="applicant_box">
-                   <form class="form-horizontal">
-                      <div class="form-group">
-                         <label class="control-label col-sm-2" for="res_name">성명</label>
-                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="res_name" name="res_name">
-                         </div>
-                      </div>
-                      <div class="form-group">
-                         <label class="control-label col-sm-2" for="pwd">성별</label>
-                         <div class="col-sm-10">
-                            <label class="radio-inline"> 남자 
-                               <input type="radio" name="optradio" checked>
-                            </label> 
-                            <label class="radio-inline"> 여자
-                               <input type="radio" name="optradio"> 
-                            </label>
-                         </div>
-                      </div>
-                      <div class="form-group">
-                         <label class="control-label col-sm-2" for="birth">생년월일</label>
-                         <select class="form-control">
-                            <option>년</option>
-                               <c:forEach var="i" begin="1928" end="2019">
-                               	<option>${i }</option>
-                               </c:forEach>
-                         </select> 
-                         <select class="form-control">
-                            <option>월</option>
-                            <c:forEach var="i" begin="1" end="12">
-                               	<option>${i }</option>
-                            </c:forEach>
-                         </select> 
-                         <select class="form-control">
-                            <option>일</option>
-                            <c:forEach var="i" begin="1" end="31">                          
-                               	<option>${i }</option>                          
-                            </c:forEach>
-                         </select>
-                      </div>
-                      <div class="form-group">
-                         <label class="control-label col-sm-2" for="tel">연락처</label> 
-                      <select class="form-control tel0">
-                            <option value="010">010</option>
-                            <option value="011">011</option>
-                            <option value="016">016</option>
-                            <option value="017">017</option>
-                            <option value="018">018</option>
-                            <option value="019">019</option>
-                            <option value="052">0502</option>
-                            <option value="0505">0505</option>
-                      </select> 
-                         <input type="text" class="form-control" id="tel1" name="tel1">
-                         <input type="text" class="form-control" id="tel2" name="tel2">
-                      </div>
-                      <div class="form-group">
-                         <label class="control-label col-sm-2" for="email">이메일</label> 
-                         <input type="text" class="form-control" id="email1" name="email1">
-                         <em class="em1">@</em> 
-                         <input type="text" class="form-control" id="email2" name="email2">
-                      </div>
-                      <div class="form-group">
-                         <label class="control-label col-sm-2" for="passenger">동승자</label>
-                         <div class="col-sm-10">
-                            <label class="radio-inline"> 없음 <input type="radio" name="passradio" checked></label> 
-                            <label class="radio-inline"> 있음 <input type="radio" name="passradio"> </label>
-                         </div>
-                      </div>
-                      <div class="form-group">
-                         <label class="control-label col-sm-2" for="purchaseDate">구입 예정일</label>
-                         <div class="col-sm-10">
-                            <label class="radio-inline"> 1개월 이내 <input type="radio" name="dateradio" checked></label> 
-                            <label class="radio-inline"> 3개월 이내 <input type="radio" name="dateradio"></label> 
-                            <label class="radio-inline"> 6개월 이내 <input type="radio" name="dateradio"></label> 
-                            <label class="radio-inline"> 1년 이내    <input type="radio" name="dateradio"></label> 
-                            <label class="radio-inline"> 계획 없음   <input type="radio" name="dateradio"></label>
-                         </div>
-                      </div>
-                      <div class="form-group">
-                         <label class="control-label col-sm-2" for="purchasWay">구매 방법</label>
-                         <div class="col-sm-10">
-                            <label class="radio-inline"> 현금 <input type="radio" name="wayradio" checked></label> 
-                            <label class="radio-inline"> 할부 <input type="radio" name="wayradio"></label> 
-                            <label class="radio-inline"> 리스 <input type="radio" name="wayradio"></label>
-                            <label class="radio-inline"> 장기렌트 <input type="radio" name="wayradio"></label>
-                         </div>
-                      </div>
-                      <div class="text-center">
-				         <button type="button" class="btn btn-default nextBtn" width=60>다음</button>
-				      </div>
-                   </form>
-                </div>
-             </div>
-          </li>
-          
-          <!-- 개인정보 수집 -->
-          <li>
-             <button class="acc_ctrl">
-                <h2 class="sel text-left">개인정보 수집 및 이용 동의</h2>
-             </button>
-             <div class="pannel5 acc_panel">
-                <div class="step_con" style="display: block;">
-                   <dl>
-                      <dt class="dt1">개인정보 수집 및 이용에 대한 동의(필수)</dt>
-                      <dd>
-                         <div class="terms_box">
-                            <div class="terms_text">
-                               <strong>1. 수집하는 개인정보 항목</strong>
-                               <p>필수항목 : 이름, 성별, 생년월일, 연락처, 이메일, 접속 IP 정보, 서비스 이용기록(쿠키, 접속로그)</p>
-                               <strong>2. 개인정보의 수집 및 이용 목적</strong>
-                               <p>회사는 온라인을 통해 수집된 개인 정보를 다음의 목적을 위해 활용합니다. <br> 가. 본인확인<br>
-                                              시승 신청 진행을 위한 본인 식별 및 부정 이용방지 등을 위하여 사용 됩니다.<br> 나. 마케팅
-                                              및 광고에 활용<br> 새로운 정보의 업데이트나 이벤트 소식, 자동차 관리, 경품 당첨자 선정,
-                                              서비스 안내와 같은 정보를 문자, 이메일, 전화, 우편 등의 방법으로 제공 및 통계학적 분석을 위해 사용합니다.</p>
-                               <strong>3. 개인정보의 보유 및 이용기간</strong>
-                               <p>이용목적이 달성된 경우에는 해당 정보를 지체 없이 파기합니다. <br>※ 보존기간 : 시승 신청 후 1년 </p>
-                               <strong>4. 수집/이용에 동의하지 않으시는 경우에는 시승 신청을 이용 하실 수 없습니다.</strong>
-                               <p>※ 개인정보 처리에 대한 자세한 사항 확인은 인생뽑차 웹사이트 (https://localhost/TeamProject_Car/main/main.do)에서 하실 수 있습니다.</p>
-                            </div>
-                         </div>
-                         <div class="agree_chk">
-                            <div class="checks etrans">
-							  <input type="checkbox" id="ex_chk1"> 
-							  <label for="ex_chk1">개인정보 수집 및 이용에 동의합니다.</label> 
-							</div>
-                         </div>
-                      </dd>
-                      <dt class="dt1">개인정보 취급 위탁에 대한 동의(필수)</dt>
-                      <dd>
-                         <div class="terms_box">
-                            <div class="terms_text">
-                               <p>인생뽑차는 고객의 동의를 받은 경우에 한하여 수집한 개인정보를 다음과 같은 범위에서 취급위탁하고 있습니다.</p>
-                               <table class="terms_table_text table-bordered text-center">
-                                  <colgroup>
-                                     <col width="50%">
-                                     <col width="50%">
-                                  </colgroup>
-                                  <thead>
-                                     <tr>
-                                        <th class="text-center" scope="col">개인정보 취급위탁을 받는 자</th>
-                                        <th class="text-center" scope="col">개인정보 취급위탁을 하는 업무의 내용</th>
-                                     </tr>
-                                  </thead>
-                                  <tbody>
-                                     <tr>
-                                        <td>인생뽑차자동차 거점</td>
-                                        <td>고객이 선택한 거점 시승 신청 서비스 제공</td>
-                                     </tr>
-                                     <tr>
-                                        <td>㈜마더브레인</td>
-                                        <td>홈페이지 운영 및 유지보수</td>
-                                     </tr>
-                                     <tr>
-                                        <td>㈜아림디엠, 한국전산홈㈜</td>
-                                        <td>우편물 및 경품 배송업무 대행</td>
-                                     </tr>
-                                     <tr>
-                                        <td>Trans Cosmos Korea</td>
-                                        <td>차량구매 및 정비서비스 관련 고객 상담 업무</td>
-                                     </tr>
-                                     <tr>
-                                        <td>㈜삼성 SDS</td>
-                                        <td>전산시스템 운영 및 유지보수</td>
-                                     </tr>
-                                     <tr>
-                                        <td>㈜다우기술, ㈜ 세종텔레콤</td>
-                                        <td>SMS 발송 업무 대행</td>
-                                     </tr>
-                                     <tr>
-                                        <td>㈜ 아이뱅크</td>
-                                        <td>고객정보 분석 및 이메일 발송업무 대행</td>
-                                     </tr>
-                                  </tbody>
-                               </table>
-                            </div>
-                         </div>
-                         <div class="agree_chk">
-                            <div class="checks etrans">
-							  <input type="checkbox" id="ex_chk2"> 
-							  <label for="ex_chk2">개인정보 취급 위탁에 동의합니다.</label> 
-							</div>
-                         </div>
-                      </dd>
-
-                      <dt class="dt1">광고/정보 수신 및 마케팅 활용에 대한 안내 (선택)</dt>
-                      <dd>
-                         <div class="terms_box">
-                            <div class="terms_text">
-                               <p>
-                                  <!-- 04. 광고/정보 수신 및 마케팅 활용에 대한 안내(선택) -->
-                                  1. 수집?이용 목적: 새로운 정보의 업데이트나 이벤트 소식, 자동차 관리, 경품 당첨자 선정, 서비스
-                                     안내와 같은 정보를 문자, 이메일, 전화, 우편 등의 방법으로 제공하기 위해 사용합니다. <br>
-                                  2. 수집 항목: 성별, 생년월일, 이메일, 연락처 (휴대폰/자택), 주소<br> 
-                                  3. 보유 · 이용기간 : 수집일로부터 1년
-                               </p>
-                            </div>
-                         </div>
-                         <div class="agree_chk">
-                            <div class="checks etrans checks3">
-							  <input type="checkbox" id="ex_chk3"> 
-							  <label for="ex_chk3">광고/정보 수신 및 마케팅 활용에 전체 동의합니다.</label> 
-							</div>
-                         </div>
-                         <div class="agree_add">
-                            <table class="table1 terms_table_text table-bordered text-center">
-                               <thead>
-                                  <tr>
-                                     <th>SMS</th>
-                                     <th>E-mail</th>
-                                     <th>전화</th>
-                                     <th>우편</th>
-                                  </tr>
-                               </thead>
-                               <tbody>
-                                  <tr>
-                                     <td>
-                                        <span class="check">
-                                           <input class="common_check choice_check" id="adCheck1" type="checkbox" name="smsChk" value="Y">
-                                              <label for="adCheck1"></label>
-                                        </span>
-                                     </td>
-                                     <td>
-                                        <span class="check">
-                                           <input class="common_check choice_check" id="adCheck2" type="checkbox" name="emailChk" value="Y">
-                                              <label for="adCheck2"></label>
-                                        </span>
-                                     </td>
-                                     <td>
-                                        <span class="check">
-                                           <input class="common_check choice_check" id="adCheck3" type="checkbox" name="pNumberChk" value="Y">
-                                              <label for="adCheck3"></label>
-                                        </span>
-                                     </td>
-                                     <td>
-                                        <span class="check">
-                                           <input class="common_check choice_check" id="adCheck4" type="checkbox" name="postChk" value="Y">
-                                              <label for="adCheck4"></label>
-                                        </span>
-                                     </td>
-                                  </tr>
-                               </tbody>
-                            </table>
-                            
-                            <!-- 마케팅약관 안내 문구 -->
-                            <dt class="tip">
-                               <dl>*광고/정보 수신 및 마케팅 활용에 동의하신 고객님께서는 인생뽑차에서 제공하는 특별한 혜택, 이벤트, 경품 등에 관한 다양한 정보를 받으실 수 있습니다.</dl>
-                               <dl>*귀하는 인생뽑차의 서비스 이용에 필요한 최소한의 개인정보 수집 · 이용에 동의하지 않을 권리가 있으며, 동의 거부 시 거부한 내용에 대해 서비스가 제한될 수 있습니다.</dl>
-                            </dt>
-                         </div>
-                      </dd>
-
-                   </dl>
-                </div>
-             </div>
-          </li>
-        </ul>
-         
-        <!-- 시승 신청 버튼 -->
-        <div class="text-center reqBtn_div">
-             <button type="button" class="reqBtn">시승 신청</button>
-        </div>
-        
-         
-      </div>
+					<h2 class="monthH2">월</h2>		
+					<div id="print">
+					
+					</div>
+					</div>
+				</li>
+	          <!-- 신청자 정보 -->
+	          <li>
+	             <button class="acc_ctrl">
+	                <h2 class="sel text-left">신청자 정보</h2>
+	                <em class="applicant_info"></em>
+	             </button>
+	             <div class="pannel4 acc_panel">
+	                <div class="applicant_box">
+	                   <div class="form-horizontal">
+	                      <div class="form-group">
+	                         <label class="control-label col-sm-2" for="res_name">성명</label>
+	                         <div class="col-sm-10">
+	                            <input type="text" class="form-control" id="res_name" name="res_name">
+	                         </div>
+	                      </div>
+	                      <div class="form-group">
+	                         <label class="control-label col-sm-2" for="res_name">회원 아이디</label>
+	                         <div class="col-sm-10">
+	                            <input type="text" class="form-control" id="memberId" name="memberId">
+	                         </div>
+	                      </div>
+	                      <div class="form-group">
+	                         <label class="control-label col-sm-2" for="pwd">성별</label>
+	                         <div class="col-sm-10">
+	                            <label class="radio-inline"> 남자 
+	                               <input type="radio" name="optradio" checked>
+	                            </label> 
+	                            <label class="radio-inline"> 여자
+	                               <input type="radio" name="optradio"> 
+	                            </label>
+	                         </div>
+	                      </div>
+	                      <div class="form-group">
+	                         <label class="control-label col-sm-2" for="birth">생년월일</label>
+	                         <select class="form-control">
+	                            <option>년</option>
+	                               <c:forEach var="i" begin="1928" end="2019">
+	                               	<option>${i }</option>
+	                               </c:forEach>
+	                         </select> 
+	                         <select class="form-control info_month">
+	                            <option>월</option>
+	                            <c:forEach var="i" begin="1" end="12">
+	                               	<option>${i }</option>
+	                            </c:forEach>
+	                         </select> 
+	                         <select class="form-control info_day">
+	                            <option>일</option>
+	                            <c:forEach var="i" begin="1" end="31">                          
+	                               	<option>${i }</option>                          
+	                            </c:forEach>
+	                         </select>
+	                      </div>
+	                      <div class="form-group">
+	                         <label class="control-label col-sm-2" for="tel">연락처</label> 
+	                      <select class="form-control tel0">
+	                            <option value="010">010</option>
+	                            <option value="011">011</option>
+	                            <option value="016">016</option>
+	                            <option value="017">017</option>
+	                            <option value="018">018</option>
+	                            <option value="019">019</option>
+	                            <option value="052">0502</option>
+	                            <option value="0505">0505</option>
+	                      </select> 
+	                         <input type="text" class="form-control" id="tel1" name="tel1">
+	                         <input type="text" class="form-control" id="tel2" name="tel2">
+	                      </div>
+	                      <div class="form-group">
+	                         <label class="control-label col-sm-2" for="email">이메일</label> 
+	                         <input type="text" class="form-control" id="email1" name="email1">
+	                         <em class="em1">@</em> 
+	                         <input type="text" class="form-control" id="email2" name="email2">
+	                      </div>
+	                      <div class="form-group">
+	                         <label class="control-label col-sm-2" for="passenger">동승자</label>
+	                         <div class="col-sm-10">
+	                            <label class="radio-inline"> 없음 <input type="radio" name="passradio" checked></label> 
+	                            <label class="radio-inline"> 있음 <input type="radio" name="passradio"> </label>
+	                         </div>
+	                      </div>
+	                      <div class="form-group">
+	                         <label class="control-label col-sm-2" for="purchaseDate">구입 예정일</label>
+	                         <div class="col-sm-10">
+	                            <label class="radio-inline"> 1개월 이내 <input type="radio" name="dateradio" checked></label> 
+	                            <label class="radio-inline"> 3개월 이내 <input type="radio" name="dateradio"></label> 
+	                            <label class="radio-inline"> 6개월 이내 <input type="radio" name="dateradio"></label> 
+	                            <label class="radio-inline"> 1년 이내    <input type="radio" name="dateradio"></label> 
+	                            <label class="radio-inline"> 계획 없음   <input type="radio" name="dateradio"></label>
+	                         </div>
+	                      </div>
+	                      <div class="form-group">
+	                         <label class="control-label col-sm-2" for="purchasWay">구매 방법</label>
+	                         <div class="col-sm-10">
+	                            <label class="radio-inline"> 현금 <input type="radio" name="wayradio" checked></label> 
+	                            <label class="radio-inline"> 할부 <input type="radio" name="wayradio"></label> 
+	                            <label class="radio-inline"> 리스 <input type="radio" name="wayradio"></label>
+	                            <label class="radio-inline"> 장기렌트 <input type="radio" name="wayradio"></label>
+	                         </div>
+	                      </div>
+	                      <div class="text-center">
+					         <button type="button" class="btn btn-default nextBtn" width="60">다음</button>
+					      </div>
+	                   </div>
+	                </div>
+	             </div>
+	          </li>
+	          
+	          <!-- 개인정보 수집 -->
+	          <li>
+	             <button class="acc_ctrl">
+	                <h2 class="sel text-left">개인정보 수집 및 이용 동의</h2>
+	                <em class="private_chk"></em>       
+	             </button>
+	             <div class="pannel5 acc_panel">
+	                <div class="step_con" style="display: block;">
+	                   <dl>
+	                      <dt class="dt1">개인정보 수집 및 이용에 대한 동의(필수)</dt>
+	                      <dd>
+	                         <div class="terms_box">
+	                            <div class="terms_text">
+	                               <strong>1. 수집하는 개인정보 항목</strong>
+	                               <p>필수항목 : 이름, 성별, 생년월일, 연락처, 이메일, 접속 IP 정보, 서비스 이용기록(쿠키, 접속로그)</p>
+	                               <strong>2. 개인정보의 수집 및 이용 목적</strong>
+	                               <p>회사는 온라인을 통해 수집된 개인 정보를 다음의 목적을 위해 활용합니다. <br> 가. 본인확인<br>
+	                                              시승 신청 진행을 위한 본인 식별 및 부정 이용방지 등을 위하여 사용 됩니다.<br> 나. 마케팅
+	                                              및 광고에 활용<br> 새로운 정보의 업데이트나 이벤트 소식, 자동차 관리, 경품 당첨자 선정,
+	                                              서비스 안내와 같은 정보를 문자, 이메일, 전화, 우편 등의 방법으로 제공 및 통계학적 분석을 위해 사용합니다.</p>
+	                               <strong>3. 개인정보의 보유 및 이용기간</strong>
+	                               <p>이용목적이 달성된 경우에는 해당 정보를 지체 없이 파기합니다. <br>※ 보존기간 : 시승 신청 후 1년 </p>
+	                               <strong>4. 수집/이용에 동의하지 않으시는 경우에는 시승 신청을 이용 하실 수 없습니다.</strong>
+	                               <p>※ 개인정보 처리에 대한 자세한 사항 확인은 인생뽑차 웹사이트 (https://localhost/TeamProject_Car/main/main.do)에서 하실 수 있습니다.</p>
+	                            </div>
+	                         </div>
+	                         <div class="agree_chk">
+	                            <div class="checks etrans">
+								  <input type="checkbox" id="ex_chk1"> 
+								  <label for="ex_chk1">개인정보 수집 및 이용에 동의합니다.</label> 
+								</div>
+	                         </div>
+	                      </dd>
+	                      <dt class="dt1">개인정보 취급 위탁에 대한 동의(필수)</dt>
+	                      <dd>
+	                         <div class="terms_box">
+	                            <div class="terms_text">
+	                               <p>인생뽑차는 고객의 동의를 받은 경우에 한하여 수집한 개인정보를 다음과 같은 범위에서 취급위탁하고 있습니다.</p>
+	                               <table class="terms_table_text table-bordered text-center">
+	                                  <colgroup>
+	                                     <col width="50%">
+	                                     <col width="50%">
+	                                  </colgroup>
+	                                  <thead>
+	                                     <tr>
+	                                        <th class="text-center" scope="col">개인정보 취급위탁을 받는 자</th>
+	                                        <th class="text-center" scope="col">개인정보 취급위탁을 하는 업무의 내용</th>
+	                                     </tr>
+	                                  </thead>
+	                                  <tbody>
+	                                     <tr>
+	                                        <td>인생뽑차자동차 거점</td>
+	                                        <td>고객이 선택한 거점 시승 신청 서비스 제공</td>
+	                                     </tr>
+	                                     <tr>
+	                                        <td>㈜마더브레인</td>
+	                                        <td>홈페이지 운영 및 유지보수</td>
+	                                     </tr>
+	                                     <tr>
+	                                        <td>㈜아림디엠, 한국전산홈㈜</td>
+	                                        <td>우편물 및 경품 배송업무 대행</td>
+	                                     </tr>
+	                                     <tr>
+	                                        <td>Trans Cosmos Korea</td>
+	                                        <td>차량구매 및 정비서비스 관련 고객 상담 업무</td>
+	                                     </tr>
+	                                     <tr>
+	                                        <td>㈜삼성 SDS</td>
+	                                        <td>전산시스템 운영 및 유지보수</td>
+	                                     </tr>
+	                                     <tr>
+	                                        <td>㈜다우기술, ㈜ 세종텔레콤</td>
+	                                        <td>SMS 발송 업무 대행</td>
+	                                     </tr>
+	                                     <tr>
+	                                        <td>㈜ 아이뱅크</td>
+	                                        <td>고객정보 분석 및 이메일 발송업무 대행</td>
+	                                     </tr>
+	                                  </tbody>
+	                               </table>
+	                            </div>
+	                         </div>
+	                         <div class="agree_chk">
+	                            <div class="checks etrans">
+								  <input type="checkbox" id="ex_chk2"> 
+								  <label for="ex_chk2">개인정보 취급 위탁에 동의합니다.</label> 
+								</div>
+	                         </div>
+	                      </dd>
+	
+	                      <dt class="dt1">광고/정보 수신 및 마케팅 활용에 대한 안내 (선택)</dt>
+	                      <dd>
+	                         <div class="terms_box">
+	                            <div class="terms_text">
+	                               <p>
+	                                  <!-- 04. 광고/정보 수신 및 마케팅 활용에 대한 안내(선택) -->
+	                                  1. 수집?이용 목적: 새로운 정보의 업데이트나 이벤트 소식, 자동차 관리, 경품 당첨자 선정, 서비스
+	                                     안내와 같은 정보를 문자, 이메일, 전화, 우편 등의 방법으로 제공하기 위해 사용합니다. <br>
+	                                  2. 수집 항목: 성별, 생년월일, 이메일, 연락처 (휴대폰/자택), 주소<br> 
+	                                  3. 보유 · 이용기간 : 수집일로부터 1년
+	                               </p>
+	                            </div>
+	                         </div>
+	                         <div class="agree_chk">
+	                            <div class="checks etrans checks3">
+								  <input type="checkbox" id="ex_chk3"> 
+								  <label for="ex_chk3">광고/정보 수신 및 마케팅 활용에 동의합니다.</label> 
+								</div>
+	                         </div>
+	                         <div class="agree_add">  
+	                            <!-- 마케팅약관 안내 문구 -->
+	                            <dt class="tip">
+	                               <dl>*광고/정보 수신 및 마케팅 활용에 동의하신 고객님께서는 인생뽑차에서 제공하는 특별한 혜택, <br> 이벤트, 경품 등에 관한 다양한 정보를 받으실 수 있습니다.</dl>
+	                               <dl>*귀하는 인생뽑차의 서비스 이용에 필요한 최소한의 개인정보 수집 · 이용에 동의하지 않을 권리가 <br> 있으며, 동의 거부 시 거부한 내용에 대해 서비스가 제한될 수 있습니다.</dl>
+	                            </dt>
+	                         </div>
+	                      </dd>
+	                   </dl>                   
+		                   <div class="agree_chk agree_chkAll">
+		                   	<div class="checks etrans">
+						   	 <input type="checkbox" id="ex_chk4"> 
+						     <label for="ex_chk4">모든 약관을 확인하고 전체 동의에 체크합니다.<br>(전체 동의 시 선택 항목도 포함됩니다.)</label> 
+						    </div>
+		                   </div>
+	                </div>
+	             </div>
+	          </li>
+	        </ul>
+	         
+	        <!-- 시승 신청 버튼 -->
+	        <div class="text-center reqBtn_div">
+	             <button type="submit" class="reqBtn">시승 신청</button>
+	        </div>    
+	      </div>
+      </form>
    </div>
    <jsp:include page="../cmmn/default-footer.jsp"></jsp:include>
    <!-- all js here -->
@@ -650,7 +692,6 @@ select[name="month"] {position: relative; top: 14px; margin-left: 20px;}
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5fd1db160519b45c84fe544350d7d8da&libraries=services"></script>
 <script>
    var iwRemoveable = true;
-
    //마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
    var infowindow = new daum.maps.InfoWindow({zIndex:1, removable : iwRemoveable});
    
@@ -666,7 +707,7 @@ select[name="month"] {position: relative; top: 14px; margin-left: 20px;}
    // 장소 검색 객체를 생성합니다
    var ps = new daum.maps.services.Places(); 
    
-   // 키워드로 장소를 검색합니다
+   // 키워드로 장소를 검색합니다 삼성자동차대리점
    ps.keywordSearch('삼성자동차대리점', placesSearchCB); 
    
    // 키워드 검색 완료 시 호출되는 콜백함수 입니다
@@ -703,10 +744,9 @@ select[name="month"] {position: relative; top: 14px; margin-left: 20px;}
            infowindow.open(map, marker);
            
            $('.reserve_place').text(place.place_name);
+           $('#agencyData').val(place.place_name);
        });
    }
-
 </script>
-
 </body>
 </html>

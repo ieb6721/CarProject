@@ -18,6 +18,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.sist.vo.CarVO" alias="CarVO"/>
 		<typeAlias type="com.sist.vo.ChargeVO" alias="ChargeVO"/>
 		<typeAlias type="com.sist.vo.Environment_infoVO" alias="Environment_infoVO"/>
+		<typeAlias type="com.sist.vo.Driver_reserveVO" alias="Driver_reserveVO"/>
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
@@ -43,5 +44,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="com/sist/mapper/news-mapper.xml"/>
 		<mapper resource="com/sist/mapper/charge-mapper.xml"/>
 		<mapper resource="com/sist/mapper/Environment_info-mapper.xml"/>
+		<mapper resource="com/sist/mapper/reservation-mapper.xml"/>
 	</mappers>
 </configuration>

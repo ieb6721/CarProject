@@ -1,24 +1,21 @@
 package com.sist.vo;
 
-import java.util.Date;
-
 public class Driver_reserveVO {
 	private String model;
-	private Date reserve_date;
+	private String reserve_date;
 	private String passenger;
-	private String id;
-	private int agency_id;
-	
+	private String id;	
+	private String agency_name;
 	public String getModel() {
 		return model;
 	}
 	public void setModel(String model) {
 		this.model = model;
 	}
-	public Date getReserve_date() {
+	public String getReserve_date() {
 		return reserve_date;
 	}
-	public void setReserve_date(Date reserve_date) {
+	public void setReserve_date(String reserve_date) {
 		this.reserve_date = reserve_date;
 	}
 	public String getPassenger() {
@@ -33,10 +30,12 @@ public class Driver_reserveVO {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public int getAgency_id() {
-		return agency_id;
+	public String getAgency_name() {
+		return agency_name;
 	}
-	public void setAgency_id(int agency_id) {
-		this.agency_id = agency_id;
+	public void setAgency_name(String agency_name) {
+		this.agency_name = agency_name;
 	}
+	
+	
 }
