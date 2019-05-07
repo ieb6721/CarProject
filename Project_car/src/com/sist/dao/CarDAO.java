@@ -58,6 +58,28 @@ public class CarDAO {
 		return list;
 	}
 	
+	//연비순 자동차 리스트
+	public static List<CarVO> carListEfficiency(Map map)
+	{
+		List<CarVO> list=new ArrayList<CarVO>();
+		SqlSession session=null;		
+		try
+		{
+			session=ssf.openSession();	//connection연결
+			list=session.selectList("carListEfficiency",map);			
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		return list;
+	}
+		
 	//가격순 자동차 리스트
 		public static List<CarVO> carListPrice(Map map)
 		{

@@ -14,7 +14,7 @@ public class CarModel {
 	{		
 		String strPage=request.getParameter("page");	
 		String cateNo=request.getParameter("cateNo");
-		System.out.println(cateNo);
+		
 		
 		if(strPage==null)
 			strPage="1";
@@ -36,7 +36,7 @@ public class CarModel {
 	    else if(cateNo.equals("2"))
 	    	list=CarDAO.carListLaunchdate(map);
 	    else if(cateNo.equals("3"))
-	    	list=CarDAO.carListData(map);
+	    	list=CarDAO.carListEfficiency(map);
 	    else if(cateNo.equals("4"))
 	    	list=CarDAO.carListPrice(map);
 	    
@@ -76,7 +76,7 @@ public class CarModel {
 	{
 		String cno=request.getParameter("cno");
 		CarVO vo=CarDAO.carDetailData(Integer.parseInt(cno));
-		System.out.println(cno);
+		
 		request.setAttribute("vo", vo);
 		return "car_detail.jsp";
 	}
