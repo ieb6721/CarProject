@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sist.mapper.car-mapper">
+	<!-- 자동차 리스트 -->	
+	<select id="carListData" resultType="CarVO" parameterType="java.util.Map">
+		SELECT A.*
+		FROM (SELECT car_num,car_name,car_poster,car_price,car_launchdate,car_efficiency,car_size,car_fueltype,brand_name,rownum as num
+		FROM (SELECT car_num,car_name,car_poster,car_price,car_launchdate,car_efficiency,car_size,car_fueltype,brand_name
+		FROM car))A
+		WHERE num BETWEEN #{start} AND #{end}
+	</select>
+	
+	<!-- 최신순 자동차 리스트 -->
+	<select id="carListLaunchdate" resultType="CarVO" parameterType="java.util.Map">
+		SELECT A.*
+		FROM (SELECT car_num,car_name,car_poster,car_price,car_launchdate,car_efficiency,car_size,car_fueltype,brand_name,rownum as num
+		FROM (SELECT car_num,car_name,car_poster,car_price,car_launchdate,car_efficiency,car_size,car_fueltype,brand_name
+		FROM car ORDER BY car_launchdate DESC))A
+		WHERE num BETWEEN #{start} AND #{end}
+		
+	</select>
+	
+	<!-- 연비순 자동차 리스트 -->
+	<select id="carListEfficiency" resultType="CarVO" parameterType="java.util.Map">
+		SELECT A.*
+		FROM (SELECT car_num,car_name,car_poster,car_price,car_launchdate,car_efficiency,car_size,car_fueltype,brand_name,rownum as num
+		FROM (SELECT car_num,car_name,car_poster,car_price,car_launchdate,car_efficiency,car_size,car_fueltype,brand_name
+		FROM car))A
+		WHERE num BETWEEN #{start} AND #{end}
+	</select>
+	
+	<!-- 가격순 자동차 리스트 -->
+	<select id="carListPrice" resultType="CarVO" parameterType="java.util.Map">
+		SELECT A.*
+        FROM(SELECT car_num,car_name,car_poster,car_price,car_launchdate,car_efficiency,car_size,car_fueltype,brand_name,rownum as num,comprice
+		FROM (SELECT car_num,car_name,car_poster,car_price,car_launchdate,car_efficiency,car_size,car_fueltype,brand_name, TO_NUMBER(REPLACE(price,',','')) AS comprice
+		FROM (SELECT car_num,car_name,car_poster,car_price,car_launchdate,car_efficiency,car_size,car_fueltype,brand_name,(CASE
+                    WHEN car_price ='미정' THEN '0'
+                    WHEN car_price LIKE '%~%' THEN SUBSTR(car_price,0,INSTR(car_price,' ',1,1)-1)
+                    else car_price
+                    END) AS price
+		FROM car)ORDER BY comprice DESC))A
+        WHERE num BETWEEN #{start} AND #{end}
+	</select>
+	
+	<!-- 자동차 브랜드 -->
+	<select id="carBrandData" resultType="BrandVO">
+		SELECT * FROM brand
+	</select>
+	
+	<!-- 총페이지 구하기 -->
+   <select id="carTotalPage" resultType="int">
+   		SELECT CEIL(COUNT(*)/18.0)
+   		FROM car
+   </select>
+	
+	<!-- 자동차 상세보기 -->
+	<select id="carDetailData" resultType="CarVO" parameterType="int">
+		SELECT * FROM car WHERE car_num=#{cno}
+	</select>
+</mapper>

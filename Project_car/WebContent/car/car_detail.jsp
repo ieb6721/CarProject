@@ -26,16 +26,16 @@ ul {
    <div class="container">   
       <div class="row top">
         <div class="col-sm-6">           
-              <img src="http://autoimg.danawa.com/photo/3652/model_360.png" width="100%">   
+              <img src="${vo.car_poster }" width="100%">   
         </div>
         <div class="col-sm-6">            
             <div class="product_detail">
-               <h1>쏘나타</h1>
+               <h1>${vo.car_name }</h1>
                <ul class="pro__prize">
-                  <li class="old__prize">2019.03 ~ 현재</li>
-                  <li>2,140 ~ 3,294만원</li>
+                  <li class="old__prize">${vo.car_launchDate }</li>
+                  <li>${vo.car_price } 만원</li>
                </ul>
-               <p class="pro__info">복합연비 9.8~13.3 ㎞/ℓ | 중형 | 휘발유, LPG</p>
+               <p class="pro__info">복합연비 ${vo.car_efficiency } | ${vo.car_size } | ${vo.car_fuelType }</p>
                <div class="ht__pro__desc">
                   <div class="sin__desc">
                      <button class="btn btn-md btn-warning">브랜드 정보</button>
