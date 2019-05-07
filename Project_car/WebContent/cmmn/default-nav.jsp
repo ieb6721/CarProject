@@ -2,7 +2,7 @@
     pageEncoding="EUC-KR"%>
 
 <jsp:include page="default-header.jsp"></jsp:include>
-<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<!-- <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script> -->
 <script>
 	var pageSubmitFn = function(menu) {
 		
@@ -15,7 +15,7 @@
 		} else if (menu === 'environment') {
 			location.href = "../environment_car/environment_car.do";
 		} else if (menu === 'guide') {
-			location.href = "../guide/guide.do";
+			location.href = "../guide/guide_main.do";
 		} else if (menu === 'reservation') {
 			location.href = "../reservation/reservation.do";
 		} else if (menu === 'news') {
@@ -27,7 +27,11 @@
 		} else if (menu === 'registration') {
 			location.href = "../register/register.do";
 		}
+		
+		
 	}
+	
+	
 	
 
 </script>
@@ -45,7 +49,7 @@
 		</div>
 		<div id="navbar" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li class="menu active"><a href="#" onclick="pageSubmitFn('home')">Home</a></li>
+				<li class="menu"><a href="#" onclick="pageSubmitFn('home')">Home</a></li>
 				<li class="menu"><a href="#" onclick="pageSubmitFn('about')">about</a></li>
 				<li class="menu"><a href="#" onclick="pageSubmitFn('car')">신차</a></li>
 				<li class="menu"><a href="#" onclick="pageSubmitFn('environment')">친환경차</a></li>
@@ -62,7 +66,7 @@
 				<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
 				<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
 				<li><a href="#"><i class="fa fa-reddit"></i></a></li>
-				<li><a href="#" onclick="pageSubmitFn('login')">로그인</a></li>
+				<li class="acvtive"><a href="#" onclick="pageSubmitFn('login')">로그인</a></li>
 				<li><a href="#" onclick="pageSubmitFn('registration')">회원가입</a></li>
 			</ul>
 		</div>
