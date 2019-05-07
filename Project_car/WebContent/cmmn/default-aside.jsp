@@ -90,7 +90,7 @@ div.no{
 }
 
 </style>
-<div class="col-md-4 sidebar-gutter">
+<div class="col-md-4 sidebar-gutter" style="padding-top: 50px;">
 	<aside>
 		<!-- sidebar-widget -->
 		<div class="widget-container widget-about">
