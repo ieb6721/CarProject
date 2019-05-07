@@ -39,31 +39,6 @@ div.price input {
 }
 </style>
 
-<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
-<script type="text/javascript">
-	$(function(){
-		$('#searchBtn').click(function(){
-			var pname=$('#pname').val();
-			if(pname.trim()=="")
-			{
-				$('#pname').focus();
-				return;
-			}			
-			
-			$.ajax({
-				type:'post',
-				url:'../car/car_search.do',
-				data:{"pname":pname},
-				success:function(response)
-				{
-					alert(response);					
-				}
-			});
-		});
-		
-	});
-</script>
-
 </head>
 <body>
 	<div class="wrapper">
@@ -86,9 +61,9 @@ div.price input {
 							<div class="sidebar-widget pb-55">
 								<h3 class="sidebar-widget">Search Products</h3>
 								<div class="sidebar-search">
-									<form action="#">
-										<input type="text" placeholder="Search Products..." id="pname">
-										<button id="searchBtn">
+									<form method="post" action="car_search.do">
+										<input type="text" placeholder="Search Products..." name="pname">										
+										<button type="submit">
 											<i class="ti-search"></i>
 										</button>
 									</form>
@@ -118,9 +93,11 @@ div.price input {
 								<div class="price_filter mr-60">
 									<div class="price_slider_amount">
 										<div class="price">
-											<input type="text" name="minprice"/> 만원 ~ 
-											<input type="text" name="minprice"/> 만원  					
-										    <button type="button" class="btn btn-xs btn-warning"><i class="ti-search"></i></button>
+											<form method="post" action="carPrice_search.do">
+												<input type="text" name="minprice"/> 만원 ~ 
+												<input type="text" name="minprice"/> 만원  					
+											    <button type="submit" class="btn btn-xs btn-warning"><i class="ti-search"></i></button>
+										    </form>
 										</div>
 									</div>
 								</div>
@@ -201,7 +178,8 @@ div.price input {
 						
 						<%--자동차 리스트 출력 --%>
 						<jsp:include page="${carList_jsp }"></jsp:include>
-						
+						<div id="print">
+						</div>
 						<div class="paginations text-center mt-20">
 							<ul>
 								<c:if test="${curpage>BLOCK }">

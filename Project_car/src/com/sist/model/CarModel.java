@@ -76,17 +76,21 @@ public class CarModel {
 	@RequestMapping("car/car_search.do")
 	public String car_search(HttpServletRequest request)
 	{
+		try
+		{
+			//한글 변환
+			request.setCharacterEncoding("UTF-8");
+			//컴파일 예외처리 => 반드시 컴파일 전에 예외처리를 한다
+		}catch(Exception ex){}
+		
 		String pname=request.getParameter("pname");
-		List<CarVO> list=CarDAO.carSearchData(pname);
-		System.out.println(list.size());
+		List<CarVO> list=CarDAO.carSearchData(pname);		
 		
-		request.setAttribute("cList", list);
-		System.out.println(pname);
-		
+		request.setAttribute("cList", list);	
 		
 		request.setAttribute("carList_jsp", "car_list.jsp");
 		
-		return "car_List.jsp";
+		return "car.jsp";
 	}
 	
 	
