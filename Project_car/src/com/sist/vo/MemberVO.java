@@ -12,7 +12,14 @@ public class MemberVO {
 	private String tel;
 	private String email;
 	private String budget;
+	private String msg;
 	
+	public String getMsg() {
+		return msg;
+	}
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
 	public String getId() {
 		return id;
 	}
@@ -37,6 +44,8 @@ public class MemberVO {
 	public void setAddr(String addr) {
 		this.addr = addr;
 	}
+	
+	
 	public Date getBirth() {
 		return birth;
 	}
