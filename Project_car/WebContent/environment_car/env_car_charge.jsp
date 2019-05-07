@@ -31,7 +31,6 @@
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="http://mattstow.com/experiment/responsive-image-maps/jquery.rwdImageMaps.min.js"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=33fe02a21929d73365af49721a7f709f"></script>
 <script>
 $(function(){
 
@@ -47,7 +46,7 @@ $(function(){
 			url : 'env_car_charge_table.do',
 			data : {'loc':loc},
 			success : function(res){
-						$('.addr-table').load("charge_table.jsp");
+						$('.addr_table').load("charge_table.jsp");
 					}
 		});
 	}); 
@@ -56,25 +55,8 @@ $(function(){
 </script>
 
 <style type="text/css">
-.col-lg-6 {width: 30%; }
-.product-price {padding-top: 10px; }
-
-.addr-table dl{
-	text-align: center;
-	padding: 0px;
-	border: 1px solid gray;
-}
-
-.addr-table dd{
-	border-top: 1px dotted gray;
-	height: 30px;
-	font-size: 15px;
-	line-height: 30px;
-}
-
-dt {
-	background: #9DBAD1;
-	font-size: 18px;
+.col-lg-6 {
+	width: 30%; 
 }
 
 .blog-post{
@@ -91,6 +73,15 @@ dt {
 	width: auto;
 
 	}
+}
+
+h4{
+	box-shadow: rgba(0, 0, 0, 0.3) 0px 8px 16px -8px,
+    rgba(0, 0, 0, 0.024) 0px -6px 16px -6px;
+}
+
+.addr_table {
+	margin-top: 50px;
 }
 </style>
 </head>
@@ -133,9 +124,13 @@ dt {
 						
 						<div class="col-lg-4">
 							<article class="blog-post">
-								<div class="blog-post-body">			
+								<div class="blog-post-body">
+									<h4>
+										<i class="icofont-location-pin"></i>지역을 선택하세요<i class="icofont-location-pin"></i>
+									</h4>
 									<div class="blog-post-image text-left">
-										<img src="../images/env_car/korea_map1.png" usemap="#map01" width="${width }" height="${height }">
+										<img src="../images/env_car/korea_map1.png" usemap="#map01"
+											width="${width }" height="${height }">
 										<map name="map01">
 											<area alt="" shape="poly"
 												coords="150,35,150,35,150,35,159,54,159,54,191,84,191,84,191,112,191,112,215,119,215,119,209,160,209,160,218,165,218,165,250,156,250,156,290,176,290,176,351,173,351,173,363,151,363,151,275,14,275,14,268,11,268,11,261,21,261,21,243,21,243,21,235,33,235,33,196,41,196,41,194,39"
@@ -185,22 +180,13 @@ dt {
 											<area shape="poly" alt="" title=""
 												coords="249,160,219,170,209,166,191,176,169,194,176,210,165,218,173,240,182,247,192,251,197,277,196,286,195,301,218,300,228,279,217,262,221,235,218,228,253,198,274,204,283,174"
 												id="충청북도" />
-
 										</map>
 									</div>
 								</div>
 							</article>
 						</div>
 
-						<div class="col-lg-8 addr-table">
-							<h3>
-								<i class="icofont-arrow-left"></i>지역을 선택하세요
-							</h3>
-						</div>
-
-						<div class="col-lg-12 addr-map">
-							<div id="map" style="width:100%;height:350px;"></div>
-						</div>
+						<div class="col-lg-8 addr_table"></div>
 					</div>
 					
 				</div>

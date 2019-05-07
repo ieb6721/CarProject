@@ -4,5 +4,6 @@
 	<select id="chargeData" resultType="ChargeVO" parameterType="String">
 		SELECT * FROM charge 
 		WHERE addr LIKE '%'||#{loc}||'%'
+		ORDER BY fuel DESC
 	</select>	 
 </mapper>
