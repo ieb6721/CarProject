@@ -46,8 +46,8 @@
 			<c:forEach var="vo" items="${sessionScope.charge}">
 				<tr>
 					<td class="col-xs-1">${vo.fuel}</td>
-					<td class="col-xs-3">${vo.charge_name}</td>
-					<td class="col-xs-4">${vo.addr}</td>
+					<td class="col-xs-3 charge_name">${vo.charge_name}</td>
+					<td class="col-xs-4 addr">${vo.addr}</td>
 					<td class="col-xs-3">${vo.tel}</td>
 				</tr>
 			</c:forEach>

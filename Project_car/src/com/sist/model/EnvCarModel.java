@@ -45,4 +45,5 @@ public class EnvCarModel {
 		
 		return "charge_table.jsp";
 	}
+	
 }

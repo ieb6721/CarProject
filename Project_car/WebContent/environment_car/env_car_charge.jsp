@@ -31,6 +31,7 @@
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="http://mattstow.com/experiment/responsive-image-maps/jquery.rwdImageMaps.min.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=33fe02a21929d73365af49721a7f709f"></script>
 <script>
 $(function(){
 
@@ -46,11 +47,10 @@ $(function(){
 			url : 'env_car_charge_table.do',
 			data : {'loc':loc},
 			success : function(res){
-						$('.addr-table').html(res);
+						$('.addr-table').load("charge_table.jsp");
 					}
 		});
-	});
-
+	}); 
 });
 
 </script>
@@ -155,23 +155,23 @@ dt {
 												id="경상북도" />
 											<area shape="poly" alt="" title=""
 												coords="292,305,266,323,276,336,269,347,284,348,306,320,297,304"
-												id="대구" />
+												id="대구광역시" />
 											<area shape="poly" alt="" title=""
 												coords="313,423,308,419,291,423,282,413,315,387,353,372,330,361,334,341,314,355,254,348,239,327,223,318,216,322,195,351,205,370,192,381,201,405,215,427,221,452,227,451,241,457,245,443,272,438,279,451,297,455"
 												id="경상남도" />
 											<area shape="poly" alt="" title=""
 												coords="354,377,317,395,313,403,285,413,295,421,315,415,316,423,321,431,357,409,364,390"
-												id="부산" />
+												id="부산광역시" />
 
 											<area shape="poly" alt="" title=""
 												coords="351,336,337,342,335,352,348,362,359,376,368,395,375,376,381,343"
-												id="울산" />
+												id="울산광역시" />
 											<area shape="poly" alt="" title=""
 												coords="74,364,61,388,63,397,40,404,40,419,28,432,20,472,35,475,14,508,18,528,36,528,54,508,81,500,149,516,187,496,218,461,205,419,188,384,153,385,136,406,120,428,91,414,87,397,93,389,82,376"
 												id="전라남도" />
 											<area shape="poly" alt="" title=""
 												coords="95,389,87,401,103,420,121,416,138,409,138,400,129,388"
-												id="광주" />
+												id="광주광역시" />
 											<area shape="poly" alt="" title=""
 												coords="82,300,93,317,75,348,78,363,92,380,114,364,153,382,189,380,200,370,190,347,217,316,222,314,219,304,169,308,164,291,153,287,144,302,125,298,107,308"
 												id="전라북도" />
@@ -181,7 +181,7 @@ dt {
 												id="충청남도" />
 											<area shape="poly" alt="" title=""
 												coords="167,242,145,263,161,275,183,277,193,273,193,255,177,247"
-												id="대전" />
+												id="대전광역시" />
 											<area shape="poly" alt="" title=""
 												coords="249,160,219,170,209,166,191,176,169,194,176,210,165,218,173,240,182,247,192,251,197,277,196,286,195,301,218,300,228,279,217,262,221,235,218,228,253,198,274,204,283,174"
 												id="충청북도" />
@@ -199,7 +199,7 @@ dt {
 						</div>
 
 						<div class="col-lg-12 addr-map">
-							<jsp:include page="listmap.jsp" />
+							<div id="map" style="width:100%;height:350px;"></div>
 						</div>
 					</div>
 					
