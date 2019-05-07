@@ -20,7 +20,7 @@ public class NewsDAO {
 		   SqlSession session = null;
 		   try {
 			  session = ssf.openSession();
-			   list = session.selectList("newsMainData");
+			   list = session.selectList("newsAllData");
 
 		} catch (Exception e) {
 			e.printStackTrace();

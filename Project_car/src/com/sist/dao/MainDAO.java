@@ -14,5 +14,21 @@ public class MainDAO {
 		   ssf=CreateSqlSessionFactory.getSsf();
 	   }
 	   
-	
+	   public static List<NewsVO> newsMainData() 
+	   {
+			List<NewsVO> list = new ArrayList<NewsVO>();
+			SqlSession session = null;
+			try {
+				session = ssf.openSession();
+				list = session.selectList("newsMainData");
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("aaa");
+			} finally {
+				if (session != null)
+					session.close();
+			}
+			return list;
+		}
 }
