@@ -15,7 +15,7 @@
 		} else if (menu === 'environment') {
 			location.href = "../environment_car/environment_car.do";
 		} else if (menu === 'guide') {
-			location.href = "../guide/guide.do";
+			location.href = "../guide/guide_main.do";
 		} else if (menu === 'reservation') {
 			location.href = "../reservation/reservation.do";
 		} else if (menu === 'news') {
