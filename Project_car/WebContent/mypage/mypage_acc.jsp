@@ -278,10 +278,10 @@
                             <div class="htc__category">
                                 <h4 class="title__line--4">MyPage</h4>
                                 <ul class="ht__cat__list">
-                                    <li><a href="../estimate/estimate.jsp">견적내역</a></li>
-                                    <li><a href="../try/try.jsp">시승신청내역</a></li>
-                                     <li><a href="../cart/cart.jsp">액세서리장바구니</a></li>
-                                    <li><a href="estimate_acc.jsp">액세서리주문내역</a></li>
+                                    <li><a href="../mypage/mypage_estimate.jsp">견적내역</a></li>
+                                    <li><a href="../mypage/mypage_reservation.jsp">시승신청내역</a></li>
+                                     <li><a href="../mypage/mypage_accCart.jsp">액세서리장바구니</a></li>
+                                    <li><a href="mypage_acc.jsp">액세서리주문내역</a></li>
                              </ul>
                             </div>
                             <!-- End Category Area -->

@@ -7,10 +7,12 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Product Grid || Asbab - eCommerce HTML5 Template</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">   
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <!-- Place favicon.ico in the root directory -->
     <link rel="shortcut icon" type="image/x-icon" href="../images/accessory_img/favicon.ico">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    
     <!-- All css files are included here. -->
     <!-- Bootstrap fremwork main css -->
     <link rel="stylesheet" href="../css/main_css/bootstrap.min.css">

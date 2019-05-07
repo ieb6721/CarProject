@@ -336,7 +336,7 @@
     <script src="../js/accessory_js/waypoints.min.js"></script>
     <!-- Main js file that contents all jQuery plugins activation. -->
     <script src="../js/accessory_js/main.js"></script>
-
+   
 </body>
 
 </html>
