@@ -16,8 +16,4 @@
              END) AS efficiency FROM car) ORDER BY comefficiency DESC))A
              WHERE num &lt;6
 	</select>
-	
-	<select id="carAccData" resultMap="AccVO">
-		SELECT * from acc WHERE column_id &lt; 6
-	</select>
 </mapper>
