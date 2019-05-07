@@ -58,10 +58,39 @@
    		FROM car
    </select>
 	
-	<!-- 자동차 검색 -->
+	<!-- 자동차 검색(이름) -->
 	<select id="carSearchData" resultType="CarVO" parameterType="String">
 		SELECT * FROM car 
 		WHERE car_name LIKE '%'||#{pname}||'%'
 	</select>
 	
+	<!-- 자동차 검색(가격) -->
+	<select id="carPriceSearchData" resultType="CarVO" parameterType="java.util.Map">
+		SELECT car_num,car_name,car_poster,car_price,car_launchdate,car_efficiency,car_size,car_fueltype,brand_name,
+				TO_NUMBER(REPLACE((CASE
+		            WHEN car_price='미정' THEN '0'
+		            WHEN car_price LIKE '%~%' THEN SUBSTR(car_price,0,INSTR(car_price,' ',1,1)-1)
+		            else car_price
+		            END),',','')) as lowPrice,
+		        TO_NUMBER(REPLACE((CASE
+		            WHEN car_price='미정' THEN '0'
+		            WHEN car_price LIKE '%~%' THEN SUBSTR(car_price,INSTR(car_price,' ',1,2)+1)
+		            else car_price
+		            END),',','')) as highPrice 
+		FROM car
+		WHERE lowPrice &lt;= #{lowPrice} AND #{highPrice} &lt;= highPrice
+		<!-- 
+			SELECT car_price,TO_NUMBER(REPLACE((CASE
+            WHEN car_price='미정' THEN '0'
+            WHEN car_price LIKE '%~%' THEN SUBSTR(car_price,0,INSTR(car_price,' ',1,1)-1)
+            else car_price
+            END),',','')) as lowPrice,
+        TO_NUMBER(REPLACE((CASE
+            WHEN car_price='미정' THEN '0'
+            WHEN car_price LIKE '%~%' THEN SUBSTR(car_price,INSTR(car_price,' ',1,2)+1)
+            else car_price
+            END),',','')) as highPrice
+FROM car;
+		 -->
+	</select>
 </mapper>
