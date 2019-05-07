@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html class="no-js" lang="zxx">
     <head>
@@ -40,6 +41,73 @@
        padding-bottom: 20px;
      }
         </style>
+        
+        
+        <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+		<script type="text/javascript">
+
+	$(function(){
+	$('#logBtn').click(function(){
+		var id=$('#id').val();
+		if(id.trim()=="")
+		{
+			$('#id').html('<font color=red>ID를 입력하세요</font>');
+			$('#id').focus();
+			return;
+		}
+		
+		var pwd=$('#pwd').val();
+		if(pwd.trim()=="")
+		{
+			$('#pwd').focus();
+			return;
+		}
+		
+		// 전송  => login요청 
+		/*
+		     login_ok.jsp
+		     ============
+		    	 NOID
+		    	 NOPWD
+		    	 OK
+		*/
+		$.ajax({
+			type:'post',
+			url:'../login/login_ok.do',
+			data:{"id":id,"pwd":pwd},
+			success:function(response)
+			{
+				var result=response.trim();
+				
+				if(result=="NOID"){
+					alert("아이디가 존재하지 않습니다!!")
+					$('#id').val("");
+					$('#pwd').val("");
+					
+					$('#id').focus();
+					
+				}else if(result=="NOPWD"){
+					
+					alert("비밀번호가 틀립니다!!")
+					$('#pwd').val("");
+					$('#pwd').focus();
+					
+				}else if(result=="NOPWD"){
+					
+					alert("비밀번호가 틀립니다!!")
+					$('#pwd').val("");
+					$('#pwd').focus();
+					
+				}else{
+					
+					window.parent.location.href='../main/main.do';
+				}
+			}
+		});
+		
+	});
+});
+</script>
     </head>
     <body>
         <!--[if lt IE 8]>
@@ -65,20 +133,19 @@
                                         <span>Please login using account detail bellow.</span>
                                     </div>
                                     <div class="login-form">
-                                        <form action="#" method="post">
-                                            <input type="text" name="user-name" placeholder="Username">
-                                            <input type="password" name="user-password" placeholder="Password">
+                                            <input type="text" name="user-id" placeholder="ID" id="id">
+                                            <input type="password" name="user-password" placeholder="Password" id="pwd">
                                             <div class="button-box">
                                                 <div class="login-toggle-btn">
                                                     <input type="checkbox">
                                                     <label for="remember">Remember me</label>
                                                 </div>
                                                <div class="loginbtn">
-                                                <button type="submit" class="default-btn floatright loginbtn2">Login</button>
-                                                <button type="submit" class="default-btn floatright">Cancel</button>
+                                                <button type="submit" class="default-btn floatright loginbtn2" id="logBtn">Login</button>
+                            
+                                                <button type="button" class="default-btn floatright"  onclick="javascript:history.back()">Cancel</button>
                                                 </div>
                                             </div>
-                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -103,9 +170,9 @@
                                         <span>Please login using account detail bellow.</span>
                                     </div>
                                     <div class="login-form">
-                                        <form action="#" method="post">
-                                            <input type="text" name="user-name" placeholder="Username">
-                                            <input type="password" name="user-password" placeholder="Password">
+                                        <form action="login_ok" method="post">
+                                            <input type="text" name="user-name" placeholder="ID" id="id">
+                                            <input type="password" name="user-password" placeholder="Password" id="pwd">
                                             <div class="button-box">
                                                 <div class="login-toggle-btn">
                                                     <input type="checkbox" id="remember">
@@ -130,17 +197,17 @@
 
 
 		<!-- all js here -->
-        <script src="assets/js/vendor/jquery-1.12.0.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
-        <script src="assets/js/jquery.meanmenu.js"></script>
-        <script src="assets/js/isotope.pkgd.min.js"></script>
-        <script src="assets/js/imagesloaded.pkgd.min.js"></script>
-        <script src="assets/js/jquery.counterup.min.js"></script>
-        <script src="assets/js/waypoints.min.js"></script>
-        <script src="assets/js/ajax-mail.js"></script>
-        <script src="assets/js/owl.carousel.min.js"></script>
-        <script src="assets/js/plugins.js"></script>
-        <script src="assets/js/main.js"></script>
+        <script src="../js/login_js/vendor/jquery-1.12.0.min.js"></script>
+        <script src="../js/login_js/bootstrap.min.js"></script>
+        <script src="../js/login_js/jquery.meanmenu.js"></script>
+        <script src="../js/login_js/isotope.pkgd.min.js"></script>
+        <script src="../js/login_js/imagesloaded.pkgd.min.js"></script>
+        <script src="../js/login_js/jquery.counterup.min.js"></script>
+        <script src="../js/login_js/waypoints.min.js"></script>
+        <script src="../js/login_js/ajax-mail.js"></script>
+        <script src="../js/login_js/owl.carousel.min.js"></script>
+        <script src="../js/login_js/plugins.js"></script>
+        <script src="../js/login_js/main.js"></script>
        
     </body>
 </html>
