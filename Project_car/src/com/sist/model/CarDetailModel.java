@@ -25,4 +25,13 @@ public class CarDetailModel {
 		
 		return "car_detail.jsp";
 	}
+	
+	@RequestMapping("car_spec.do")
+	public String car_spec(HttpServletRequest request){
+		String car_trim = request.getParameter("car_trim");
+		
+		
+		return "car_spec.jsp";
+	}
+	
 }

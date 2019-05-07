@@ -15,7 +15,7 @@
 	
 	<!-- 자동차 옵션 -->
 	<select id="carDetailTrim" resultType="Car_model_trimVO" parameterType="String">
-		SELECT car_model.model_num, trim_name, trim_fuel_type, trim_cc, trim_efficiency, trim_price
+		SELECT car_model.model_num, trim_num, trim_name, trim_fuel_type, trim_cc, trim_efficiency, trim_price
 		FROM car_model, car_trim
 		WHERE car_model.model_num=car_trim.model_num and car_model.car_num = #{cno}
 		ORDER BY car_trim.trim_num

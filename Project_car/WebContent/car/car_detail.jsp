@@ -21,6 +21,25 @@ ul {
 	font-size: 20px;
 }
 </style>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('.spec').click(function() {
+		var trim_num = $(this).attr('value');
+		var winHeight = 600;
+		var winWidth = 800;
+		
+		var popupX = (screen.width / 2) - winWidth / 2;
+		//&nbsp;만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음
+
+		var popupY= (screen.height / 2)- winHeight / 2;
+		//&nbsp;만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
+
+		var popupOption = "scrollbars=yes, status=no, width=" + winWidth + ", height=" + winHeight + ', left='+ popupX + ', top='+ popupY;
+		window.open("car_spec.do?trim_num=" + trim_num, "", popupOption);
+		});
+	});
+</script>
 </head>
 <body>
 	<header>
@@ -44,7 +63,7 @@ ul {
 					<div class="ht__pro__desc">
 						<div class="sin__desc">
 							<button class="btn btn-md btn-warning">브랜드 정보</button>
-							<button class="btn btn-md btn-primary"
+							<button class="btn btn-md btn-primary spec"
 								onclick="location='car_estimate.jsp'">견적</button>
 							<button class="btn btn-md btn-success"
 								onclick="javascript:history.back()">목록</button>
@@ -74,7 +93,7 @@ ul {
 										<div class="item mileage">${trimvo.trim_efficiency}</div>
 										<div class="item price">${trimvo.trim_price}</div>
 										<div class="item button">
-											<button class="btn btn-sm btn-info">제원</button>										</div>
+											<button class="btn btn-sm btn-info spec" value="${trimvo.trim_num}">제원</button>										</div>
 									</c:if>
 								</c:forEach>
 							</li>
