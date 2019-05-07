@@ -68,16 +68,26 @@ public class CarModel {
 		request.setAttribute("strPage", strPage);
 		request.setAttribute("cateNo", cateNo);
 		
+		request.setAttribute("carList_jsp", "car_list.jsp");
+		
 		return "car.jsp";
 	}
 	
-	@RequestMapping("car/car_detail.do")
-	public String car_detail(HttpServletRequest request)
+	@RequestMapping("car/car_search.do")
+	public String car_search(HttpServletRequest request)
 	{
-		String cno=request.getParameter("cno");
-		CarVO vo=CarDAO.carDetailData(Integer.parseInt(cno));
+		String pname=request.getParameter("pname");
+		List<CarVO> list=CarDAO.carSearchData(pname);
+		System.out.println(list.size());
 		
-		request.setAttribute("vo", vo);
-		return "car_detail.jsp";
+		request.setAttribute("cList", list);
+		System.out.println(pname);
+		
+		
+		request.setAttribute("carList_jsp", "car_list.jsp");
+		
+		return "car_List.jsp";
 	}
+	
+	
 }
