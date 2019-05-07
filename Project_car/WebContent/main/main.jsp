@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="../css/main_css/custom.css">
 <style type="text/css">
 /* ±â»ç img*/
+/**/
 .main_acrticle {
 	width: 218px;
 	height: 186px;
