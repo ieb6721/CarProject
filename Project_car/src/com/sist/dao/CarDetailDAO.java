@@ -59,5 +59,20 @@ public class CarDetailDAO {
 		}
 		return trimlist;
 	}
+	
+	public static Car_specVO carSpec(String trim_num){
+		Car_specVO car_specvo = new Car_specVO();
+		SqlSession session = null;
+		try {
+			session = ssf.openSession();
+			car_specvo = session.selectOne("carSpec", trim_num);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (session != null)
+				session.close();
+		}
+		return car_specvo;
+	}
 
 }

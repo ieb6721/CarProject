@@ -32,7 +32,7 @@ $(function(){
 		var popupX = (screen.width / 2) - winWidth / 2;
 		//&nbsp;만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음
 
-		var popupY= (screen.height / 2)- winHeight / 2;
+		var popupY= (screen.height / 2) - winHeight / 2;
 		//&nbsp;만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
 
 		var popupOption = "scrollbars=yes, status=no, width=" + winWidth + ", height=" + winHeight + ', left='+ popupX + ', top='+ popupY;

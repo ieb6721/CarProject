@@ -21,4 +21,9 @@
 		ORDER BY car_trim.trim_num
 	</select>
 	
+	<select id="carSpec" resultType="Car_specVO" parameterType="String">
+		SELECT * FROM car_spec
+		WHERE trim_num like #{trim_num}
+	</select>
+	
 </mapper>
