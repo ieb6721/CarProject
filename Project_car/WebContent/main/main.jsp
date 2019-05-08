@@ -402,7 +402,7 @@ header {
 								<c:forEach var="vo" items="${nList }">
 									<div class="single-slide col-sm-4">
 										<div class="main_acrticle">
-											<a class="main_article" href="#">
+											<a class="main_article" href="http://localhost:8080/Project_car/news/newsDetail.do?news_no=${vo.news_no }">
 												<div id="article-img">
 													<img src="${vo.detail_img}"/>
 												</div>
