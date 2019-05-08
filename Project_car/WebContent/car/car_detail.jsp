@@ -29,13 +29,14 @@ $(function(){
 		var winHeight = 600;
 		var winWidth = 800;
 		
-		var popupX = (screen.width / 2) - winWidth / 2;
+		var popupX = screen.width / 2 - winWidth / 2;
 		//&nbsp;만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음
 
-		var popupY= (screen.height / 2) - winHeight / 2;
+		var popupY= screen.height / 2 - winHeight / 2;
 		//&nbsp;만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
 
-		var popupOption = "scrollbars=yes, status=no, width=" + winWidth + ", height=" + winHeight + ', left='+ popupX + ', top='+ popupY;
+		var popupOption = "scrollbars=yes, status=no, width=" + winWidth + ", height=" 
+						+ winHeight + ', left='+ popupX + ', top='+ popupY;
 		window.open("car_spec.do?trim_num=" + trim_num, "", popupOption);
 		});
 	});
@@ -115,37 +116,37 @@ $(function(){
 		<br>
 		<div class="row">
 			<div class="col-sm-4">
-				<img src="http://autoimg.danawa.com/photo/3652/model_360.png">
-				<p>쏘나타</p>
+				<img src="${carvo.car_poster}">
+					
 				<div class="well">
-					<p>Some text..</p>
+					<p>${carvo.car_name }</p>
 				</div>
 			</div>
 			<div class="col-sm-4">
 				<img src="http://img.chuing.net/i/NGQGVp/Preview.x.jpg" width="60%">
 				<table class="table">
 					<tr>
-						<td>13.3km/l</td>
+						<td> ${carvo.car_efficiency }</td>
 						<th class="text-center">복합연비</th>
 						<td>11.6km/l</td>
 					</tr>
 					<tr>
-						<td>1999cc</td>
-						<th class="text-center">배기량</th>
+						<td>${carvo.car_size }</td>
+						<th class="text-center">외형</th>
 						<td>1999cc</td>
 					</tr>
 					<tr>
-						<td>160</td>
-						<th class="text-center">마력</th>
+						<td>${carvo.car_fuelType }</td>
+						<th class="text-center">연료</th>
 						<td>163</td>
 					</tr>
 					<tr>
-						<td>5</td>
-						<th class="text-center">정원</th>
+						<td>${carvo.car_launchDate }</td>
+						<th class="text-center">출시일</th>
 						<td>5</td>
 					</tr>
 					<tr>
-						<td>2,346</td>
+						<td>${carvo.car_price }만원</td>
 						<th class="text-center">신차가격</th>
 						<td>2,228</td>
 					</tr>
@@ -153,9 +154,9 @@ $(function(){
 			</div>
 			<div class="col-sm-4">
 				<img src="http://autoimg.danawa.com/photo/3566/model_360.png">
-				<p>K5</p>
+					
 				<div class="well">
-					<p>Some text..</p>
+					<p>기아 K5</p>
 				</div>
 			</div>
 		</div>
