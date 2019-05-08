@@ -13,19 +13,44 @@ table {
 	text-align: center;
 	overflow: auto;
 }
-
 #spec tr th {
 	text-align: center;
 	vertical-align: middle;
 	font-weight: 800;
-	font-size: 15px;
+	font-size: 20px;
+	color: white;
+}
+
+.engine{
+	background-color: #82ccdd;
+}
+.elec{
+	background-color: #6a89cc;
+}
+.drive {
+	background-color: #60a3bc;
+}
+.mileage{
+	background-color: #4a69bd;
+}
+.mileageElec {
+	background-color: #3c6382;
+}
+.size {
+	background-color: #1e3799;
+}
+.cargo {
+	background-color: #0a3d62;
+}
+.speed{
+	background-color: #0c2461;
 }
 </style>
 </head>
 <body>
-	<table class="table table-hover" id="spec">
+	<table class="table table-hover table-striped" id="spec">
 		<tr>
-			<th rowspan=8 class="col-xs-3 info">엔진</th>
+			<th rowspan=8 class="col-xs-3 engine">엔진</th>
 		</tr>
 		<tr>
 			<td class="col-xs-4">엔진형식</td>
@@ -58,7 +83,7 @@ table {
 		</tr>
 
 		<tr>
-			<th rowspan=11 class="col-xs-2 info">전기</th>
+			<th rowspan=11 class="col-xs-2 elec">전기</th>
 		</tr>
 		<tr>
 			<td class="col-xs-4">배터리 종류</td>
@@ -103,7 +128,7 @@ table {
 		</tr>
 
 		<tr>
-			<th rowspan=11 class="col-xs-2 info">구동</th>
+			<th rowspan=11 class="col-xs-2 drive">구동</th>
 		</tr>
 		<tr>
 			<td class="col-xs-4">굴림방식</td>
@@ -148,7 +173,7 @@ table {
 		</tr>
 
 		<tr>
-			<th rowspan=6 class="col-xs-2 info">연비</th>
+			<th rowspan=6 class="col-xs-2 mileage">연비</th>
 		</tr>
 		<tr>
 			<td class="col-xs-4">복합연비 (km/ℓ)</td>
@@ -172,7 +197,7 @@ table {
 		</tr>
 
 		<tr>
-			<th rowspan=5 class="col-xs-2 info">연비 (전기)</th>
+			<th rowspan=5 class="col-xs-2 mileageElec">연비 (전기)</th>
 		</tr>
 		<tr>
 			<td class="col-xs-4">복합연비 (전기) (km/kWh))</td>
@@ -192,7 +217,7 @@ table {
 		</tr>
 
 		<tr>
-			<th rowspan=12 class="col-xs-2 info">제원</th>
+			<th rowspan=12 class="col-xs-2 size">제원</th>
 		</tr>
 		<tr>
 			<td class="col-xs-4">전장 (mm)</td>
@@ -240,7 +265,7 @@ table {
 		</tr>
 
 		<tr>
-			<th rowspan=5 class="col-xs-2 info">적재함</th>
+			<th rowspan=5 class="col-xs-2 cargo">적재함</th>
 		</tr>
 		<tr>
 			<td class="col-xs-4">적재함 길이 (mm)</td>
@@ -260,7 +285,7 @@ table {
 		</tr>
 		
 		<tr>
-			<th rowspan=3 class="col-xs-2 info">성능</th>
+			<th rowspan=3 class="col-xs-2 speed">성능</th>
 		</tr>
 		<tr>
 			<td class="col-xs-4">제로백 (초)</td>
