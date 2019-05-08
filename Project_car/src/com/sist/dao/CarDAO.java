@@ -145,16 +145,16 @@ public class CarDAO {
     	}
     	return total;
     }
-	
-	//자동차 검색
-	public static List<CarVO> carSearchData(String pname)
+		
+	//자동차 검색(이름)
+	public static List<CarVO> carSearchData(String keyword)
 	{
 		List<CarVO> list=new ArrayList<CarVO>();
 		SqlSession session=null;
 		try
 		{
 			session=ssf.openSession();
-			list=session.selectList("carSearchData",pname);
+			list=session.selectList("carSearchData",keyword);
 		}
 		catch(Exception ex)
 		{
@@ -168,5 +168,26 @@ public class CarDAO {
 		return list;
 	}
 	
+	//자동차 검색(가격)
+    public static List<CarVO> carPriceSearchData(Map map)
+    {
+       List<CarVO> list=new ArrayList<CarVO>();
+       SqlSession session=null;
+       try
+       {
+          session=ssf.openSession();
+          list=session.selectList("carPriceSearchData",map);
+       }
+       catch(Exception ex)
+       {
+          ex.printStackTrace(); 
+       }
+       finally
+       {
+          if(session!=null)
+              session.close();
+       }
+       return list;
+    }
 	
 }

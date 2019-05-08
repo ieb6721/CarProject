@@ -39,6 +39,47 @@ div.price input {
 }
 </style>
 
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('#findBtn').click(function(){
+			var keyword=$('#keyword').val();
+			if(keyword.trim()=="")
+			{
+				alert("검색어 입력");
+				$('#keyword').focus();
+				return;
+			}			
+			
+			$.ajax({
+				type:'post',
+				url:'car_search.do',
+				data:{"keyword":keyword},
+				success:function(response)
+				{
+					$('#print').html(response)
+				}
+			});
+		});
+		
+		$('#findPriceBtn').click(function(){
+			var lowPrice=$('#lowPrice').val();
+			var highPrice=$('#highPrice').val();			
+			
+			$.ajax({
+				type:'post',
+				url:'carPrice_search.do',
+				data:{"lowPrice":lowPrice, "highPrice":highPrice},
+				success:function(response)
+				{
+					$('#print').html(response)
+				}
+			});
+		});
+		
+	});
+</script>
+
 </head>
 <body>
 	<div class="wrapper">
@@ -61,10 +102,10 @@ div.price input {
 							<div class="sidebar-widget pb-55">
 								<h3 class="sidebar-widget">Search Products</h3>
 								<div class="sidebar-search">
-									<form method="post" action="car_search.do">
-										<input type="text" placeholder="Search Products..." name="pname">										
-										<button type="submit">
-											<i class="ti-search"></i>
+									<form>
+										<input type="text" placeholder="Search Products..." id="keyword">										
+										<button type="button" id="findBtn">
+											<i class="ti-search"></i>											
 										</button>
 									</form>
 								</div>
@@ -93,10 +134,12 @@ div.price input {
 								<div class="price_filter mr-60">
 									<div class="price_slider_amount">
 										<div class="price">
-											<form method="post" action="carPrice_search.do">
-												<input type="text" name="minprice"/> 만원 ~ 
-												<input type="text" name="minprice"/> 만원  					
-											    <button type="submit" class="btn btn-xs btn-warning"><i class="ti-search"></i></button>
+											<form>
+												<input type="text" name="minprice" id="lowPrice"/> 만원 ~ 
+												<input type="text" name="minprice" id="highPrice"/> 만원  					
+											    <button type="button" id="findPriceBtn">
+											    	<i class="ti-search"></i>
+											    </button>
 										    </form>
 										</div>
 									</div>
@@ -177,34 +220,35 @@ div.price input {
 						</div>
 						
 						<%--자동차 리스트 출력 --%>
-						<jsp:include page="${carList_jsp }"></jsp:include>
 						<div id="print">
+							<jsp:include page="${carList_jsp }"></jsp:include>
+
+							<div class="paginations text-center mt-20">
+								<ul>
+									<c:if test="${curpage>BLOCK }">
+										<li><a
+											href="car.do?page=${startPage-1 }&cateNo=${cateNo}"><i
+												class="fa fa-angle-left"></i></a></li>
+									</c:if>
+									<c:forEach var="i" begin="${startPage }" end="${endPage }">
+										<c:choose>
+											<c:when test="${curpage eq i }">
+												<c:set var="type" value="class=active"></c:set>
+											</c:when>
+											<c:otherwise>
+												<c:set var="type" value=""></c:set>
+											</c:otherwise>
+										</c:choose>
+										<li ${type }><a href="car.do?page=${i }&cateNo=${cateNo}">${i }</a></li>
+									</c:forEach>
+									<c:if test="${endPage<allPage }">
+										<li><a href="car.do?page=${endPage+1 }&cateNo=${cateNo}"><i
+												class="fa fa-angle-right"></i></a></li>
+									</c:if>
+								</ul>
+							</div>
 						</div>
-						<div class="paginations text-center mt-20">
-							<ul>
-								<c:if test="${curpage>BLOCK }">
-									<li>
-										<a href="car.do?page=${startPage-1 }&cateNo=${cateNo}"><i class="fa fa-angle-left"></i></a>
-									</li>
-								</c:if>
-								<c:forEach var="i" begin="${startPage }" end="${endPage }">	
-									<c:choose>
-										<c:when test="${curpage eq i }">
-											<c:set var="type" value="class=active"></c:set>
-										</c:when>
-										<c:otherwise>
-											<c:set var="type" value=""></c:set>
-										</c:otherwise>
-									</c:choose>															
-									<li ${type }><a href="car.do?page=${i }&cateNo=${cateNo}">${i }</a></li>									
-								</c:forEach>
-								<c:if test="${endPage<allPage }">
-									<li>
-										<a href="car.do?page=${endPage+1 }&cateNo=${cateNo}"><i class="fa fa-angle-right"></i></a>
-									</li>
-								</c:if>
-							</ul>
-						</div>
+						<%-- --%>						
 					</div>
 				</div>
 			</div>

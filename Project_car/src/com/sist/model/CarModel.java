@@ -11,10 +11,9 @@ public class CarModel {
 
 	@RequestMapping("car/car.do")
 	public String car_list(HttpServletRequest request) 
-	{		
+	{			
 		String strPage=request.getParameter("page");	
 		String cateNo=request.getParameter("cateNo");
-		
 		
 		if(strPage==null)
 			strPage="1";
@@ -28,6 +27,7 @@ public class CarModel {
 	    map.put("end",end);
 	    
 	    List<CarVO> list=new ArrayList<CarVO>();
+	    int totalpage=CarDAO.carTotalPage();
 	    
 	    if(cateNo==null)
 	    	cateNo="1";
@@ -39,8 +39,6 @@ public class CarModel {
 	    	list=CarDAO.carListEfficiency(map);
 	    else if(cateNo.equals("4"))
 	    	list=CarDAO.carListPrice(map);
-	    
-		int totalpage=CarDAO.carTotalPage();
 	    
 	    final int BLOCK=5;
 	    int allPage=totalpage;
@@ -66,7 +64,7 @@ public class CarModel {
 		request.setAttribute("allPage", allPage);
 		request.setAttribute("curpage", curpage);
 		request.setAttribute("strPage", strPage);
-		request.setAttribute("cateNo", cateNo);
+		request.setAttribute("cateNo", cateNo);				
 		
 		request.setAttribute("carList_jsp", "car_list.jsp");
 		
@@ -83,15 +81,40 @@ public class CarModel {
 			//컴파일 예외처리 => 반드시 컴파일 전에 예외처리를 한다
 		}catch(Exception ex){}
 		
-		String pname=request.getParameter("pname");
-		List<CarVO> list=CarDAO.carSearchData(pname);		
+		String keyword=request.getParameter("keyword");
+		
+		List<CarVO> list=CarDAO.carSearchData(keyword);		
+		
+		List<BrandVO> bList=CarDAO.carBrandData();
+	    request.setAttribute("bList", bList);
 		
 		request.setAttribute("cList", list);	
-		
-		request.setAttribute("carList_jsp", "car_list.jsp");
-		
-		return "car.jsp";
+				
+		return "car_list.jsp";
 	}
 	
-	
+	@RequestMapping("car/carPrice_search.do")
+   public String carPrice_search(HttpServletRequest request)
+   {
+       String lowPrice=request.getParameter("lowPrice");
+       String highPrice=request.getParameter("highPrice");
+       
+       if(lowPrice=="")
+    	   lowPrice="1";
+       if(highPrice=="")
+    	   highPrice="99999";
+       
+       Map map=new HashMap();
+       map.put("lowPrice",Integer.parseInt(lowPrice));
+       map.put("highPrice",Integer.parseInt(highPrice));
+       
+       List<CarVO> list=CarDAO.carPriceSearchData(map);
+       
+       List<BrandVO> bList=CarDAO.carBrandData();
+       request.setAttribute("bList", bList);
+       
+       request.setAttribute("cList", list);       
+       
+       return "car_list.jsp";
+   }
 }
