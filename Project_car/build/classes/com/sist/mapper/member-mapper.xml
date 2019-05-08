@@ -14,11 +14,58 @@
     SELECT pwd,name,id FROM member
     WHERE id=#{id}
   </select>
-  
   <!-- 회원 가입 -->
-  
-  <!-- 회원 수정 -->
-  
+ 
+   <select id="postFind" resultType="ZipcodeVO" parameterType="String">
+     SELECT zipcode,sido,gugun,dong,NVL(bunji,' ') as bunji
+     FROM zipcode
+     WHERE dong LIKE '%'||#{dong}||'%'
+   </select>
+   <!-- 
+     ID 중복 체크
+    -->
+   <select id="idcheck" resultType="int" parameterType="String">
+     SELECT COUNT(*) FROM member
+     WHERE id=#{id}
+   </select>
    
+    
+  <insert id="memberInsert" parameterType="MemberVO">
+    INSERT INTO member VALUES(
+      #{id},
+      #{pwd},
+      #{name},
+      #{addr},
+      #{birth},
+      #{sex},
+      #{tel},
+      #{email},
+      #{budget},
+      #{post},
+      #{detail_addr}
+    )
+   </insert>
    
+
+  <select id="memberJoinUpdateData" resultType="MemberVO" 
+    parameterType="String">
+    SELECT * FROM member
+    WHERE id=#{id}
+  </select>
+  
+  
+  <update id="memberJoinUpdate" parameterType="MemberVO">
+    UPDATE member SET
+    id=#{id},
+    name=#{name},
+    addr=#{addr},
+    tel=#{tel},
+    email=#{email},
+    budget=#{budget},
+    post=#{post},
+    detail_addr=#{detail_addr}
+    WHERE id=#{id}
+  </update> 
+  
+  
 </mapper>
