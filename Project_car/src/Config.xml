@@ -56,5 +56,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="com/sist/mapper/car-mapper.xml"/>
 		<mapper resource="com/sist/mapper/main-mapper.xml"/>
 		<mapper resource="com/sist/mapper/car_detail-mapper.xml"/>
+		<mapper resource="com/sist/mapper/mypage-mapper.xml"/>
 	</mappers>
 </configuration>

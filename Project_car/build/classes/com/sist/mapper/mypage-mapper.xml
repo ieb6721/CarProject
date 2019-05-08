@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sist.mapper.mypage-mapper">
+	<!-- 관리자 마이페이지 시승 내역조회 -->
+	<select id="adminMypage" resultType="Driver_reserveVO" parameterType="String">
+		SELECT id, agency_name, passenger, reserve_date, model, (SELECT tel FROM member WHERE id=#{id}) as tel 
+		FROM driver_reserve
+	</select>
+</mapper>
+
+
+
+
+
+
+

@@ -6,6 +6,13 @@ public class Driver_reserveVO {
 	private String passenger;
 	private String id;	
 	private String agency_name;
+	private String tel;
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
 	public String getModel() {
 		return model;
 	}
