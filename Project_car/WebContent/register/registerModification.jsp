@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!doctype html>
 <html class="no-js" lang="zxx">
     <head>
@@ -179,17 +179,7 @@
         margin-left: 30px; 
         
         }
-        #id{
-          width: 300px;
-        }
-        
-        #idCheck{
-          width: 120px;
-          text-align: center;
-          padding-left: 0px;
-          margin-left: 30px;
-        }
-        
+   
         #pwd1{
           width: 210px;
           
@@ -209,7 +199,7 @@
           width: 120px;
         }
         
-        #selboxDirect{
+           #selboxDirect{
           width: 150px;
         }
         
@@ -220,61 +210,10 @@
         #selbox{
           width: 130px;
         }
+        
         </style>
         
-    <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
-    <script type="text/javascript">
-   
-    function checkPwd(){
-    	
-    	  var f1 = document.forms[0];
-    	  var pw1 = f1.pwd.value;
-    	  var pw2 = f1.pwd_check.value;
-    	  if(pw1!=pw2){
-    	   document.getElementById('checkPwd').style.color = "red";
-    	   document.getElementById('checkPwd').innerHTML = "동일한 암호를 입력하세요."; 
-    	  }else{
-    	   document.getElementById('checkPwd').style.color = "blue";
-    	   document.getElementById('checkPwd').innerHTML = "동일한 암호입니다"; 
-    	   
-    	  }
-    	  
-    	 }
-
-    $(function(){
-
-        //직접입력 인풋박스 기존에는 숨어있다가
-
-  $("#selboxDirect").hide();
-
-
-
-
-  $("#selbox").change(function() {
-
-  		
-
-                  //직접입력을 누를 때 나타남
-
-  		if($("#selbox").val() == "direct") {
-
-  			$("#selboxDirect").show();
-
-  		}  else {
-
-  			$("#selboxDirect").hide();
-
-  		}
-
-  		
-
-  	}) 
-
-  	
-
-  });
-
-     </script>
+    
    
 <link rel="stylesheet" type="text/css" href="../shadow/css/shadowbox.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
@@ -283,6 +222,7 @@
 Shadowbox.init({
 	players:["iframe"]
 });
+
 $(function(){
 	$('#postBtn').click(function(){
 		Shadowbox.open({
@@ -293,16 +233,41 @@ $(function(){
 			height:350
 		});
 	});
-	$('#idCheck').click(function(){
-		Shadowbox.open({
-			content:'../register/idcheck.do',
-			player:"iframe",
-			title:'IDCheck',
-			width:350,
-			height:250
-		});
-	});
 });
+
+$(function(){
+
+    //직접입력 인풋박스 기존에는 숨어있다가
+
+$("#selboxDirect").hide();
+
+
+
+
+$("#selbox").change(function() {
+
+		
+
+              //직접입력을 누를 때 나타남
+
+		if($("#selbox").val() == "direct") {
+
+			$("#selboxDirect").show();
+
+		}  else {
+
+			$("#selboxDirect").hide();
+
+		}
+
+		
+
+	}) 
+
+	
+
+});
+
 </script>
     </head>
     <body>
@@ -315,7 +280,7 @@ $(function(){
          
             <!-- register-area start -->
             <div class="register-area ptb-50">
-            <form method="post" action="../register/register_ok.do" name="registerFrm">
+            <form method="post" action="../register/registerModification_ok.do" name="registerFrm">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12 col-lg-4 col-lg-offset-4">
@@ -328,35 +293,23 @@ $(function(){
                                     </div>
                                     <div class="login-form">
                                         
-                                            <input type="text" name="id" placeholder="Id" id="id" readonly="readonly">
-                                            <input type=button value="IDCheck" id="idCheck">
-                                            <input type="password" name="pwd" placeholder="Password" id="pwd1">
-                                            <input type="password" name="pwd_check" placeholder="PasswordCheck" id="pwd2" onkeyup="checkPwd()">
-                                            <div id="checkPwd">동일한 암호를 입력하세요.</div>
-                                            <br>
-
-                                            <input type="text" name="name" placeholder="Username" id="name">
-                                            <input type=text name="post" id=post size=12 readonly>
+                                            <input type="text" name="id" placeholder="Id" id="id" readonly="readonly" value="${vo.id }">
+                                            <input type="text" name="name" placeholder="Username" id="name" value="${vo.name }">
+                                            <input type=text name="post" id=post size=12 readonly value="${vo.post }">
            									<input type=button value="우편번호 검색" id="postBtn" style="padding-left: 0px;">
-                                            <input type=text name=addr id=addr1 size=45 readonly >
-                                            <input type=text name=detail_addr id=addr2 size=45 placeholder="Detail Address">
-                                            
-                                           <!--  <input type="text" name="user-birth" placeholder="birth(00-01-01)"> -->
-                                             <input type="date" name="birth" value="birth">
-									         
-									         <label id="a5">성별</label>  
-                                            <input type="radio" checked name="sex" value="male" class="sex" id="male">Male  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
-                                            <input type="radio" name="sex" value="female" class="sex">Female <br>  <br>
+                                            <input type=text name=addr id=addr1 size=45 readonly value="${vo.addr }" >
+                                            <input type=text name=detail_addr id=addr2 size=45 value="${vo.detail_addr }">
                                              <label id="a5">연락처</label> 
                                             <label id="t010">010 - </label>
-                                            <input type="text" name="tel1" id="tel1">
+                                            <input type="text" name="tel1" id="tel1" value="${fn:substring(vo.tel,4,8) }">
                                             <label> - </label>
-                                            <input type="text" name="tel2" id="tel2">
+                                            <input type="text" name="tel2" id="tel2" value="${fn:substring(vo.tel,9,13) }" >
                                             <br>
 
-                                             <input type="text" name="email1" id="email1">  
+
+											<input type="text" name="email1" id="str_email01" style="width:145px" value="${fn:substring(vo.email,0,vo.email.indexOf('@')) }">
                                              <label>@</label>
-											<input type="text" id="selboxDirect" name="selboxDirect"/>
+											<input type="text" id="selboxDirect" name="selboxDirect" value="${fn:substringAfter(vo.email,vo.email.indexOf('@')) }"/>
 											
 											<select id="selbox" name="selbox">
 
@@ -374,10 +327,6 @@ $(function(){
 										
 										
 											
-											
-											
-											
-											
 										  <h4 class="title__line--4">Salary</h4>
 										
 										   <div class="price-range-block" id="abox">
@@ -387,9 +336,11 @@ $(function(){
 												
 											     <div style="margin:10px auto" id="tbox">
 												  
-											<input type="number" min=0 max="9900" oninput="validity.valid||(value='0');" id="min_price" class="price-range-field" name="min"/>
+											<input type="number" min=0 max="9900" oninput="validity.valid||(value='0');" 
+											id="min_price" class="price-range-field" name="min"/>
 											<label id="a1">~</label>
-											<input type="number" min=0 max="10000" oninput="validity.valid||(value='10000');" id="max_price" class="price-range-field" name="max"/>
+											<input type="number" min=0 max="10000" oninput="validity.valid||(value='10000');" 
+											id="max_price" class="price-range-field" name="max"/>
 												
 											     </div>
 											   </div>
@@ -452,7 +403,6 @@ $(function(){
         
 
 		<!-- all js here -->
-	
         <script src="../js/accessory_js/vendor/jquery-1.12.0.min.js"></script>
         <script src="../js/accessory_js/bootstrap.min.js"></script>
         <script src="../js/accessory_js/jquery.meanmenu.js"></script>
