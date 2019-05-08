@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html">
 <html>
 <head>
@@ -7,22 +8,22 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/style.css">
 <style type="text/css">
-.scroll{
-overflow-y:scroll;
-overflow-x:hidden; 
+.scroll {
+	overflow-y: scroll;
+	overflow-x: hidden;
 }
 
-.contents{
-height: 150px;
-border: 1px solid #999;
+.contents {
+	height: 150px;
+	border: 1px solid #999;
 }
 
-.checkList{
-list-style: none;
-padding-left: 5px;
+.checkList {
+	list-style: none;
+	padding-left: 5px;
 }
 
-li{
+li {
 	line-height: 180%;
 	list-style: none;
 }
@@ -31,25 +32,22 @@ ul {
 	padding-left: 0px;
 }
 
-.accordion{
+.accordion {
 	width: 100%;
 }
 
-
-strong{
+strong {
 	color: white;
 	font-size: 20px;
 }
 
-
-
-.content::after{
-	content:'';
+.content::after {
+	content: '';
 	display: table;
 	clear: both;
 }
 
-.product_detail{
+.product_detail {
 	margin-left: 60px;
 }
 
@@ -67,91 +65,92 @@ strong{
 	padding-left: 0px;
 }
 
-.row .scroll{
-height: 200px;
+.row .scroll {
+	height: 200px;
 }
 
 tbody {
-    display: table-row-group;
-    vertical-align: middle;
+	display: table-row-group;
+	vertical-align: middle;
 }
 
-.buttonGroup{
+.buttonGroup {
 	padding-top: 50px;
 }
 
 .footer-socials .fa {
-   line-height: inherit;
+	line-height: inherit;
 }
 
-.total{
+.total {
 	background-color: #F2F2F2;
 }
 </style>
 <link rel="stylesheet" href="css/style-button.css">
+<style type="text/css">
+.select_mode_option .scroll{
+	height: 350px;
+	background-color: #E6E6E6;
+}
+.accordion-list li .item {
+    font-size: 12px;
+}
+
+.accordion-list li .name {
+	width: 40%;
+}
+
+.accordion-list li .button{
+	width: 10%;
+    text-align: center;
+    margin-left: 18px;		
+}
+</style>
 </head>
 <body>
-   <header>
-      <jsp:include page="../cmmn/default-nav.jsp"></jsp:include>
-   </header>      
-   
-   
-   
-<div class="content">
+	<header>
+		<jsp:include page="../cmmn/default-nav.jsp"></jsp:include>
+	</header>
+	<div class="content">
 		<div class="container">
 			<h1 class="text-center">예상 견적서</h1>
 			<hr>
 			<h3 class="text-left">모델 / 옵션 선택</h3>
-			
-			<div class="row">
-				<div class="col-sm-5 contents scroll" style="padding: 0px;">
-					<dl class="accordion">
-						<dt class="accordion-title">2019년형 가솔린 2.0</dt>
-						<dd class="accordion-list">
-							<ul>
-								<li><input type="radio" name="model1" checked="checked">
-									<div class="item name">스마트 (A/T)</div>
-									<div class="item price">23,460,000</div></li>
-								<li><input type="radio" name="model1">
-									<div class="item name">프리미엄 (A/T)</div>
-									<div class="item price">25,920,000</div></li>
-								<li><input type="radio" name="model1"> 프리미엄 패밀리
-									(A/T)</li>
-								<li><input type="radio" name="model1"> 프리미엄 밀레니얼
-									(A/T)</li>
-								<li><input type="radio" name="model1"> 인스퍼레이션 (A/T)
-								</li>
-							</ul>
-						</dd>
-					</dl>
 
-					<dl class="accordion">
-						<dt class="accordion-title">2019년형 LPG 2.0 (일반인 판매용)</dt>
-						<dd class="accordion-list">
-							<ul>
-								<li>트림1</li>
-								<li>트림2</li>
-								<li>트림3</li>
-							</ul>
-						</dd>
-					</dl>
-
-					<dl class="accordion">
-						<dt class="accordion-title">2019년형 LPG 2.0 (장애인용/렌터카)</dt>
-						<dd class="accordion-list">
-							<ul>
-								<li>트림1</li>
-								<li>트림2</li>
-								<li>트림3</li>
-							</ul>
-						</dd>
-					</dl>
+			<div class="row select_mode_option">
+				<div class="col-sm-6 contents scroll" style="padding: 0px;">
+					<c:forEach var="modelvo" items="${modellist}">
+						<dl class="accordion">
+							<dt class="accordion-title">${modelvo.model_name}</dt>
+							<dd class="accordion-list">
+								<ul>
+									<li>
+										<c:forEach var="trimvo" items="${trimlist}">
+											<c:if test="${modelvo.model_num eq trimvo.model_num}">
+												<div class="item name">${trimvo.trim_name}</div>
+												<div class="item fuel">${trimvo.trim_fuel_type}</div>
+												<div class="item engine">${trimvo.trim_cc}</div>
+												<div class="item mileage">${trimvo.trim_efficiency}</div>
+												<div class="item price">${trimvo.trim_price}</div>
+												<div class="item button">
+													<button class="btn btn-xs btn-info select_trim"
+														value="${trimvo.trim_num}">선택</button>
+												</div>
+											</c:if>
+										</c:forEach>
+									</li>
+								</ul>
+							</dd>
+						</dl>
+					</c:forEach>
 				</div>
 
 
-				<div class="col-sm-7 contents scroll" id="option">
-					<ul class="checkList">						
-						<li><label><input type="checkbox" value="">&nbsp;화이트크림 외장컬러</label><div class="price">123,456원</div></li>
+				<div class="col-sm-6 contents scroll" id="option">
+					<ul class="checkList">
+						<li><label><input type="checkbox" value="">&nbsp;화이트크림
+								외장컬러</label>
+						<div class="price">123,456원</div></li>
 						<li><label><input type="checkbox" value="">플레밍
 								레드 외장컬러</label></li>
 						<li><label><input type="checkbox" value="">&nbsp;8인치
@@ -176,22 +175,19 @@ tbody {
 					style="border: 1px solid; width: 50%; height: 150px;">
 					<jsp:include page="car_estimate_slider.jsp"></jsp:include>
 				</div>
-				<div class="col-sm-6" style="border: 1px solid; width: 50%; height: 150px;">
+				<div class="col-sm-6"
+					style="border: 1px solid; width: 50%; height: 150px;">
 					<div id="content">
 						<form>
 							<section class="buttonGroup">
-								<span>
-									<a class="buttonGroup-button" data-buttonGroup="0">36개월</a>
-								</span> 
-								<span>
-									<a class="buttonGroup-button" data-buttonGroup="0">48개월</a>
+								<span> <a class="buttonGroup-button" data-buttonGroup="0">36개월</a>
+								</span> <span> <a class="buttonGroup-button"
+									data-buttonGroup="0">48개월</a>
+								</span> <span> <a class="buttonGroup-button"
+									data-buttonGroup="0">60개월</a>
+								</span> <span> <a class="buttonGroup-button"
+									data-buttonGroup="0">120개월</a>
 								</span>
-								<span>
-									<a class="buttonGroup-button" data-buttonGroup="0">60개월</a>
-								</span> 
-								<span>
-									<a class="buttonGroup-button" data-buttonGroup="0">120개월</a>
-								</span> 								
 							</section>
 						</form>
 					</div>
@@ -203,7 +199,7 @@ tbody {
 			</div>
 			<hr>
 		</div>
-		
+
 		<div class="container">
 			<div class="col-sm-6">
 
@@ -211,13 +207,16 @@ tbody {
 				<div class="car_recipe">
 					<table class="table">
 						<tr>
-							<th>차량 가격</th><td class="text-right">49,970,000</td>
-						</tr>							
+							<th>차량 가격</th>
+							<td class="text-right">49,970,000</td>
+						</tr>
 						<tr>
-							<th>옵션가격</th><td class="text-right">570,000</td>
+							<th>옵션가격</th>
+							<td class="text-right">570,000</td>
 						</tr>
 						<tr class="total">
-							<th>총 금액</th><td class="text-right">50,540,000</td>
+							<th>총 금액</th>
+							<td class="text-right">50,540,000</td>
 						</tr>
 					</table>
 				</div>
@@ -229,18 +228,22 @@ tbody {
 				<div class="option_recipe">
 					<table class="table">
 						<tr>
-							<th>초기 납입금</th><td class="text-right">10,000,000</td>
-						</tr>							
-						<tr>
-							<th>할부 원금</th><td class="text-right">40,540,000</td>
+							<th>초기 납입금</th>
+							<td class="text-right">10,000,000</td>
 						</tr>
 						<tr>
-							<th>할부 기간</th><td class="text-right">60개월</td>
+							<th>할부 원금</th>
+							<td class="text-right">40,540,000</td>
+						</tr>
+						<tr>
+							<th>할부 기간</th>
+							<td class="text-right">60개월</td>
 						</tr>
 						<tr class="total">
-							<th>월 납입 금액</th><td class="text-right">675,000</td>
+							<th>월 납입 금액</th>
+							<td class="text-right">675,000</td>
 						</tr>
-					</table>					
+					</table>
 				</div>
 				<hr>
 
@@ -268,20 +271,20 @@ tbody {
 						<div class="sin__desc">
 							<button class="btn btn-md btn-warning">브랜드 정보</button>
 							<button class="btn btn-md btn-success"
-								onclick="location.href='car.jsp'">목록</button>							
+								onclick="location.href='car.jsp'">목록</button>
 						</div>
 						<br>
 					</div>
 				</div>
 			</div>
-		</div>  
-</div>  
-   
+		</div>
+	</div>
 
-<jsp:include page="../cmmn/default-footer.jsp"></jsp:include>
-   
 
-<script  src="js/index.js"></script>
-<script  src="js/index-button.js"></script>
+	<jsp:include page="../cmmn/default-footer.jsp"></jsp:include>
+
+
+	<script src="js/index.js"></script>
+	<script src="js/index-button.js"></script>
 </body>
 </html>

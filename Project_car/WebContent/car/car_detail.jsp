@@ -20,6 +20,10 @@ ul {
 .accordion-title {
 	font-size: 20px;
 }
+
+.compare_table td, th{
+	width: 30%;
+}
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
@@ -39,6 +43,8 @@ $(function(){
 						+ winHeight + ', left='+ popupX + ', top='+ popupY;
 		window.open("car_spec.do?trim_num=" + trim_num, "", popupOption);
 		});
+	
+		
 	});
 </script>
 </head>
@@ -63,9 +69,10 @@ $(function(){
 						| ${carvo.car_fuelType }</p>
 					<div class="ht__pro__desc">
 						<div class="sin__desc">
-							<button class="btn btn-md btn-warning">${carvo.brand_name}</button>
+							<button class="btn btn-md btn-warning brand"
+							onclick="location='car_brand.do?keyword=${carvo.brand_name}'">${carvo.brand_name}</button>
 							<button class="btn btn-md btn-primary"
-								onclick="location='car_estimate.jsp'">견적</button>
+								onclick="location='car_estimate.do?cno=${carvo.car_num}'">견적</button>
 							<button class="btn btn-md btn-success"
 								onclick="javascript:history.back()">목록</button>
 						</div>
@@ -94,7 +101,8 @@ $(function(){
 										<div class="item mileage">${trimvo.trim_efficiency}</div>
 										<div class="item price">${trimvo.trim_price}</div>
 										<div class="item button">
-											<button class="btn btn-sm btn-info spec" value="${trimvo.trim_num}">제원</button>										</div>
+											<button class="btn btn-sm btn-info spec" value="${trimvo.trim_num}">제원</button>										
+										</div>
 									</c:if>
 								</c:forEach>
 							</li>
@@ -120,15 +128,16 @@ $(function(){
 				<p>${carvo.car_name }</p>
 				<div class="well">
 					<div class="sin__desc">
-						<button class="btn btn-md btn-warning">${carvo.brand_name}</button>
+						<button class="btn btn-md btn-warning"
+						onclick="location='car_brand.do?keyword=${carvo.brand_name}'">${carvo.brand_name}</button>
 						<button class="btn btn-md btn-primary"
-								onclick="location='car_estimate.jsp'">견적</button>
+								onclick="location='car_estimate.do?cno=${carvo.car_num}'">견적</button>
 					</div>
 				</div>
 			</div>
 			<div class="col-sm-4">
 				<img src="http://img.chuing.net/i/NGQGVp/Preview.x.jpg" width="60%">
-				<table class="table">
+				<table class="table compare_table">
 					<tr>
 						<td> ${carvo.car_efficiency }</td>
 						<th class="text-center">복합연비</th>
@@ -150,9 +159,9 @@ $(function(){
 						<td>${compvo.car_launchDate }</td>
 					</tr>
 					<tr>
-						<td>${carvo.car_price }만원</td>
-						<th class="text-center">신차가격</th>
-						<td>${compvo.car_price }만원</td>
+						<td>${carvo.car_price }</td>
+						<th class="text-center">가격 (만원)</th>
+						<td>${compvo.car_price }</td>
 					</tr>
 				</table>
 			</div>
@@ -160,9 +169,10 @@ $(function(){
 				<img src="${compvo.car_poster}">
 				<p>${compvo.car_name}</p>
 				<div class="well">
-					<button class="btn btn-md btn-warning">${compvo.brand_name}</button>
+					<button class="btn btn-md btn-warning"
+					onclick="location='car_brand.do?keyword=${compvo.brand_name}'">${compvo.brand_name}</button>
 					<button class="btn btn-md btn-primary"
-							onclick="location='car_detail.do?cno=${compvo.car_num}'">상세보기</button>
+							onclick="location='car_brand.do?keyword=${compvo.brand_name}'">상세보기</button>
 				</div>
 			</div>
 		</div>
