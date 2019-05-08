@@ -1,5 +1,7 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"
+	import="java.util.*,java.text.*,com.sist.dao.*,com.sist.vo.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
@@ -87,10 +89,16 @@
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2">
 					<div class="single-blog-details">
-						<h1 class="post-title">${vo.title }</h1>
-						<p class="post-date">${vo.news_date }</p>
+						<h1 class="text-center">${nvo.title }</h1>
 						<div class="post-long-desc">
-							<p class="post-short-desc">${vo.content }</p>
+						<p class="post-date">${nvo.news_date }</p>
+						<div class="post-long-desc">
+						<div>
+							<img src="${nvo.detail_img }" alt="" /></a>
+						</div>
+						<div class="post-long-desc">
+						<div class="post-long-desc">
+							<p class="post-short-desc">${nvo.content }</p>
 							</p>
 						</div>
 						<div class="single-blog-bottom fix">
@@ -117,6 +125,7 @@
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 	<!-- single-blog-area end -->
 

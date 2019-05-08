@@ -58,6 +58,28 @@ public class CarDAO {
 		return list;
 	}
 	
+	//연비순 자동차 리스트
+	public static List<CarVO> carListEfficiency(Map map)
+	{
+		List<CarVO> list=new ArrayList<CarVO>();
+		SqlSession session=null;		
+		try
+		{
+			session=ssf.openSession();	//connection연결
+			list=session.selectList("carListEfficiency",map);			
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		return list;
+	}
+		
 	//가격순 자동차 리스트
 		public static List<CarVO> carListPrice(Map map)
 		{
@@ -124,25 +146,27 @@ public class CarDAO {
     	return total;
     }
 	
-	// 자동차 상세보기
-	public static CarVO carDetailData(int cno)
+	//자동차 검색
+	public static List<CarVO> carSearchData(String pname)
 	{
-		CarVO vo=new CarVO();
-		SqlSession session=null;		
+		List<CarVO> list=new ArrayList<CarVO>();
+		SqlSession session=null;
 		try
 		{
-			session=ssf.openSession();	//connection연결
-			vo=session.selectOne("carDetailData",cno);			
+			session=ssf.openSession();
+			list=session.selectList("carSearchData",pname);
 		}
 		catch(Exception ex)
 		{
-			ex.printStackTrace();
+			ex.printStackTrace(); 
 		}
 		finally
 		{
 			if(session!=null)
-				session.close();
+    			session.close();
 		}
-		return vo;
+		return list;
 	}
+	
+	
 }

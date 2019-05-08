@@ -518,7 +518,7 @@ header {
 
 				</div>
 				<!-- aside.jsp -->
-				<jsp:include page="../cmmn/default-aside.jsp"></jsp:include>
+				<jsp:include page="${main_jsp }"></jsp:include>
 			</div>
 		</section>
 	</div>

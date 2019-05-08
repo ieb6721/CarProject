@@ -14,7 +14,7 @@ public class CarModel {
 	{		
 		String strPage=request.getParameter("page");	
 		String cateNo=request.getParameter("cateNo");
-		System.out.println(cateNo);
+		
 		
 		if(strPage==null)
 			strPage="1";
@@ -36,7 +36,7 @@ public class CarModel {
 	    else if(cateNo.equals("2"))
 	    	list=CarDAO.carListLaunchdate(map);
 	    else if(cateNo.equals("3"))
-	    	list=CarDAO.carListData(map);
+	    	list=CarDAO.carListEfficiency(map);
 	    else if(cateNo.equals("4"))
 	    	list=CarDAO.carListPrice(map);
 	    
@@ -68,16 +68,30 @@ public class CarModel {
 		request.setAttribute("strPage", strPage);
 		request.setAttribute("cateNo", cateNo);
 		
+		request.setAttribute("carList_jsp", "car_list.jsp");
+		
 		return "car.jsp";
 	}
 	
-	@RequestMapping("car/car_detail.do")
-	public String car_detail(HttpServletRequest request)
+	@RequestMapping("car/car_search.do")
+	public String car_search(HttpServletRequest request)
 	{
-		String cno=request.getParameter("cno");
-		CarVO vo=CarDAO.carDetailData(Integer.parseInt(cno));
-		System.out.println(cno);
-		request.setAttribute("vo", vo);
-		return "car_detail.jsp";
+		try
+		{
+			//한글 변환
+			request.setCharacterEncoding("UTF-8");
+			//컴파일 예외처리 => 반드시 컴파일 전에 예외처리를 한다
+		}catch(Exception ex){}
+		
+		String pname=request.getParameter("pname");
+		List<CarVO> list=CarDAO.carSearchData(pname);		
+		
+		request.setAttribute("cList", list);	
+		
+		request.setAttribute("carList_jsp", "car_list.jsp");
+		
+		return "car.jsp";
 	}
+	
+	
 }

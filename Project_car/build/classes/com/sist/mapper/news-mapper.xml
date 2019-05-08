@@ -4,9 +4,8 @@
 <!-- PreparedStatement, ResultSet XML:namespace : 자바 package와 동일 -->
 <mapper namespace="com.sist.mapper.news-mapper">
 	<!-- <select id="newsMainData" resultType="NewsVO"> SELECT * FROM news </select> -->
-	<select id="newsDetailData" resultType="NewsVO">
-		SELECT * FROM news WEHRE
-		no = ${no}
+	<select id="newsDetailData" resultType="NewsVO" parameterType="int">
+		SELECT * FROM news WHERE news_no=#{news_no}
 	</select>
 	<!-- private int news_no; private String title; private String thumbnail_img; 
 		private String detail_img; private String content; private String news_date; 

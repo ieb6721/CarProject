@@ -3,6 +3,8 @@
 
 <jsp:include page="default-header.jsp"></jsp:include>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <script type="text/javascript">
 $(document).ready(function(){
 	
@@ -103,7 +105,7 @@ div.no{
 				<h3 class="sidebar-title"><strong>ÃßÃµ ÀÚµ¿Â÷</strong></h3>
 				<ul class="tabs">
 					<li class="tab-link current" data-tab="tab-1">
-						Á¶È¸¼ö¼ø
+						°¡°Ý¼ø
 					</li>
 					<li class="tab-link" data-tab="tab-2">
 						³ôÀº¿¬ºñ¼ø
@@ -114,152 +116,44 @@ div.no{
 				</ul>
 			</div>
 			<%-- ¼øÀ§ --%>
-			
+
 			<div class="tab-content current widget-container" id="tab-1">
-				<article>
-					<div class="post-body">
-							<a href="post.html">
-							<img src="../images/aside/1.JPG" width="30" height="30"> &nbsp;
-							<img src="../images/aside/carcar.png" width=100 height=100>
-							&nbsp;&nbsp;ÅÇ1
-							</a>
-					</div>
-					
-					<div class="post-body">
-							<a href="post.html">
-							<img src="../images/aside/2.JPG" width="30" height="30"> &nbsp;
-							<img src="../images/aside/carcar.png" width=100 height=100>
-							&nbsp;&nbsp;ÅÇ1
-							</a>
-					</div>
-					
-					<div class="post-body">
-							<a href="post.html">
-							<img src="../images/aside/3.JPG" width="30" height="30"> &nbsp;
-							<img src="../images/aside/carcar.png" width=100 height=100>
-							&nbsp;&nbsp;ÅÇ1
-							</a>
-					</div>
-					
-					<div class="post-body">
-							<a href="post.html">
-							<img src="../images/aside/4.JPG" width="30" height="30"> &nbsp;
-							<img src="../images/aside/carcar.png" width=100 height=100>
-							&nbsp;&nbsp;ÅÇ1
-							</a>
-					</div>
-					
-					<div class="post-body">
-							<a href="post.html">
-							<img src="../images/aside/5.JPG" width="30" height="30"> &nbsp;
-							<img src="../images/aside/carcar.png" width=100 height=100>
-							&nbsp;&nbsp;ÅÇ1
-							</a>
-					</div>
-					
-					<div class="post-body">
-							<a href="post.html">
-							<img src="../images/aside/6.JPG" width="30" height="30"> &nbsp;
-							<img src="../images/aside/carcar.png" width=100 height=100>
-							&nbsp;&nbsp;ÅÇ1
-							</a>
-					</div>
-				</article>
-			</div>
 			
+				<c:forEach var="cardata1" items="${pList}" varStatus="i">
+					<div class="post-body">
+						<a href="post.html"> <img
+							src="../images/aside/${i.index+1}.JPG" width="30" height="30">
+							&nbsp; <img src="${cardata1.car_poster }" width=100 height=100>
+							&nbsp;&nbsp;<font size="1" style="font-weight: bold;">${cardata1.car_name}</font>
+						</a>
+					</div>
+				</c:forEach>
+				
+			</div>
+
 			<div class="tab-content widget-container tab-content" id="tab-2">
-				<article>
+				<c:forEach var="cardata2" items="${eList}" varStatus="i">
 					<div class="post-body">
-							<a href="post.html">
-							<img src="../images/aside/1.JPG" width="30" height="30"> &nbsp;
-							<img src="../images/aside/carcar.png" width=100 height=100>
-							&nbsp;&nbsp;ÅÇ2
-							</a>
+						<a href="post.html"> <img
+							src="../images/aside/${i.index+1}.JPG" width="30" height="30">
+							&nbsp; <img src="${cardata2.car_poster }" width=100 height=100>
+							&nbsp;&nbsp;<font size="1" style="font-weight: bold;">${cardata2.car_name}</font>
+						</a>
 					</div>
-					<div class="post-body">
-							<a href="post.html">
-							<img src="../images/aside/2.JPG" width="30" height="30"> &nbsp;
-							<img src="../images/aside/carcar.png" width=100 height=100>
-							&nbsp;&nbsp;ÅÇ2
-							</a>
-					</div>
-					<div class="post-body">
-							<a href="post.html">
-							<img src="../images/aside/3.JPG" width="30" height="30"> &nbsp;
-							<img src="../images/aside/carcar.png" width=100 height=100>
-							&nbsp;&nbsp;ÅÇ2
-							</a>
-					</div>
-					<div class="post-body">
-							<a href="post.html">
-							<img src="../images/aside/4.JPG" width="30" height="30"> &nbsp;
-							<img src="../images/aside/carcar.png" width=100 height=100>
-							&nbsp;&nbsp;ÅÇ2
-							</a>
-					</div>
-					<div class="post-body">
-							<a href="post.html">
-							<img src="../images/aside/5.JPG" width="30" height="30"> &nbsp;
-							<img src="../images/aside/carcar.png" width=100 height=100>
-							&nbsp;&nbsp;ÅÇ2
-							</a>
-					</div>
-					<div class="post-body">
-							<a href="post.html">
-							<img src="../images/aside/6.JPG" width="30" height="30"> &nbsp;
-							<img src="../images/aside/carcar.png" width=100 height=100>
-							&nbsp;&nbsp;ÅÇ2
-							</a>
-					</div>
-					
-				</article>
+				</c:forEach>
+				
 			</div>
-			
+
 			<div class=" tab-content widget-container" id="tab-3">
-				<article>
+				<c:forEach var="cardata3" items="${rList}" varStatus="i">
 					<div class="post-body">
-							<a href="post.html">
-							<img src="../images/aside/1.JPG" width="30" height="30"> &nbsp;
-							<img src="../images/aside/carcar.png" width=100 height=100>
-							&nbsp;&nbsp;ÅÇ3
-							</a>
+						<a href="post.html"> <img
+							src="../images/aside/${i.index+1}.JPG" width="30" height="30">
+							&nbsp; <img src="${cardata3.car_poster }" width=100 height=100>
+							&nbsp;&nbsp;<font size="1" style="font-weight: bold;">${cardata3.car_name}</font>
+						</a>
 					</div>
-					<div class="post-body">
-							<a href="post.html">
-							<img src="../images/aside/2.JPG" width="30" height="30"> &nbsp;
-							<img src="../images/aside/carcar.png" width=100 height=100>
-							&nbsp;&nbsp;ÅÇ3
-							</a>
-					</div>
-					<div class="post-body">
-							<a href="post.html">
-							<img src="../images/aside/3.JPG" width="30" height="30"> &nbsp;
-							<img src="../images/aside/carcar.png" width=100 height=100>
-							&nbsp;&nbsp;ÅÇ3
-							</a>
-					</div>
-					<div class="post-body">
-							<a href="post.html">
-							<img src="../images/aside/4.JPG" width="30" height="30"> &nbsp;
-							<img src="../images/aside/carcar.png" width=100 height=100>
-							&nbsp;&nbsp;ÅÇ3
-							</a>
-					</div>
-					<div class="post-body">
-							<a href="post.html">
-							<img src="../images/aside/5.JPG" width="30" height="30"> &nbsp;
-							<img src="../images/aside/carcar.png" width=100 height=100>
-							&nbsp;&nbsp;ÅÇ3
-							</a>
-					</div>
-					<div class="post-body">
-							<a href="post.html">
-							<img src="../images/aside/6.JPG" width="30" height="30"> &nbsp;
-							<img src="../images/aside/carcar.png" width=100 height=100>
-							&nbsp;&nbsp;ÅÇ3
-							</a>
-					</div>
-				</article>
+				</c:forEach>
 			</div>
 			
 			

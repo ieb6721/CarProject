@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.sist.vo.*;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.*;
+
 import java.util.*;
 
 public class NewsModel {
@@ -46,11 +47,14 @@ public class NewsModel {
 		return "../news/news.jsp";
 
 	}
-	/*
-	 * @RequestMapping("news/newsDetail.do") public String
-	 * news_detail_Model(HttpServletRequest request) { List<NewsVO> list=
-	 * NewsDAO.newsAlldata(); request.setAttribute("list", list); return
-	 * "news.jsp"; }
-	 */
+
+	@RequestMapping("news/newsDetail.do")
+	public String news_detail_Model(HttpServletRequest request) {
+		String news_no = request.getParameter("news_no");
+		NewsVO vo = NewsDAO.newsDetailData(Integer.parseInt(news_no));
+		
+		request.setAttribute("nvo", vo);
+		return "newsDetail.jsp";
+	}
 
 }
