@@ -4,19 +4,22 @@
 <div class="col-md-9 col-sm-12">
 	<div class="blog-content-area">
 		<div class="blog-content-img">
-				<h2 class="post-title">
-				좋은 단골 정비소를 고르는 5가지 방법
-			</h2>
-			<a href="#"><img src="../images/guide_img/blog/20.png" alt="" /></a>
+				
+			
 		</div>
 		<div class="post-content">
-			
+			<h2 class="post-title">
+				좋은 단골 정비소를 고르는 5가지 방법
+			</h2>
 			<ul class="post-meta">
 				<li>March 18, 2019</li>
 				<li>By <a href="#">마카롱</a></li>
 				<li><a href="#">정비소 고르기</a>,<a href="#">CATEGORIES</a></li>
 				<li><a href="#">Comments</a></li>
 			</ul>
+			<br>
+			<a href="#"><img src="../images/guide_img/blog/20.png" alt="" /></a>
+			<br>
 			<P>단골 식당에 가면 왠지 모르게 마음이 편안해진다. 맛이 뛰어나거나 투철한 서비스 정신 때문이 아니다. 우리가
 				익히 잘 알고 있는 맛과 가격, 분위기를 예상할 수 있어 신뢰감과 편안함을 느낄 수 있기 때문일 것이다.</p>
 			<br>
