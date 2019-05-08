@@ -24,7 +24,7 @@ public class NewsModel {
 		List<NewsVO> list = NewsDAO.newsListData(map);
 		int totalpage = NewsDAO.newsTotalPage();
 
-		final int BLOCK = 10;
+		final int BLOCK = 5;
 		int allPage = totalpage;
 		int startPage = ((curpage - 1) / BLOCK * BLOCK) + 1;
 		/*

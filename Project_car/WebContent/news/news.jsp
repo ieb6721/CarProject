@@ -9,6 +9,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
+
 <title>Blog Column 3</title>
 <style>
 .center {
@@ -66,6 +67,20 @@
 <!-- modernizr JS
 		============================================ -->
 <script src="../js/news_js/vendor/modernizr-2.8.3.min.js"></script>
+<!-- all css here -->
+<link rel="stylesheet" href="../css/car_css/animate.css">
+<link rel="stylesheet" href="../css/car_css/owl.carousel.min.css">
+<link rel="stylesheet" href="../css/car_css/chosen.min.css">
+<link rel="stylesheet" href="../css/car_css/jquery-ui.css">
+<link rel="stylesheet" href="../css/car_css/meanmenu.min.css">
+<link rel="stylesheet" href="themify-icons/themify-icons.css">
+<link rel="stylesheet" href="../css/car_css/icofont.css">
+<link rel="stylesheet" href="../css/car_css/font-awesome.min.css">
+<link rel="stylesheet" href="../css/car_css/bundle.css">
+<link rel="stylesheet" href="../css/car_css/style.css">
+<link rel="stylesheet" href="../css/car_css/responsive.css">
+<script src="../js/car_js/vendor/modernizr-2.8.3.min.js"></script>
+
 </head>
 <body>
 	<!--[if lt IE 8]>
@@ -172,7 +187,7 @@
 
 
 
-	<!-- pagination start -->
+<%-- 	<!-- pagination start -->
 
 	<div class="container">
 		<div class="row" id="s">
@@ -200,7 +215,34 @@
 			</ul>
 		</div>
 	</div>
-	<!-- pagination end -->
+	<!-- pagination end --> --%>
+	
+	
+					<div class="paginations text-center mt-20">
+							<ul>
+								<c:if test="${curpage>BLOCK }">
+									<li>
+										<a href="news.do?page=${startPage-1 }&newsno=${newsno}"><i class="fa fa-angle-left"></i></a>
+									</li>
+								</c:if>
+								<c:forEach var="i" begin="${startPage }" end="${endPage }">	
+									<c:choose>
+										<c:when test="${curpage eq i }">
+											<c:set var="type" value="class=active"></c:set>
+										</c:when>
+										<c:otherwise>
+											<c:set var="type" value=""></c:set>
+										</c:otherwise>
+									</c:choose>															
+									<li ${type }><a href="news.do?page=${i }&newsno=${newsno}">${i }</a></li>									
+								</c:forEach>
+								<c:if test="${endPage<allPage }">
+									<li>
+										<a href="news.do?page=${endPage+1 }&news_no=${news_no}"><i class="fa fa-angle-right"></i></a>
+									</li>
+								</c:if>
+							</ul>
+						</div>
 
 
 

@@ -96,8 +96,8 @@
 						<div>
 							<img src="${nvo.detail_img }" alt="" /></a>
 						</div>
-						<div class="post-long-desc">
-						<div class="post-long-desc">
+						<div class="post-long-desc"></div>
+						<div class="post-long-desc"></div>
 							<p class="post-short-desc">${nvo.content }</p>
 							</p>
 						</div>
@@ -114,14 +114,24 @@
 							</div>
 							<div class="post-tags pull-right">
 								<p>
-									<span class="lbl">Tags&nbsp;&nbsp;-</span> <span> <a
-										href="#">sports,</a> <a href="#">football,</a> <a href="#">soccer</a>
+									<span class="lbl">reporter&nbsp;-</span> <span> 
+									<a href="#">${nvo.reporter }</a>
 									</span>
 								</p>
+							</div>
+							
+							<br>
+							<div class="post-long-desc">
+							<div class="post-tags pull-right">
+								<p>
+									<a href="news.do" class="btn btn-sm btn-info">목록</a>
+								</p>
+							</div>
 							</div>
 						</div>
 					</div>
 					<!-- /.single-blog-details -->
+					
 				</div>
 			</div>
 		</div>
