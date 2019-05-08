@@ -12,8 +12,22 @@ public class MemberVO {
 	private String tel;
 	private String email;
 	private String budget;
+	private String post;
+	private String detail_addr;
 	private String msg;
 	
+	public String getPost() {
+		return post;
+	}
+	public void setPost(String post) {
+		this.post = post;
+	}
+	public String getDetail_addr() {
+		return detail_addr;
+	}
+	public void setDetail_addr(String detail_addr) {
+		this.detail_addr = detail_addr;
+	}
 	public String getMsg() {
 		return msg;
 	}
@@ -44,8 +58,7 @@ public class MemberVO {
 	public void setAddr(String addr) {
 		this.addr = addr;
 	}
-	
-	
+
 	public Date getBirth() {
 		return birth;
 	}
