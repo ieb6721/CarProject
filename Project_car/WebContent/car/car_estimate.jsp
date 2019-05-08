@@ -106,6 +106,26 @@ tbody {
     margin-left: 18px;		
 }
 </style>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('.optionBtn').click(function(){
+			var trim_num=$(this).val();
+			
+			$.ajax({
+				type:'post',
+				url:'car_option.do',
+				data:{"trim_num":trim_num},
+				success:function(response)
+				{					
+					$('#print').html(response)
+				}
+			});
+		});		
+	});
+</script>
+
 </head>
 <body>
 	<header>
@@ -133,8 +153,8 @@ tbody {
 												<div class="item mileage">${trimvo.trim_efficiency}</div>
 												<div class="item price">${trimvo.trim_price}</div>
 												<div class="item button">
-													<button class="btn btn-xs btn-info select_trim"
-														value="${trimvo.trim_num}">선택</button>
+													<button class="btn btn-xs btn-info select_trim optionBtn" 
+														value="${trimvo.trim_num}" >선택</button>
 												</div>
 											</c:if>
 										</c:forEach>
@@ -145,25 +165,10 @@ tbody {
 					</c:forEach>
 				</div>
 
-
-				<div class="col-sm-6 contents scroll" id="option">
-					<ul class="checkList">
-						<li><label><input type="checkbox" value="">&nbsp;화이트크림
-								외장컬러</label>
-						<div class="price">123,456원</div></li>
-						<li><label><input type="checkbox" value="">플레밍
-								레드 외장컬러</label></li>
-						<li><label><input type="checkbox" value="">&nbsp;8인치
-								디스플레이 오디오 + 후방모니터(조향연동) + 통합주행모드</label></li>
-						<li><label><input type="checkbox" value="">&nbsp;스마트
-								초이스1 (8인치 디스플레이 오디오 선택시 가능)</label></li>
-						<li><label><input type="checkbox" value="">&nbsp;현대
-								스마트 센스1</label></li>
-						<li><label><input type="checkbox" value="">&nbsp;익스테리어
-								디자인1</label></li>
-
-					</ul>
+				<div id="print">
+					
 				</div>
+				
 			</div>
 			<hr>
 		</div>
