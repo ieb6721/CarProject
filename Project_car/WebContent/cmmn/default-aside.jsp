@@ -167,7 +167,7 @@ div.no{
 			<c:forEach var="accList" items="${aList }">
 				<div class="widget-container" id="acc">
 					<div class="acc-img">
-						<a href="#"> <img class="acc_img"
+						<a href="http://localhost:8080/Project_car/acc/accDetail.do?product_id=${accList.product_id }"> <img class="acc_img"
 							src="${accList.product_main_img }" width=100 height=100>
 							&nbsp;${accList.product_name }
 						</a>

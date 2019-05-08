@@ -46,6 +46,7 @@ public class MainModel {
 		
 		request.setAttribute("main_jsp", "../cmmn/default-aside.jsp");
 
+		request.getParameter("");
 		
 		return "main.jsp";
 	}
