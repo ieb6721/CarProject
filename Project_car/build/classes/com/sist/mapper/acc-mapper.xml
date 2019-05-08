@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.sist.mapper.acc-mapper">
+<!-- 	<select id="accListData" resultType="AccVO">
+		SELECT * FROM acc
+	</select> -->
+
+	<select id="accDetailData" resultType="AccVO" parameterType="String">
+		SELECT * FROM acc
+		WHERE product_id=#{product_id}
+	</select>
+	<!-- 
+PRODUCT_ID           NOT NULL VARCHAR2(10)  
+PRODUCT_NAME         NOT NULL VARCHAR2(100) 
+PRODUCT_MAIN_IMG     NOT NULL CLOB          
+PRODUCT_SUB_IMG1     NOT NULL CLOB          
+PRODUCT_SUB_IMG2     NOT NULL CLOB          
+PRODUCT_EXPLAIN      NOT NULL CLOB          
+PRODUCT_ORIGIN_PRICE NOT NULL VARCHAR2(100) 
+PRODUCT_DC_PRICE     NOT NULL VARCHAR2(100) 
+PRODUCT_COMPANY      NOT NULL VARCHAR2(100) 
+PRODUCT_MADE         NOT NULL VARCHAR2(50)  
+PRODUCT_DELIVERY     NOT NULL VARCHAR2(50)  
+PRODUCT_DELIVERY_FEE NOT NULL VARCHAR2(50)  
+STOCK           
+	
+	 -->
+	<select id="accListData" resultType="AccVO" parameterType="java.util.Map">
+     SELECT product_id,product_name,product_main_img,product_sub_img1,product_sub_img2,product_explain,product_origin_price,product_dc_price,product_company,product_made,product_delivery,product_delivery_fee,stock,num
+     FROM (SELECT product_id,product_name,product_main_img,product_sub_img1,product_sub_img2,product_explain,product_origin_price,product_dc_price,product_company,product_made,product_delivery,product_delivery_fee,stock,rownum as num 
+     FROM (SELECT product_id,product_name,product_main_img,product_sub_img1,product_sub_img2,product_explain,product_origin_price,product_dc_price,product_company,product_made,product_delivery,product_delivery_fee,stock
+     FROM acc 
+     <if test="cate!='전체'">
+       WHERE product_name LIKE '%'||#{cate}||'%' 
+     </if>
+     ORDER BY product_id DESC))
+     WHERE num BETWEEN #{start} AND #{end}
+   </select>
+	 <select id="accTotalPage" resultType="int" parameterType="java.util.Map">
+   SELECT CEIL(COUNT(*)/9.0)
+   FROM acc
+   <if test="cate!='전체'">
+   WHERE product_name LIKE '%'||#{cate}||'%' 
+   </if>
+   
+   </select>
+<!--    
+   <select id="accCate" resultType="AccVO" parameterType="String">
+		SELECT * FROM acc
+		WHERE product_name LIKE '%'||#{name}||'%'
+	</select> -->
+	   
+   <select id="accCate" resultType="AccVO" parameterType="String">
+		SELECT * FROM acc
+		WHERE product_name LIKE '%'||#{name}||'%'
+	</select>
+</mapper>
+
+
