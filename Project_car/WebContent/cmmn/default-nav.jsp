@@ -29,9 +29,9 @@
 		} else if (menu === 'registration modification') {
 			location.href = "../register/registerModification.do";
 		} else if (menu === 'mypage') {
-			location.href = "../estimate/estimate.do";
-		} else if (menu === 'managepage') {
-			location.href = "../manage/manage.do";
+			location.href = "../mypage/mypage_main.do";
+		} else if (menu === 'mypage_admin') {
+			location.href = "../mypage/mypage_admin.do";
 		}
 	}
 	
@@ -97,7 +97,7 @@
                  <li><a href="#" onclick="pageSubmitFn('mypage')">마이페이지</a></li> 
                  </c:if>
                  <c:if test="${sessionScope.id!=null && sessionScope.id=='admin' }">
-                 <li><a href="#" onclick="pageSubmitFn('managepage')">관리페이지</a></li> 
+                 <li><a href="#" onclick="pageSubmitFn('mypage_admin')">관리페이지</a></li> 
                  </c:if>
                  
                  
