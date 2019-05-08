@@ -16,4 +16,30 @@
              END) AS efficiency FROM car) ORDER BY comefficiency DESC))A
              WHERE num &lt;6
 	</select>
+	
+	<select id="carRegdate" resultType="CarVO">
+		SELECT A.*
+		FROM (SELECT car_num,car_name,car_poster,car_price,car_launchdate,car_efficiency,car_size,car_fueltype,brand_name,rownum as num,comefficiency
+		FROM(SELECT car_num,car_name,car_poster,car_price,car_launchdate,car_efficiency,car_size,car_fueltype,brand_name,TO_NUMBER(efficiency) as comefficiency
+		FROM(SELECT car_num,car_name,car_poster,car_price,car_launchdate,car_efficiency,car_size,car_fueltype,brand_name,(CASE
+            WHEN car_efficiency IS NULL THEN '0'
+            WHEN car_efficiency LIKE '%~%' THEN SUBSTR(car_efficiency,0,INSTR(car_efficiency,'~',1,1)-1)
+            else SUBSTR(car_efficiency,0,INSTR(car_efficiency,' ',1,1)-1) 
+            END) AS efficiency FROM car) ORDER BY CAR_LAUNCHDATE DESC))A
+            where num&lt;6
+	</select>
+	
+	<select id="carPriceList" resultType="CarVO">
+		SELECT A.*
+        FROM(SELECT car_num,car_name,car_poster,car_price,car_launchdate,car_efficiency,car_size,car_fueltype,brand_name,rownum as num,comprice
+		FROM (SELECT car_num,car_name,car_poster,car_price,car_launchdate,car_efficiency,car_size,car_fueltype,brand_name, TO_NUMBER(REPLACE(price,',','')) AS comprice
+		FROM (SELECT car_num,car_name,car_poster,car_price,car_launchdate,car_efficiency,car_size,car_fueltype,brand_name,(CASE
+                    WHEN car_price ='미정' THEN '0'
+                    WHEN car_price LIKE '%~%' THEN SUBSTR(car_price,0,INSTR(car_price,' ',1,1)-1)
+                    else car_price
+                    END) AS price
+		FROM car)ORDER BY comprice DESC))A
+        WHERE num &lt;6
+	</select>
+        
 </mapper>

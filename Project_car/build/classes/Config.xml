@@ -21,6 +21,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.sist.vo.MemberVO" alias="MemberVO"/>
 		<typeAlias type="com.sist.vo.Environment_infoVO" alias="Environment_infoVO"/>
 		<typeAlias type="com.sist.vo.Driver_reserveVO" alias="Driver_reserveVO"/>
+		<typeAlias type="com.sist.vo.Car_model_trimVO" alias="Car_model_trimVO"/>
+		<typeAlias type="com.sist.vo.Car_specVO" alias="Car_specVO"/>
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
@@ -50,5 +52,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="com/sist/mapper/reservation-mapper.xml"/>
 		<mapper resource="com/sist/mapper/car-mapper.xml"/>
 		<mapper resource="com/sist/mapper/main-mapper.xml"/>
+		<mapper resource="com/sist/mapper/car_detail-mapper.xml"/>
 	</mappers>
 </configuration>

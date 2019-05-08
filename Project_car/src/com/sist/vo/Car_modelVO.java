@@ -1,7 +1,7 @@
 package com.sist.vo;
 
 public class Car_modelVO {
-	private String model_num, model_name, car_num;
+	/*private String model_num, model_name, car_num;
 
 	public String getModel_num() {
 		return model_num;
@@ -25,6 +25,6 @@ public class Car_modelVO {
 
 	public void setCar_num(String car_num) {
 		this.car_num = car_num;
-	}
+	}*/
 	
 }

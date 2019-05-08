@@ -7,15 +7,7 @@ public class Car_specVO {
 	s21,s22,s23,s24,s25,s26,s27,s28,s29,s30,
 	s31,s32,s33,s34,s35,s36,s37,s38,s39,s40,
 	s41,s42,s43,s44,s45,s46,s47,s48,s49,s50,
-	s51,s52,s53,s54;
-
-	public String getS54() {
-		return s54;
-	}
-
-	public void setS54(String s54) {
-		this.s54 = s54;
-	}
+	s51,s52,s53;
 
 	public String getTrim_num() {
 		return trim_num;
