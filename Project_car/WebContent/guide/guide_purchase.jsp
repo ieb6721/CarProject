@@ -4,19 +4,22 @@
 <div class="col-md-9 col-sm-12">
 	<div class="blog-content-area">
 		<div class="blog-content-img">
-		<h2 class="post-title">
-				첫차를 구매할 때 반드시 고려해야 할 3가지
-			</h2>
-			<a href="#"><img src="../images/guide_img/blog/10.png" alt="" /></a>
+		
+			
 		</div>
 		<div class="post-content">
-			
+			<h2 class="post-title">
+				첫차를 구매할 때 반드시 고려해야 할 3가지
+			</h2>
 			<ul class="post-meta">
 				<li>March 18, 2019</li>
 				<li>By <a href="#">마카롱</a></li>
 				<li><a href="#">첫차 구매</a>,<a href="#">CATEGORIES</a></li>
 				<li><a href="#">Comments</a></li>
 			</ul>
+			<br>
+			<a href="#"><img src="../images/guide_img/blog/10.png" alt="" /></a>
+			<br>
 			<P>첫 차 구매는 그리 간단한 일이 아니다. 일찍이 사고 싶은 차를 점 찍어 둔 경우가 아니라, 차가 필요해서 사는
 				경우라면 더더욱 그렇다. 출퇴근 용이든 여가용이든 차가 필요한데 어떤 차를 어떻게 사야 할지 잘 모르겠다면 아래 내용을
 				주목하자. 운전자 필수앱 마카롱에서 자신에게 적합한 차량을 구매하기 위해 고려해야 할 사항 3가지를 추려봤다.</P>

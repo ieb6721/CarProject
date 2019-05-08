@@ -5,19 +5,23 @@
 <div class="col-md-9 col-sm-12">
 	<div class="blog-content-area">
 		<div class="blog-content-img">
+			
+		</div>
+		
+			
+		<div class="post-content">
 			<h2 class="post-title">
 				내리막길 중립 기어를 넣으면 안 되는 이유 3가지
 			</h2>
-			<a href="#"><img src="../images/guide_img/blog/30.jpg" alt="" /></a>
-		</div>
-		<div class="post-content">
-			
 			<ul class="post-meta">
 				<li>March 18, 2019</li>
 				<li>By <a href="#">마카롱</a></li>
 				<li><a href="#">중립 기어</a>,<a href="#">CATEGORIES</a></li>
 				<li><a href="#">Comments</a></li>
 			</ul>
+			<br>
+			<a href="#"><img src="../images/guide_img/blog/30.jpg" alt="" /></a>
+			<br>
 			<P>보통의 운전자들은 산악도로 혹은 내리막길에서 주행할 경우 가속페달을 거의 밟지 않습니다. 내려가면서 저절로
 				속도가 붙기 때문에 브레이크만 걸어주면서 속도를 조절하면 되기 때문인데요.</p>
 			<br>
