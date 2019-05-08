@@ -8,6 +8,69 @@
 <html>
 <head>
 <link rel="stylesheet" href="../css/main_css/custom.css">
+<link rel="stylesheet" type="text/css" href="../shadow/css/shadowbox.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript" src="../shadow/js/shadowbox.js"></script>
+<script type="text/javascript">
+Shadowbox.init({
+	players:["iframe"]
+});
+function video()
+{
+	Shadowbox.open({
+		content:'../main/test.do',
+		player:'iframe',
+		width:602,
+		height:352
+	});
+}
+function video1()
+{
+	Shadowbox.open({
+		content:'../main/test1.do',
+		player:'iframe',
+		width:602,
+		height:352
+	});
+}
+function video2()
+{
+	Shadowbox.open({
+		content:'../main/test2.do',
+		player:'iframe',
+		width:602,
+		height:352
+	});
+}
+function video3()
+{
+	Shadowbox.open({
+		content:'../main/test3.do',
+		player:'iframe',
+		width:602,
+		height:352
+	});
+}
+function video4()
+{
+	Shadowbox.open({
+		content:'../main/test4.do',
+		player:'iframe',
+		width:602,
+		height:352
+	});
+}
+function video5()
+{
+	Shadowbox.open({
+		content:'../main/test5.do',
+		player:'iframe',
+		width:602,
+		height:352
+	});
+}
+
+</script>
 <style type="text/css">
 /* 기사 img*/
 /**/
@@ -103,9 +166,10 @@ header {
 }
 
 .car-ranking {
-	margin-bottom: 5px;
-	width: 345px;
+	margin: 10px;
+	width: 355px;
 	height: 100px;
+	position: relative;
 	float: left;
 	padding-bottom: 10px;
 	vertical-align: middle;
@@ -115,9 +179,9 @@ header {
 }
 
 .car-ranking img {
-	padding-top: 20px;
+	padding-top: 15px;
 	padding-right: 10px;
-	width: 120px;
+	width: 160px;
 	float: left;
 }
 
@@ -125,7 +189,6 @@ header {
 	padding-bottom: 10px;
 }
 </style>
-
 <!-- header.jsp -->
 <jsp:include page="../cmmn/default-header.jsp"></jsp:include>
 </head>
@@ -398,7 +461,6 @@ header {
 
 							<div class="car-article-box">
 								<h3>POST</h3>
-
 								<c:forEach var="vo" items="${nList }">
 									<div class="single-slide col-sm-4">
 										<div class="main_acrticle">
@@ -427,91 +489,64 @@ header {
 							<div class="car-video-box">
 								<div class="box1">
 									<div class="col-sm-8 car-video">
-										<a><img src="../images/main_img/main_article_sample.jpg"
-											alt="Slide Image" /></a>
+										<a href="javascript:void(0)" onclick="video()">
+											<img src="https://i.ytimg.com/vi/ZIoTZo8p12g/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLARWyKk2_s8BxLoCr3pSdDQ9hO0Jw"
+											style="width: 500px; height: 305px;" />
+										</a>
 									</div>
 									<div class="col-sm-4 car-video1">
-										<a><img src="../images/main_img/main_article_sample.jpg"
-											alt="Slide Image" /></a>
+										<a href="javascript:void(0)" onclick="video1()">
+											<img src="https://i.ytimg.com/vi/w1psOj77-4E/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBYvyEedX2PmmTW5Sg29ZMAObuPOA"
+											style="width: 220px; height: 142px;" />
+										</a>
 									</div>
 									<div class="col-sm-4 car-video1">
-										<a><img src="../images/main_img/main_article_sample.jpg"
-											alt="Slide Image" /></a>
+										<a href="javascript:void(0)" onclick="video2()">
+											<img src="https://i.ytimg.com/vi/g-L0QAJo6W4/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLC_diaOEsdL-UrMpZ7feh1hzXeheg"
+											style="width: 220px; height: 142px;" />
+										</a>
 									</div>
 								</div>
 
 								<div class="box2">
 									<div class="col-sm-4 car-video1">
-										<a><img src="../images/main_img/main_article_sample.jpg"
-											alt="Slide Image" /></a>
+										<a href="javascript:void(0)" onclick="video3()">
+											<img src="https://i.ytimg.com/vi/4RqNYxLfEmY/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLCxlTTsBoGaygL73GyRgqdKVsufAg"
+											style="width: 220px; height: 143px;" />
+										</a>
 									</div>
 
 									<div class="col-sm-4 car-video1">
-										<a><img src="../images/main_img/main_article_sample.jpg"
-											alt="Slide Image" /></a>
+										<a href="javascript:void(0)" onclick="video4()">
+											<img src="https://i.ytimg.com/vi/znV572zbOeM/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLDD37vHJC84QqChWCDJIkM_n0-dMw"
+											style="width: 220px; height: 143px;" />
+										</a>
 									</div>
 
 									<div class="col-sm-4  car-video1">
-										<a><img src="../images/main_img/main_article_sample.jpg"
-											alt="Slide Image" /></a>
+										<a href="javascript:void(0)" onclick="video5()">
+											<img src="https://i.ytimg.com/vi/VBxCm5TYktM/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLCZYHBRxRJ3_qCgulsCWxlgE-6qZw"
+											style="width: 220px; height: 142px;" />
+										</a>
 									</div>
 								</div>
 							</div>
 						</div>
 						<!-- 인기 순위 =======================================================-->
 						<div class="car-popularity-ranking">
-							<div class="col-sm-6">
-								<h3 class="compare">국산차 인기 순위</h3>
-								<a href="#">
-									<div class="car-ranking">
-										<img src="../images/aside/carcar.png"> <br>차이름<br>가격<br>스펙
-									</div>
-								</a> <a href="#">
-									<div class="car-ranking">
-										<img src="../images/aside/carcar.png"> <br>차이름<br>가격<br>스펙
-									</div>
-								</a> <a href="#">
-									<div class="car-ranking">
-										<img src="../images/aside/carcar.png"> <br>차이름<br>가격<br>스펙
-									</div>
-								</a> <a href="#">
-									<div class="car-ranking">
-										<img src="../images/aside/carcar.png"> <br>차이름<br>가격<br>스펙
-									</div>
-								</a> <a href="#">
-									<div class="car-ranking">
-										<img src="../images/aside/carcar.png"> <br>차이름<br>가격<br>스펙
-									</div>
-								</a>
+							<h3 class="compare">자동차 인기 순위</h3>
 
-							</div>
+							<c:forEach var="p" items="${poList }">
+								<div class="car-ranking">
+									<a href="http://localhost:8080/ProjectTest/car/car_detail.do?cno=${p.car_num }"> 
+										<img src="${p.car_poster }"> 
+										<br><font size="3" style="font-weight: bold; color: balck;">${p.car_name }</font>
+										<br><font size="2" style="font-weight: bold;">${p.car_price }</font>만원
+										<br><font size="2" style="font-weight: bold;">${p.car_launchDate }</font> 출시
+									</a>
+								</div>
+							</c:forEach>
 
-							<div class="col-sm-6">
-								<h3 class="compare">수입차 인기 순위</h3>
-								<a href="#">
-									<div class="car-ranking">
-										<img src="../images/aside/carcar.png"> <br>차이름<br>가격<br>스펙
-									</div>
-								</a> <a href="#">
-									<div class="car-ranking">
-										<img src="../images/aside/carcar.png"> <br>차이름<br>가격<br>스펙
-									</div>
-								</a> <a href="#">
-									<div class="car-ranking">
-										<img src="../images/aside/carcar.png"> <br>차이름<br>가격<br>스펙
-									</div>
-								</a> <a href="#">
-									<div class="car-ranking">
-										<img src="../images/aside/carcar.png"> <br>차이름<br>가격<br>스펙
-									</div>
-								</a> <a href="#">
-									<div class="car-ranking">
-										<img src="../images/aside/carcar.png"> <br>차이름<br>가격<br>스펙
-									</div>
-								</a>
-
-
-							</div>
 						</div>
 					</div>
 					<!-- article -->
