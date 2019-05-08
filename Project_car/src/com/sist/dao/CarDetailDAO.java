@@ -74,5 +74,20 @@ public class CarDetailDAO {
 		}
 		return car_specvo;
 	}
+		
+	public static CarVO carCompare(String cno) {
+		CarVO vo = new CarVO();
+		SqlSession session = null;
+		try {
+			session = ssf.openSession(); // connection¿¬°á
+			vo = session.selectOne("carCompare", cno);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (session != null)
+				session.close();
+		}
+		return vo;
+	}
 
 }

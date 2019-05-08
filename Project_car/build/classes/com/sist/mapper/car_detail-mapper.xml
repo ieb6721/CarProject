@@ -26,4 +26,31 @@
 		WHERE trim_num like #{trim_num}
 	</select>
 	
+	<select id="carCompare" resultType="CarVO" parameterType="String">
+	SELECT total.*
+	FROM(
+	    SELECT car_num,car_name,car_poster,car_price,car_launchdate,car_efficiency,car_size,car_fueltype,brand_name,compare,rownum as num
+	    FROM(
+	        SELECT car_num,car_name,car_poster,car_price,car_launchdate,car_efficiency,car_size,car_fueltype,brand_name,abs(lowprice-base) as compare
+	        FROM(
+	            SELECT car.*,
+	                    TO_NUMBER(REPLACE((CASE
+	                                            WHEN car_price='미정' THEN '0'
+	                                            WHEN car_price LIKE '%~%' THEN SUBSTR(car_price,0,INSTR(car_price,' ',1,1)-1)
+	                                            else car_price
+	                                            END),',','')) as lowPrice, 
+	                    (SELECT TO_NUMBER(REPLACE((CASE
+	                                            WHEN car_price='미정' THEN '0'
+	                                            WHEN car_price LIKE '%~%' THEN SUBSTR(car_price,0,INSTR(car_price,' ',1,1)-1)
+	                                            else car_price
+	                                            END),',','')) FROM CAR WHERE CAR_NUM = #{cno}) AS base
+	            FROM car
+	            )   
+	        where abs(lowprice-base)!=0 
+	        ORDER BY compare
+	        )
+	    )total
+	WHERE num = 1
+	</select>
+	
 </mapper>

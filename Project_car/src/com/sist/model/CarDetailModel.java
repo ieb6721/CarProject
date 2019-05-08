@@ -17,11 +17,16 @@ public class CarDetailModel {
 		CarVO carvo=CarDetailDAO.carDetailData(cno);
 		request.setAttribute("carvo", carvo);
 		
+		CarVO compvo = CarDetailDAO.carCompare(cno);
+		request.setAttribute("compvo", compvo);
+		
 		List<Car_model_trimVO> modellist = CarDetailDAO.carDetailModel(cno);
 		request.setAttribute("modellist", modellist);
 		
 		List<Car_model_trimVO> trimlist = CarDetailDAO.carDetailTrim(cno);
 		request.setAttribute("trimlist", trimlist);
+		
+		
 		
 		return "car_detail.jsp";
 	}

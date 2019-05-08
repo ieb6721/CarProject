@@ -63,8 +63,8 @@ $(function(){
 						| ${carvo.car_fuelType }</p>
 					<div class="ht__pro__desc">
 						<div class="sin__desc">
-							<button class="btn btn-md btn-warning">브랜드 정보</button>
-							<button class="btn btn-md btn-primary spec"
+							<button class="btn btn-md btn-warning">${carvo.brand_name}</button>
+							<button class="btn btn-md btn-primary"
 								onclick="location='car_estimate.jsp'">견적</button>
 							<button class="btn btn-md btn-success"
 								onclick="javascript:history.back()">목록</button>
@@ -117,9 +117,13 @@ $(function(){
 		<div class="row">
 			<div class="col-sm-4">
 				<img src="${carvo.car_poster}">
-					
+				<p>${carvo.car_name }</p>
 				<div class="well">
-					<p>${carvo.car_name }</p>
+					<div class="sin__desc">
+						<button class="btn btn-md btn-warning">${carvo.brand_name}</button>
+						<button class="btn btn-md btn-primary"
+								onclick="location='car_estimate.jsp'">견적</button>
+					</div>
 				</div>
 			</div>
 			<div class="col-sm-4">
@@ -128,35 +132,37 @@ $(function(){
 					<tr>
 						<td> ${carvo.car_efficiency }</td>
 						<th class="text-center">복합연비</th>
-						<td>11.6km/l</td>
+						<td>${compvo.car_efficiency }</td>
 					</tr>
 					<tr>
 						<td>${carvo.car_size }</td>
 						<th class="text-center">외형</th>
-						<td>1999cc</td>
+						<td>${compvo.car_size }</td>
 					</tr>
 					<tr>
 						<td>${carvo.car_fuelType }</td>
 						<th class="text-center">연료</th>
-						<td>163</td>
+						<td>${compvo.car_fuelType }</td>
 					</tr>
 					<tr>
 						<td>${carvo.car_launchDate }</td>
 						<th class="text-center">출시일</th>
-						<td>5</td>
+						<td>${compvo.car_launchDate }</td>
 					</tr>
 					<tr>
 						<td>${carvo.car_price }만원</td>
 						<th class="text-center">신차가격</th>
-						<td>2,228</td>
+						<td>${compvo.car_price }만원</td>
 					</tr>
 				</table>
 			</div>
 			<div class="col-sm-4">
-				<img src="http://autoimg.danawa.com/photo/3566/model_360.png">
-					
+				<img src="${compvo.car_poster}">
+				<p>${compvo.car_name}</p>
 				<div class="well">
-					<p>기아 K5</p>
+					<button class="btn btn-md btn-warning">${compvo.brand_name}</button>
+					<button class="btn btn-md btn-primary"
+							onclick="location='car_detail.do?cno=${compvo.car_num}'">상세보기</button>
 				</div>
 			</div>
 		</div>
