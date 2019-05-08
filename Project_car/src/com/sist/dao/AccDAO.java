@@ -7,7 +7,9 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.sist.vo.AccVO;
 
-
+/*
+ * 
+ */
 public class AccDAO {
 	private static SqlSessionFactory ssf;
 	static
