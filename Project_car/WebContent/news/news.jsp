@@ -77,76 +77,16 @@
 	<!-- slider-area start -->
 	<div id="slider" class="slider-area">
 		<div id="top-carousel" class="slider-wrap">
+		  <c:forEach var="vo" items="${list }" begin="1" end="6">
 			<div class="single-slide">
-				<a href="#"><img src="../images/news_img/home-1/slider/1.jpg"
-					alt="Slide Image" /></a>
+				<a href="#"><img src=${vo.detail_img } alt="Slide Image" style="width: 850px; height: 400px;"/></a>
 				<div class="slide-text-container text-center">
 					<h5>
-						<a href="#">Lorem ipsum dolor sit amet</a>
+						<a href="#">${vo.title }</a>
 					</h5>
 				</div>
 			</div>
-			<!-- /.single-slide -->
-			<div class="single-slide">
-				<a href="#"><img src="../images/news_img/home-1/slider/2.jpg"
-					alt="Slide Image" /></a>
-				<div class="slide-text-container text-center">
-					<h5>
-						<a href="#">Lorem ipsum dolor sit amet</a>
-					</h5>
-				</div>
-			</div>
-			<!-- /.single-slide -->
-			<div class="single-slide">
-				<a href="#"><img src="../images/news_img/home-1/slider/3.jpg"
-					alt="Slide Image" /></a>
-				<div class="slide-text-container text-center">
-					<h5>
-						<a href="#">Lorem ipsum dolor sit amet</a>
-					</h5>
-				</div>
-			</div>
-			<!-- /.single-slide -->
-			<div class="single-slide">
-				<a href="#"><img src="../images/news_img/home-1/slider/4.jpg"
-					alt="Slide Image" /></a>
-				<div class="slide-text-container text-center">
-					<h5>
-						<a href="#">Lorem ipsum dolor sit amet</a>
-					</h5>
-				</div>
-			</div>
-			<!-- /.single-slide -->
-			<div class="single-slide">
-				<a href="#"><img src="../images/news_img/home-1/slider/5.jpg"
-					alt="Slide Image" /></a>
-				<div class="slide-text-container text-center">
-					<h5>
-						<a href="#">Lorem ipsum dolor sit amet</a>
-					</h5>
-				</div>
-			</div>
-			<!-- /.single-slide -->
-			<div class="single-slide">
-				<a href="#"><img src="../images/news_img/home-1/slider/6.jpg"
-					alt="Slide Image" /></a>
-				<div class="slide-text-container text-center">
-					<h5>
-						<a href="#">Lorem ipsum dolor sit amet</a>
-					</h5>
-				</div>
-			</div>
-			<!-- /.single-slide -->
-			<div class="single-slide">
-				<a href="#"><img src="../images/news_img/home-1/slider/7.jpg"
-					alt="Slide Image" /></a>
-				<div class="slide-text-container text-center">
-					<h5>
-						<a href="#">Lorem ipsum dolor sit amet</a>
-					</h5>
-				</div>
-			</div>
-			<!-- /.single-slide -->
+		 </c:forEach>
 		</div>
 		<!-- /#top-carousel -->
 	</div>
@@ -188,12 +128,11 @@
 					<div class="col-md-4 col-sm-6">
 						<div class="single-blog-post">
 							<div class="post-img">
-								<a href="newsDetail.do"><img src="${vo.detail_img }" alt=""
-									style="width: 360px; height: 190px;" /></a> <a
-									href="newsDetail.do" class="post-tag">${vo.news_company }</a>
+								<a href="newsDetail.do?news_no=${vo.news_no }">
+								    <img src="${vo.detail_img }" alt=""	style="width: 360px; height: 190px;" /></a> 
+								<a class="post-tag">${vo.news_company }</a>
 								<div class="post-info">
 									<p>
-
 										<span class="post-date"><a href="#">${vo.news_date }</a></span>
 										<span class="post-social-links"> <a href="#"
 											data-toggle="tooltip" data-placement="bottom" title="Likes"><i
@@ -207,17 +146,15 @@
 											data-toggle="tooltip" data-placement="bottom"
 											title="Pinterest"><i class="fa fa-pinterest"></i></a>
 										</span> <br> <span class="post-comments"><a href="#">${vo.reporter }</a></span>
-
-
 									</p>
 								</div>
 							</div>
 							<div class="post-content">
 								<h6 class="post-title">
-									<a href="newsDetail.jsp">${fn:substring(vo.title,0,24)}</a>
+									<a href="newsDetail.do?news_no=${vo.news_no }">${fn:substring(vo.title,0,24)}</a>
 								</h6>
 								<%-- ${fn:substring("1234"),시작인덱스, 종료인덱스} --%>
-								<p class="post-short-desc">${fn:substring(vo.content,0,95) }</p>
+								<p class="post-short-desc">${fn:substring(vo.content,0,97) }</p>
 								<a href="newsDetail.jsp" class="continue-link">Continue
 									Reading...</a>
 							</div>

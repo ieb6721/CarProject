@@ -48,4 +48,25 @@ public class NewsDAO {
 
 		return list;
 	}
+	
+	public static NewsVO newsDetailData(int news_no) 
+	{
+		NewsVO vo = new NewsVO();
+		SqlSession session = null;
+		try 
+		{
+			session = ssf.openSession();
+			vo = session.selectOne("newsDetailData", news_no);
+		} catch (Exception e) 
+		{
+			e.printStackTrace();
+		} 
+		finally 
+		{
+			if (session != null)
+				session.close();
+		}
+
+		return vo;
+	}
 }
