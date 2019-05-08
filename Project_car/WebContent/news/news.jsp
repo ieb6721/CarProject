@@ -77,7 +77,7 @@
 	<!-- slider-area start -->
 	<div id="slider" class="slider-area">
 		<div id="top-carousel" class="slider-wrap">
-		  <c:forEach var="vo" items="${list }" begin="1" end="6">
+		  <c:forEach var="vo" items="${list }" begin="1" end="9">
 			<div class="single-slide">
 				<a href="#"><img src=${vo.detail_img } alt="Slide Image" style="width: 850px; height: 400px;"/></a>
 				<div class="slide-text-container text-center">
