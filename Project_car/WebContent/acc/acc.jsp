@@ -66,16 +66,33 @@
 .dam {
 	height: 380px;
 }
+input[type=text], input[type=email], input[type=password] {
+    width:50%;
+}
 </style>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
-$(function () {
-	$('#keyword').keyup(function () {
-		var k=$('#keyword').val();
-		$('#user_table>tbody>tr').hide();
-		var temp=$('#user_table>tbody>tr>td:nth-child(4n+2):contains("'+k+'")');
-		$(temp).parent().show();
+$(function(){
+	$('#findBtn').click(function(){
+		var keyword=$('#keyword').val();
+		if(keyword.trim()=="")
+		{
+			alert("검색어 입력");
+			$('#keyword').focus();
+			return;
+		}			
 		
+		$.ajax({
+			type:'post',
+			url:'acc_search.do',
+			data:{"keyword":keyword},
+			success:function(response)
+			{
+				$('#print').html(response)
+			}
+		});
 	});
+	
 });
 </script>
 </head>
@@ -205,7 +222,7 @@ $(function () {
 
 
 										<c:if test="${count==0 }">
-											<table class="table">
+										<%-- 	<table class="table">
 												<tr>
 													<td class="text-center">검색결과가 없습니다.</td>
 												</tr>
@@ -217,7 +234,7 @@ $(function () {
 												<td class="text-center in"><input type=text size=10
 													id="keyword" placeholder="검색어 입력"></td>
 											</tr>
-										</table>
+										</table> --%>
 
 										<%-- <table class="table" id="user_table">
 										<caption>검색결과</caption>
@@ -622,21 +639,36 @@ $(function () {
 							</div>
 						</div>
 						<!-- End Prize Range -->
+						
+						<div class="htc__category">
+								<h4 class="title__line--4">Search Products</h4>
+								<div class="sidebar-search">
+									<form>
+										<input type="text" placeholder="Search Products..." id="keyword" >										
+										<button type="button" class="btn btn-lg"  value="검색" id="findBtn">
+											<i class="ti-search"></i>											
+										</button>
+									</form>
+								</div>
+							</div>
+						
+						
+						
 						<!-- Start Category Area -->
 						<div class="htc__category">
 							<h4 class="title__line--4">categories</h4>
 							<ul class="ht__cat__list">
 
 								<li><a href="acc.do">전체</a></li>
-								<li><a href="acc.do?no=1">거치대</a></li>
-								<li><a href="acc.do?no=2">가리개</a></li>
-								<li><a href="acc.do?no=3">방향제</a></li>
-								<li><a href="acc.do?no=3">목쿠션</a></li>
-								<li><a href="acc.do?no=3">핸들커버</a></li>
-								<li><a href="acc.do?no=3">먼지털이</a></li>
-								<!-- <li><a href="acc.do?no=4">목쿠션</a></li>
-								<li><a href="acc.do?no=5">핸들커버</a></li>
-								<li><a href="acc.do?no=6">먼지털이</a></li> -->
+								<li><a href="acc.do?no=1">시트</a></li>
+								<li><a href="acc.do?no=2">거치대</a></li>
+								<li><a href="acc.do?no=3">가리개</a></li>
+								<li><a href="acc.do?no=4">방향제</a></li>
+								<li><a href="acc.do?no=5">목쿠션</a></li>
+								<li><a href="acc.do?no=6">핸들커버</a></li>
+								<li><a href="acc.do?no=7">먼지털이</a></li>
+				
+								
 
 							</ul>
 						</div>
@@ -646,7 +678,7 @@ $(function () {
 
 						<!-- End Pro Size -->
 						<!-- Start Tag Area -->
-						<div class="htc__tag">
+						<!-- <div class="htc__tag">
 							<h4 class="title__line--4">tags</h4>
 							<ul class="ht__tag__list">
 								<li><a href="#">시트/커버</a></li>
@@ -660,7 +692,7 @@ $(function () {
 								<li><a href="#">안전/편의용품</a></li>
 								<li><a href="#">정비용품</a></li>
 							</ul>
-						</div>
+						</div> -->
 						<!-- End Tag Area -->
 						<!-- Start Compare Area -->
 

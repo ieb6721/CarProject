@@ -58,17 +58,21 @@ input.pr {
 	margin-top: 150px;
 }
 </style>
-<body onload="init();">
+<body onload="init()">
 	<script language="JavaScript">
 
 var sell_price;
 var amount;
 
  function init () {
-	sell_price = parseInt(document.form.sell_price.value);
+	sell_price = parseInt((document.form.sell_price.value).replace(",",""));
+		
+		//(document.form.sell_price.value).replace(",","");
+	
 	amount = document.form.amount.value;
 	document.form.sum.value = sell_price;
 	change();
+	
 } 
 
 function add () {
@@ -76,7 +80,7 @@ function add () {
 	sum = document.form.sum;
 	hm.value ++ ;
 
-	sum.value = parseInt(hm.value) * sell_price;
+	sum.value = (parseInt(hm.value) * sell_price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 function del () {
@@ -84,7 +88,7 @@ function del () {
 	sum = document.form.sum;
 		if (hm.value > 1) {
 			hm.value -- ;
-			sum.value = parseInt(hm.value) * sell_price;
+			sum.value = (parseInt(hm.value) * sell_price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		}
 }
 
@@ -95,7 +99,9 @@ function change () {
 		if (hm.value < 0) {
 			hm.value = 0;
 		}
-	sum.value = parseInt(hm.value) * sell_price;
+	sum.value = (parseInt(hm.value) * sell_price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+	
 }  
 
 
@@ -261,18 +267,16 @@ function change () {
 															<form name="form" method="get">
 																<div class=count>
 																	수량 : <input type="hidden" name="sell_price"
-																		value="${vo.product_dc_price}"> <input
-																		type="button" class="btn btn-xs btn-primary"
-																		value=" + " onclick="add();"> <input
-																		type="text" class="pi" name="amount" value="1"
-																		size="1" onchange="change();"> <input
-																		type="button" class="btn btn-xs btn-danger"
-																		value=" - " onclick="del();">
+																		value="${vo.product_dc_price}"> 
+																		<input type="button" class="btn btn-xs btn-primary" value=" + " onclick="add();"> 
+																		
+																		<input type="text" class="pi" name="amount" value="1" size="1" onchange="change(); readonly">
+																		 <input type="button" class="btn btn-xs btn-danger" value=" - " onclick="del();">
 																</div>
 
 																<div class=price>
 																	금액 : <input type="text" class="pr" name="sum" size="11"
-																		readonly>원
+																		readonly value="${vo.product_dc_price}"> 원
 																</div>
 															</form>
 														</div>
