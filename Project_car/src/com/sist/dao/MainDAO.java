@@ -93,4 +93,44 @@ public class MainDAO {
 		   return list;
 	   }
 	   
+	   public static List<AccVO> carAccList()
+	   {
+		   List<AccVO> list=new ArrayList<AccVO>();
+		   SqlSession session=null;
+		   try
+		   {
+			   session=ssf.openSession();
+			   list=session.selectList("carAccList");
+		   }catch(Exception e)
+		   {
+			   e.printStackTrace();
+		   }finally
+		   {
+			   if(session!=null)
+				   session.close();
+		   }
+		   
+		   return list;
+	   }
+	   
+	   public static List<CarVO> carPopularList()
+	   {
+		   List<CarVO> list=new ArrayList<CarVO>();
+		   SqlSession session=null;
+		   try
+		   {
+			   session=ssf.openSession();
+			   list=session.selectList("carPopularList");
+		   }catch(Exception e)
+		   {
+			   e.printStackTrace();
+		   }finally
+		   {
+			   if(session!=null)
+				   session.close();
+		   }
+		   
+		   return list;
+	   }
+	   
 }

@@ -89,5 +89,24 @@ public class CarDetailDAO {
 		}
 		return vo;
 	}
-
+	
+	
+	
+	
+	
+	
+	public static List<Car_optionVO> carOptionData(String trim_num){
+		List<Car_optionVO> list=new ArrayList<Car_optionVO>();
+		SqlSession session = null;
+		try {
+			session = ssf.openSession();
+			list = session.selectList("carOptionData", trim_num);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (session != null)
+				session.close();
+		}
+		return list;
+	}
 }

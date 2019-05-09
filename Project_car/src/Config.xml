@@ -25,6 +25,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.sist.vo.Driver_reserveVO" alias="Driver_reserveVO"/>
 		<typeAlias type="com.sist.vo.Car_model_trimVO" alias="Car_model_trimVO"/>
 		<typeAlias type="com.sist.vo.Car_specVO" alias="Car_specVO"/>
+		<typeAlias type="com.sist.vo.Car_optionVO" alias="Car_optionVO"/>
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">

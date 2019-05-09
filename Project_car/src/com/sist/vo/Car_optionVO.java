@@ -26,4 +26,5 @@ public class Car_optionVO {
 	public void setOption_price(String option_price) {
 		this.option_price = option_price;
 	}
+	
 }

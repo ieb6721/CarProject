@@ -72,6 +72,7 @@ article
 	font-size: medium;
 }
 .post-body{
+	height: 90px;
 	padding-bottom: 10pt;
 }
 
@@ -118,25 +119,23 @@ div.no{
 			<%-- 순위 --%>
 
 			<div class="tab-content current widget-container" id="tab-1">
-			
 				<c:forEach var="cardata1" items="${pList}" varStatus="i">
 					<div class="post-body">
-						<a href="post.html"> <img
+						<a href="http://localhost:8080/ProjectTest/car/car_detail.do?cno=${cardata1.car_num }"> <img
 							src="../images/aside/${i.index+1}.JPG" width="30" height="30">
-							&nbsp; <img src="${cardata1.car_poster }" width=100 height=100>
+							&nbsp; <img src="${cardata1.car_poster }" width=110 height=110>
 							&nbsp;&nbsp;<font size="1" style="font-weight: bold;">${cardata1.car_name}</font>
 						</a>
 					</div>
 				</c:forEach>
-				
 			</div>
 
 			<div class="tab-content widget-container tab-content" id="tab-2">
 				<c:forEach var="cardata2" items="${eList}" varStatus="i">
 					<div class="post-body">
-						<a href="post.html"> <img
+						<a href="http://localhost:8080/ProjectTest/car/car_detail.do?cno=${cardata2.car_num }"> <img
 							src="../images/aside/${i.index+1}.JPG" width="30" height="30">
-							&nbsp; <img src="${cardata2.car_poster }" width=100 height=100>
+							&nbsp; <img src="${cardata2.car_poster }" width=110 height=110>
 							&nbsp;&nbsp;<font size="1" style="font-weight: bold;">${cardata2.car_name}</font>
 						</a>
 					</div>
@@ -147,9 +146,9 @@ div.no{
 			<div class=" tab-content widget-container" id="tab-3">
 				<c:forEach var="cardata3" items="${rList}" varStatus="i">
 					<div class="post-body">
-						<a href="post.html"> <img
+						<a href="http://localhost:8080/ProjectTest/car/car_detail.do?cno=${cardata3.car_num }"> <img
 							src="../images/aside/${i.index+1}.JPG" width="30" height="30">
-							&nbsp; <img src="${cardata3.car_poster }" width=100 height=100>
+							&nbsp; <img src="${cardata3.car_poster }" width=110 height=110>
 							&nbsp;&nbsp;<font size="1" style="font-weight: bold;">${cardata3.car_name}</font>
 						</a>
 					</div>
@@ -165,86 +164,19 @@ div.no{
 		
 			<h3 class="sidebar-title">인기상품</h3>
 			
-			<div class="widget-container" id="acc">
-				<div class="acc-img">
-					<a href="#">
-						<img class="acc_img" src="../images/aside/acc.jpg" width=100 height=100>
-						&nbsp;상품명
-					</a>
+			<c:forEach var="accList" items="${aList }">
+				<div class="widget-container" id="acc">
+					<div class="acc-img">
+						<a href="http://localhost:8080/Project_car/acc/accDetail.do?product_id=${accList.product_id }"> <img class="acc_img"
+							src="${accList.product_main_img }" width=100 height=100>
+							&nbsp;${accList.product_name }
+						</a>
+					</div>
 				</div>
-			</div>
 			
-			<div class="widget-container" id="acc">
-				<div class="acc-img">
-					<a href="#">
-						<img class="acc_img" src="../images/aside/acc.jpg" width=100 height=100>
-						&nbsp;상품명
-					</a>
-				</div>
-			</div>
-			
-			<div class="widget-container" id="acc">
-				<div class="acc-img">
-					<a href="#">
-						<img class="acc_img" src="../images/aside/acc.jpg" width=100 height=100>
-						&nbsp;상품명
-					</a>
-				</div>
-			</div>
-			
-			<div class="widget-container" id="acc">
-				<div class="acc-img">
-					<a href="#">
-						<img class="acc_img" src="../images/aside/acc.jpg" width=100 height=100>
-						&nbsp;상품명
-					</a>
-				</div>
-			</div>
-			
-			<div class="widget-container" id="acc">
-				<div class="acc-img">
-					<a href="#">
-						<img class="acc_img" src="../images/aside/acc.jpg" width=100 height=100>
-						&nbsp;상품명
-					</a>
-				</div>
-			</div>
+			</c:forEach>
 		</div>
 		
 		
-
-		<!-- sidebar-widget -->
-		<div class="sidebar-widget">
-		
-			<h3 class="sidebar-title">가장 많이 본 컨텐츠</h3>
-			<div class="widget-container">
-				<div class="widget-socials">
-					<div class=no>
-						<a href="#">1등 기사</a>
-					</div>
-				</div>
-				<div class="widget-socials">
-					<div class=no>
-						<a href="#">2등 기사</a>
-					</div>
-				</div>
-				<div class="widget-socials">
-					<div class=no>
-						<a href="#">3등 기사</a>
-					</div>
-				</div>
-				<div class="widget-socials">
-					<div class=no>
-						<a href="#">4등 기사</a>
-					</div>
-				</div>
-				<div class="widget-socials">
-					<div class=no>
-						<a href="#">5등 기사</a>
-					</div>
-				</div>
-			</div>
-			
-		</div>
 	</aside>
 </div>
