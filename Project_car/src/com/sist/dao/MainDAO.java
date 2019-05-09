@@ -121,6 +121,7 @@ public class MainDAO {
 		   {
 			   session=ssf.openSession();
 			   list=session.selectList("carPopularList");
+			   System.out.println("aaa:"+list.size());
 		   }catch(Exception e)
 		   {
 			   e.printStackTrace();
@@ -130,6 +131,90 @@ public class MainDAO {
 				   session.close();
 		   }
 		   
+		   return list;
+	   }
+	   
+	   public static List<BrandVO> kBrandList(String car_company)
+	   {
+		   List<BrandVO> list=new ArrayList<BrandVO>();
+		   SqlSession session=null;
+		   try
+		   {	
+			   session=ssf.openSession();
+			   list=session.selectList("kBrandList",car_company);
+			   System.out.println(car_company);
+			   System.out.println(list.size());
+		   }catch(Exception e)
+		   {
+			   e.printStackTrace();
+		   }finally
+		   {
+			   if(session!=null)
+				   session.close();
+		   }
+		   return list;
+	   }
+	   
+	   public static List<BrandVO> euBrandList(String car_company)
+	   {
+		   List<BrandVO> list=new ArrayList<BrandVO>();
+		   SqlSession session=null;
+		   try
+		   {	
+			   session=ssf.openSession();
+			   list=session.selectList("euBrandList",car_company);
+			   System.out.println(car_company);
+			   System.out.println(list.size());
+		   }catch(Exception e)
+		   {
+			   e.printStackTrace();
+		   }finally
+		   {
+			   if(session!=null)
+				   session.close();
+		   }
+		   return list;
+	   }
+	   
+	   public static List<BrandVO> aBrandList(String car_company)
+	   {
+		   List<BrandVO> list=new ArrayList<BrandVO>();
+		   SqlSession session=null;
+		   try
+		   {	
+			   session=ssf.openSession();
+			   list=session.selectList("aBrandList",car_company);
+			   System.out.println(car_company);
+			   System.out.println(list.size());
+		   }catch(Exception e)
+		   {
+			   e.printStackTrace();
+		   }finally
+		   {
+			   if(session!=null)
+				   session.close();
+		   }
+		   return list;
+	   }
+	   
+	   public static List<BrandVO> amBrandList(String car_company)
+	   {
+		   List<BrandVO> list=new ArrayList<BrandVO>();
+		   SqlSession session=null;
+		   try
+		   {	
+			   session=ssf.openSession();
+			   list=session.selectList("amBrandList",car_company);
+			   System.out.println(car_company);
+			   System.out.println(list.size());
+		   }catch(Exception e)
+		   {
+			   e.printStackTrace();
+		   }finally
+		   {
+			   if(session!=null)
+				   session.close();
+		   }
 		   return list;
 	   }
 	   

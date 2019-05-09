@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
@@ -72,7 +72,7 @@ function video5()
 
 </script>
 <style type="text/css">
-/* ±‚ªÁ img*/
+/* Í∏∞ÏÇ¨ img*/
 /**/
 .main_acrticle {
 	width: 218px;
@@ -250,204 +250,66 @@ header {
 				</li>
 			</ul>
 		</section>
+		
 		<div class="main" style="width: 1140px">
-			<dl class="kr" style="width: 20%">
-				<dt>±πªÍ</dt>
-				<dd>
-					<ul class="carmodel" style="padding-left: 20px;">
-						<li class="carli"><a href="https://www.hyundai.com/kr/ko"
-							target="_blank"> <img class="logo"
-								src="../images/kr_logo/hyundai_logo.png"> <span
-								class="logoname">«ˆ¥Î</span>
-						</a></li>
-						<li class="carli"><a href="https://www.hyundai.com/kr/ko"
-							target="_blank"> <img class="logo"
-								src="../images/kr_logo/kia_logo.png"> <span
-								class="logoname">¡¶≥◊Ω√Ω∫</span>
-						</a></li>
-						<li class="carli"><a href="https://www.hyundai.com/kr/ko"
-							target="_blank"> <img class="logo"
-								src="../images/kr_logo/genesis_logo.png"> <span
-								class="logoname">±‚æ∆</span>
-						</a></li>
-						<li class="carli"><a href="https://www.hyundai.com/kr/ko"
-							target="_blank"> <img class="logo"
-								src="../images/kr_logo/chevrolet_logo.png"> <span
-								class="logoname">Ω¶∫∏∑π</span>
-						</a></li>
-						<li class="carli"><a href="https://www.hyundai.com/kr/ko"
-							target="_blank"> <img class="logo"
-								src="../images/kr_logo/ssangyong_logo.png"> <span
-								class="logoname">Ω÷øÎ</span>
-						</a></li>
-						<li class="carli"><a href="https://www.hyundai.com/kr/ko"
-							target="_blank"> <img class="logo"
-								src="../images/kr_logo/renault_logo.png"> <span
-								class="logoname">∏£≥ÎªÔº∫</span>
-						</a></li>
-						<li class="carli"><a href="https://www.hyundai.com/kr/ko"
-							target="_blank"> <img class="logo"
-								src="../images/kr_logo/smart_ev_logo.png"> <span
-								class="logoname">SMARTEV</span>
-						</a></li>
-						<li class="carli"><a href="https://www.hyundai.com/kr/ko"
-							target="_blank"> <img class="logo"
-								src="../images/kr_logo/cammsys_logo.png"> <span
-								class="logoname">ƒ∑Ω√Ω∫</span>
-						</a></li>
-						<li class="carli"><a href="https://www.hyundai.com/kr/ko"
-							target="_blank"> <img class="logo"
-								src="../images/kr_logo/dac_logo.png"> <span
-								class="logoname">¥Î√¢∏≈ÕΩ∫</span>
-						</a></li>
+			<dl class="kr" style="width: 25%">
+				<dt>Íµ≠ÏÇ∞</dt>
+					<ul class="carmodel" style="padding-left: 15px;">
+					
+						<c:forEach var="kvo" items="${kBrandList }">
+							<li class="carli">
+								<a href="../car/car_brand.do?keyword=${kvo.brand_name }" target="_blank"> 
+									<img class="logo" src="${kvo.brand_image }"> 
+									<span class="logoname">${kvo.brand_name }</span>
+								</a>
+							</li>
+							
+						</c:forEach>
 					</ul>
+					
 				</dd>
 			</dl>
-			<dl class="eu" style="width: 50%">
-				<dt>¿Ø∑¥</dt>
+			<dl class="eu" style="width: 44%">
+				<dt>Ïú†ÎüΩ</dt>
 				<dd>
 					<ul class="carmodel">
-						<li class="carli"><a href="" target="_blank"> <img
-								class="logo" src="../images/eu_logo/bmw_logo.png"> <span
-								class="logoname">BMW</span>
-						</a></li>
-						<li class="carli"><a href="" target="_blank"> <img
-								class="logo" src="../images/eu_logo/benz_logo.png"> <span
-								class="logoname">∫•√˜</span>
-						</a></li>
-						<li class="carli"><a href="" target="_blank"> <img
-								class="logo" src="../images/eu_logo/audi_logo.png"> <span
-								class="logoname">æ∆øÏµ</span>
-						</a></li>
-						<li class="carli"><a href="" target="_blank"> <img
-								class="logo" src="../images/eu_logo/volks_logo.png"> <span
-								class="logoname">∆¯Ω∫πŸ∞’</span>
-						</a></li>
-						<li class="carli"><a href="" target="_blank"> <img
-								class="logo" src="../images/eu_logo/peugeot_logo.png"> <span
-								class="logoname">«™¡∂</span>
-						</a></li>
-						<li class="carli"><a href="" target="_blank"> <img
-								class="logo" src="../images/eu_logo/citroen_logo.png"> <span
-								class="logoname">Ω√∆Æ∑Œø®</span>
-						</a></li>
-						<li class="carli"><a href="" target="_blank"> <img
-								class="logo" src="../images/eu_logo/ds_logo.png"> <span
-								class="logoname">DS</span>
-						</a></li>
-						<li class="carli"><a href="" target="_blank"> <img
-								class="logo" src="../images/eu_logo/mini_logo.png"> <span
-								class="logoname">πÃ¥œ</span>
-						</a></li>
-						<li class="carli"><a href="" target="_blank"> <img
-								class="logo" src="../images/eu_logo/volvo_logo.png"> <span
-								class="logoname">∫º∫∏</span>
-						</a></li>
-						<li class="carli"><a href="" target="_blank"> <img
-								class="logo" src="../images/eu_logo/jagua_logo.png"> <span
-								class="logoname">¿Á±‘æÓ</span>
-						</a></li>
-						<li class="carli"><a href="" target="_blank"> <img
-								class="logo" src="../images/eu_logo/landrover_logo.png"> <span
-								class="logoname">∑£µÂ∑Œπˆ</span>
-						</a></li>
-						<li class="carli"><a href="" target="_blank"> <img
-								class="logo" src="../images/eu_logo/porsche_logo.png"> <span
-								class="logoname">∆˜∏£Ω¶</span>
-						</a></li>
-						<li class="carli"><a href="" target="_blank"> <img
-								class="logo" src="../images/eu_logo/lambor_logo.png"> <span
-								class="logoname">∂˜∫∏∏£±‚¥œ</span>
-						</a></li>
-						<li class="carli"><a href="" target="_blank"> <img
-								class="logo" src="../images/eu_logo/landrover_logo.png"> <span
-								class="logoname">∆‰∂Û∏Æ</span>
-						</a></li>
-						<li class="carli"><a href="" target="_blank"> <img
-								class="logo" src="../images/eu_logo/maserati_logo.png"> <span
-								class="logoname">∏∂ºº∂Û∆º</span>
-						</a></li>
-						<li class="carli"><a href="" target="_blank"> <img
-								class="logo" src="../images/eu_logo/aston_logo.png"> <span
-								class="logoname">æ÷Ω∫≈œ∏∂∆æ</span>
-						</a></li>
-						<li class="carli"><a href="" target="_blank"> <img
-								class="logo" src="../images/eu_logo/lotus_logo.png"> <span
-								class="logoname">∑Œ≈ÕΩ∫</span>
-						</a></li>
-						<li class="carli"><a href="" target="_blank"> <img
-								class="logo" src="../images/eu_logo/mclaren_logo.png"> <span
-								class="logoname">∏∆∂Û∑ª</span>
-						</a></li>
-						<li class="carli"><a href="" target="_blank"> <img
-								class="logo" src="../images/eu_logo/bentley_logo.png"> <span
-								class="logoname">∫•∆≤∏Æ</span>
-						</a></li>
-						<li class="carli"><a href="" target="_blank"> <img
-								class="logo" src="../images/eu_logo/rolls_logo.png"> <span
-								class="logoname">∑—Ω∫∑Œ¿ÃΩ∫</span>
-						</a></li>
-						<li class="carli"><a href="" target="_blank"> <img
-								class="logo" src="../images/eu_logo/smart_logo.png"> <span
-								class="logoname">Ω∫∏∂∆Æ</span>
-						</a></li>
+						<c:forEach var="evo" items="${euBrandList }">
+							<li class="carli">
+								<a href="../car/car_brand.do?keyword=${evo.brand_name }" target="_blank"> 
+									<img class="logo" src="${evo.brand_image }"> 
+									<span class="logoname">${evo.brand_name }</span>
+								</a>
+							</li>
+						</c:forEach>
 					</ul>
 				</dd>
 			</dl>
-			<dl class="jp" style="width: 15%">
-				<dt>¿œ∫ª/¡ﬂ±π</dt>
+			<dl class="jp" style="width: 19%">
+				<dt>ÏùºÎ≥∏/Ï§ëÍµ≠</dt>
 				<dd>
-					<ul class="carmodel" style="padding-left: 20px;">
-						<li class="carli"><a href="" target="_blank"> <img
-								class="logo" src="../images/jp_logo/toyota_logo.png"> <span
-								class="logoname">≈‰ø‰≈∏</span>
-						</a></li>
-						<li class="carli"><a href="" target="_blank"> <img
-								class="logo" src="../images/jp_logo/lexus_logo.png"> <span
-								class="logoname">∑∫º≠Ω∫</span>
-						</a></li>
-						<li class="carli"><a href="" target="_blank"> <img
-								class="logo" src="../images/jp_logo/nissan_logo.png"> <span
-								class="logoname">¥÷ªÍ</span>
-						</a></li>
-						<li class="carli"><a href="" target="_blank"> <img
-								class="logo" src="../images/jp_logo/infiniti_logo.png"> <span
-								class="logoname">¿Œ««¥œ∆º</span>
-						</a></li>
-						<li class="carli"><a href="" target="_blank"> <img
-								class="logo" src="../images/jp_logo/honda_logo.png"> <span
-								class="logoname">»•¥Ÿ</span>
-						</a></li>
-						<li class="carli"><a href="" target="_blank"> <img
-								class="logo" src="../images/jp_logo/isuzu_logo.png"> <span
-								class="logoname">¿ÃΩ∫¡Ó</span>
-						</a></li>
+					<ul class="carmodel" style="padding-left: 15px;">
+						<c:forEach var="avo" items="${aBrandList }">
+							<li class="carli">
+								<a href="../car/car_brand.do?keyword=${avo.brand_name }" target="_blank"> 
+									<img class="logo" src="${avo.brand_image }"> 
+									<span class="logoname">${avo.brand_name }</span>
+								</a>
+							</li>
+						</c:forEach>
 					</ul>
 			</dl>
-			<dl class="us" style="width: 15%">
-				<dt>πÃ±π</dt>
+			<dl class="us" style="width: 12%">
+				<dt>ÎØ∏Íµ≠</dt>
 				<dd>
-					<ul class="carmodel" style="padding-left: 20px;">
-						<li class="carli"><a href="" target="_blank"> <img
-								class="logo" src="../images/us_logo/ford_logo.png"> <span
-								class="logoname">∆˜µÂ</span>
-						</a></li>
-						<li class="carli"><a href="" target="_blank"> <img
-								class="logo" src="../images/us_logo/lincoln_logo.png"> <span
-								class="logoname">∏µƒ¡</span>
-						</a></li>
-						<li class="carli"><a href="" target="_blank"> <img
-								class="logo" src="../images/us_logo/cadillac_logo.png"> <span
-								class="logoname">ƒ≥µÙ∂Ù</span>
-						</a></li>
-						<li class="carli"><a href="" target="_blank"> <img
-								class="logo" src="../images/us_logo/jeep_logo.png"> <span
-								class="logoname">¡ˆ«¡</span>
-						</a></li>
-						<li class="carli"><a href="" target="_blank"> <img
-								class="logo" src="../images/us_logo/tesla_logo.png"> <span
-								class="logoname">≈◊ΩΩ∂Û</span>
-						</a></li>
+					<ul class="carmodel">
+						<c:forEach var="amvo" items="${amBrandList }">
+							<li class="carli">
+								<a href="#" target="_blank"> 
+									<img class="logo" src="${amvo.brand_image }"> 
+									<span class="logoname">${amvo.brand_name }</span>
+								</a>
+							</li>
+						</c:forEach>
 					</ul>
 				</dd>
 			</dl>
@@ -485,7 +347,7 @@ header {
 						</div>
 						<!-- ============================================================================== -->
 						<div class="video-box">
-							<h3 class="movie-title">¿⁄µø¬˜ ∞¸∑√ øµªÛ</h3>
+							<h3 class="movie-title">ÏûêÎèôÏ∞® Í¥ÄÎ†® ÏòÅÏÉÅ</h3>
 							<div class="car-video-box">
 								<div class="box1">
 									<div class="col-sm-8 car-video">
@@ -532,17 +394,17 @@ header {
 								</div>
 							</div>
 						</div>
-						<!-- ¿Œ±‚ º¯¿ß =======================================================-->
+						<!-- Ïù∏Í∏∞ ÏàúÏúÑ =======================================================-->
 						<div class="car-popularity-ranking">
-							<h3 class="compare">¿⁄µø¬˜ ¿Œ±‚ º¯¿ß</h3>
+							<h3 class="compare">ÏûêÎèôÏ∞® Ïù∏Í∏∞ ÏàúÏúÑ</h3>
 
 							<c:forEach var="p" items="${poList }">
 								<div class="car-ranking">
 									<a href="http://localhost:8080/ProjectTest/car/car_detail.do?cno=${p.car_num }"> 
 										<img src="${p.car_poster }"> 
 										<br><font size="3" style="font-weight: bold; color: balck;">${p.car_name }</font>
-										<br><font size="2" style="font-weight: bold;">${p.car_price }</font>∏∏ø¯
-										<br><font size="2" style="font-weight: bold;">${p.car_launchDate }</font> √‚Ω√
+										<br><font size="2" style="font-weight: bold;">${p.car_price }</font>ÎßåÏõê
+										<br><font size="2" style="font-weight: bold;">${p.car_launchDate }</font> Ï∂úÏãú
 									</a>
 								</div>
 							</c:forEach>
