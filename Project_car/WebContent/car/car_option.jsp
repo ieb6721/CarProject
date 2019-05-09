@@ -9,14 +9,20 @@
 </head>
 <body>
 	<div class="col-sm-6 contents scroll" id="option">
-		<ul class="checkList">
-			<c:forEach var="vo" items="${oList}">
-				<li><label><input type="checkbox" value="">
-				&nbsp;${vo.option_name}</label>
-					<div class="price">${vo.option_price}원</div>
-				</li>
-			</c:forEach>
-		</ul>
+		<c:if test="${count != 0 }">
+			<ul class="checkList">
+				<c:forEach var="vo" items="${oList}">
+					<li><label><input type="checkbox" value="">
+					&nbsp;${vo.option_name}</label>
+						<div class="price">${vo.option_price}원</div>
+					</li>
+				</c:forEach>
+			</ul>
+		</c:if>
+		
+		<c:if test="${count == 0 }">
+			<h2>옵션이 없습니다.</h2>
+		</c:if>
 	</div>
 </body>
 </html>
