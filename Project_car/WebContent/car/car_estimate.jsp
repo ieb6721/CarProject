@@ -7,14 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style-button.css">
 <style type="text/css">
-.scroll {
-	overflow-y: scroll;
-	overflow-x: hidden;
-}
-
 .contents {
-	height: 150px;
 	border: 1px solid #999;
 }
 
@@ -65,10 +60,6 @@ strong {
 	padding-left: 0px;
 }
 
-.row .scroll {
-	height: 200px;
-}
-
 tbody {
 	display: table-row-group;
 	vertical-align: middle;
@@ -85,12 +76,11 @@ tbody {
 .total {
 	background-color: #F2F2F2;
 }
-</style>
-<link rel="stylesheet" href="css/style-button.css">
-<style type="text/css">
-.select_mode_option .scroll{
+
+.select_model_option .scroll{
 	height: 350px;
-	background-color: #E6E6E6;
+	overflow-y: scroll;
+	overflow-x: hidden;
 }
 .accordion-list li .item {
     font-size: 12px;
@@ -105,27 +95,48 @@ tbody {
     text-align: center;
     margin-left: 18px;		
 }
-</style>
 
+.selected_trim{
+	background-color: #e570a7;
+}
+</style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
-	$(function(){
-		$('.optionBtn').click(function(){
-			var trim_num=$(this).val();
+	$(function() {
+		$('.accordion').on('click', '.optionBtn', function() {
+					
+			$('.accordion-list > ul > li').removeClass('selected_trim');
+			$(this).parent().parent().addClass('selected_trim');
 			
+			var model_name = $(this).parent().parent().parent().parent().siblings("dt").text();
+			var trim_name = $(this).parent().siblings('.name').text();
+			var fuel = $(this).parent().siblings('.fuel').text();
+			var engine = $(this).parent().siblings('.engine').text();
+			var mileage = $(this).parent().siblings('.mileage').text();	
+			var trim_price = $(this).parent().siblings('.price').text();
+			
+			$('.old__prize').text(model_name);
+			$('.selected_trim_name').text(trim_name);
+			$('.pro__info').text(fuel+' | '+engine+' | '+mileage);
+			$('.car_price').text(trim_price);
+		});
+		
+		$('.optionBtn').click(function() {
+			var trim_num = $(this).val();
+
 			$.ajax({
-				type:'post',
-				url:'car_option.do',
-				data:{"trim_num":trim_num},
-				success:function(response)
-				{					
+				type : 'post',
+				url : 'car_option.do',
+				data : {
+					"trim_num" : trim_num
+				},
+				success : function(response) {
 					$('#print').html(response)
 				}
 			});
-		});		
+		});
 	});
 </script>
-
 </head>
 <body>
 	<header>
@@ -137,37 +148,35 @@ tbody {
 			<hr>
 			<h3 class="text-left">모델 / 옵션 선택</h3>
 
-			<div class="row select_mode_option">
+			<div class="row select_model_option">
 				<div class="col-sm-6 contents scroll" style="padding: 0px;">
 					<c:forEach var="modelvo" items="${modellist}">
 						<dl class="accordion">
 							<dt class="accordion-title">${modelvo.model_name}</dt>
 							<dd class="accordion-list">
 								<ul>
-									<li>
-										<c:forEach var="trimvo" items="${trimlist}">
-											<c:if test="${modelvo.model_num eq trimvo.model_num}">
+									<c:forEach var="trimvo" items="${trimlist}">
+										<c:if test="${modelvo.model_num eq trimvo.model_num}">
+											<li>
 												<div class="item name">${trimvo.trim_name}</div>
 												<div class="item fuel">${trimvo.trim_fuel_type}</div>
 												<div class="item engine">${trimvo.trim_cc}</div>
 												<div class="item mileage">${trimvo.trim_efficiency}</div>
 												<div class="item price">${trimvo.trim_price}</div>
 												<div class="item button">
-													<button class="btn btn-xs btn-info select_trim optionBtn" 
-														value="${trimvo.trim_num}" >선택</button>
+													<button class="btn btn-xs btn-info select_trim optionBtn"
+														value="${trimvo.trim_num}">선택</button>
 												</div>
-											</c:if>
-										</c:forEach>
-									</li>
+											</li>
+										</c:if>
+									</c:forEach>
 								</ul>
 							</dd>
 						</dl>
 					</c:forEach>
 				</div>
 
-				<div id="print">
-					
-				</div>
+				<div id="print"></div>
 				
 			</div>
 			<hr>
@@ -207,13 +216,12 @@ tbody {
 
 		<div class="container">
 			<div class="col-sm-6">
-
 				<h3 class="text-left">차량 기본 정보</h3>
 				<div class="car_recipe">
 					<table class="table">
 						<tr>
 							<th>차량 가격</th>
-							<td class="text-right">49,970,000</td>
+							<td class="text-right car_price">49,970,000</td>
 						</tr>
 						<tr>
 							<th>옵션가격</th>
@@ -226,8 +234,6 @@ tbody {
 					</table>
 				</div>
 				<hr>
-
-
 
 				<h3 class="text-left">할부정보</h3>
 				<div class="option_recipe">
@@ -262,19 +268,19 @@ tbody {
 			</div>
 
 			<div class="col-sm-6" style="padding-left: 100px;">
-				<img src="http://autoimg.danawa.com/photo/3652/model_360.png"
-					width="80%">
-
+				<img src="http://autoimg.danawa.com/photo/3652/model_360.png" width="80%">
 				<div class="product_detail">
-					<h1>쏘나타</h1>
+					<h1>${carvo.car_name }</h1>
 					<ul class="pro__prize">
-						<li class="old__prize">2019.03 ~ 현재</li>
-						<li>2,140 ~ 3,294만원</li>
+						<li class="old__prize">${carvo.car_launchDate }</li>
+						<li class="selected_trim_name">${carvo.car_price }만원</li>
 					</ul>
-					<p class="pro__info">복합연비 9.8~13.3 ㎞/ℓ | 중형 | 휘발유, LPG</p>
+					<p class="pro__info">복합연비 ${carvo.car_efficiency } | ${carvo.car_size }
+						| ${carvo.car_fuelType }</p>
 					<div class="ht__pro__desc">
 						<div class="sin__desc">
-							<button class="btn btn-md btn-warning">브랜드 정보</button>
+							<button class="btn btn-md btn-warning"
+							onclick="location='car_brand.do?keyword=${carvo.brand_name}'">브랜드 정보</button>
 							<button class="btn btn-md btn-success"
 								onclick="location.href='car.jsp'">목록</button>
 						</div>
@@ -284,11 +290,7 @@ tbody {
 			</div>
 		</div>
 	</div>
-
-
 	<jsp:include page="../cmmn/default-footer.jsp"></jsp:include>
-
-
 	<script src="js/index.js"></script>
 	<script src="js/index-button.js"></script>
 </body>
