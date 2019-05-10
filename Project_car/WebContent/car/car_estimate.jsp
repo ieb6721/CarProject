@@ -5,17 +5,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
+<title>예상 견적서</title>
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/style-button.css">
 <style type="text/css">
+h3.installment_title{
+	width:10%;
+	display: inline-block;
+} 
 .contents {
 	border: 1px solid #999;
 }
 
-.checkList {
-	list-style: none;
-	padding-left: 5px;
+.checkList > li > label{
+	width: 90%;
 }
 
 li {
@@ -47,13 +50,10 @@ strong {
 }
 
 .checklist li * {
-	display: inline-block;
+	display: inline;
 	font-size: 14px;
-}
-
-.checklist li label {
-	width: 90%;
-	margin-bottom: 0;
+	list-style: none;
+	padding-left: 5px;
 }
 
 #option {
@@ -99,12 +99,41 @@ tbody {
 .selected_trim{
 	background-color: #e570a7;
 }
+
+.selectTitle h3 {
+    display: inline-block;
+    width: 50%;
+}
+
+.selectTitle > .total_option_price {
+	padding-left: 5px;
+    font-size: 20px;
+    font-weight: 900;
+}
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 	$(function() {
-		$('.accordion').on('click', '.optionBtn', function() {
-					
+		
+		$('.optionBtn').click(function() {
+			var trim_num = $(this).val();
+
+			$.ajax({
+				type : 'post',
+				url : 'car_option.do',
+				data : {
+					"trim_num" : trim_num
+				},
+				success : function(response) {
+					$('#print').html(response);
+					/* $('.optionSelectPrint').remove();
+					var optrion_price_print = '<button id="selected_option" onclick="selected_option();" class="optionSelectPrint btn btn-sm btn-info">옵션 선택 완료</button><span class="optionSelectPrint total_option_price">0원</span>';
+					 
+					 $('.selectTitle').append(optrion_price_print);
+					*/
+				}
+			});
+			
 			$('.accordion-list > ul > li').removeClass('selected_trim');
 			$(this).parent().parent().addClass('selected_trim');
 			
@@ -118,24 +147,84 @@ tbody {
 			$('.old__prize').text(model_name);
 			$('.selected_trim_name').text(trim_name);
 			$('.pro__info').text(fuel+' | '+engine+' | '+mileage);
-			$('.car_price').text(trim_price);
+			
+			$('.car_price').text(numberWithCommas(trim_price));
+			$('.selected_total').text(trim_price+'원');
+		});	
+		
+		var j = 0;
+		$('#installmentBtn').click(function() {
+			if(j == 0){
+				$('#installment').show();
+				$('#installmentBtn').text("할부 선택 취소");
+				j=1;
+			}else{
+				$('#installment').hide();
+				$('#installmentBtn').text("할부 선택");
+				j=0;
+			}
 		});
 		
-		$('.optionBtn').click(function() {
-			var trim_num = $(this).val();
-
-			$.ajax({
-				type : 'post',
-				url : 'car_option.do',
-				data : {
-					"trim_num" : trim_num
-				},
-				success : function(response) {
-					$('#print').html(response)
-				}
-			});
-		});
 	});
+	
+	function numberWithCommas(x) {
+	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+
+	function selected_option() {	
+    	var price = [];
+    	var total_option_price = 0;
+    	var car_price = $('.car_price').text().replace(/,/g , '');
+    	var budget = $('output').text().replace(/,/g , '');
+    	
+    	if(car_price == '-'){
+    		$('.car_price').text('모델을 선택해주세요.');
+    	} else {
+    	
+	    	$('input:checkbox[name=chk]').each(function() {
+	    	       if($(this).is(':checked'))
+	    	          price.push($(this).val());
+	    	    });
+	    	
+	    	for(var i = 0; i<price.length; i++){
+	    		total_option_price += parseInt(price[i].replace(/,/g , ''));
+	    	}
+	    	
+	    	var total_price = parseInt(car_price) + total_option_price;
+	    	
+	    	
+	    	/* 출력 */
+	    	$('tr > .total_option_price').text(numberWithCommas(total_option_price));    	
+	    	$('.selected_total').text(numberWithCommas(total_price)+'원');
+	    	$('#budget').text(numberWithCommas(budget*10000));
+	    	
+	    	
+	    	var debt = total_price - budget*10000;
+	    	
+	    	if(debt < 0){
+	    		$('td.debt').text('초기 납입금이 총 금액보다 큽니다.');
+	    	}else{
+	    		$('td.debt').text(numberWithCommas(debt));
+	    		
+	    		//할부 기간이 선택됐을 때
+	    		if ($('.buttonGroup-button').hasClass('selected')) {
+	    			var months = $('.buttonGroup-button.selected').text();
+	    			$('td.months').text(months);
+	    			
+	    			var monthly = Math.floor(debt / parseInt(months.replace(/[^0-9]/g)));
+	    			
+	    			$('tr.total > td').text(numberWithCommas(monthly)+'원');
+	    			
+	    			 
+	    		}else{
+	    			$('td.months').text('할부기간을 선택해 주세요');
+	    		}
+	    	}
+	    	
+	    	
+    	}
+	};
+	
 </script>
 </head>
 <body>
@@ -146,8 +235,11 @@ tbody {
 		<div class="container">
 			<h1 class="text-center">예상 견적서</h1>
 			<hr>
-			<h3 class="text-left">모델 / 옵션 선택</h3>
-
+			
+			<div class="selectTitle">
+				<h3 class="text-left">모델 / 옵션 선택</h3>
+			</div>
+			
 			<div class="row select_model_option">
 				<div class="col-sm-6 contents scroll" style="padding: 0px;">
 					<c:forEach var="modelvo" items="${modellist}">
@@ -183,8 +275,11 @@ tbody {
 		</div>
 
 		<div class="container text-center">
-			<h3 class="text-left">할부</h3>
-			<div class="row">
+			<h3 class="text-left installment_title">할부</h3>
+			<span class="btn btn-sm btn-danger" id=installmentBtn>할부 납입</span>
+			
+			
+			<div class="row" id=installment style="display:none">
 				<div class="col-sm-6"
 					style="border: 1px solid; width: 50%; height: 150px;">
 					<jsp:include page="car_estimate_slider.jsp"></jsp:include>
@@ -206,10 +301,10 @@ tbody {
 						</form>
 					</div>
 				</div>
-				<div class="col-sm-12"
+				<!-- <div class="col-sm-12"
 					style="border: 1px solid; width: 100%; height: 50px; background-color: #b4babf; text-align: right;">
 					<strong>월 납입금액 : 123,456,789원</strong>
-				</div>
+				</div> -->
 			</div>
 			<hr>
 		</div>
@@ -221,44 +316,45 @@ tbody {
 					<table class="table">
 						<tr>
 							<th>차량 가격</th>
-							<td class="text-right car_price">49,970,000</td>
+							<td class="text-right car_price">-</td>
 						</tr>
 						<tr>
 							<th>옵션가격</th>
-							<td class="text-right">570,000</td>
+							<td class="text-right total_option_price">-</td>
 						</tr>
 						<tr class="total">
 							<th>총 금액</th>
-							<td class="text-right">50,540,000</td>
+							<td class="text-right selected_total">-</td>
 						</tr>
 					</table>
 				</div>
 				<hr>
 
-				<h3 class="text-left">할부정보</h3>
+				<h3 class="text-left">할부 정보</h3>
 				<div class="option_recipe">
 					<table class="table">
 						<tr>
 							<th>초기 납입금</th>
-							<td class="text-right">10,000,000</td>
+							<td class="text-right" id="budget">-</td>
 						</tr>
 						<tr>
 							<th>할부 원금</th>
-							<td class="text-right">40,540,000</td>
+							<td class="text-right debt">-</td>
 						</tr>
 						<tr>
 							<th>할부 기간</th>
-							<td class="text-right">60개월</td>
+							<td class="text-right months">-</td>
 						</tr>
 						<tr class="total">
 							<th>월 납입 금액</th>
-							<td class="text-right">675,000</td>
+							<td class="text-right">-</td>
 						</tr>
 					</table>
 				</div>
 				<hr>
 
 				<div class="pay_btn text-center">
+					<button id="selected_option" onclick="selected_option();" class="optionSelectPrint btn btn-md btn-warning">모델/옵션/할부 선택 완료</button>
 					<button class="btn btn-md btn-info"
 						onclick="location='car_estimate.jsp'">견적 요청</button>
 					<button class="btn btn-md btn-danger"
