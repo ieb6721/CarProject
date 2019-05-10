@@ -57,5 +57,29 @@
 		FROM car))A
 		WHERE num&lt;9
 	</select>
-        
+    
+    
+    <select id="kBrandList" resultType="BrandVO" parameterType="String">
+		SELECT brand_name, brand_image, car_company
+		from brand
+		WHERE car_company=#{car_company}
+    </select>
+    
+    <select id="euBrandList" resultType="BrandVO" parameterType="String">
+		SELECT brand_name, brand_image, car_company
+		from brand
+		WHERE car_company=#{car_company}
+    </select>
+    
+    <select id="aBrandList" resultType="BrandVO" parameterType="String">
+		SELECT brand_name, brand_image, car_company
+		from brand
+		WHERE car_company LIKE '%'||#{car_company}||'%'
+    </select>
+    
+    <select id="amBrandList" resultType="BrandVO" parameterType="String">
+		SELECT brand_name, brand_image, car_company
+		from brand
+		WHERE car_company=#{car_company}
+    </select>
 </mapper>
