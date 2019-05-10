@@ -1,9 +1,13 @@
 package com.sist.model;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.sist.controller.RequestMapping;
+import com.sist.dao.MypageDAO;
+import com.sist.vo.Driver_reserveVO;
 import com.sist.vo.MemberVO;
 
 public class MypageModel {
@@ -40,6 +44,9 @@ public class MypageModel {
 	@RequestMapping("mypage/mypage_admin.do")
 	public String adminModel(HttpServletRequest request) {
 		
+		
+		List<Driver_reserveVO> list=MypageDAO.adminMypage();
+		request.setAttribute("list", list);
 		return "mypage_admin.jsp";
 	}
 }

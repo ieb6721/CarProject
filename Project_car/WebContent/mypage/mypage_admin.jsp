@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html class="no-js">
 <head>
@@ -79,35 +80,27 @@
 															<table class="table table-hover">
 																<thead>
 																	<tr class="active">
-																		<th class="product-thumbnail">products</th>
-																		<th class="product-name">name of products</th>
+																	    <th class="product-name">Model</th>
+																		<th class="product-name">Agency Name</th>
 																		<th class="product-price">ID</th>
-																		<th class="product-quantity">Name</th>
+																		<th class="product-quantity">Passenger Name</th>
 																		<th class="product-quantity">Phone Number</th>
 																		<th class="product-quantity">Reservation Date</th>
 																		<th class="product-subtotal">Approval Check</th>																		
 																	</tr>
 																</thead>
 																<tbody>
+																 <c:forEach var="vo" items="${list }">
 																	<tr>
-																		<td class="product-thumbnail">
-																			<a href="#">
-																				<img src="images/product-2/cart-img/1.jpg" alt="product img" />
-																			</a>
-																		</td>
-																		<td class="product-name">
-																			<a href="#">New Dress For Sunday</a>
-																			<ul class="pro__prize">
-																				<li class="old__prize">$82.5</li>
-																				<li>$75.2</li>
-																			</ul>
-																		</td>
-																		<td class="product-price"><span class="amount">￡165.00</span></td>
-																		<td class="product-quantity"><span class="amount">￡165.00</span></td>
-																		<td class="product-quantity"><span class="amount">￡165.00</span></td>
-																		<td class="product-quantity"><span class="amount">￡165.00</span></td>
+																	    <td class="product-name" style="padding-top: 20px;">${vo.model }</td>
+																		<td class="product-name" style="padding-top: 20px;">${vo.agency_name }</td>
+																		<td class="product-price" style="padding-top: 20px;">${vo.id }</td>
+																		<td class="product-quantity" style="padding-top: 20px;">${vo.passenger }</td>
+																		<td class="product-quantity" style="padding-top: 20px;">${vo.tel }</td>
+																		<td class="product-quantity" style="padding-top: 20px;">${vo.reserve_date }</td>
 																		<td class="product-subtotal"><input type="button" class="btn btn-lg btn-primary" value="승인"></td>
 																	</tr>
+																</c:forEach>
 																</tbody>
 															</table>
 														</div>
