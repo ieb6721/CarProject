@@ -50,7 +50,7 @@ public class MainModel {
 		
 		String car_company="±¹»ê";
 		List<BrandVO> list6=MainDAO.kBrandList(car_company);
-		System.out.println(list6.size());
+//		System.out.println(list6.size());
 		request.setAttribute("kBrandList", list6);
 		
 		
