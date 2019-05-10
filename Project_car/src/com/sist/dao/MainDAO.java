@@ -121,10 +121,7 @@ public class MainDAO {
 		   {
 			   session=ssf.openSession();
 			   list=session.selectList("carPopularList");
-<<<<<<< HEAD
-=======
-//			   System.out.println("aaa:"+list.size());
->>>>>>> refs/remotes/origin/master
+
 		   }catch(Exception e)
 		   {
 			   e.printStackTrace();
@@ -145,10 +142,6 @@ public class MainDAO {
 		   {	
 			   session=ssf.openSession();
 			   list=session.selectList("kBrandList",car_company);
-<<<<<<< HEAD
-			  
-=======
->>>>>>> refs/remotes/origin/master
 		   }catch(Exception e)
 		   {
 			   e.printStackTrace();
@@ -168,12 +161,7 @@ public class MainDAO {
 		   {	
 			   session=ssf.openSession();
 			   list=session.selectList("euBrandList",car_company);
-<<<<<<< HEAD
-			   
-=======
-//			   System.out.println(car_company);
-//			   System.out.println(list.size());
->>>>>>> refs/remotes/origin/master
+
 		   }catch(Exception e)
 		   {
 			   e.printStackTrace();
@@ -193,12 +181,7 @@ public class MainDAO {
 		   {	
 			   session=ssf.openSession();
 			   list=session.selectList("aBrandList",car_company);
-<<<<<<< HEAD
-			 
-=======
-//			   System.out.println(car_company);
-//			   System.out.println(list.size());
->>>>>>> refs/remotes/origin/master
+
 		   }catch(Exception e)
 		   {
 			   e.printStackTrace();
@@ -218,12 +201,7 @@ public class MainDAO {
 		   {	
 			   session=ssf.openSession();
 			   list=session.selectList("amBrandList",car_company);
-<<<<<<< HEAD
-		
-=======
-//			   System.out.println(car_company);
-//			   System.out.println(list.size());
->>>>>>> refs/remotes/origin/master
+
 		   }catch(Exception e)
 		   {
 			   e.printStackTrace();
