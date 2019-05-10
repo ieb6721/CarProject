@@ -34,10 +34,11 @@ public class DispatcherServlet extends HttpServlet {
 					RequestMapping rm = m.getAnnotation(RequestMapping.class);
 					if (cmd.equals(rm.value())) {					
 						String jsp = "";
-						if(rm.value().equals("acc/accDetail.do"))
+						
+						if(rm.value().equals("car/car_detail.do")||rm.value().equals("acc/accDetail.do"))
 						{
-								jsp=(String) m.invoke(obj, request,response);
-						}
+							jsp=(String) m.invoke(obj, request,response);
+						}											
 						else 
 						{
 							     jsp=(String) m.invoke(obj, request);

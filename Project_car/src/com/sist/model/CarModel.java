@@ -1,9 +1,11 @@
 package com.sist.model;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 import com.sist.controller.RequestMapping;
 import com.sist.dao.CarDAO;
+import com.sist.dao.CarDetailDAO;
 
 import java.util.*;
 import com.sist.vo.*;
@@ -12,6 +14,26 @@ public class CarModel {
 	@RequestMapping("car/car.do")
 	public String car_list(HttpServletRequest request) 
 	{			
+		System.out.println("carModel");
+		//
+		Cookie[] cookies=request.getCookies();
+		
+		
+		List<CarVO> coockeList=new ArrayList<CarVO>();
+		
+		for(int i=0; i<cookies.length; i++)
+		{
+			if(cookies[i].getName().startsWith("cno"))
+			{
+				String value=cookies[i].getValue();
+				CarVO cvo=CarDetailDAO.carDetailData(value);
+				coockeList.add(cvo);
+			}
+		}
+		
+		request.setAttribute("cookielist", coockeList);		
+		//
+		
 		String strPage=request.getParameter("page");	
 		String cateNo=request.getParameter("cateNo");
 		

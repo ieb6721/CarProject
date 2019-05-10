@@ -178,7 +178,7 @@ $(function(){
 		</div>
 		<hr>
 	</div>
-
+	
 	<jsp:include page="../cmmn/default-footer.jsp"></jsp:include>
 </body>
 </html>

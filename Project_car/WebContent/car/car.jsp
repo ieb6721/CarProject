@@ -212,66 +212,38 @@ $(function(){
 								</div>
 							</div>
 							
-							
-							<div class="sidebar-widget mb-55">
-								<h3 class="sidebar-widget">Recently Viewed</h3>
-								<div class="product-compare">
-									<ul>
-										<li><a href="#">Gloriori GSX 250 R <span><i
-													class="fa fa-trash-o" aria-hidden="true"></i></span></a></li>
-										<li><a href="#">Klager GSX 250 R<span><i
-													class="fa fa-trash-o" aria-hidden="true"></i></span></a></li>
-										<li><a href="#">Maxclon ZPE 54 <span><i
-													class="fa fa-trash-o" aria-hidden="true"></i></span></a></li>
-									</ul>
-								</div>
-							
-							</div>
-							
 							<!-- 최근 본 자동차 목록 -->
 							<div class="sidebar-widget">
-								<h3 class="sidebar-widget">best seller</h3>
-								<div class="best-seller">
-									<div class="single-best-seller">
-										<div class="best-seller-img">
-											<a href="#"><img
-												src="../images/car_img/product/product-12.jpg" alt=""></a>
-										</div>
-										<div class="best-seller-text">
-											<h3>
-												<a href="#">Minimal White Shoes</a>
-											</h3>
-											<span>$39.9</span>
-										</div>
+								<h3 class="sidebar-widget">최근 본 목록</h3>
+								<c:forEach var="vo" items="${cookielist }">
+									<div class="best-seller">
+										<c:if test="${cookielist.size() == 0 }">
+											<h4>18</h4>
+										</c:if>	
+										<c:if test="${cookielist.size() != 0 }">
+											<div class="single-best-seller">
+												<div class="best-seller-img">
+													<a href="#"><img src="${vo.car_poster }" alt=""></a>
+												</div>
+												<div class="best-seller-text">
+													<h3>
+														<a href="#">${vo.car_name }</a>
+													</h3>
+													<span>${vo.car_price }</span>
+													
+													<div class="product-compare">
+														<ul><li><a href="#"><span><i class="fa fa-trash-o" aria-hidden="true"></i></span></a></li></ul>
+													</div>											
+												</div>
+											</div>
+										</c:if>																		
 									</div>
-									<div class="single-best-seller">
-										<div class="best-seller-img">
-											<a href="#"><img
-												src="../images/car_img/product/product-13.jpg" alt=""></a>
-										</div>
-										<div class="best-seller-text">
-											<h3>
-												<a href="#">Minimal White Shoes</a>
-											</h3>
-											<span>$39.9</span>
-										</div>
-									</div>
-									<div class="single-best-seller">
-										<div class="best-seller-img">
-											<a href="#"><img
-												src="../images/car_img/product/product-14.jpg" alt=""></a>
-										</div>
-										<div class="best-seller-text">
-											<h3>
-												<a href="#">Minimal White Shoes</a>
-											</h3>
-											<span>$39.9</span>
-										</div>
-									</div>
-								</div>
+								</c:forEach>
+								
 							</div>
 						</div>
 					</div>
+					
 					<div class="col-lg-9">
 						<div class="shop-topbar-wrapper">
 							<div class="grid-list-options">

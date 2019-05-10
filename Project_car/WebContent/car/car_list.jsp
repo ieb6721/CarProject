@@ -20,6 +20,7 @@
 						<h3>검색된 차량이 없습니다.</h3>						
 					</div>
 				</c:if>
+				
 				<c:if test="${cList.size() != 0 }">
 					<c:forEach var="vo" items="${cList }">
 						<div class="product-width col-md-6 col-xl-4 col-lg-6">
