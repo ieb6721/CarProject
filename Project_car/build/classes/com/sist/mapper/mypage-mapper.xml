@@ -4,10 +4,24 @@
 
 <mapper namespace="com.sist.mapper.mypage-mapper">
 	<!-- 관리자 마이페이지 시승 내역조회 -->
-	<select id="adminMypage" resultType="Driver_reserveVO" parameterType="String">
-		SELECT id, agency_name, passenger, reserve_date, model, (SELECT tel FROM member WHERE id=#{id}) as tel 
-		FROM driver_reserve WHERE id=#{id}
+	<select id="adminMypage" resultType="Driver_reserveVO">
+		SELECT * FROM driver_reserve
 	</select>
+	
+	<select id="reserveMypage" resultType="Driver_reserveVO" parameterType="String">
+	    SELECT model, reserve_date, agency_name FROM driver_reserve WHERE id=#{id}
+	</select>
+	
+	<select id="accPayAcc" resultType="AccVO" parameterType="String">
+	    SELECT product_name, product_main_img, product_orgin_price, product_dc_price 
+	    FROM acc
+	    WHERE id=#{id}
+	</select>
+	
+	<select id="accPayAccPay" resultType="Acc_payVO" parameterType="String">
+	    SELECT quantity FROM acc_pay WHERE id=#{id}
+	</select>
+
 </mapper>
 
 
