@@ -3,11 +3,15 @@ package com.sist.model;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.StringTokenizer;
+
 import javax.servlet.http.HttpServletRequest;
+
 import com.sist.controller.RequestMapping;
-import com.sist.dao.ReservationDAO;
 import com.sist.vo.Driver_reserveVO;
+import com.sist.vo.MemberVO;
+import com.sist.dao.*;
 
 public class ReservationModel {
 
@@ -35,6 +39,7 @@ public class ReservationModel {
 	    cal.set(Calendar.YEAR,year);
 	    cal.set(Calendar.MONTH,month-1);
 	    cal.set(Calendar.DATE,1);
+	    
 	
 	    request.setAttribute("year", year);
 	    request.setAttribute("month", month);
@@ -92,19 +97,17 @@ public class ReservationModel {
 		String res_name = request.getParameter("res_name");
 		String memberId = request.getParameter("memberId");
 		String agencyData = request.getParameter("agencyData");
-		
-		System.out.println("모델명"+modelData);
-		System.out.println("날짜 변경전:" + calendarData);
-		System.out.println("이름:"+res_name);
-		System.out.println("아이디"+memberId);
-		System.out.println("대리점:"+agencyData);
-		
+		String tel0 = request.getParameter("telOption");
+		String tel1 = request.getParameter("tel1");
+		String tel2 = request.getParameter("tel2");
+	
 		Driver_reserveVO vo = new Driver_reserveVO();
 		vo.setModel(modelData);
 		vo.setReserve_date(calendarData);
 		vo.setPassenger(res_name);
 		vo.setId(memberId);
 		vo.setAgency_name(agencyData);
+		vo.setTel(tel0 + "-" + tel1 + "-" + tel2);
 		
 		ReservationDAO.reserveInsertData(vo);
 		

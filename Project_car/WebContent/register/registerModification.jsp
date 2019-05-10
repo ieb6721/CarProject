@@ -214,7 +214,7 @@
         </style>
         
     
-   
+  
 <link rel="stylesheet" type="text/css" href="../shadow/css/shadowbox.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript" src="../shadow/js/shadowbox.js"></script>
@@ -223,7 +223,10 @@ Shadowbox.init({
 	players:["iframe"]
 });
 
+
 $(function(){
+	
+	
 	$('#postBtn').click(function(){
 		Shadowbox.open({
 			content:'../register/postfind.do',
@@ -233,221 +236,227 @@ $(function(){
 			height:350
 		});
 	});
-});
+	
+	
+	
+	$('#idCheck').click(function(){
+		Shadowbox.open({
+			content:'../register/idcheck.do',
+			player:"iframe",
+			title:'IDCheck',
+			width:350,
+			height:250
+		});
+	});
+	
+	
+	/* $('$r') */
+	
+	
+	
+	//직접입력 인풋박스 기존에는 숨어있다가
 
-$(function(){
-
-    //직접입력 인풋박스 기존에는 숨어있다가
-
-$("#selboxDirect").hide();
+	  $("#selboxDirect").hide();
 
 
-
-
-$("#selbox").change(function() {
-
-		
-
-              //직접입력을 누를 때 나타남
-
-		if($("#selbox").val() == "direct") {
-
-			$("#selboxDirect").show();
-
-		}  else {
-
-			$("#selboxDirect").hide();
-
-		}
-
-		
-
-	}) 
+	  $("#selbox").change(function() {
 
 	
+	                  //직접입력을 누를 때 나타남
 
+	  		if($("#selbox").val() == "direct") {
+
+	  			$("#selboxDirect").show();
+
+	  		}  else {
+
+	  			$("#selboxDirect").hide();
+
+	  		}
+
+	  	}); 
 });
 
-function sendIt() {
-    var email = document.registerFrm.email1.value;
-    var tell = document.registerFrm.tel1.value;
-    var tel2 = document.registerFrm.tel2.value;
-    var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
-    var msg, ss, cc;
-      //정규표현식
 
-    //아이디 입력여부 검사
-    if(registerFrm.id.value == "") {
-        alert("아이디를 입력해주세요.")
-        registerFrm.id.focus();
-        return false;
-    }
-      
-    //아이디 유효성 검사 (영문소문자, 숫자만 허용)
-   for(var i = 0; i < document.registerFrm.id.value.length; i++) {
-        ch = document.registerFrm.id.value.charAt(i)
-        if(!(ch >= '0' && ch <= '9') && !(ch >= 'a' && ch <= 'z')&&!(ch >= 'A' && ch <= 'Z')) {
-            alert("아이디는 영문 대소문자, 숫자만 입력가능합니다.")
+function checkPwd(){
+	
+	  var f1 = document.forms[0];
+	  var pw1 = f1.pwd.value;
+	  var pw2 = f1.pwd_check.value;
+	  if(pw1!=pw2){
+	   document.getElementById('checkPwd').style.color = "red";
+	   document.getElementById('checkPwd').innerHTML = "동일한 암호를 입력하세요."; 
+	  }else{
+	   document.getElementById('checkPwd').style.color = "blue";
+	   document.getElementById('checkPwd').innerHTML = "동일한 암호입니다"; 
+	   
+	  }
+	  
+	 }
+
+
+//==========================================================================
+  function sendThem() {
+        var email = document.registerFrm.email1.value;
+        var tell = document.registerFrm.tel1.value;
+        var tel2 = document.registerFrm.tel2.value;
+        var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+        var msg, ss, cc;
+          //정규표현식
+ 
+        //아이디 입력여부 검사
+        if(registerFrm.id.value == "") {
+            alert("아이디를 입력해주세요.")
+            registerFrm.id.focus();
+            return false;
+        }
+          
+        //아이디 유효성 검사 (영문소문자, 숫자만 허용)
+       for(var i = 0; i < document.registerFrm.id.value.length; i++) {
+            ch = document.registerFrm.id.value.charAt(i)
+            if(!(ch >= '0' && ch <= '9') && !(ch >= 'a' && ch <= 'z')&&!(ch >= 'A' && ch <= 'Z')) {
+                alert("아이디는 영문 대소문자, 숫자만 입력가능합니다.")
+                document.registerFrm.id.focus();
+                document.registerFrm.id.select();
+                return false;
+            }
+        }
+        
+        //아이디에 공백 사용하지 않기
+        if(document.registerFrm.id.value.indexOf(" ") >= 0) {
+            alert("아이디에 공백을 사용할 수 없습니다.")
+            document.registerFrm.id.focus();
+            document.registerFrm.id.select()
+            return false;
+        }
+        
+        //아이디 길이 체크 (4~12자)
+       if(document.registerFrm.id.value.length<4 || document.registerFrm.id.value.length>12) {
+            alert("아이디를 4~12자까지 입력해주세요.")
             document.registerFrm.id.focus();
             document.registerFrm.id.select();
             return false;
         }
-    }
-    
-    //아이디에 공백 사용하지 않기
-    if(document.registerFrm.id.value.indexOf(" ") >= 0) {
-        alert("아이디에 공백을 사용할 수 없습니다.")
-        document.registerFrm.id.focus();
-        document.registerFrm.id.select()
-        return false;
-    }
-    
-    //아이디 길이 체크 (4~12자)
-   if(document.registerFrm.id.value.length<4 || document.registerFrm.id.value.length>12) {
-        alert("아이디를 4~12자까지 입력해주세요.")
-        document.registerFrm.id.focus();
-        document.registerFrm.id.select();
-        return false;
-    }
-       //비밀번호 입력여부 체크
-    if(document.registerFrm.pwd.value == "") {
-        alert("비밀번호를 입력해주세요.")
-        document.registerFrm.pwd.focus();
-        return false;
-    }
-    //비밀번호 길이 체크(4~8자 까지 허용)
-    if(document.registerFrm.pwd.value.length<4 || document.registerFrm.pwd.value.length>20) {
-        alert("비밀번호를 4~20자까지 입력해주세요.")
-        document.registerFrm.pwd.focus();
-        document.registerFrm.pwd.select();
-        return false;
-    }
-    
-    if(document.registerFrm.pwd_check.value == "") {
-        alert("PWDCheck를 입력해주세요.")
-        document.registerFrm.pwd_check.focus();
-        return false;
-    }
-    if(registerFrm.pwd.value == registerFrm.id.value) {
-        alert("아이디와 비밀번호가 같습니다.")
-        document.registerFrm.pwd.focus();
-        return false;
-    }
- 
-    
-    if(document.registerFrm.name.value == "") {
-        alert("이름을 입력해주세요.")
-        document.registerFrm.name.focus();
-        return false;
-    }
-
-    if(document.registerFrm.name.value.length<2){
-        alert("이름을 2자 이상 입력해주십시오.")
-        document.registerFrm.name.focus();
-        return false;
-    }
-    
-    if(document.registerFrm.post.value == "") {
-        alert("주소를 입력해주세요.")
-        document.registerFrm.post.focus();
-        return false;
-    }
-    
-    if(document.registerFrm.addr.value == "") {
-        alert("주소를 입력해주세요.")
-        document.registerFrm.addr.focus();
-        return false;
-    }
-    
-    if(document.registerFrm.detail_addr.value == "") {
-        alert("주소를 입력해주세요.")
-        document.registerFrm.detail_addr.focus();
-        return false;
-    }
-    
-    if(document.registerFrm.birth.value == "") {
-        alert("생년월일을 입력해주세요.")
-        document.registerFrm.birth.focus();
-        return false;
-    }
-    
-    if(document.registerFrm.tel1.value == "") {
-        alert("연락처를 입력해주세요.")
-        document.registerFrm.tel1.focus();
-        return false;
-    }
-    
-    if(document.registerFrm.tel2.value == "") {
-        alert("연락처를 입력해주세요.")
-        document.registerFrm.tel2.focus();
-        return false;
-    }
-    
-    if (!isNumeric(tel1)) {
-        alert("전화번호는 숫자로 입력하세요.");
-        document.registerFrm.tel1.value = "";
-        document.registerFrm.tel1.focus();
-        return false;
-    } 
-    
-    if (!isNumeric(tel2)) {
-        alert("전화번호는 숫자로 입력하세요.");
-        document.registerFrm.tel2.value = "";
-        document.registerFrm.tel2.focus();
-        return false;
-    } 
-
-    if (document.registerFrm.email1.value == "") {
-        alert("이메일을 입력하지 않았습니다.")
-        document.registerFrm.email1.focus();
-        return false;
-    }
-    
-
-
-    for (var i = 0; i < document.registerFrm.email1.value.length; i++) {
-        chm = document.registerFrm.email1.value.charAt(i)
-        if (!(chm >= '0' && chm <= '9') && !(chm >= 'a' && chm <= 'z')&&!(chm >= 'A' && chm <= 'Z')) {
-            alert("이메일은 영문 대소문자, 숫자만 입력가능합니다.")
-            document.registerFrm.email1.focus();
-            document.registerFrm.email1.select();
+           //비밀번호 입력여부 체크
+        if(document.registerFrm.pwd.value == "") {
+            alert("비밀번호를 입력해주세요.")
+            document.registerFrm.pwd.focus();
             return false;
         }
-    }
-
- 
-    alert("회원 정보가 수정되었습니다!!")
-    
-}
-
-function isNumeric(s) { 
-      for (i=0; i<s.length; i++) { 
-        c = s.substr(i, 1); 
-        if (c < "0" || c > "9") return false; 
-      } 
-      return true; 
-}
+        //비밀번호 길이 체크(4~8자 까지 허용)
+        if(document.registerFrm.pwd.value.length<4 || document.registerFrm.pwd.value.length>20) {
+            alert("비밀번호를 4~20자까지 입력해주세요.")
+            document.registerFrm.pwd.focus();
+            document.registerFrm.pwd.select();
+            return false;
+        }
+        
+        if(document.registerFrm.pwd_check.value == "") {
+            alert("PWDCheck를 입력해주세요.")
+            document.registerFrm.pwd_check.focus();
+            return false;
+        }
+        if(registerFrm.pwd.value == registerFrm.id.value) {
+            alert("아이디와 비밀번호가 같습니다.")
+            document.registerFrm.pwd.focus();
+            return false;
+        }
      
-function isSSN(s1, s2) {
-      n = 2;
-      sum = 0;
-      for (i=0; i<s1.length; i++)
-        sum += parseInt(s1.substr(i, 1)) * n++;
-      for (i=0; i<s2.length-1; i++) {
-        sum += parseInt(s2.substr(i, 1)) * n++;
-        if (n == 10) n = 2;
-    };
-      
-      c = 11 - sum % 11;
-      if (c == 11) c = 1;
-      if (c == 10) c = 0;
-      if (c != parseInt(s2.substr(6, 1))) return false;
-      else return true;
+        
+        if(document.registerFrm.name.value == "") {
+            alert("이름을 입력해주세요.")
+            document.registerFrm.name.focus();
+            return false;
+        }
+ 
+        if(document.registerFrm.name.value.length<2){
+            alert("이름을 2자 이상 입력해주십시오.")
+            document.registerFrm.name.focus();
+            return false;
+        }
+        
+        if(document.registerFrm.post.value == "") {
+            alert("주소를 입력해주세요.")
+            document.registerFrm.post.focus();
+            return false;
+        }
+        
+        if(document.registerFrm.addr.value == "") {
+            alert("주소를 입력해주세요.")
+            document.registerFrm.addr.focus();
+            return false;
+        }
+        
+        if(document.registerFrm.detail_addr.value == "") {
+            alert("주소를 입력해주세요.")
+            document.registerFrm.detail_addr.focus();
+            return false;
+        }
+        
+        if(document.registerFrm.birth.value == "") {
+            alert("생년월일을 입력해주세요.")
+            document.registerFrm.birth.focus();
+            return false;
+        }
+        
+        if(document.registerFrm.tel1.value == "") {
+            alert("연락처를 입력해주세요.")
+            document.registerFrm.tel1.focus();
+            return false;
+        }
+        
+        if(document.registerFrm.tel2.value == "") {
+            alert("연락처를 입력해주세요.")
+            document.registerFrm.tel2.focus();
+            return false;
+        }
+        
+        if (!isNumeric(tel1)) {
+            alert("전화번호는 숫자로 입력하세요.");
+            document.registerFrm.tel1.value = "";
+            document.registerFrm.tel1.focus();
+            return false;
+        } 
+        
+        if (!isNumeric(tel2)) {
+            alert("전화번호는 숫자로 입력하세요.");
+            document.registerFrm.tel2.value = "";
+            document.registerFrm.tel2.focus();
+            return false;
+        } 
 
-     document.register.submit();
-}
-
-
+        if (document.registerFrm.email1.value == "") {
+            alert("이메일을 입력하지 않았습니다.")
+            document.registerFrm.email1.focus();
+            return false;
+        }
+        
+    
+ 
+        for (var i = 0; i < document.registerFrm.email1.value.length; i++) {
+            chm = document.registerFrm.email1.value.charAt(i)
+            if (!(chm >= '0' && chm <= '9') && !(chm >= 'a' && chm <= 'z')&&!(chm >= 'A' && chm <= 'Z')) {
+                alert("이메일은 영문 대소문자, 숫자만 입력가능합니다.")
+                document.registerFrm.email1.focus();
+                document.registerFrm.email1.select();
+                return false;
+            }
+        }
+ 
+  
+    }
+    
+    function isNumeric(s) { 
+          for (i=0; i<s.length; i++) { 
+            c = s.substr(i, 1); 
+            if (c < "0" || c > "9") return false; 
+          } 
+          return true; 
+    }
+    
+    
+    
+         
 </script>
     </head>
     <body>
@@ -459,7 +468,7 @@ function isSSN(s1, s2) {
          
          
             <!-- register-area start -->
-             <form method="post" action="../register/registerModification_ok.do" name="registerFrm" onsubmit="return sendIt();">
+             <form method="post" action="../register/registerModification_ok.do" name="registerFrm" onsubmit="return sendThem();">
             <div class="register-area ptb-50">
            
                 <div class="container-fluid">
@@ -528,7 +537,7 @@ function isSSN(s1, s2) {
 											</div>
   
                                             <div class="button-box">
-                                                <button type="submit" class="default-btn floatright register">Register</button>
+                                                <button type="submit" class="default-btn floatright register" id="RegisterBtn">Register</button>
                                                 <button type="button" class="default-btn floatright" onclick="javascript:history.back()" >Cancel</button>
                                             </div>  
                                     

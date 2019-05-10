@@ -160,7 +160,7 @@
 												class="fa fa-google-plus"></i></a> <a href="#"
 											data-toggle="tooltip" data-placement="bottom"
 											title="Pinterest"><i class="fa fa-pinterest"></i></a>
-										</span> <br> <span class="post-comments"><a href="#">${vo.reporter }</a></span>
+										</span> <br> <span class="post-comments" style="border-right-width: 0px;"><a href="#">${vo.reporter }</a></span>
 									</p>
 								</div>
 							</div>

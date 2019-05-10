@@ -32,7 +32,10 @@
 			location.href = "../mypage/mypage_main.do";
 		} else if (menu === 'mypage_admin') {
 			location.href = "../mypage/mypage_admin.do";
+		} else if (menu === 'board') {
+			location.href = "../board/board.do"
 		}
+		
 	}
 	
 	function logout() {
@@ -67,6 +70,10 @@
 				<li class="menu"><a href="#" onclick="pageSubmitFn('reservation')">예약</a></li>
 				<li class="menu"><a href="#" onclick="pageSubmitFn('news')">뉴스</a></li>
 				<li class="menu"><a href="#" onclick="pageSubmitFn('accessory')">액세서리</a></li>
+			   <c:if test="${sessionScope.id!=null }">
+                <li class="menu"><a href="#" onclick="pageSubmitFn('board')">문의게시판</a></li> 
+               </c:if>
+			
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
@@ -75,7 +82,6 @@
 				<li><a href="#"><i class="fa fa-instagram"></i></a></li>
 				<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
 				<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-				<li><a href="#"><i class="fa fa-reddit"></i></a></li>
 				<c:if test="${sessionScope.id==null }">
                 <li><a href="#" onclick="pageSubmitFn('login')">로그인</a></li>
                 </c:if>
@@ -95,10 +101,10 @@
                 
                 <c:if test="${sessionScope.id!=null && sessionScope.id!='admin' }">
                  <li><a href="#" onclick="pageSubmitFn('mypage')">마이페이지</a></li> 
-                 </c:if>
-                 <c:if test="${sessionScope.id!=null && sessionScope.id=='admin' }">
+                </c:if>
+                <c:if test="${sessionScope.id!=null && sessionScope.id=='admin' }">
                  <li><a href="#" onclick="pageSubmitFn('mypage_admin')">관리페이지</a></li> 
-                 </c:if>
+                </c:if>
                  
                  
 			</ul>

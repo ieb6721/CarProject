@@ -44,13 +44,12 @@ public class MainModel {
 //		악세서리 순위
 		List<AccVO> list4=MainDAO.carAccList();
 		request.setAttribute("aList", list4);
-//		System.out.println(list4.size());
 		
 //		차량 브랜드
 		
 		String car_company="국산";
 		List<BrandVO> list6=MainDAO.kBrandList(car_company);
-//		System.out.println(list6.size());
+
 		request.setAttribute("kBrandList", list6);
 		
 		

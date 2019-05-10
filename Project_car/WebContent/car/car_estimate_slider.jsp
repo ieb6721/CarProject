@@ -16,7 +16,7 @@
 	<span style="padding-left: 20px;">만원</span>
 	<br>
 	<br>
-	<input type="range" value="3825" step="25" min="1000" max="12600">
+	<input type="range" value="3825" step="25" min="0" max="10000">
 	<small id="helper" class="slideRight">Slide to get started
 		&#x2192;</small>
 	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>

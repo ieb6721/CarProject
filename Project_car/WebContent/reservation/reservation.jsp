@@ -265,7 +265,6 @@ div.agree_chkAll{     position: relative; bottom: 90px; right: 81px;}
 .pannel2 { height: 563px;}
 div#map { height:563px; width:970px;}
 .reserve_place{ position: absolute; right:66px; top:31px; color: black; }
-
 /* ------------------ */
 /* 예약 날짜 */
 .pannel3 { width: 980px; height: 450px; padding-top: 30px; padding-left: 160px;}
@@ -325,7 +324,6 @@ h2.monthH2{padding-left: 30px;}
   																-webkit-transform:rotate(45deg); transform:rotate(45deg); }
 .no-csstransforms .checks.etrans input[type="checkbox"]:checked + label:before { /*content:"\2713";*/ content: "\2714"; top: 0; left: 0; width: 21px;
   																					line-height: 21px; color: #6cc0e5; text-align: center;border: 1px solid #6cc0e5; }
-
 /*----------------*/
 															
 </style>
@@ -488,6 +486,7 @@ h2.monthH2{padding-left: 30px;}
 	                      <div class="form-group">
 	                         <label class="control-label col-sm-2" for="tel">연락처</label> 
 	                      <select class="form-control tel0">
+	                      		<option value="선택">선택</option>
 	                            <option value="010">010</option>
 	                            <option value="011">011</option>
 	                            <option value="016">016</option>

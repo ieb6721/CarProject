@@ -39,10 +39,7 @@ public class MypageModel {
 	
 	@RequestMapping("mypage/mypage_admin.do")
 	public String adminModel(HttpServletRequest request) {
-		 HttpSession session=request.getSession();
 		
-		 String id = (String) session.getAttribute("id");
-		 System.out.println(id);
 		return "mypage_admin.jsp";
 	}
 }

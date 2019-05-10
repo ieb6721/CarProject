@@ -131,13 +131,90 @@
 						</div>
 					</div>
 					<!-- /.single-blog-details -->
-					
+					<div class="about-author fix">
+								<h6 class="title">about the author</h6>
+								<div class="author-img">
+									<img src="img/comments/author.jpg" alt="Author Image" />
+								</div>
+								<div class="author-info">
+									<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
+									tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
+									nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+								</div>
+							</div><!-- /.about-author -->
+							<div class="comments-area">
+								<h6 class="title">12 comments</h6>
+								<ul class="comments-list">
+									<li class="single-comment">
+										<div class="comment-box">
+											<div class="comment-author">
+												<img src="img/comments/1.jpg" alt="Comment Author" />
+											</div>
+											<div class="comment-info">
+												<p class="author-name"><a href="#">Laurel Lance</a></p>
+												<span class="comment-date">July 11, 2015</span>
+												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do 
+												eiusmod temp incididunt ut labore et dolore magna aliqua. Ut enim ad 
+												minim veniam nostrud exercitation ullamco laboris nisi ut commodo 
+												consequat.</p>
+												<a href="#" class="reply-link" title="Reply">reply</a>
+											</div>
+										</div>
+									</li><!-- /.single-comment -->
+									<li class="single-comment">
+										<div class="comment-box">
+											<div class="comment-author">
+												<img src="img/comments/2.jpg" alt="Comment Author" />
+											</div>
+											<div class="comment-info">
+												<p class="author-name"><a href="#">Alex Reim</a></p>
+												<span class="comment-date">July 11, 2015</span>
+												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do 
+												eiusmod temp incididunt ut labore et dolore magna aliqua. Ut enim ad 
+												minim veniam nostrud exercitation ullamco laboris nisi ut commodo 
+												consequat.</p>
+												<a href="#" class="reply-link" title="Reply">reply</a>
+											</div>
+										</div>
+										<ul class="reply">
+											<li class="single-comment">
+												<div class="comment-box">
+													<div class="comment-author">
+														<img src="img/comments/author-small.jpg" alt="Comment Author" />
+													</div>
+													<div class="comment-info">
+														<p class="author-name"><a href="#">Wally West</a></p>
+														<span class="comment-date">July 11, 2015</span>
+														<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do 
+														eiusmod temp incididunt ut labore et dolore magna aliqua. Ut enim ad 
+														minim veniam nostrud exercitation ullamco laboris nisi ut commodo 
+														consequat.</p>
+														<a href="#" class="reply-link" title="Reply">reply</a>
+													</div>
+												</div>
+											</li><!-- /.single-comment -->
+										</ul><!-- /.reply -->
+									</li><!-- /.single-comment -->
+								</ul>
+							</div><!-- /.comments-area -->
+							<div class="comment-form-area">
+								<p>leave a comment</p>
+								<form action="#" method="post">
+									<input type="text" placeholder="Name"/>
+									<input type="text" placeholder="Email"/>
+									<textarea placeholder="Message"></textarea>
+									<button type="submit" class="submit-btn">submit</button>
+								</form>
+							</div><!-- /.comment-form-area -->
 				</div>
 			</div>
 		</div>
 	</div>
 	</div>
 	<!-- single-blog-area end -->
+	
+	
+	
 
 	<!-- footer-area start -->
 	<jsp:include page="../cmmn/default-footer.jsp"></jsp:include>

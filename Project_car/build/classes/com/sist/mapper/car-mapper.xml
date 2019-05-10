@@ -82,6 +82,21 @@
                         END),',','')) as highPrice 
       FROM car
       ORDER BY lowPrice DESC))A
-      WHERE #{lowPrice} &lt;= lowPrice AND highPrice &lt;= #{highPrice}   
+      WHERE #{lowPrice} &lt;= lowPrice AND highPrice &lt;= #{highPrice}  
+   </select>
+   
+   <!-- 자동차 상세 검색(체크박스) -->
+   <select id="carDetailSearchData" resultType="CarVO" parameterType="java.util.Map">
+      SELECT car_num,car_name,car_poster,car_price,car_launchdate,car_efficiency,car_size,car_fueltype,brand_name 
+      FROM car 
+      WHERE 
+      	car_size IN
+      		<foreach collection="carsizeArr" item="type" open="(" close=")" separator=",">
+      			#{type}
+      		</foreach>
+      	AND 
+      		<foreach collection="carfueltypeArr" item="type" open="(" close=")" separator="OR">
+      			car_fueltype LIKE '%'||#{type}||'%' 
+      		</foreach>
    </select>
 </mapper>
