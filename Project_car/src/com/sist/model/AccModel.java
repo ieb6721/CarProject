@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 import com.sist.controller.RequestMapping;
@@ -93,8 +94,10 @@ public class AccModel {
 		    request.setAttribute("startPage", startPage);
 		    request.setAttribute("endPage", endPage);
 		    request.setAttribute("allPage", allPage);
-	
+		    
+		    request.setAttribute("accList_jsp", "acc_list.jsp");
 		
+		    
 			 
 			  //System.out.println(no);
 			  
@@ -122,7 +125,46 @@ public class AccModel {
 		    
 		  return "../acc/acc.jsp";
 	  }
+	
+	@RequestMapping("acc/acc_search.do")
+	public String acc_search(HttpServletRequest request)
+	{
+		try
+		{
+			//한글 변환
+			request.setCharacterEncoding("UTF-8");
+			//컴파일 예외처리 => 반드시 컴파일 전에 예외처리를 한다
+		}catch(Exception ex){}
+		
+		String keyword=request.getParameter("keyword");
+		
+		List<AccVO> list=AccDAO.accSearchData(keyword);
+		
+		System.out.println(list.size());
+		
+		request.setAttribute("alist", list);	
+				
+		return "acc_list.jsp";
+	}
+	
+/*	@RequestMapping("acc/acc.do")
+	  public String acc_cookie(HttpServletRequest request)
+	  {
 
+		Cookie[] cookies=request.getCookies();
+		for(int i=0;i<cookies.length;i++)
+		{
+			if(cookies[i].getName().startsWith("product_id"))
+			{
+				String value=cookies[i].getValue();
+			}
+			
+		}
+		
+		
+		return "../acc/acc.jsp";
+		
+	  }*/
 	 
 	 
 }

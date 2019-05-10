@@ -45,16 +45,19 @@ STOCK
    </if>
    
    </select>
-<!--    
-   <select id="accCate" resultType="AccVO" parameterType="String">
-		SELECT * FROM acc
-		WHERE product_name LIKE '%'||#{name}||'%'
-	</select> -->
-	   
+   
    <select id="accCate" resultType="AccVO" parameterType="String">
 		SELECT * FROM acc
 		WHERE product_name LIKE '%'||#{name}||'%'
 	</select>
+	   
+   <select id="accSearchData" resultType="AccVO" parameterType="String">
+		SELECT * FROM acc
+		WHERE product_name LIKE '%'||#{keyword}||'%'
+	</select>
+	
+
+	
 </mapper>
 
 
