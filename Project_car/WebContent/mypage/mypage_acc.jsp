@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="htc__product__rightidebar">
 	<!-- Start Product View -->
 	<div class="row">
-	<h2 class="headName">악세사리 주문내역</h2>
+	<h2 class="headName">액세서리 주문내역</h2>
 		<div class="shop__grid__view__wrap">
 			<div role="tabpanel" id="grid-view"
 				class="single-grid-view tab-pane fade in active clearfix">
@@ -27,19 +27,25 @@
 												</tr>
 											</thead>
 											<tbody>
+												<c:forEach var="vo" items="${list1 }">
 												<tr>
 													<td class="product-thumbnail"><a href="#"><img
-															src="images/product-2/cart-img/1.jpg" alt="product img" /></a></td>
-													<td class="product-name"><a href="#">New Dress For
-															Sunday</a>
-														<ul class="pro__prize">
-															<li class="old__prize">$82.5</li>
-															<li>$75.2</li>
-														</ul></td>
-													<td class="product-price"><span class="amount">￡165.00</span></td>
-													<td class="product-quantity"></td>
+															src="${vo.product_main_img }" /></a></td>
+													<td class="product-name"><a href="#">${vo.product_name }</a></td>
+													<td class="product-price">
+													<ul class="pro__prize">
+															<li class="old__prize">${vo.product_orgin_price }</li>
+															<li>${vo.product_dc_price }</li>
+														</ul>
+													</td>
+											</tr>
+											</c:forEach>
+											  <c:forEach var="vo" items="${list2 }">
+											  <tr>
+													<td class="product-quantity">${vo.quantity }</td>
 													<td class="product-subtotal">￡165.00</td>
 												</tr>
+											</c:forEach>
 											</tbody>
 										</table>
 									</div>

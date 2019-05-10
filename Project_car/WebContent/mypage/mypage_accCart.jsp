@@ -4,7 +4,7 @@
 <div class="htc__product__rightidebar">
 	<!-- Start Product View -->
 	<div class="row">
-	<h2 class="headName">악세사리 장바구니</h2>
+	<h2 class="headName">액세서리 장바구니</h2>
 		<div class="shop__grid__view__wrap">
 			<div role="tabpanel" id="grid-view"
 				class="single-grid-view tab-pane fade in active clearfix">

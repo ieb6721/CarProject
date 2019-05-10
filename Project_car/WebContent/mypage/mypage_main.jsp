@@ -51,7 +51,7 @@
 		} else if (menu === 'menu4') {
 			$.ajax({
 				type : 'post',
-				url : 'mypage_reservation.do',
+				url : 'mypage_acc.do',
 				success : function(res) {
 					$('#print').html(res);
 				}
