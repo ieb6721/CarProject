@@ -3,10 +3,18 @@ package com.sist.vo;
 import java.util.Date;
 
 public class Acc_payVO {
+	
 	private Date pay_date;
 	private String id;
 	private String product_id;
+	private int quantity;
 	
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 	public Date getPay_date() {
 		return pay_date;
 	}

@@ -51,6 +51,48 @@ public class MypageDAO {
 		    return list;
 	
 	 	}
+	 	
+	 	public static List<AccVO> accPayAcc(String id) {
+			
+	 		List<AccVO> list=new ArrayList<AccVO>();
+		    SqlSession session = null;
+		
+		    try {
+			session = ssf.openSession();
+			list = session.selectList("accPayAcc", id);
+		
+		    } catch (Exception e) {
+			e.printStackTrace();
+		
+		    } finally {
+			if (session != null) session.close();
+		
+		    }
+		
+		    return list;
+	
+	 	}
+	 	
+	 	public static List<Acc_payVO> accPayAccPay(String id) {
+			
+	 		List<Acc_payVO> list=new ArrayList<Acc_payVO>();
+		    SqlSession session = null;
+		
+		    try {
+			session = ssf.openSession();
+			list = session.selectList("accPayAccPay", id);
+		
+		    } catch (Exception e) {
+			e.printStackTrace();
+		
+		    } finally {
+			if (session != null) session.close();
+		
+		    }
+		
+		    return list;
+	
+	 	}
 	 
 	
 		 
