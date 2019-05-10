@@ -38,10 +38,12 @@
 /* 전체적인 틀 */
 #contain { margin-left: 400px; }
 .ht__bradcaump__area { height: 500px; }
-.headName { position: relative; left: 510px; }
+.headName { position: relative; left: 510px; margin-top: 40px; margin-bottom: 40px; }
 select.input-sm{ width: 72px;}
 input.input-sm{ width: 224px;}
 li.menuBtn{float: left;}
+ul.paginations{list-style: none;}
+td.insert{width:46px;}
 /*---------*/
 
 </style>
@@ -74,12 +76,9 @@ li.menuBtn{float: left;}
 						<!-- Start Product View -->
 						<div class="row" id="print">
 							<h2 class="headName">문의 게시판</h2>
-							<table class="table">
-								<tr>
-									<td class="insert"><a class="btn btn-sm btn-primary">새글</a></td>
-								</tr>
-							</table>
-							<table class="table">
+							
+								
+							<table class="table table-hover">
 								<tr class="danger">
 									<th width=10% class="text-center">번호</th>
 									<th width=45% class="text-center">제목</th>
@@ -163,6 +162,11 @@ li.menuBtn{float: left;}
 									<td class="text-right" valign="middle">
 									${curPage } page / ${totalPage } pages
 									</td>
+									
+								
+									<td class="insert"><a class="btn btn-sm btn-info">새글</a></td>
+								
+						
 								</tr>
 							</table>
 						</div>
