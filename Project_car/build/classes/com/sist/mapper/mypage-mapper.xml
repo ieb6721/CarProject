@@ -6,7 +6,7 @@
 	<!-- 관리자 마이페이지 시승 내역조회 -->
 	<select id="adminMypage" resultType="Driver_reserveVO" parameterType="String">
 		SELECT id, agency_name, passenger, reserve_date, model, (SELECT tel FROM member WHERE id=#{id}) as tel 
-		FROM driver_reserve
+		FROM driver_reserve WHERE id=#{id}
 	</select>
 </mapper>
 

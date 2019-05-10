@@ -11,7 +11,6 @@ public class LoginModel {
   @RequestMapping("login/login.do")
   public String member_login(HttpServletRequest request)
   {
-	  System.out.println("member-login");
 	  return "../login/login.jsp";
   }
   

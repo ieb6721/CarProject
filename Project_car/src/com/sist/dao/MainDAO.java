@@ -121,7 +121,6 @@ public class MainDAO {
 		   {
 			   session=ssf.openSession();
 			   list=session.selectList("carPopularList");
-			   System.out.println("aaa:"+list.size());
 		   }catch(Exception e)
 		   {
 			   e.printStackTrace();
@@ -142,8 +141,7 @@ public class MainDAO {
 		   {	
 			   session=ssf.openSession();
 			   list=session.selectList("kBrandList",car_company);
-			   System.out.println(car_company);
-			   System.out.println(list.size());
+			  
 		   }catch(Exception e)
 		   {
 			   e.printStackTrace();
@@ -163,8 +161,7 @@ public class MainDAO {
 		   {	
 			   session=ssf.openSession();
 			   list=session.selectList("euBrandList",car_company);
-			   System.out.println(car_company);
-			   System.out.println(list.size());
+			   
 		   }catch(Exception e)
 		   {
 			   e.printStackTrace();
@@ -184,8 +181,7 @@ public class MainDAO {
 		   {	
 			   session=ssf.openSession();
 			   list=session.selectList("aBrandList",car_company);
-			   System.out.println(car_company);
-			   System.out.println(list.size());
+			 
 		   }catch(Exception e)
 		   {
 			   e.printStackTrace();
@@ -205,8 +201,7 @@ public class MainDAO {
 		   {	
 			   session=ssf.openSession();
 			   list=session.selectList("amBrandList",car_company);
-			   System.out.println(car_company);
-			   System.out.println(list.size());
+		
 		   }catch(Exception e)
 		   {
 			   e.printStackTrace();

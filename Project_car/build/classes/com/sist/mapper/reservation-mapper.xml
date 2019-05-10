@@ -4,7 +4,7 @@
 
 <mapper namespace="com.sist.mapper.reservation-mapper">
 	<insert id="reserveInsertData" parameterType="Driver_reserveVO">
-		INSERT INTO driver_reserve VALUES(#{model}, #{reserve_date}, #{passenger}, #{id}, #{agency_name})
+		INSERT INTO driver_reserve VALUES(#{model}, #{reserve_date}, #{passenger}, #{id}, #{agency_name}, #{tel})
 	</insert>	
 	
 </mapper>
