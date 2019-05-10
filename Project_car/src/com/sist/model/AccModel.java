@@ -21,7 +21,8 @@ public class AccModel {
 	public String acc_detail(HttpServletRequest request ,HttpServletResponse response) {
 
 		String product_id = request.getParameter("product_id");
-
+		String product_id1 = request.getParameter("product_id1");
+		
 		AccVO vo = AccDAO.accDetailData(product_id);
 		Cookie cookie=new Cookie("product_id"+product_id,product_id);
 		cookie.setMaxAge(60*60*24);
@@ -40,6 +41,8 @@ public class AccModel {
 			}
 
 		}
+		
+		
 	
 		request.setAttribute("list", list);
 		

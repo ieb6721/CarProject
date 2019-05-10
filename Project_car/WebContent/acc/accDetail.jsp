@@ -323,6 +323,7 @@ function change () {
 					<div class="product__wrap clearfix">
 					
 					<c:forEach var="vo" items="${list }">
+					
 						<!-- Start Single Product -->
 						<div class="col-md-3 col-lg-3 col-sm-6 col-xs-12">
 							<div class="category">
@@ -334,7 +335,8 @@ function change () {
 								<div class="fr__hover__info">
 									<ul class="product__action">
 										<li>
-										<a href="#" class="btn btn-xs btn-info">X</a>
+										
+										<a href="../acc/accDetail.do?product_id1=${Integer.parseInt(vo.product_id)+1 }" class="btn btn-xs btn-info">삭제</a>
 										<!-- <a href="wishlist.html"> -->
 										</a></li>
 
