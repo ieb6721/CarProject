@@ -14,29 +14,13 @@ import com.sist.vo.ZipcodeVO;
 
 public class RegisterModel {
 
-	@RequestMapping("register/register.do")
-	public String registerModel(HttpServletRequest request) {
-	
-		return "register.jsp";
-	}
-	
-	  @RequestMapping("register/idcheck.do")
-	  public String id_check(HttpServletRequest request)
+	 @RequestMapping("register/register.do")
+	  public String member_join(HttpServletRequest request)
 	  {
-		  return "../register/idcheck.jsp";
+		  return "../register/register.jsp";// main.jsp=> include
 	  }
-	  
-	  @RequestMapping("register/idcheck_result.do")
-	  public String idcheck_result(HttpServletRequest request)
-	  {
-		  String id=request.getParameter("id");
-		  //DAO연결 
-		  int count=MemberDAO.idcheck(id);
-		  request.setAttribute("count", count);
-		  return "../register/idcheck_result.jsp";
-	  }
-	  
-	  
+	 
+	 
 	  // 우편번호 검색 
 	  @RequestMapping("register/postfind.do")
 	  public String post_find(HttpServletRequest request)
@@ -44,7 +28,7 @@ public class RegisterModel {
 		  return "../register/postfind.jsp";
 	  }
 	  
-
+	  
 	  @RequestMapping("register/post_result.do")
 	  public String post_result(HttpServletRequest request)
 	  {
@@ -67,12 +51,26 @@ public class RegisterModel {
 		  // 1. shadow , window.open... => ajax
 	  }
 	  
+	  @RequestMapping("register/idcheck.do")
+	  public String id_check(HttpServletRequest request)
+	  {
+		  return "../register/idcheck.jsp";
+	  }
 	  
+	  @RequestMapping("register/idcheck_result.do")
+	  public String idcheck_result(HttpServletRequest request)
+	  {
+		  String id=request.getParameter("id");
+		  //DAO연결 
+		  int count=MemberDAO.idcheck(id);
+		  request.setAttribute("count", count);
+		  return "../register/idcheck_result.jsp";
+	  }
 	  
 	  @RequestMapping("register/register_ok.do")
 	  public String member_join_ok(HttpServletRequest request)
 	  {
-		  // 요청값 받기 
+		// 요청값 받기 
 		  try
 		  {
 			  //한글 변환
@@ -132,8 +130,6 @@ public class RegisterModel {
 		  return "redirect:../main/main.do";
 	  }
 	  
-	 //============================================================================================ 
-	 
 	  // join_update.do => MemberModel (메소드 수행) <=> MemberDAO
 	  //                     => 수행 결과를 JSP로 전송 (request.setAttribute())
 	  // 회원수정 
