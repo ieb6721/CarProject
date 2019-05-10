@@ -6,10 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.sist.vo.AccVO;
+import com.sist.vo.CarVO;
 
-/*
- * 
- */
 public class AccDAO {
 	private static SqlSessionFactory ssf;
 	static
@@ -121,5 +119,26 @@ public class AccDAO {
 			}
 			return list;
 		}
+	   public static List<AccVO> accSearchData(String keyword)
+		{
+			List<AccVO> list=new ArrayList<AccVO>();
+			SqlSession session=null;
+			try
+			{
+				session=ssf.openSession();
+				list=session.selectList("accSearchData",keyword);
+			}
+			catch(Exception ex)
+			{
+				ex.printStackTrace(); 
+			}
+			finally
+			{
+				if(session!=null)
+	    			session.close();
+			}
+			return list;
+		}
+		
 
 }

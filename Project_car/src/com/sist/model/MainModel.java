@@ -49,7 +49,11 @@ public class MainModel {
 		
 		String car_company="±¹»ê";
 		List<BrandVO> list6=MainDAO.kBrandList(car_company);
+<<<<<<< HEAD
 
+=======
+//		System.out.println(list6.size());
+>>>>>>> refs/remotes/origin/master
 		request.setAttribute("kBrandList", list6);
 		
 		
