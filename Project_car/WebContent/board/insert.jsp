@@ -10,7 +10,10 @@
    margin: 0px auto;
    width:700px;
 }
-
+.table{
+	width: 470px;
+    margin-left: 300px;
+}
 </style>
 </head>
 <body>
