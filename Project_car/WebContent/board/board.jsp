@@ -23,10 +23,15 @@
 	
 </script>
 <style type="text/css">
-#contain { margin-left: 200px;}
+
+/* 전체적인 틀 */
+#contain { margin-left: 400px; }
 .ht__bradcaump__area { height: 500px; }
-.breadcrumb-item { font-size: 45px; position: relative; top: 90px;}
 .headName { position: relative; left: 510px; }
+select.input-sm{ width: 72px;}
+input.input-sm{ width: 224px;}
+/*---------*/
+
 </style>
 </head>
 <body>
@@ -41,9 +46,7 @@
 					<div class="row">
 						<div class="col-xs-12">
 							<div class="bradcaump__inner">
-								<nav class="bradcaump-inner">
-									<span class="breadcrumb-item active">문의 게시판</span>
-								</nav>
+								<nav class="bradcaump-inner"></nav>
 							</div>
 						</div>
 					</div>
@@ -52,28 +55,86 @@
 		</div>
 		<!-- End Bradcaump area -->
 
+
 		<!-- Start Product Grid -->
 		<section class="htc__product__grid bg__white ptb--100">
 			<div class="container" id="contain">
-				<div
-					class="col-lg-9 col-lg-push-3 col-md-9 col-md-push-3 col-sm-12 col-xs-12"
-					id="print">
 					<div class="htc__product__rightidebar">
 						<!-- Start Product View -->
 						<div class="row">
 							<h2 class="headName">문의 게시판</h2>
-							
-							
-							
-							
+							<table class="table">
+								<tr>
+									<td><a href="../board/insert.do" class="btn btn-sm btn-success">새글</a></td>
+								</tr>
+							</table>
+							<table class="table">
+								<tr class="danger">
+									<th width=10% class="text-center">번호</th>
+									<th width=45% class="text-center">제목</th>
+									<th width=15% class="text-center">이름</th>
+									<th width=20% class="text-center">작성일</th>
+									<th width=10% class="text-center">조회수</th>
+								</tr>
+								<tr>
+									<td width=10% class="text-center">aaaaa</td>
+									<td width=45% class="text-left">adfa</td>
+									<td width=15% class="text-center">adsfas</td>
+									<td width=20% class="text-center">dsfa</td>
+									<td width=10% class="text-center">afdasfd</td>
+								</tr>
+							</table>
+							<table class="table">
+								<tr>
+									<td class="text-left in" valign="middle">
+										<form method="post" action="../board/board_find.do">
+											Search: <select name="fs" class="input-sm">
+														<option value="name">이름</option>
+														<option value="subject">제목</option>
+														<option value="content">내용</option>
+													</select> 
+													<input type=text name=ss size=12 class="input-sm"> 
+													<input type=submit value="찾기" class="btn btn-sm btn-info">
+										</form>
+									</td>
+									<td class="text-center in" valign="top">
+										<ul class="pagination pagination-sm" style="padding: 0px">
+											<li>
+												<a href="../board/list.do?page=1"> 
+													<img src="../board/ico_list_pre2.gif" width=17 height=17>	
+												</a>
+											</li>
+											<li>
+												<a href="../board/list.do?page=${startPage-1 }">
+													<img src="../board/ico_list_pre1.gif" width=17 height=17>
+												</a>
+											</li>
+
+											<li>
+												<a href="../board/list.do?page="></a>
+											</li>
+											<li>
+												<a href="../board/list.do?page="> 
+													<img src="../board/ico_list_next1.gif" width=17 height=17>
+												</a>
+											</li>
+											<li>
+												<a href="../board/list.do?page="> 
+													<img src="../board/ico_list_next2.gif" width=17 height=17>
+												</a>
+											</li>
+										</ul>
+									</td>
+									<td class="text-right" valign="middle">page / pages</td>
+								</tr>
+							</table>
 						</div>
 					</div>
-
-
-				</div>
 			</div>
 		</section>
 	</div>
+
+
 
 	<jsp:include page="../cmmn/default-footer.jsp"></jsp:include>
 
