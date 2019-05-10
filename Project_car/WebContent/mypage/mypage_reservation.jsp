@@ -28,10 +28,10 @@
 											<tbody>
 											 <c:forEach var="vo" items="${list }">
 												<tr>
-													<td class="product-thumbnail">${vo.model }</td>
-													<td class="product-name">${vo.agency_name }</td>
-													<td class="product-price">${vo.reserve_date }</td>
-													<td class="product-price"></td>
+													<td class="product-thumbnail" style="padding-top: 20px;">${vo.model }</td>
+													<td class="product-name" style="padding-top: 20px;">${vo.agency_name }</td>
+													<td class="product-price" style="padding-top: 20px;">${vo.reserve_date }</td>
+													<td class="product-price" style="padding-top: 20px;"></td>
 													<td class="product-quantity"><input type="button"
 														class="btn btn-sm btn-active" value="취소"></td>
 												</tr>
