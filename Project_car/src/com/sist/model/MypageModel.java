@@ -21,12 +21,14 @@ public class MypageModel {
 	@RequestMapping("mypage/mypage_acc.do")
 	public String AccModel(HttpServletRequest request) {
 		
+		/*
 		HttpSession session=request.getSession();
 		String id=(String)session.getAttribute("id");
 		List<AccVO> list1=MypageDAO.accPayAcc(id);
 		List<Acc_payVO> list2=MypageDAO.accPayAccPay(id);
 		request.setAttribute("list1", list1);
 		request.setAttribute("list2", list2);
+		*/
 		return "mypage_acc.jsp";
 	}
 	

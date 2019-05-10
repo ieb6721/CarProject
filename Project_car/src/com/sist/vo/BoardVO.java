@@ -3,7 +3,7 @@ import java.util.*;
 
 public class BoardVO {
 	
-   private String no;
+   private int no;
    private String name;
    private String subject;
    private String content;
@@ -18,10 +18,10 @@ public class BoardVO {
 	public void setRcount(int rcount) {
 		this.rcount = rcount;
 	}
-	public String getNo() {
+	public int getNo() {
 		return no;
 	}
-	public void setNo(String no) {
+	public void setNo(int no) {
 		this.no = no;
 	}
 	public String getName() {

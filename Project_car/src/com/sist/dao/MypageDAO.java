@@ -52,6 +52,7 @@ public class MypageDAO {
 	
 	 	}
 	 	
+	 	/*
 	 	public static List<AccVO> accPayAcc(String id) {
 			
 	 		List<AccVO> list=new ArrayList<AccVO>();
@@ -94,6 +95,6 @@ public class MypageDAO {
 	
 	 	}
 	 
-	
+	*/
 		 
 }
