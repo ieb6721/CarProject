@@ -6,7 +6,7 @@ public class ReplyVO {
    private String id;
    private String name;
    private String msg;
-   private Date regdate; // => 시간을 출력 할수 없다 ${vo.regdate}
+   private Date regdate; //  => 시간을 출력 할수 없다 ${vo.regdate}
    private String dbday; // TO_CHAR() 
    // SELECT TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS') as dbday
 	public int getNo() {

@@ -2,6 +2,7 @@ package com.sist.vo;
 import java.util.*;
 
 public class BoardVO {
+	
    private String no;
    private String name;
    private String subject;
