@@ -30,22 +30,28 @@ public class MypageDAO {
 		return list;
 	}
 	
-	/*
-	 	public Driver_reserveVO adminMypage(String id) {
-		Driver_reserveVO vo = new Driver_reserveVO();
-		SqlSession session = null;
-		try {
-			session = ssf.openSession();
-			vo = session.selectOne("adminMypage", id);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (session != null) session.close();
-		}
+	
+	 	public static List<Driver_reserveVO> reserveMypage(String id) {
 		
-		return vo;
-	}
-	 */
+	 		List<Driver_reserveVO> list=new ArrayList<Driver_reserveVO>();
+		    SqlSession session = null;
+		
+		    try {
+			session = ssf.openSession();
+			list = session.selectList("reserveMypage", id);
+		
+		    } catch (Exception e) {
+			e.printStackTrace();
+		
+		    } finally {
+			if (session != null) session.close();
+		
+		    }
+		
+		    return list;
+	
+	 	}
+	 
 	
 		 
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="htc__product__rightidebar">
 	<!-- Start Product View -->
 	<div class="row">
@@ -20,67 +21,21 @@
 													<th class="product-thumbnail">시승차량</th>
 													<th class="product-name">시승센터</th>
 													<th class="product-price">시승일시</th>
+													<th class="product-price">시승 승인 현황</th>
 													<th class="product-quantity">취소</th>
 												</tr>
 											</thead>
 											<tbody>
+											 <c:forEach var="vo" items="${list }">
 												<tr>
-													<td class="product-thumbnail"><a href="#"><img
-															src="images/product-2/cart-img/1.jpg" alt="product img" /></a></td>
-													<td class="product-name"><a href="#">New Dress For
-															Sunday</a>
-														<ul class="pro__prize">
-															<li class="old__prize">$82.5</li>
-															<li>$75.2</li>
-														</ul></td>
-													<td class="product-price"><span class="amount">￡165.00</span></td>
+													<td class="product-thumbnail">${vo.model }</td>
+													<td class="product-name">${vo.agency_name }</td>
+													<td class="product-price">${vo.reserve_date }</td>
+													<td class="product-price"></td>
 													<td class="product-quantity"><input type="button"
 														class="btn btn-sm btn-active" value="취소"></td>
-
-
 												</tr>
-												<tr>
-													<td class="product-thumbnail"><a href="#"><img
-															src="images/product-2/cart-img/2.jpg" alt="product img" /></a></td>
-													<td class="product-name"><a href="#">New Dress For
-															Sunday</a>
-														<ul class="pro__prize">
-															<li class="old__prize">$82.5</li>
-															<li>$75.2</li>
-														</ul></td>
-													<td class="product-price"><span class="amount">￡50.00</span></td>
-													<td class="product-quantity"><input type="button"
-														class="btn btn-sm btn-active" value="취소"></td>
-
-												</tr>
-												<tr>
-													<td class="product-thumbnail"><a href="#"><img
-															src="images/product-2/cart-img/3.jpg" alt="product img" /></a></td>
-													<td class="product-name"><a href="#">New Dress For
-															Sunday</a>
-														<ul class="pro__prize">
-															<li class="old__prize">$82.5</li>
-															<li>$75.2</li>
-														</ul></td>
-													<td class="product-price"><span class="amount">￡50.00</span></td>
-													<td class="product-quantity"><input type="button"
-														class="btn btn-sm btn-active" value="취소"></td>
-
-
-												</tr>
-												<tr>
-													<td class="product-thumbnail"><a href="#"><img
-															src="images/product-2/cart-img/4.jpg" alt="product img" /></a></td>
-													<td class="product-name"><a href="#">New Dress For
-															Sunday</a>
-														<ul class="pro__prize">
-															<li class="old__prize"></li>
-															<li>$75.2</li>
-														</ul></td>
-													<td class="product-price"><span class="amount"></span></td>
-													<td class="product-quantity"><input type="button"
-														class="btn btn-lg btn-active" value="취소"></td>
-												</tr>
+											</c:forEach>
 											</tbody>
 										</table>
 									</div>

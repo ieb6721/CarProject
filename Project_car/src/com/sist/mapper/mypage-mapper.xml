@@ -8,6 +8,9 @@
 		SELECT * FROM driver_reserve
 	</select>
 	
+	<select id="reserveMypage" resultType="Driver_reserveVO" parameterType="String">
+	    SELECT model, reserve_date, agency_name FROM driver_reserve WHERE id=#{id}
+	</select>
 
 </mapper>
 

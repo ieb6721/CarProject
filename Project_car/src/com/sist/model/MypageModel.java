@@ -37,7 +37,11 @@ public class MypageModel {
 	
 	@RequestMapping("mypage/mypage_reservation.do")
 	public String reservationModel(HttpServletRequest request) {
-
+		
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
+		List<Driver_reserveVO> list=MypageDAO.reserveMypage(id);
+		request.setAttribute("list", list);
 		return "mypage_reservation.jsp";
 	}
 	
