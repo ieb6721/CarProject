@@ -99,7 +99,7 @@ public class AccModel {
 
 		return "../acc/acc.jsp";
 	}
-//ff
+
 	@RequestMapping("acc/acc_search.do")
 	public String acc_search(HttpServletRequest request) {
 		try {
