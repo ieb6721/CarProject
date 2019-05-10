@@ -190,4 +190,26 @@ public class CarDAO {
        return list;
     }
 	
+    //자동차 상세 검색(체크박스)
+    public static List<CarVO> carDetailSearchData(Map<String,String[]> arrMap)
+    {
+    	List<CarVO> list=new ArrayList<CarVO>();
+        SqlSession session=null;
+        try
+        {	        	
+           session=ssf.openSession();
+           list=session.selectList("carDetailSearchData",arrMap);
+        }
+        catch(Exception ex)
+        {
+        	System.out.println(ex.getMessage());
+           ex.printStackTrace(); 
+        }
+        finally
+        {
+           if(session!=null)
+               session.close();
+        }
+        return list;
+    }
 }

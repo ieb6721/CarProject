@@ -117,4 +117,45 @@ public class CarModel {
        
        return "car_list.jsp";
    }
+	
+	@RequestMapping("car/carDetail_search.do")
+	public String carDetail_search(HttpServletRequest request)
+	{	
+		String[] carsizeArr=request.getParameterValues("carsizeArr");
+		String[] carfueltypeArr=request.getParameterValues("carfueltypeArr");
+		
+		if(carsizeArr==null)
+		{
+			carsizeArr=new String[7];
+			carsizeArr[0]="경형";
+			carsizeArr[1]="소형";
+			carsizeArr[2]="준중형";
+			carsizeArr[3]="중형";
+			carsizeArr[4]="준대형";
+			carsizeArr[5]="대형";
+			carsizeArr[6]="스포츠카";
+		}
+		
+		if(carfueltypeArr==null)
+		{
+			carfueltypeArr=new String[4];
+			carfueltypeArr[0]="휘발유";
+			carfueltypeArr[1]="경유";
+			carfueltypeArr[2]="LPG";
+			carfueltypeArr[3]="전기";
+		}
+		
+		Map<String,String[]> arrMap = new HashMap<>();
+		arrMap.put("carsizeArr", carsizeArr);
+		arrMap.put("carfueltypeArr", carfueltypeArr);
+				
+		List<CarVO> list=CarDAO.carDetailSearchData(arrMap);
+		
+		List<BrandVO> bList=CarDAO.carBrandData();
+	    request.setAttribute("bList", bList);
+	       
+	    request.setAttribute("cList", list); 
+	    
+		return "car_list.jsp";
+	}
 }
