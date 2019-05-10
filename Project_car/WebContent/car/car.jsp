@@ -37,47 +37,84 @@ div.price input {
 	width: 20%;
 	height: 25px;
 }
+
+.button-group input{
+  display: none;
+}
+
+.button-group input:checked + label,
+.button-group input:checked + label:active {
+  color: white;
+  background-color: #ffb52f;
+}
+
+.product-tags .button-group label:hover {
+    border: 1px solid #ffb52f;
+    background-color: #ffb52f;
+    color: #fff;
+}
 </style>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
-	$(function(){
-		$('#findBtn').click(function(){
-			var keyword=$('#keyword').val();
-			if(keyword.trim()=="")
+$(function(){
+	$('#findBtn').click(function(){
+		var keyword=$('#keyword').val();
+		if(keyword.trim()=="")
+		{
+			alert("검색어 입력");
+			$('#keyword').focus();
+			return;
+		}			
+		
+		$.ajax({
+			type:'post',
+			url:'car_search.do',
+			data:{"keyword":keyword},
+			success:function(response)
 			{
-				alert("검색어 입력");
-				$('#keyword').focus();
-				return;
-			}			
-			
-			$.ajax({
-				type:'post',
-				url:'car_search.do',
-				data:{"keyword":keyword},
-				success:function(response)
-				{
-					$('#print').html(response)
-				}
-			});
+				$('#print').html(response)
+			}
 		});
-		
-		$('#findPriceBtn').click(function(){
-			var lowPrice=$('#lowPrice').val();
-			var highPrice=$('#highPrice').val();			
-			
-			$.ajax({
-				type:'post',
-				url:'carPrice_search.do',
-				data:{"lowPrice":lowPrice, "highPrice":highPrice},
-				success:function(response)
-				{
-					$('#print').html(response)
-				}
-			});
-		});
-		
 	});
+	
+	$('#findPriceBtn').click(function(){
+		var lowPrice=$('#lowPrice').val();
+		var highPrice=$('#highPrice').val();			
+		
+		$.ajax({
+			type:'post',
+			url:'carPrice_search.do',
+			data:{"lowPrice":lowPrice, "highPrice":highPrice},
+			success:function(response)
+			{
+				$('#print').html(response)
+			}
+		});
+	});
+	
+	$('#findDetailBtn').click(function(){
+		var carsizeArr=[];
+		var carfueltypeArr=[];
+		$("input[name=chk1]:checked").each(function(){
+			carsizeArr.push($(this).val());
+		});
+		$("input[name=chk2]:checked").each(function(){
+			carfueltypeArr.push($(this).val());
+		});				
+		
+		$.ajax({
+			type:'post',
+			url:'carDetail_search.do',
+			traditional : true,
+			data:{"carsizeArr":carsizeArr, "carfueltypeArr":carfueltypeArr},
+			success:function(response)
+			{	
+				$('#print').html(response)
+			}
+		});
+	});
+});
 </script>
 
 </head>
@@ -99,8 +136,10 @@ div.price input {
 				<div class="row">
 					<div class="col-lg-3">
 						<div class="product-sidebar-area pr-60">
-							<div class="sidebar-widget pb-55">
-								<h3 class="sidebar-widget">Search Products</h3>
+							
+							<!-- 자동차 검색(차 이름) -->
+							<div class="sidebar-widget pb-55" style="margin-bottom: 0px;">
+								<h3 class="sidebar-widget">Search Car</h3>
 								<div class="sidebar-search">
 									<form>
 										<input type="text" placeholder="Search Products..." id="keyword">										
@@ -111,24 +150,7 @@ div.price input {
 								</div>
 							</div>
 							
-							<div class="sidebar-widget mb-45">
-								<h3 class="sidebar-widget">product tags</h3>
-								<div class="product-tags">
-									<ul>
-										<li><a href="#">경차</a></li>
-										<li><a href="#">소형</a></li>
-										<li><a href="#">준중형</a></li>
-										<li><a href="#">중형</a></li>
-										<li><a href="#">준대형</a></li>
-										<li><a href="#">대형</a></li>
-										<li><a href="#">스포츠카</a></li>
-										<li><a href="#">가솔린</a></li>
-										<li><a href="#">디젤</a></li>
-										<li><a href="#">LPG</a></li>
-									</ul>
-								</div>
-							</div>
-							
+							<!-- 자동차 검색(가격) -->
 							<div class="sidebar-widget mb-55">
 								<h3 class="sidebar-widget">by price</h3>
 								<div class="price_filter mr-60">
@@ -137,7 +159,7 @@ div.price input {
 											<form>
 												<input type="text" name="minprice" id="lowPrice"/> 만원 ~ 
 												<input type="text" name="minprice" id="highPrice"/> 만원  					
-											    <button type="button" id="findPriceBtn">
+											    <button type="button" class="btn btn-xs btn-warning" id="findPriceBtn">
 											    	<i class="ti-search"></i>
 											    </button>
 										    </form>
@@ -145,6 +167,51 @@ div.price input {
 									</div>
 								</div>
 							</div>
+							
+							<!-- 자동차 상세검색(체크박스) -->
+							<div class="sidebar-widget mb-45">
+								<h3 class="sidebar-widget">Detail Search</h3>
+								<div class="product-tags">
+									<div class="button-group">
+										<h6>차종</h6>
+											<input id="checkbox1" type="checkbox" value="경형" name="chk1"> 
+											<label class="button" for="checkbox1">경형</label> 
+											<input id="checkbox2" type="checkbox" value="소형" name="chk1"> 
+											<label class="button" for="checkbox2">소형</label> 
+											<input id="checkbox3" type="checkbox" value="준중형" name="chk1"> 
+											<label class="button" for="checkbox3">준중형</label>
+											<input id="checkbox4" type="checkbox" value="중형" name="chk1"> 
+											<label class="button" for="checkbox4">중형</label>
+											<input id="checkbox5" type="checkbox" value="준대형" name="chk1"> 
+											<label class="button" for="checkbox5">준대형</label> 
+											<input id="checkbox6" type="checkbox" value="대형" name="chk1"> 
+											<label class="button" for="checkbox6">대형</label> 
+											<input id="checkbox7" type="checkbox" value="스포츠카" name="chk1"> 
+											<label class="button" for="checkbox7">스포츠카</label> 
+									</div>
+									<hr>
+									<div class="button-group">
+										<h6>연료</h6>
+											<input id="checkbox8" type="checkbox" value="휘발유" name="chk2"> 
+											<label class="button" for="checkbox8">휘발유</label> 
+											<input id="checkbox9" type="checkbox" value="경유" name="chk2"> 
+											<label class="button" for="checkbox9">경유</label> 
+											<input id="checkbox10" type="checkbox" value="LPG" name="chk2"> 
+											<label class="button" for="checkbox10">LPG</label>
+											<input id="checkbox11" type="checkbox" value="전기" name="chk2"> 
+											<label class="button" for="checkbox11">전기</label>										
+									</div>
+									<hr>
+									<div class="sidebar-search" style="padding-bottom: 80px;">
+										<form>
+											<button type="button" id="findDetailBtn">
+												<i class="ti-search"></i>											
+											</button>
+										</form>
+									</div>
+								</div>
+							</div>
+							
 							
 							<div class="sidebar-widget mb-55">
 								<h3 class="sidebar-widget">Recently Viewed</h3>
@@ -160,6 +227,8 @@ div.price input {
 								</div>
 							
 							</div>
+							
+							<!-- 최근 본 자동차 목록 -->
 							<div class="sidebar-widget">
 								<h3 class="sidebar-widget">best seller</h3>
 								<div class="best-seller">
@@ -209,7 +278,7 @@ div.price input {
 								<h4>인생 뽑차 구매</h4>
 							</div>
 							<div class="product-sorting">
-								<div class="shop-product-sorting nav">								 
+								<div class="shop-product-sorting nav">
 									<a class="active" href="car.do?cateNo=1">전체 </a>
 									<a href="car.do?cateNo=2">최신순 </a> 
 									<a href="car.do?cateNo=3">연비순 </a> 
