@@ -61,7 +61,7 @@ th { background: #ddd;  }
 	<div class="wrapper">
 		<!-- Start Bradcaump area -->
 		<div class="ht__bradcaump__area"
-			style="background: rgba(0, 0, 0, 0) url(../images/board_img/board_main.jpg) no-repeat scroll center center/cover;">
+			style="background: rgba(0, 0, 0, 0) url(../images/board_img/board.jpg) no-repeat scroll center center/cover;">
 			<div class="ht__bradcaump__wrap">
 				<div class="container">
 					<div class="row">
