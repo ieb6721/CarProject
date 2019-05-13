@@ -97,10 +97,10 @@ public class ReservationModel {
 		String res_name = request.getParameter("res_name");
 		String memberId = request.getParameter("memberId");
 		String agencyData = request.getParameter("agencyData");
-		String tel0 = request.getParameter("telOption");
+		String tel0 = request.getParameter("tel0");
 		String tel1 = request.getParameter("tel1");
 		String tel2 = request.getParameter("tel2");
-	
+		System.out.println(tel0);
 		Driver_reserveVO vo = new Driver_reserveVO();
 		vo.setModel(modelData);
 		vo.setReserve_date(calendarData);

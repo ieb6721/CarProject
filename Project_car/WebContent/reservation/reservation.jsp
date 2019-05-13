@@ -417,7 +417,7 @@ h2.monthH2{padding-left: 30px;}
 				 		<tr>
 				  			<td>      
 				  			 <select name="month" id="m" year="${year }">
-						 	 	<c:forEach var="i" begin="1" end="12">
+						 	 	<c:forEach var="i" begin="1" end="12" >
 									<option value="${i }">${i } </option>
 								</c:forEach>
 				  			 </select>
@@ -485,7 +485,7 @@ h2.monthH2{padding-left: 30px;}
 	                      </div>
 	                      <div class="form-group">
 	                         <label class="control-label col-sm-2" for="tel">연락처</label> 
-	                      <select class="form-control tel0">
+	                      <select class="form-control tel0" name="tel0">
 	                      		<option value="선택">선택</option>
 	                            <option value="010">010</option>
 	                            <option value="011">011</option>
