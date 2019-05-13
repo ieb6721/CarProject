@@ -30,6 +30,20 @@ public class MypageDAO {
 		return list;
 	}
 	
+	// 예약 승인하기
+
+    public static void reserveOkUpdate(String id) {
+	    SqlSession session = null;
+	    try {
+	 	   session = ssf.openSession(true);
+		   session.update("reserveOkUpdate", id);
+	 	} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null) session.close();
+		}
+    }
+
 	
 	 	public static List<Driver_reserveVO> reserveMypage(String id) {
 		

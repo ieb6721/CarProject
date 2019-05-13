@@ -9,8 +9,13 @@
 	</select>
 	
 	<select id="reserveMypage" resultType="Driver_reserveVO" parameterType="String">
-	    SELECT model, reserve_date, agency_name FROM driver_reserve WHERE id=#{id}
+	    SELECT model, reserve_date, agency_name, approval_num FROM driver_reserve WHERE id=#{id}
 	</select>
+	
+	<update id="reserveOkUpdate" parameterType="String">
+  	UPDATE driver_reserve SET approval_num=1 WHERE id=#{id}
+  </update>
+	
 	<!-- 
 	<select id="accPayAcc" resultType="AccVO" parameterType="String">
 	    SELECT product_name, product_main_img, product_orgin_price, product_dc_price 

@@ -23,14 +23,19 @@
 <link rel="stylesheet" href="../css/accessory_css/responsive.css">
 <link rel="stylesheet" href="../css/accessory_css/custom.css">
 <script src="../js/accessory_js/vendor/modernizr-3.5.0.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
-	
+	$(function() {
+		$('#approval').click(function() {
+			alert("승인 요청 하였습니다.");
+		});
+	});
 </script>
 <style type="text/css">
 #contain { margin-left: 200px; }
 .ht__bradcaump__area { height: 500px; }
 .breadcrumb-item { font-size: 45px; position: relative; top: 90px; }
-.headName { position: relative; left: 510px;}
+.headName { position: relative; left: 450px;}
 #contain{ margin-left: 100px;}
 </style>
 </head>
@@ -41,19 +46,7 @@
 		<!-- Start Bradcaump area -->
 		<div class="ht__bradcaump__area"
 			style="background: rgba(0, 0, 0, 0) url(../images/mypage_img/mypage_img.jpg) no-repeat scroll center center/cover;">
-			<div class="ht__bradcaump__wrap">
-				<div class="container">
-					<div class="row">
-						<div class="col-xs-12">
-							<div class="bradcaump__inner">
-								<nav class="bradcaump-inner">
-									<span class="breadcrumb-item active">관리자 페이지</span>
-								</nav>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			
 		</div>
 		<!-- End Bradcaump area -->
 
@@ -98,24 +91,20 @@
 																		<td class="product-quantity" style="padding-top: 20px;">${vo.passenger }</td>
 																		<td class="product-quantity" style="padding-top: 20px;">${vo.tel }</td>
 																		<td class="product-quantity" style="padding-top: 20px;">${vo.reserve_date }</td>
-																		<td class="product-subtotal"><input type="button" class="btn btn-lg btn-primary" value="승인"></td>
+																		<td class="product-subtotal">
+																			<c:if test="${vo.approval_num == 0 }">
+																				<a class="btn btn-sm btn-primary" href="mypage_admin.do?id=${vo.id }" id="approval">승인</a>
+																			</c:if>
+																			<c:if test="${vo.approval_num == 1 }">
+																				예약 완료
+																			</c:if>
+																			
+																		</td>
 																	</tr>
 																</c:forEach>
 																</tbody>
 															</table>
-														</div>
-														<div class="row">
-															<div class="col-md-12 col-sm-12 col-xs-12">
-																<div class="buttons-cart--inner">
-																	<div class="buttons-cart">
-																		<a href="../main/main.jsp">Home</a>
-																	</div>
-																	<div class="buttons-cart checkout--btn">
-																		<a href="#">update</a> <a href="#">checkout</a>
-																	</div>
-																</div>
-															</div>
-														</div>
+														</div>													
 
 													</form>
 												</div>

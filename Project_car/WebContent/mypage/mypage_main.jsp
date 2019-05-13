@@ -64,7 +64,7 @@
 #contain { margin-left: 200px;}
 .ht__bradcaump__area { height: 500px; }
 .breadcrumb-item { font-size: 45px; position: relative; top: 90px;}
-.headName { position: relative; left: 510px; }
+.headName { position: relative; left: 450px; }
 </style>
 </head>
 <body>

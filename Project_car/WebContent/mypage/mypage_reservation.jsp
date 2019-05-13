@@ -31,7 +31,13 @@
 													<td class="product-thumbnail" style="padding-top: 20px;">${vo.model }</td>
 													<td class="product-name" style="padding-top: 20px;">${vo.agency_name }</td>
 													<td class="product-price" style="padding-top: 20px;">${vo.reserve_date }</td>
-													<td class="product-price" style="padding-top: 20px;"></td>
+													<c:if test="${vo.approval_num == 0 }">
+													<td class="product-price" style="padding-top: 20px;">예약 대기</td>
+													</c:if>
+													<c:if test="${vo.approval_num == 1 }">
+													<td class="product-price" style="padding-top: 20px;">예약 완료</td>
+													</c:if>
+													
 													<td class="product-quantity"><input type="button"
 														class="btn btn-sm btn-active" value="취소"></td>
 												</tr>
@@ -39,18 +45,7 @@
 											</tbody>
 										</table>
 									</div>
-									<div class="row">
-										<div class="col-md-12 col-sm-12 col-xs-12">
-											<div class="buttons-cart--inner">
-												<div class="buttons-cart">
-													<a href="../main/main.jsp">Home</a>
-												</div>
-												<div class="buttons-cart checkout--btn">
-													<a href="#">update</a> <a href="#">checkout</a>
-												</div>
-											</div>
-										</div>
-									</div>
+									
 
 								</form>
 							</div>

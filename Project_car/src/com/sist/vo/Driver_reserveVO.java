@@ -7,7 +7,14 @@ public class Driver_reserveVO {
 	private String id;	
 	private String agency_name;
 	private String tel;
+	private int approval_num;
 	
+	public int getApproval_num() {
+		return approval_num;
+	}
+	public void setApproval_num(int approval_num) {
+		this.approval_num = approval_num;
+	}
 	public String getTel() {
 		return tel;
 	}

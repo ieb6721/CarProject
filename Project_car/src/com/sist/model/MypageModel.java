@@ -56,10 +56,19 @@ public class MypageModel {
 	
 	@RequestMapping("mypage/mypage_admin.do")
 	public String adminModel(HttpServletRequest request) {
+		String id = request.getParameter("id");
+		if (id == null) {
+			List<Driver_reserveVO> list=MypageDAO.adminMypage();
+			request.setAttribute("list", list);
+		} else {
+			MypageDAO.reserveOkUpdate(id);
+			
+			List<Driver_reserveVO> list=MypageDAO.adminMypage();
+			request.setAttribute("list", list);
+		}
 		
-		
-		List<Driver_reserveVO> list=MypageDAO.adminMypage();
-		request.setAttribute("list", list);
 		return "mypage_admin.jsp";
 	}
+	
+	
 }
