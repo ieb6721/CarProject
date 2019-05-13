@@ -28,6 +28,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.sist.vo.Car_optionVO" alias="Car_optionVO"/>
 		<typeAlias type="com.sist.vo.BoardVO" alias="BoardVO"/>
 		<typeAlias type="com.sist.vo.ReplyVO" alias="ReplyVO"/>
+		<typeAlias type="com.sist.vo.Car_estimateVO" alias="Car_estimateVO"/>
+		
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
