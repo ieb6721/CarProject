@@ -74,7 +74,7 @@ $(function(){
 							<button class="btn btn-md btn-primary"
 								onclick="location='car_estimate.do?cno=${carvo.car_num}'">견적</button>
 							<button class="btn btn-md btn-success"
-								onclick="javascript:history.back()">목록</button>
+								onclick="location='car.do'">목록</button>
 						</div>
 					</div>
 				</div>
@@ -172,7 +172,7 @@ $(function(){
 					<button class="btn btn-md btn-warning"
 					onclick="location='car_brand.do?keyword=${compvo.brand_name}'">${compvo.brand_name}</button>
 					<button class="btn btn-md btn-primary"
-							onclick="location='car_brand.do?keyword=${compvo.brand_name}'">상세보기</button>
+							onclick="location='car_detail.do?cno=${compvo.car_num}'">상세보기</button>
 				</div>
 			</div>
 		</div>
