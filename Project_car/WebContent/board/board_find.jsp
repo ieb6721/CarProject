@@ -20,19 +20,6 @@
 <link rel="stylesheet" href="../css/accessory_css/custom.css">
 <script src="../js/accessory_js/vendor/modernizr-3.5.0.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
-<script type="text/javascript">
-	$(function() {
-		$('.insert').click(function() {
-			$.ajax({
-				type : 'POST',
-				url : 'insert.jsp',
-				success : function(res) {
-					$('#print').html(res);
-				}
-			});
-		});
-	});
-</script>
 <style type="text/css">
 
 /* 전체적인 틀 */
@@ -92,9 +79,13 @@ ul.pagination { margin-top: 0px; margin-bottom: 0px;}
 			<div class="container" id="contain">
 					<div class="htc__product__rightidebar">
 						<!-- Start Product View -->
-						<div class="row" id="print">
-							<h2 class="headName">문의 게시판</h2>
-															
+						<div class="row">
+							<h2 class="headName">검색결과:${count }개</h2>
+							<c:if test="${count==0 }">
+								<tr>
+									<td class="text-center">검색결과가 없습니다.</td>
+								</tr>
+							</c:if>				
 							<table class="table table-hover">							
 								<tr>
 									<th width=10% class="text-center">번호</th>
@@ -106,7 +97,7 @@ ul.pagination { margin-top: 0px; margin-bottom: 0px;}
 														
 								<c:forEach var="vo" items="${list }">
 									<tr>
-										<td width=10% class="text-center">${vo.no }	</td>
+										<td width=10% class="text-center">${vo.no }</td>
 										<td width=45% class="text-center"><a href="../board/detail.do?no=${vo.no }" id="detail">${vo.subject }</a>
 										&nbsp;
 								           <c:if test="${vo.rcount>0 }">
@@ -120,63 +111,7 @@ ul.pagination { margin-top: 0px; margin-bottom: 0px;}
 										<td width=10% class="text-center">${vo.hit }</td>
 									</tr>
 								</c:forEach>
-							</table>
-							<table class="table">
-								<tr>
-									<td class="text-left in" valign="middle">
-										<form method="post" action="board_find.do">
-											Search: <select name="fs" class="input-sm">
-														<option value="name">이름</option>
-														<option value="subject">제목</option>
-														<option value="content">내용</option>
-													</select> 
-													<input type=text name=ss size=12 class="input-sm"> 
-													<input type=submit value="찾기" class="btn btn-sm btn-info">
-										</form>
-									</td>
-									
-									
-									<td class="text-center in" valign="top">										
-										
-										<ul class="pagination modal-1">
-
-										<c:if test="${curPage>BLOCK }">
-											<li class="menuBtn">
-												<a href="../board/board.do?page=1">&laquo;</a>
-											</li>
-																					
-											<li class="menuBtn">
-												<a href="../board/board.do?page=${startPage-1 }">&lt;</a>
-											</li>
-											</c:if>
-										
-											<c:set var="type" value=""/>
-									           <c:forEach var="i" begin="${startPage }" end="${endPage }">
-									             <c:if test="${curPage==i }">
-									              <c:set var="type" value="class=active"/>									          
-									             </c:if>
-									             <c:if test="${curPage!=i }">
-									              <c:set var="type" value=""/>
-									             </c:if>
-									             <li><a ${type } href="../board/board.do?page=${i }">${i }</a></li>
-									           </c:forEach>
-										
-										 <c:if test="${endPage<allPage }">
-											<li>
-												<a href="../board/board.do?page=${endPage+1 }">&gt;</a>
-											</li>
-											<li>
-												<a href="../board/board.do?page=${allPage }">&raquo;</a>
-											</li>
-											</c:if>
-											
-										</ul>
-									</td>
-								
-									<td class="insert"><a class="btn btn-sm btn-info">새글</a></td>
-						
-								</tr>
-							</table>
+							</table>						
 						</div>
 					</div>
 				</div>
