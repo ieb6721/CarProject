@@ -2,7 +2,7 @@ package com.sist.vo;
 
 import java.util.Date;
 
-public class AccPAYVO {
+public class AccTotalVO {
 	private String product_id;
 	private String product_name;
 	private String product_main_img;
