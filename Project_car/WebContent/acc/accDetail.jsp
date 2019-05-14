@@ -336,7 +336,7 @@ function change () {
 									<ul class="product__action">
 										<li>
 										
-										<a href="../acc/accDetail.do?product_id1=${Integer.parseInt(vo.product_id)+1 }" class="btn btn-xs btn-info">삭제</a>
+										<a href="../acc/accDetail.do?product_id1=${vo.product_id }" class="btn btn-xs btn-info">삭제</a>
 										<!-- <a href="wishlist.html"> -->
 										</a></li>
 

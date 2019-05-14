@@ -15,7 +15,7 @@
 <link rel="shortcut icon" type="image/x-icon"
 	href="../images/accessory_img/favicon.ico">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-
+<!-- ㅇㅇㅇ -->
 
 
 <!-- All css files are included here. -->
@@ -39,6 +39,22 @@
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+<!-- page CSS-->
+<link rel="stylesheet" href="../css/car_css/animate.css">
+<link rel="stylesheet" href="../css/car_css/owl.carousel.min.css">
+<link rel="stylesheet" href="../css/car_css/chosen.min.css">
+<link rel="stylesheet" href="../css/car_css/jquery-ui.css">
+<link rel="stylesheet" href="../css/car_css/meanmenu.min.css">
+<link rel="stylesheet" href="themify-icons/themify-icons.css">
+<link rel="stylesheet" href="../css/car_css/icofont.css">
+<link rel="stylesheet" href="../css/car_css/font-awesome.min.css">
+<link rel="stylesheet" href="../css/car_css/bundle.css">
+<link rel="stylesheet" href="../css/car_css/style.css">
+<link rel="stylesheet" href="../css/car_css/responsive.css">
+<script src="../js/car_js/vendor/modernizr-2.8.3.min.js"></script>
+<!-- page end -->
+
 
 <!-- Modernizr JS -->
 <script src="../js/accessory_js/vendor/modernizr-3.5.0.min.js"></script>
@@ -65,6 +81,9 @@
 
 .dam {
 	height: 380px;
+}
+.mt-20 {
+    margin-top: 100px;
 }
 input[type=text], input[type=email], input[type=password] {
     width:50%;
@@ -214,7 +233,7 @@ $(function(){
 						class="col-lg-9 col-lg-push-3 col-md-9 col-md-push-3 col-sm-12 col-xs-12" id="print">
 						<jsp:include page="${accList_jsp }"></jsp:include>
 						<!-- Start Pagenation -->
-						<div class="row">
+						<%-- <div class="row">
 							<div class="col-xs-12">
 								<ul class="htc__pagenation">
 
@@ -239,7 +258,38 @@ $(function(){
 
 								</ul>
 							</div>
+						</div> --%>
+						
+						
+					<div class="paginations text-center mt-20">
+							<ul>
+								<c:if test="${curpage>BLOCK }">
+									<li>
+										<a href="acc.do?page=1&&no=${no}">&lt;&lt;</a>
+										<a href="acc.do?page=${startPage-1}&&no=${no}"><i class="fa fa-angle-left"></i></a>
+									</li>
+								</c:if>
+								<c:forEach var="i" begin="${startPage }" end="${endPage }">	
+									<c:choose>
+										<c:when test="${curpage eq i }">
+											<c:set var="type" value="class=active"></c:set>
+										</c:when>
+										<c:otherwise>
+											<c:set var="type" value=""></c:set>
+										</c:otherwise>
+									</c:choose>															
+									<li ${type }><a href="acc.do?page=${i }&&no=${no}">${i }</a></li>									
+								</c:forEach>
+								<c:if test="${endPage<allPage }">
+									<li>
+										<a href="acc.do?page=${endPage+1}&&no=${no}"><i class="fa fa-angle-right"></i></a>
+										<a href="acc.do?page=${totalpage}&&no=${no}">>></a>
+									</li>
+								</c:if>
+							</ul>
 						</div>
+						
+						
 						<!-- End Pagenation -->
 					</div>
 					
@@ -321,59 +371,7 @@ $(function(){
 				</div>
 				
 				
-				<!-- 최근 본 상품  -->
-				
-						<section class="htc__product__area--2 pb--100 product-details-res">
-			<div class="container">
-				<div class="row bottom">
-					<div class="col-xs-12">
-						<div class="section__title--2 text-center">
-							<h2 class="title__line">최근 본 상품</h2>
-							<!-- <p>But I must explain to you how all this mistaken idea</p> -->
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="product__wrap clearfix">
-						<!-- Start Single Product -->
-						<div class="col-md-3 col-lg-3 col-sm-6 col-xs-12">
-							<div class="category">
-								<div class="ht__cat__thumb">
-									<a href="product-details.html"> 
-										<img src="${vo.product_main_img}" alt="product images">
-									</a>
-								</div>
-								<div class="fr__hover__info">
-									<ul class="product__action">
-										<li><a href="wishlist.html"><i
-												class="icon-heart icons"></i></a></li>
 
-										<li><a href="cart.html"><i class="icon-handbag icons"></i></a></li>
-
-										<li><a href="#"><i class="icon-shuffle icons"></i></a></li>
-									</ul>
-								</div>
-								<div class="fr__product__inner">
-									<h4>
-										<a href="product-details.html">Product Title Here </a>
-									</h4>
-									<ul class="fr__pro__prize">
-										<li class="old__prize">$30.3</li>
-										<li>$25.9</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<!-- End Single Product -->
-					
-					
-					
-					</div>
-				</div>
-			</div>
-		</section>
-		
-		<!-- 최근 본 상품 end -->
 				
 			</div>
 
