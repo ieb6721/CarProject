@@ -6,6 +6,20 @@
 		SELECT news_no,title,detail_img,news_date,news_company FROM news WHERE news_no &lt; 10 ORDER BY news_no
 	</select>
 	
+	<!-- 악세서리 조회수 증가 -->
+   	<update id="accHitIncrement" parameterType="String">
+    	UPDATE acc SET
+     	acc_hit=acc_hit+1
+    	WHERE product_id = #{product_id}
+    </update>
+    
+    <!-- 차량 조회수 증가 -->
+   	<update id="carHitIncrement" parameterType="String">
+    	UPDATE car SET
+     	car_hit=car_hit+1
+    	WHERE car_num = #{cno}
+    </update>
+    
 	<!-- 차량 효율 순 -->
 	<select id="carEfficiency" resultType="CarVO">
 		SELECT A.*
@@ -25,7 +39,7 @@
 		FROM (SELECT car_hit,car_num,car_poster,car_name,car_launchdate,car_price
 		FROM car
 		ORDER BY car_hit DESC)
-		WHERE ROWNUM &lt;9
+		WHERE ROWNUM &lt;11
 	</select>
 	
 	<!-- 차량 출시일 순 -->
