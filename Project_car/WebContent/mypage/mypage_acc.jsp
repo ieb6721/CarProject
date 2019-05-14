@@ -27,28 +27,37 @@
 												</tr>
 											</thead>
 											<tbody>
-												<c:forEach var="vo" items="${list1 }">
+												<c:forEach var="vo" items="${list }">
 												<tr>
-													<td class="product-thumbnail"><a href="#"><img
-															src="${vo.product_main_img }" /></a></td>
-													<td class="product-name"><a href="#">${vo.product_name }</a></td>
+													<td class="product-thumbnail"><a href="../acc/accDetail.do?product_id=${vo.product_id }">
+													<img src="${vo.product_main_img }" /></a></td>
+													<td class="product-name"><a href="../acc/accDetail.do?product_id=${vo.product_id }">${vo.product_name }</a></td>
 													<td class="product-price">
 													<ul class="pro__prize">
-															<li class="old__prize">${vo.product_orgin_price }</li>
-															<li>${vo.product_dc_price }</li>
+															<li class="old__prize">${vo.product_origin_price }</li>
+															<li>${vo.product_dc_price }원</li>
 														</ul>
 													</td>
-											</tr>
-											</c:forEach>
-											  <c:forEach var="vo" items="${list2 }">
-											  <tr>
 													<td class="product-quantity">${vo.quantity }</td>
-													<td class="product-subtotal">￡165.00</td>
+												    <td class="product-subtotal"></td>
 												</tr>
-											</c:forEach>
+							           	</c:forEach>
 											</tbody>
 										</table>
-									</div>								
+									</div>
+									<div class="row">
+										<div class="col-md-12 col-sm-12 col-xs-12">
+											<div class="buttons-cart--inner">
+												<div class="buttons-cart">
+													<a href="../main/main.jsp">Home</a>
+												</div>
+												<div class="buttons-cart checkout--btn">
+													<a href="#">update</a> <a href="#">checkout</a>
+												</div>
+											</div>
+										</div>
+									</div>
+
 								</form>
 							</div>
 						</div>

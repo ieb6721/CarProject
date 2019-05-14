@@ -30,20 +30,6 @@ public class MypageDAO {
 		return list;
 	}
 	
-	// 예약 승인하기
-
-    public static void reserveOkUpdate(String id) {
-	    SqlSession session = null;
-	    try {
-	 	   session = ssf.openSession(true);
-		   session.update("reserveOkUpdate", id);
-	 	} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (session != null) session.close();
-		}
-    }
-
 	
 	 	public static List<Driver_reserveVO> reserveMypage(String id) {
 		
@@ -66,15 +52,15 @@ public class MypageDAO {
 	
 	 	}
 	 	
-	 	/*
-	 	public static List<AccVO> accPayAcc(String id) {
+	 	
+	 	public static List<AccPAYVO> accPay(String id) {
 			
-	 		List<AccVO> list=new ArrayList<AccVO>();
+	 		List<AccPAYVO> list=new ArrayList<AccPAYVO>();
 		    SqlSession session = null;
 		
 		    try {
 			session = ssf.openSession();
-			list = session.selectList("accPayAcc", id);
+			list = session.selectList("accPay", id);
 		
 		    } catch (Exception e) {
 			e.printStackTrace();
@@ -88,27 +74,9 @@ public class MypageDAO {
 	
 	 	}
 	 	
-	 	public static List<Acc_payVO> accPayAccPay(String id) {
-			
-	 		List<Acc_payVO> list=new ArrayList<Acc_payVO>();
-		    SqlSession session = null;
-		
-		    try {
-			session = ssf.openSession();
-			list = session.selectList("accPayAccPay", id);
-		
-		    } catch (Exception e) {
-			e.printStackTrace();
-		
-		    } finally {
-			if (session != null) session.close();
-		
-		    }
-		
-		    return list;
-	
-	 	}
+	 	
+	 	
 	 
-	*/
+	
 		 
 }

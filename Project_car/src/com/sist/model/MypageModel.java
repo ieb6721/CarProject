@@ -21,14 +21,12 @@ public class MypageModel {
 	@RequestMapping("mypage/mypage_acc.do")
 	public String AccModel(HttpServletRequest request) {
 		
-		/*
+		
 		HttpSession session=request.getSession();
 		String id=(String)session.getAttribute("id");
-		List<AccVO> list1=MypageDAO.accPayAcc(id);
-		List<Acc_payVO> list2=MypageDAO.accPayAccPay(id);
-		request.setAttribute("list1", list1);
-		request.setAttribute("list2", list2);
-		*/
+		List<AccPAYVO> list=MypageDAO.accPay(id);
+		request.setAttribute("list", list);
+
 		return "mypage_acc.jsp";
 	}
 	
@@ -56,19 +54,10 @@ public class MypageModel {
 	
 	@RequestMapping("mypage/mypage_admin.do")
 	public String adminModel(HttpServletRequest request) {
-		String id = request.getParameter("id");
-		if (id == null) {
-			List<Driver_reserveVO> list=MypageDAO.adminMypage();
-			request.setAttribute("list", list);
-		} else {
-			MypageDAO.reserveOkUpdate(id);
-			
-			List<Driver_reserveVO> list=MypageDAO.adminMypage();
-			request.setAttribute("list", list);
-		}
 		
+		
+		List<Driver_reserveVO> list=MypageDAO.adminMypage();
+		request.setAttribute("list", list);
 		return "mypage_admin.jsp";
 	}
-	
-	
 }
