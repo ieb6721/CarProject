@@ -53,9 +53,9 @@ public class MypageDAO {
 	 	}
 	 	
 	 	
-	 	public static List<AccPAYVO> accPay(String id) {
+	 	public static List<AccTotalVO> accPay(String id) {
 			
-	 		List<AccPAYVO> list=new ArrayList<AccPAYVO>();
+	 		List<AccTotalVO> list=new ArrayList<AccTotalVO>();
 		    SqlSession session = null;
 		
 		    try {
