@@ -8,10 +8,12 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <title>인생뽑차</title>
-<meta name="description" content="Live Preview Of Oswan eCommerce HTML5 Template">
+<meta name="description"
+	content="Live Preview Of Oswan eCommerce HTML5 Template">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Favicon -->
-<link rel="shortcut icon" type="image/x-icon" href="../images/car_img/favicon.png">
+<link rel="shortcut icon" type="image/x-icon"
+	href="../images/car_img/favicon.png">
 
 <!-- all css here -->
 <link rel="stylesheet" href="../css/car_css/animate.css">
@@ -27,10 +29,13 @@
 <link rel="stylesheet" href="../css/car_css/responsive.css">
 <script src="../js/car_js/vendor/modernizr-2.8.3.min.js"></script>
 
-<jsp:include page="../cmmn/default-nav.jsp"/>
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="http://mattstow.com/experiment/responsive-image-maps/jquery.rwdImageMaps.min.js"></script>
+<jsp:include page="../cmmn/default-nav.jsp" />
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bbe730b25e58d27f83029a15154fa8af&autoload=false&libraries=services"></script>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script
+	src="http://mattstow.com/experiment/responsive-image-maps/jquery.rwdImageMaps.min.js"></script>
 <script>
 $(function(){
 
@@ -49,39 +54,38 @@ $(function(){
 						$('.addr_table').load("charge_table.jsp");
 					}
 		});
+		
 	}); 
+	
+	
 });
 
 </script>
 
 <style type="text/css">
 .col-lg-6 {
-	width: 30%; 
+	width: 30%;
 }
 
-.blog-post{
-	margin: 0 auto;
-
-	img[usemap] {
-
-	border: 1px solid black;
-
+.blog-post {
+	margin: 0 auto; img [usemap] { border : 1px solid black;
 	height: auto;
-
 	max-width: 100%;
-
 	width: auto;
-
-	}
 }
 
-h4{
-	box-shadow: rgba(0, 0, 0, 0.3) 0px 8px 16px -8px,
-    rgba(0, 0, 0, 0.024) 0px -6px 16px -6px;
+}
+h4 {
+	box-shadow: rgba(0, 0, 0, 0.3) 0px 8px 16px -8px, rgba(0, 0, 0, 0.024)
+		0px -6px 16px -6px;
 }
 
 .addr_table {
 	margin-top: 50px;
+}
+
+#wrapper_title{
+	margin-bottom: 0px;
 }
 </style>
 </head>
@@ -116,17 +120,18 @@ h4{
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="col-lg-8">
-						<div class="shop-topbar-wrapper">
+						<div class="shop-topbar-wrapper" id="wrapper_title">
 							<div class="grid-list-options">친환경 자동차 충전소</div>
 						</div>
-						
+
 						<div class="col-lg-4">
 							<article class="blog-post">
 								<div class="blog-post-body">
 									<h4>
-										<i class="icofont-location-pin"></i>지역을 선택하세요<i class="icofont-location-pin"></i>
+										<i class="icofont-location-pin"></i>지역을 선택하세요<i
+											class="icofont-location-pin"></i>
 									</h4>
 									<div class="blog-post-image text-left">
 										<img src="../images/env_car/korea_map1.png" usemap="#map01"
@@ -180,7 +185,7 @@ h4{
 											<area shape="poly" alt="" title=""
 												coords="249,160,219,170,209,166,191,176,169,194,176,210,165,218,173,240,182,247,192,251,197,277,196,286,195,301,218,300,228,279,217,262,221,235,218,228,253,198,274,204,283,174"
 												id="충청북도" />
-												
+
 											<area shape="poly" alt="" title=""
 												coords="90,530,37,559,59,583,124,567,133,542,128,541"
 												id="제주도" />
@@ -191,15 +196,16 @@ h4{
 						</div>
 
 						<div class="col-lg-8 addr_table"></div>
+
+						<div class="col-lg-12" id="addrMap"></div>
 					</div>
-					
 				</div>
 			</div>
 		</div>
 	</div>
-	
+
 	<jsp:include page="../cmmn/default-footer.jsp"></jsp:include>
-	
+
 	<!-- all js here -->
 	<script src="../js/car_js/bootstrap.min.js"></script>
 	<script src="../js/car_js/isotope.pkgd.min.js"></script>

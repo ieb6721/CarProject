@@ -6,7 +6,31 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bbe730b25e58d27f83029a15154fa8af&autoload=false&libraries=services"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('.charge_detail').click(function() {
+		var addr = $(this).children('td.addr').text();
+		var charge_name = $(this).children('td.charge_name').text();
+		
+		$.ajax({
+			type : "post",
+			url : "charge_addr.do",
+			data : {
+					"addr" : addr,
+					"charge_name" : charge_name
+			},
+			success : function(response){
+				$('#addrMap').html(response);
+			}
+		});		
 
+		var offset = $("#charge_table").offset();
+	    $('html, body').animate({scrollTop : offset.top});
+	});
+});
+</script>
 <style>
 #charge_table {
 	width: 100%;
@@ -44,7 +68,7 @@
 		</thead>
 		<tbody>
 			<c:forEach var="vo" items="${sessionScope.charge}">
-				<tr>
+				<tr class="charge_detail">
 					<td class="col-xs-1">${vo.fuel}</td>
 					<td class="col-xs-3 charge_name">${vo.charge_name}</td>
 					<td class="col-xs-4 addr">${vo.addr}</td>
