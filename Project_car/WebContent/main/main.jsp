@@ -197,7 +197,7 @@ header {
 	<jsp:include page="../cmmn/default-nav.jsp"></jsp:include>
 	<!-- main.jsp -->
 	<header class="title">
-		<a href="index.html"><img src="../images/main_img/pickcar.png"></a>
+		<a href="main.do"><img src="../images/main_img/pickcar.png"></a>
 	</header>
 	<div class="container">
 		<div class="bg_feature"></div>
@@ -207,8 +207,8 @@ header {
 					<div class="slider-item">
 						<img src="../images/main_img/new-car1.jpg" width="100%" />
 						<h2>
-							<a href="#" title="Chevrolet - Camaro SS in 2018"> Chevrolet
-								- Camaro SS in 2018 </a>
+							<a href="../car/car_detail.do?cno=3633" title="Chevrolet - Camaro SS in 2018"> Chevrolet
+								- Camaro SS in 2019 </a>
 						</h2>
 					</div>
 				</li>
@@ -216,8 +216,8 @@ header {
 					<div class="slider-item">
 						<img src="../images/main_img/new-car2.jpg" width="100%" />
 						<h2>
-							<a href="#" title="Lamborghini - Aventador in 2011">
-								Lamborghini - Aventador in 2011 </a>
+							<a href="../car/car_detail.do?cno=2619" title="Lamborghini - Aventador in 2011">
+								Lamborghini - Aventador in 2016 </a>
 						</h2>
 					</div>
 				</li>
@@ -225,8 +225,8 @@ header {
 					<div class="slider-item">
 						<img src="../images/main_img/new-car3.jpg" width="100%" />
 						<h2>
-							<a href="#" title="Hyundai - Genesis G90 in 2018"> Hyundai -
-								Genesis G90 in 2018 </a>
+							<a href="../car/car_detail.do?cno=3602" title="Hyundai - Genesis G90 in 2018"> Hyundai -
+								Genesis G90 in 2019 </a>
 						</h2>
 					</div>
 				</li>
@@ -234,8 +234,8 @@ header {
 					<div class="slider-item">
 						<img src="../images/main_img/new-car4.jpg" width="100%" />
 						<h2>
-							<a href="#" title="Kia - Stinger in 2017"> Kia - Stinger in
-								2017 </a>
+							<a href="../car/car_detail.do?cno=3423" title="Kia - Stinger in 2017"> Kia - Stinger in
+								2019 </a>
 						</h2>
 					</div>
 				</li>
@@ -258,7 +258,7 @@ header {
 					
 						<c:forEach var="kvo" items="${kBrandList }">
 							<li class="carli">
-								<a href="../car/car_brand.do?keyword=${kvo.brand_name }" target="_blank"> 
+								<a href="../car/car_brand.do?keyword=${kvo.brand_name }"> 
 									<img class="logo" src="${kvo.brand_image }"> 
 									<span class="logoname">${kvo.brand_name }</span>
 								</a>
@@ -275,7 +275,7 @@ header {
 					<ul class="carmodel">
 						<c:forEach var="evo" items="${euBrandList }">
 							<li class="carli">
-								<a href="../car/car_brand.do?keyword=${evo.brand_name }" target="_blank"> 
+								<a href="../car/car_brand.do?keyword=${evo.brand_name }"> 
 									<img class="logo" src="${evo.brand_image }"> 
 									<span class="logoname">${evo.brand_name }</span>
 								</a>
@@ -290,7 +290,7 @@ header {
 					<ul class="carmodel" style="padding-left: 15px;">
 						<c:forEach var="avo" items="${aBrandList }">
 							<li class="carli">
-								<a href="../car/car_brand.do?keyword=${avo.brand_name }" target="_blank"> 
+								<a href="../car/car_brand.do?keyword=${avo.brand_name }"> 
 									<img class="logo" src="${avo.brand_image }"> 
 									<span class="logoname">${avo.brand_name }</span>
 								</a>
@@ -304,7 +304,7 @@ header {
 					<ul class="carmodel">
 						<c:forEach var="amvo" items="${amBrandList }">
 							<li class="carli">
-								<a href="#" target="_blank"> 
+								<a href="../car/car_brand.do?keyword=${amvo.brand_name }"> 
 									<img class="logo" src="${amvo.brand_image }"> 
 									<span class="logoname">${amvo.brand_name }</span>
 								</a>
@@ -400,7 +400,7 @@ header {
 
 							<c:forEach var="p" items="${poList }">
 								<div class="car-ranking">
-									<a href="http://localhost:8080/ProjectTest/car/car_detail.do?cno=${p.car_num }"> 
+									<a href="../car/car_detail.do?cno=${p.car_num }"> 
 										<img src="${p.car_poster }"> 
 										<br><font size="3" style="font-weight: bold; color: balck;">${p.car_name }</font>
 										<br><font size="2" style="font-weight: bold;">${p.car_price }</font>만원

@@ -121,7 +121,7 @@ div.no{
 			<div class="tab-content current widget-container" id="tab-1">
 				<c:forEach var="cardata1" items="${pList}" varStatus="i">
 					<div class="post-body">
-						<a href="http://localhost:8080/ProjectTest/car/car_detail.do?cno=${cardata1.car_num }"> <img
+						<a href="../car/car_detail.do?cno=${cardata1.car_num }"> <img
 							src="../images/aside/${i.index+1}.JPG" width="30" height="30">
 							&nbsp; <img src="${cardata1.car_poster }" width=110 height=110>
 							&nbsp;&nbsp;<font size="1" style="font-weight: bold;">${cardata1.car_name}</font>
@@ -133,7 +133,7 @@ div.no{
 			<div class="tab-content widget-container tab-content" id="tab-2">
 				<c:forEach var="cardata2" items="${eList}" varStatus="i">
 					<div class="post-body">
-						<a href="http://localhost:8080/ProjectTest/car/car_detail.do?cno=${cardata2.car_num }"> <img
+						<a href="../car/car_detail.do?cno=${cardata2.car_num }"> <img
 							src="../images/aside/${i.index+1}.JPG" width="30" height="30">
 							&nbsp; <img src="${cardata2.car_poster }" width=110 height=110>
 							&nbsp;&nbsp;<font size="1" style="font-weight: bold;">${cardata2.car_name}</font>
@@ -146,7 +146,7 @@ div.no{
 			<div class=" tab-content widget-container" id="tab-3">
 				<c:forEach var="cardata3" items="${rList}" varStatus="i">
 					<div class="post-body">
-						<a href="http://localhost:8080/ProjectTest/car/car_detail.do?cno=${cardata3.car_num }"> <img
+						<a href="../car/car_detail.do?cno=${cardata3.car_num }"> <img
 							src="../images/aside/${i.index+1}.JPG" width="30" height="30">
 							&nbsp; <img src="${cardata3.car_poster }" width=110 height=110>
 							&nbsp;&nbsp;<font size="1" style="font-weight: bold;">${cardata3.car_name}</font>
