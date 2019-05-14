@@ -27,7 +27,7 @@
 <script type="text/javascript">
 	$(function() {
 		$('#approval').click(function() {
-			alert("승인 요청 하였습니다.");
+			alert("승인 요청했습니다.");
 		});
 	});
 </script>
@@ -85,12 +85,12 @@
 																<tbody>
 																 <c:forEach var="vo" items="${list }">
 																	<tr>
-																	    <td class="product-name" style="padding-top: 12px;">${vo.model }</td>
-																		<td class="product-name" style="padding-top: 12px;">${vo.agency_name }</td>
-																		<td class="product-price" style="padding-top: 12px;">${vo.id }</td>
-																		<td class="product-quantity" style="padding-top: 12px;">${vo.passenger }</td>
-																		<td class="product-quantity" style="padding-top: 12px;">${vo.tel }</td>
-																		<td class="product-quantity" style="padding-top: 12px;">${vo.reserve_date }</td>
+																	    <td class="product-name" style="padding-top: 20px;">${vo.model }</td>
+																		<td class="product-name" style="padding-top: 20px;">${vo.agency_name }</td>
+																		<td class="product-price" style="padding-top: 20px;">${vo.id }</td>
+																		<td class="product-quantity" style="padding-top: 20px;">${vo.passenger }</td>
+																		<td class="product-quantity" style="padding-top: 20px;">${vo.tel }</td>
+																		<td class="product-quantity" style="padding-top: 20px;">${vo.reserve_date }</td>
 																		<td class="product-subtotal">
 																			<c:if test="${vo.approval_num == 0 }">
 																				<a class="btn btn-sm btn-primary" href="mypage_admin.do?id=${vo.id }" id="approval">승인</a>

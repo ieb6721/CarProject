@@ -36,6 +36,14 @@
 				url : 'mypage_reservation.do',
 				success : function(res) {
 					$('#print').html(res);
+					
+					$('#reservation_cancel').click(function() {
+						if (confirm("시승예약을 취소하시겠습니까?")) { 
+					       location.href = "reservation_cancel.do";
+					       alert("시승 예약이 취소되었습니다.");
+					    }
+
+					});
 				}
 			});
 
@@ -58,6 +66,8 @@
 			});
 
 		}
+		
+	
 	}
 </script>
 <style type="text/css">
@@ -74,19 +84,6 @@
 		<!-- Start Bradcaump area -->
 		<div class="ht__bradcaump__area"
 			style="background: rgba(0, 0, 0, 0) url(../images/mypage_img/mypage_img.jpg) no-repeat scroll center center/cover;">
-			<div class="ht__bradcaump__wrap">
-				<div class="container">
-					<div class="row">
-						<div class="col-xs-12">
-							<div class="bradcaump__inner">
-								<nav class="bradcaump-inner">
-									<span class="breadcrumb-item active">My Page</span>
-								</nav>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 		<!-- End Bradcaump area -->
 
