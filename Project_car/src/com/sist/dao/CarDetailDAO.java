@@ -23,8 +23,9 @@ public class CarDetailDAO {
 			session.update("carHitIncrement",cno);
 			// 저장한다 
 			session.commit();
-						
+			
 			vo = session.selectOne("carDetailData", cno);
+//			System.out.println("cno:"+vo.getCar_hit());
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {

@@ -2,6 +2,16 @@ package com.sist.vo;
 
 public class CarVO {
 	private String car_num, car_name, car_poster, car_efficiency, car_size, car_price, car_fuelType, car_launchDate,brand_name;
+	private int car_hit;
+	
+	
+	public int getCar_hit() {
+		return car_hit;
+	}
+
+	public void setCar_hit(int car_hit) {
+		this.car_hit = car_hit;
+	}
 
 	public String getBrand_name() {
 		return brand_name;
