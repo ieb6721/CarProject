@@ -48,18 +48,18 @@
 
 	$(function(){
 	$('#logBtn').click(function(){
-		var id=$('#id').val();
+		var id=$('#lid').val();
 		if(id.trim()=="")
 		{
-			$('#id').html('<font color=red>ID를 입력하세요</font>');
-			$('#id').focus();
+			$('#lid').html('<font color=red>ID를 입력하세요</font>');
+			$('#lid').focus();
 			return;
 		}
 		
-		var pwd=$('#pwd').val();
+		var pwd=$('#lpwd').val();
 		if(pwd.trim()=="")
 		{
-			$('#pwd').focus();
+			$('#lpwd').focus();
 			return;
 		}
 		
@@ -81,22 +81,22 @@
 				
 				if(result=="NOID"){
 					alert("아이디가 존재하지 않습니다!!")
-					$('#id').val("");
-					$('#pwd').val("");
+					$('#lid').val("");
+					$('#lpwd').val("");
 					
-					$('#id').focus();
-					
-				}else if(result=="NOPWD"){
-					
-					alert("비밀번호가 틀립니다!!")
-					$('#pwd').val("");
-					$('#pwd').focus();
+					$('#lid').focus();
 					
 				}else if(result=="NOPWD"){
 					
 					alert("비밀번호가 틀립니다!!")
-					$('#pwd').val("");
-					$('#pwd').focus();
+					$('#lpwd').val("");
+					$('#lpwd').focus();
+					
+				}else if(result=="NOPWD"){
+					
+					alert("비밀번호가 틀립니다!!")
+					$('#lpwd').val("");
+					$('#lpwd').focus();
 					
 				}else{
 					
@@ -133,8 +133,8 @@
                                         <span>Please login using account detail bellow.</span>
                                     </div>
                                     <div class="login-form">
-                                            <input type="text" name="user-id" placeholder="ID" id="id">
-                                            <input type="password" name="user-password" placeholder="Password" id="pwd">
+                                            <input type="text" name="user-id" placeholder="ID" id="lid">
+                                            <input type="password" name="user-password" placeholder="Password" id="lpwd">
                                             <div class="button-box">
                                                 <div class="login-toggle-btn">
                                                     <input type="checkbox">
