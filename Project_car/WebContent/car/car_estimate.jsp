@@ -180,7 +180,59 @@ button#selected_option {
 			}
 		});
 		
-		
+		$('.pay_btn').click(function() {
+			var estimate_car_price = $('.car_price').text().replace(/,/g , '');
+			var estimate_option_price = $('.total_option_price').text().replace(/,/g , '');
+			var estimate_total_price = parseInt(estimate_car_price) + parseInt(estimate_option_price);	
+			
+			var model_num = $('.model_num').val();
+			var trim_num = $('.optionBtn').val();	
+			
+			if($("#installment").css("display") == "none"){
+				$.ajax({
+					type : 'post',
+					url : 'estimate_ok.do',
+					data : {
+						"estimate_car_price" : estimate_car_price,
+						"estimate_option_price" : estimate_option_price,
+						"estimate_total_price" : estimate_total_price,
+						"model_num" : model_num,
+						"trim_num" : trim_num,
+						"debt" : "no"
+					}
+				});
+				
+				window.location.href = "../mypage/mypage_main.do";
+				
+			}else{
+				var estimate_budget = $('#budget').text().replace(/,/g , '');
+				var estimate_debt = $('.debt').text().replace(/,/g , ''); 	
+				var estimate_months = $('.months').text().replace(/[^0-9]/g, '');	
+				var monthly_installment = Math.floor(parseInt(estimate_debt) / parseInt(estimate_months)); 	
+				
+				$.ajax({
+					type : 'post',
+					url : 'estimate_ok.do',
+					data : {
+						"estimate_car_price" : estimate_car_price,
+						"estimate_option_price" : estimate_option_price,
+						"estimate_total_price" : estimate_total_price,
+						"estimate_budget" : estimate_budget,
+						"estimate_debt" : estimate_debt,
+						"estimate_months" : estimate_months,
+						"monthly_installment" : monthly_installment,
+						"model_num" : model_num,
+						"trim_num" : trim_num,
+						"debt" : "yes"
+					}
+				});
+				
+				window.location.href = "../mypage/mypage_main.do";
+				
+			}
+			
+			
+		});
 	});
 	
 	function numberWithCommas(x) {
@@ -244,7 +296,7 @@ button#selected_option {
 			    		var months = $('.buttonGroup-button.selected').text();
 			   			$('td.months').text(months);
 			   			
-			   			var numberMonths = parseInt(months.replace(/[^0-9]/g));
+			   			var numberMonths = parseInt(months.replace(/[^0-9]/g), '');
 			   			var monthly = Math.floor(debt / numberMonths);
 			   			
 			   			//할부 기간이 길어서 월 납입 금액이 음수가 될 때
@@ -255,8 +307,7 @@ button#selected_option {
 			   				$('.option_recipe_monthly').text(numberWithCommas(monthly)+'원');
 			   				
 			   				//견적 요청 버튼
-			   				$('.pay_btn').show();
-			   				
+			   				$('.pay_btn').show();			   				
 			   			}
 		    			
 		    		}else{
@@ -267,8 +318,7 @@ button#selected_option {
 	    	}else if($("#installment").css("display") == "none"){
 	    		//할부 없이 견적 요청
 	    		$('#installmentInfo').hide();
-	    		$('.pay_btn').show();
-	    		
+	    		$('.pay_btn').show();	    		
 	    	}
 	    	
 	    	
@@ -299,7 +349,7 @@ button#selected_option {
 								<ul>
 									<c:forEach var="trimvo" items="${trimlist}">
 										<c:if test="${modelvo.model_num eq trimvo.model_num}">
-											<li>
+											<li class="model_num" value="${trimvo.model_num}">
 												<div class="item name">${trimvo.trim_name}</div>
 												<div class="item fuel">${trimvo.trim_fuel_type}</div>
 												<div class="item engine">${trimvo.trim_cc}</div>

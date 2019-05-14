@@ -3,6 +3,9 @@ package com.sist.vo;
 import java.util.Date;
 
 public class Car_estimateVO {
+	private String id;
+	private String model_num;
+	private String trim_num;
 	private Date estimate_date;
 	private int estimate_car_price;
 	private int estimate_option_price;
@@ -12,6 +15,24 @@ public class Car_estimateVO {
 	private int estimate_months;
 	private int monthly_installment;
 	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getModel_num() {
+		return model_num;
+	}
+	public void setModel_num(String model_num) {
+		this.model_num = model_num;
+	}
+	public String getTrim_num() {
+		return trim_num;
+	}
+	public void setTrim_num(String trim_num) {
+		this.trim_num = trim_num;
+	}
 	public Date getEstimate_date() {
 		return estimate_date;
 	}

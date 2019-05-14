@@ -90,11 +90,6 @@ public class CarDetailDAO {
 		return vo;
 	}
 	
-	
-	
-	
-	
-	
 	public static List<Car_optionVO> carOptionData(String trim_num){
 		List<Car_optionVO> list=new ArrayList<Car_optionVO>();
 		SqlSession session = null;
@@ -109,4 +104,35 @@ public class CarDetailDAO {
 		}
 		return list;
 	}
+	
+	public static void estimate_without(Car_estimateVO vo){
+		SqlSession session = null;
+		
+		try {
+			session = ssf.openSession(true);
+			session.insert("estimate_without", vo);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (session != null)
+				session.close();
+		}
+	}
+	
+	public static void estimate_with(Car_estimateVO vo){
+		SqlSession session = null;
+		
+		try {
+			session = ssf.openSession(true);
+			session.insert("estimate_with", vo);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (session != null)
+				session.close();
+		}
+	}
+	
+	
+	
 }

@@ -60,4 +60,21 @@
 		WHERE car.car_num=car_model.car_num AND car_model.model_num=car_trim.model_num AND car_trim.trim_num=car_option.trim_num
 		        AND car_option.trim_num=#{trim_num}
 	</select>
+	
+	<insert id="estimate_with" parameterType="Car_estimateVO">
+		INSERT INTO car_estimate VALUES(
+			#{id}, #{model_num}, #{trim_num}, SYSDATE, #{estimate_car_price}, 
+			#{estimate_option_price}, #{estimate_total_price},
+			 #{estimate_budget}, #{estimate_debt}, #{estimate_months}, #{monthly_installment}
+		)
+	</insert>
+	
+	<insert id="estimate_without" parameterType="Car_estimateVO">
+		INSERT INTO car_estimate 
+		(id, model_num, trim_num, ESTIMATE_DATE, estimate_car_price, estimate_option_price, estimate_total_price) 
+		VALUES(
+			#{id}, #{model_num}, #{trim_num}, SYSDATE, #{estimate_car_price}, 
+			#{estimate_option_price}, #{estimate_total_price} 						
+		)
+	</insert>
 </mapper>
