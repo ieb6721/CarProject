@@ -19,14 +19,14 @@
 	    FROM acc
 	    WHERE id=#{id}
 	</select>
-	 
+	--> 
 	
-	<select id="accPay" resultType="AccPAYVO" parameterType="String">
+	<select id="accPay" resultType="AccTotalVO" parameterType="String">
 	   SELECT  acc.product_name, acc.product_main_img, acc.product_id, acc.product_origin_price, acc.product_origin_price, acc.product_dc_price, acc_pay.quantity 
        FROM acc_pay,acc 
        WHERE acc_pay.product_id=acc.product_id AND acc_pay.id=#{id}
 	</select>
- -->
+ 
 </mapper>
 
 
