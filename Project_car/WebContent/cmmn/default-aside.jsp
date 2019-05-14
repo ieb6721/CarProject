@@ -123,8 +123,8 @@ div.no{
 					<div class="post-body">
 						<a href="../car/car_detail.do?cno=${cardata1.car_num }"> <img
 							src="../images/aside/${i.index+1}.JPG" width="30" height="30">
-							&nbsp; <img src="${cardata1.car_poster }" width=110 height=110>
-							&nbsp;&nbsp;<font size="1" style="font-weight: bold;">${cardata1.car_name}</font>
+							&nbsp; <img src="${cardata1.car_poster }" width=90 height=90>
+							&nbsp;&nbsp;<font size="2" style="font-weight: bold;">${cardata1.car_name}</font>
 						</a>
 					</div>
 				</c:forEach>
@@ -135,8 +135,8 @@ div.no{
 					<div class="post-body">
 						<a href="../car/car_detail.do?cno=${cardata2.car_num }"> <img
 							src="../images/aside/${i.index+1}.JPG" width="30" height="30">
-							&nbsp; <img src="${cardata2.car_poster }" width=110 height=110>
-							&nbsp;&nbsp;<font size="1" style="font-weight: bold;">${cardata2.car_name}</font>
+							&nbsp; <img src="${cardata2.car_poster }" width=90 height=90>
+							&nbsp;&nbsp;<font size="2" style="font-weight: bold;">${cardata2.car_name}</font>
 						</a>
 					</div>
 				</c:forEach>
@@ -148,8 +148,8 @@ div.no{
 					<div class="post-body">
 						<a href="../car/car_detail.do?cno=${cardata3.car_num }"> <img
 							src="../images/aside/${i.index+1}.JPG" width="30" height="30">
-							&nbsp; <img src="${cardata3.car_poster }" width=110 height=110>
-							&nbsp;&nbsp;<font size="1" style="font-weight: bold;">${cardata3.car_name}</font>
+							&nbsp; <img src="${cardata3.car_poster }" width=90 height=90>
+							&nbsp;&nbsp;<font size="2" style="font-weight: bold;">${cardata3.car_name}</font>
 						</a>
 					</div>
 				</c:forEach>
@@ -169,7 +169,7 @@ div.no{
 					<div class="acc-img">
 						<a href="http://localhost:8080/Project_car/acc/accDetail.do?product_id=${accList.product_id }"> <img class="acc_img"
 							src="${accList.product_main_img }" width=100 height=100>
-							&nbsp;${accList.product_name }
+							&nbsp;<font size="2" style="font-weight: bold;">${accList.product_name }</font>
 						</a>
 					</div>
 				</div>

@@ -156,9 +156,9 @@ header {
 }
 /* ========car-ranking=========*/
 .car-popularity-ranking {
-	border-bottom: 1px;
-	border-bottom-style: solid;
-	border-bottom-color: gray;
+	border-top: 1px;
+	border-top-style: solid;
+	border-top-color: gray;
 }
 
 .car-ranking:hover {
