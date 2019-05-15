@@ -67,17 +67,17 @@ public class MainModel {
 		return "main.jsp";
 	}
 	
-	
 //	차량 관련 동영상
-	@RequestMapping("main/test.do")
+	@RequestMapping("main/test0.do")
 	public String popup(HttpServletRequest request)
 	{
-		return "test.jsp";
+		return "test0.jsp";
 	}
 	
 	@RequestMapping("main/test1.do")
 	public String popup1(HttpServletRequest request)
 	{
+		
 		return "test1.jsp";
 	}
 	

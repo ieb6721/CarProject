@@ -12,65 +12,26 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript" src="../shadow/js/shadowbox.js"></script>
 <script type="text/javascript">
-Shadowbox.init({
-	players:["iframe"]
-});
-function video()
-{
-	Shadowbox.open({
-		content:'../main/test.do',
-		player:'iframe',
-		width:602,
-		height:352
-	});
-}
-function video1()
-{
-	Shadowbox.open({
-		content:'../main/test1.do',
-		player:'iframe',
-		width:602,
-		height:352
-	});
-}
-function video2()
-{
-	Shadowbox.open({
-		content:'../main/test2.do',
-		player:'iframe',
-		width:602,
-		height:352
-	});
-}
-function video3()
-{
-	Shadowbox.open({
-		content:'../main/test3.do',
-		player:'iframe',
-		width:602,
-		height:352
-	});
-}
-function video4()
-{
-	Shadowbox.open({
-		content:'../main/test4.do',
-		player:'iframe',
-		width:602,
-		height:352
-	});
-}
-function video5()
-{
-	Shadowbox.open({
-		content:'../main/test5.do',
-		player:'iframe',
-		width:602,
-		height:352
-	});
-}
 
+	Shadowbox.init({
+		players : [ "iframe" ]
+	});
+
+	$(function() {
+		$('.carVideo').click(function() {
+			var no = $(this).attr('video-data');
+			/* alert(no); */
+			
+			 Shadowbox.open({
+					content : 'test'+no+'.do',
+					player : 'iframe',
+					width : 602,
+					height : 352
+				});
+		});
+	});
 </script>
+
 <style type="text/css">
 /* 기사 img*/
 /**/
@@ -350,46 +311,37 @@ header {
 							<h3 class="movie-title">자동차 관련 영상</h3>
 							<div class="car-video-box">
 								<div class="box1">
-									<div class="col-sm-8 car-video">
-										<a href="javascript:void(0)" onclick="video()">
-											<img src="https://i.ytimg.com/vi/ZIoTZo8p12g/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLARWyKk2_s8BxLoCr3pSdDQ9hO0Jw"
+									
+									<div class="col-sm-8 car-video carVideo" video-data="0">
+											<img src="https://i.ytimg.com/vi/ZIoTZo8p12g/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLARWycarVideo2_s8BxLoCr3pSdDQ9hO0Jw"
 											style="width: 500px; height: 305px;" />
-										</a>
 									</div>
-									<div class="col-sm-4 car-video1">
-										<a href="javascript:void(0)" onclick="video1()">
+									
+									<div class="col-sm-4 car-video1 carVideo" video-data="1">
 											<img src="https://i.ytimg.com/vi/w1psOj77-4E/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBYvyEedX2PmmTW5Sg29ZMAObuPOA"
 											style="width: 220px; height: 142px;" />
-										</a>
 									</div>
-									<div class="col-sm-4 car-video1">
-										<a href="javascript:void(0)" onclick="video2()">
+									
+									<div class="col-sm-4 car-video1 carVideo" video-data="2">
 											<img src="https://i.ytimg.com/vi/g-L0QAJo6W4/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLC_diaOEsdL-UrMpZ7feh1hzXeheg"
 											style="width: 220px; height: 142px;" />
-										</a>
 									</div>
 								</div>
 
 								<div class="box2">
-									<div class="col-sm-4 car-video1">
-										<a href="javascript:void(0)" onclick="video3()">
+									<div class="col-sm-4 car-video1 carVideo" video-data="3">
 											<img src="https://i.ytimg.com/vi/4RqNYxLfEmY/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLCxlTTsBoGaygL73GyRgqdKVsufAg"
 											style="width: 220px; height: 143px;" />
-										</a>
 									</div>
 
-									<div class="col-sm-4 car-video1">
-										<a href="javascript:void(0)" onclick="video4()">
+									<div class="col-sm-4 car-video1 carVideo" video-data="4">
 											<img src="https://i.ytimg.com/vi/znV572zbOeM/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLDD37vHJC84QqChWCDJIkM_n0-dMw"
 											style="width: 220px; height: 143px;" />
-										</a>
 									</div>
 
-									<div class="col-sm-4  car-video1">
-										<a href="javascript:void(0)" onclick="video5()">
+									<div class="col-sm-4  car-video1 carVideo" video-data="5">
 											<img src="https://i.ytimg.com/vi/VBxCm5TYktM/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLCZYHBRxRJ3_qCgulsCWxlgE-6qZw"
 											style="width: 220px; height: 142px;" />
-										</a>
 									</div>
 								</div>
 							</div>
