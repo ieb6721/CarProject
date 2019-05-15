@@ -81,7 +81,7 @@
 				<li><a href="#"><i class="fa fa-twitter"></i></a></li>
 				<li><a href="#"><i class="fa fa-instagram"></i></a></li>
 				<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-				<c:if test="${sessionScope.id==null }">
+				<c:if test="${sessionScope.id==null }"> 
                 <li><a href="#" onclick="pageSubmitFn('login')">·Î±×ÀÎ</a></li>
                 </c:if>
                <c:if test="${sessionScope.id!=null }">
