@@ -441,13 +441,9 @@ h2.monthH2{padding-left: 30px;}
 				 		<tr>
 				  			<td>      
 				  			 <select name="month" id="m" year="${year }">
-						 	 	<c:forEach var="i" begin="5" end="12" >
+
+								<c:forEach var="i" begin="${month }" end="12" >
 									<option value="${i }">${i } </option>
-									<c:if test="${i } gt > 12" >
-										<c:forEach var="j" begin="1" end="4">
-											<option value="${i }"> </option>
-										</c:forEach>
-									</c:if>
 								</c:forEach>
 				  			 </select>
 				  			</td>

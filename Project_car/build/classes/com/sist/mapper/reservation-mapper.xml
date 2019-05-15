@@ -4,7 +4,7 @@
 
 <mapper namespace="com.sist.mapper.reservation-mapper">
 	<insert id="reserveInsertData" parameterType="Driver_reserveVO">
-		INSERT INTO driver_reserve VALUES(#{model}, #{reserve_date}, #{passenger}, #{id}, #{agency_name}, #{tel}, 0)
+		INSERT INTO driver_reserve VALUES(#{model}, #{reserve_date}, #{passenger}, #{id}, #{agency_name}, #{tel}, 0, (SELECT NVL(MAX(no)+1,1) FROM driver_reserve))
 	</insert>	
 	
 </mapper>

@@ -8,6 +8,7 @@ public class Driver_reserveVO {
 	private String agency_name;
 	private String tel;
 	private int approval_num;
+	private int no;
 	
 	public int getApproval_num() {
 		return approval_num;
@@ -50,6 +51,12 @@ public class Driver_reserveVO {
 	}
 	public void setAgency_name(String agency_name) {
 		this.agency_name = agency_name;
+	}
+	public int getNo() {
+		return no;
+	}
+	public void setNo(int no) {
+		this.no = no;
 	}
 	
 	
