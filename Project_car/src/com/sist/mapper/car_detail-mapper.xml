@@ -53,6 +53,25 @@
 	WHERE num = 1
 	</select>
 	
+	<select id="nopriceList" resultType="String">
+		SELECT car_num 
+		from car 
+		where car_price = '미정'
+	</select>
+	
+	<select id="nopriceRand" parameterType="String" resultType="CarVO">
+		<![CDATA[
+			SELECT S.*
+			FROM (
+				SELECT *
+				FROM car
+				WHERE car_price = '미정' AND car_num != #{car_num}
+				ORDER BY DBMS_RANDOM.VALUE
+			)S
+			WHERE ROWNUM < 2    
+		]]>
+	</select>
+	
 	<select id="carOptionData" resultType="Car_optionVO" parameterType="String">
 		SELECT car_model.car_num,car_model.model_num,car_model.model_name,car_trim.trim_num,car_trim.trim_name,
 		        car_option.option_name,car_option.option_price

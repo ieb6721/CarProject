@@ -215,26 +215,24 @@ $(function(){
 							<!-- 최근 본 자동차 목록 -->
 							<div class="sidebar-widget">
 								<h3 class="sidebar-widget">최근 본 목록</h3>
-								<c:forEach var="vo" items="${cookielist }">
+								<c:forEach var="vo" items="${cookieList }" varStatus="s">
 									<div class="best-seller">
-										<c:if test="${cookielist.size() == 0 }">
-											<h4>18</h4>
+										<c:if test="${cookieList.size() == 0 }">
+											<h5>최근 본 목록이 없습니다.</h5>
 										</c:if>	
-										<c:if test="${cookielist.size() != 0 }">
+										
+										<c:if test="${cookieList.size() != 0 && s.index<10}">											
 											<div class="single-best-seller">
 												<div class="best-seller-img">
-													<a href="#"><img src="${vo.car_poster }" alt=""></a>
+													<a href="car_detail.do?cno=${vo.car_num }"><img src="${vo.car_poster }" alt="" width="200px" height="90px"></a>
 												</div>
 												<div class="best-seller-text">
 													<h3>
-														<a href="#">${vo.car_name }</a>
+														<a href="car_detail.do?cno=${vo.car_num }">${vo.car_name }</a>
 													</h3>
 													<span>${vo.car_price }</span>
-													
-													<div class="product-compare">
-														<ul><li><a href="#"><span><i class="fa fa-trash-o" aria-hidden="true"></i></span></a></li></ul>
-													</div>											
-												</div>
+													<hr>																							
+												</div>												
 											</div>
 										</c:if>																		
 									</div>
@@ -250,13 +248,12 @@ $(function(){
 								<h4>인생 뽑차 구매</h4>
 							</div>
 							<div class="product-sorting">
-								<div class="shop-product-sorting nav">
-									<a class="active" href="car.do?cateNo=1">전체 </a>
-									<a href="car.do?cateNo=2">최신순 </a> 
-									<a href="car.do?cateNo=3">연비순 </a> 
-									<a href="car.do?cateNo=4">가격순</a>
+								<div class="shop-product-sorting nav cate">								
+									<a class="active" href="car.do?cateNo=1">전체 </a>								
+									<a class="" href="car.do?cateNo=2">최신순 </a>								 
+									<a class="" href="car.do?cateNo=3">연비순 </a>								
+									<a class="" href="car.do?cateNo=4">가격순</a>								
 								</div>
-
 							</div>
 						</div>
 						
@@ -294,102 +291,13 @@ $(function(){
 				</div>
 			</div>
 		</div>
+		
 
 
-		<!-- modal -->
-		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-			aria-hidden="true">
-			<button type="button" class="close" data-dismiss="modal"
-				aria-label="Close">
-				<span class="icofont icofont-close" aria-hidden="true"></span>
-			</button>
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-body">
-						<div class="qwick-view-left">
-							<div class="quick-view-learg-img">
-								<div class="quick-view-tab-content tab-content">
-									<div class="tab-pane active show fade" id="modal1"
-										role="tabpanel">
-										<img src="../images/car_img/quick-view/l1.jpg" alt="">
-									</div>
-									<div class="tab-pane fade" id="modal2" role="tabpanel">
-										<img src="../images/car_img/quick-view/l2.jpg" alt="">
-									</div>
-									<div class="tab-pane fade" id="modal3" role="tabpanel">
-										<img src="../images/car_img/quick-view/l3.jpg" alt="">
-									</div>
-								</div>
-							</div>
-							<div class="quick-view-list nav" role="tablist">
-								<a class="active" href="#modal1" data-toggle="tab" role="tab">
-									<img src="../images/car_img/quick-view/s1.jpg" alt="">
-								</a> <a href="#modal2" data-toggle="tab" role="tab"> <img
-									src="../images/car_img/quick-view/s2.jpg" alt="">
-								</a> <a href="#modal3" data-toggle="tab" role="tab"> <img
-									src="../images/car_img/quick-view/s3.jpg" alt="">
-								</a>
-							</div>
-						</div>
-						<div class="qwick-view-right">
-							<div class="qwick-view-content">
-								<h3>Aeri Carbon Helmet</h3>
-								<div class="price">
-									<span class="new">$90.00</span> <span class="old">$120.00
-									</span>
-								</div>
-								<div class="rating-number">
-									<div class="quick-view-rating">
-										<i class="fa fa-star reting-color"></i> <i
-											class="fa fa-star reting-color"></i> <i
-											class="fa fa-star reting-color"></i> <i
-											class="fa fa-star reting-color"></i> <i
-											class="fa fa-star reting-color"></i>
-									</div>
-								</div>
-								<p>Lorem ipsum dolor sit amet, consectetur adip elit, sed do
-									tempor incididun ut labore et dolore magna aliqua. Ut enim ad
-									mi , quis nostrud veniam exercitation .</p>
-								<div class="quick-view-select">
-									<div class="select-option-part">
-										<label>Size*</label> <select class="select">
-											<option value="">- Please Select -</option>
-											<option value="">900</option>
-											<option value="">700</option>
-										</select>
-									</div>
-									<div class="select-option-part">
-										<label>Color*</label> <select class="select">
-											<option value="">- Please Select -</option>
-											<option value="">orange</option>
-											<option value="">pink</option>
-											<option value="">yellow</option>
-										</select>
-									</div>
-								</div>
-								<div class="quickview-plus-minus">
-									<div class="cart-plus-minus">
-										<input type="text" value="02" name="qtybutton"
-											class="cart-plus-minus-box">
-									</div>
-									<div class="quickview-btn-cart">
-										<a class="btn-style" href="#">add to cart</a>
-									</div>
-									<div class="quickview-btn-wishlist">
-										<a class="btn-hover" href="#"><i
-											class="icofont icofont-heart-alt"></i></a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
 
-		</div>
 	</div>
 	<jsp:include page="../cmmn/default-footer.jsp"></jsp:include>
-	<div class="footer-bottom ptb-35 black-bg">
+	<!-- <div class="footer-bottom ptb-35 black-bg">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 col-12">
@@ -408,7 +316,7 @@ $(function(){
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<!-- all js here -->
 	<script src="../js/car_js/bootstrap.min.js"></script>
 	<script src="../js/car_js/isotope.pkgd.min.js"></script>

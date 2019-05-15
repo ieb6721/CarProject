@@ -110,7 +110,7 @@ header {
 }
 
 .fullrow {
-	height: 1900px;
+	height: 1980px;
 }
 
 .video-box {
@@ -403,7 +403,12 @@ header {
 									<a href="../car/car_detail.do?cno=${p.car_num }"> 
 										<img src="${p.car_poster }"> 
 										<br><font size="3" style="font-weight: bold; color: balck;">${p.car_name }</font>
-										<br><font size="2" style="font-weight: bold;">${p.car_price }</font>만원
+										<c:if test="${!fn:contains(p.car_price,'미정') }">
+											<br><font size="2" style="font-weight: bold;">${p.car_price }</font>만원
+										</c:if>
+										<c:if test="${fn:contains(p.car_price,'미정') }">
+											<br><font size="2" style="font-weight: bold;">${p.car_price }</font>
+										</c:if>
 										<br><font size="2" style="font-weight: bold;">${p.car_launchDate }</font> 출시
 									</a>
 								</div>

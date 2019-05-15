@@ -8,6 +8,7 @@ import java.util.List;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.sist.controller.RequestMapping;
 import com.sist.dao.*;
@@ -19,21 +20,40 @@ public class AccModel {
 
 	@RequestMapping("acc/accDetail.do")
 	public String acc_detail(HttpServletRequest request ,HttpServletResponse response) {
-
+				
+		HttpSession session=request.getSession();
 		String product_id = request.getParameter("product_id");
-		String product_id1 = request.getParameter("product_id1");
-		
+		String id=(String)session.getAttribute("id");
+
 		AccVO vo = AccDAO.accDetailData(product_id);
-		Cookie cookie=new Cookie("product_id"+product_id,product_id);
+		
+		
+		//장바구니
+		Acc_payVO avo=new Acc_payVO();
+		avo.setId(id);
+		avo.setProduct_id(product_id);
+		
+		int count=AccDAO.accOkCount(avo);
+		request.setAttribute("count", count);
+		//장바구니 end
+		
+		
+		//최근 본 목록 쿠키 추가 
+		if(id==null)
+		{
+			id="NOID";
+		}
+		Cookie cookie=new Cookie(id+product_id,product_id);
 		cookie.setMaxAge(60*60*24);
 		response.addCookie(cookie);
+		//end
 		
-		Cookie[] cookies = request.getCookies();
+		
 		
 		List<AccVO> list=new ArrayList<AccVO>();
 		
 
-		for (int i = 0; i < cookies.length; i++) {
+		/*for (int i = 0; i < cookies.length; i++) {
 			if (cookies[i].getName().startsWith("product_id")) {
 				String value = cookies[i].getValue();
 				AccVO rvo = AccDAO.accDetailData(value);
@@ -41,10 +61,11 @@ public class AccModel {
 			}
 
 		}
-		
+		*/
 		
 	
 		request.setAttribute("list", list);
+		
 		
 
 		request.setAttribute("vo", vo);
@@ -52,9 +73,64 @@ public class AccModel {
 
 		return "../acc/accDetail.jsp";
 	}
-
+	
+	/*@RequestMapping("mypage/mypage_accCart.do")
+	public String mypage(HttpServletRequest request)
+	{
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
+		
+		//jjim
+		List<AccVO> aList=new ArrayList<AccVO>();
+		List<String> iList=AccDAO.accGetData(id);
+		
+		for(String product_id:iList)
+		{
+			AccVO v=AccDAO.accDetailData(product_id);
+			aList.add(v);
+		}
+		//jjim end
+		request.setAttribute("aList", aList);
+		System.out.println(aList.size());
+		//request.setAttribute("acc_jsp", "../mypage/mypage_accCart.jsp");
+		
+		return "../acc/acc.jsp";
+	}*/
 	@RequestMapping("acc/acc.do")
 	public String acc_list(HttpServletRequest request) {
+		
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
+		
+		Cookie[] cookies=request.getCookies();
+				
+		List<AccVO> cookieList1=new ArrayList<AccVO>();	
+		
+		if(id==null)
+		{
+			id="NOID";
+		}	
+		
+		for(int i=0; i<cookies.length; i++)
+		{
+			if(cookies[i].getName().startsWith(id))
+			{
+				String value=cookies[i].getValue();
+				
+				AccVO avo=AccDAO.accDetailData(value);
+				cookieList1.add(avo);
+			}
+		}
+		
+		List<AccVO> cookieList=new ArrayList<AccVO>();
+		for(int i=cookieList1.size()-1;i>=0;i--)
+		   {
+			   AccVO v=cookieList1.get(i);
+			   cookieList.add(v);
+		   }
+		System.out.println(cookieList.size());
+		request.setAttribute("cookieList", cookieList);	
+		
 		String[] cateList = { "전체", "시트", "거치대", "가리개", "방향제", "목쿠션", "핸들커버", "먼지털이" };
 		String strPage = request.getParameter("page");
 		String no = request.getParameter("no");
@@ -118,6 +194,22 @@ public class AccModel {
 		request.setAttribute("alist", list);
 
 		return "acc_list.jsp";
+	}
+	//cart Insert
+	@RequestMapping("acc/acc_insert.do")
+	public String acc_insert(HttpServletRequest request)
+	{
+		String product_id=request.getParameter("product_id");
+		//Insert
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
+		
+		Acc_payVO vo=new Acc_payVO();
+		vo.setId(id);
+		vo.setProduct_id(product_id);
+		
+		AccDAO.accInsert(vo);
+		return "redirect:../acc/accDetail.do?product_id="+product_id;
 	}
 
 

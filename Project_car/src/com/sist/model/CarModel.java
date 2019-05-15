@@ -2,6 +2,8 @@ package com.sist.model;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.sist.controller.RequestMapping;
 import com.sist.dao.CarDAO;
@@ -13,25 +15,38 @@ public class CarModel {
 
 	@RequestMapping("car/car.do")
 	public String car_list(HttpServletRequest request) 
-	{			
-		System.out.println("carModel");
-		//
+	{	
+		//최근본 목록
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
+		
 		Cookie[] cookies=request.getCookies();
+				
+		List<CarVO> cookieList1=new ArrayList<CarVO>();	
 		
-		
-		List<CarVO> coockeList=new ArrayList<CarVO>();
+		if(id==null)
+		{
+			id="NOID";
+		}	
 		
 		for(int i=0; i<cookies.length; i++)
 		{
-			if(cookies[i].getName().startsWith("cno"))
+			if(cookies[i].getName().startsWith(id))
 			{
 				String value=cookies[i].getValue();
 				CarVO cvo=CarDetailDAO.carDetailData(value);
-				coockeList.add(cvo);
+				cookieList1.add(cvo);
 			}
 		}
 		
-		request.setAttribute("cookielist", coockeList);		
+		List<CarVO> cookieList=new ArrayList<CarVO>();
+		for(int i=cookieList1.size()-1;i>=0;i--)
+		   {
+			   CarVO v=cookieList1.get(i);
+			   cookieList.add(v);
+		   }
+		
+		request.setAttribute("cookieList", cookieList);		
 		//
 		
 		String strPage=request.getParameter("page");	

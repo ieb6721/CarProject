@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <div class="htc__product__rightidebar">
 	<!-- Start Product View -->
 	<div class="row">
@@ -27,28 +29,27 @@
 												</tr>
 											</thead>
 											<tbody>
-												<c:forEach var="vo" items="${list1 }">
+												<c:forEach var="vo" items="${list }">
 												<tr>
-													<td class="product-thumbnail"><a href="#"><img
-															src="${vo.product_main_img }" /></a></td>
-													<td class="product-name"><a href="#">${vo.product_name }</a></td>
-													<td class="product-price">
+													<td class="product-thumbnail"><a href="../acc/accDetail.do?product_id=${vo.product_id }">
+													<img src="${vo.product_main_img }" /></a></td>
+													<td class="product-name" style="padding-top: 80px;">
+													<a href="../acc/accDetail.do?product_id=${vo.product_id }">${vo.product_name }</a></td>
+													<td class="product-price" style="padding-top: 70px;">
 													<ul class="pro__prize">
-															<li class="old__prize">${vo.product_orgin_price }</li>
-															<li>${vo.product_dc_price }</li>
+															<li class="old__prize">${vo.product_origin_price }</li>
+															<li id="price">${vo.product_dc_price }</li>
 														</ul>
 													</td>
-											</tr>
-											</c:forEach>
-											  <c:forEach var="vo" items="${list2 }">
-											  <tr>
-													<td class="product-quantity">${vo.quantity }</td>
-													<td class="product-subtotal">￡165.00</td>
+													<td class="product-quantity" id="quantity" style="padding-top: 80px;">${vo.quantity }</td>
+													<c:set var="t" value="${vo.product_dc_price }"/>
+												    <td class="product-subtotal" id="total" style="padding-top: 80px;">${fn : replace (t, ",", "")*vo.quantity}원</td>
 												</tr>
-											</c:forEach>
+							           	</c:forEach>
 											</tbody>
 										</table>
-									</div>								
+									</div>
+
 								</form>
 							</div>
 						</div>
@@ -59,4 +60,3 @@
 		</div>
 	</div>
 </div>
-
