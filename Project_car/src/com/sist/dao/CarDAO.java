@@ -81,26 +81,26 @@ public class CarDAO {
 	}
 		
 	//가격순 자동차 리스트
-		public static List<CarVO> carListPrice(Map map)
+	public static List<CarVO> carListPrice(Map map)
+	{
+		List<CarVO> list=new ArrayList<CarVO>();
+		SqlSession session=null;		
+		try
 		{
-			List<CarVO> list=new ArrayList<CarVO>();
-			SqlSession session=null;		
-			try
-			{
-				session=ssf.openSession();	//connection연결
-				list=session.selectList("carListPrice",map);			
-			}
-			catch(Exception ex)
-			{
-				ex.printStackTrace();
-			}
-			finally
-			{
-				if(session!=null)
-					session.close();
-			}
-			return list;
+			session=ssf.openSession();	//connection연결
+			list=session.selectList("carListPrice",map);			
 		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		return list;
+	}
 	
 	//자동차 브랜드
 	public static List<BrandVO> carBrandData()

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 
 <html>
@@ -32,7 +32,7 @@
 
 <style type="text/css">
 .col-lg-6 {width: 30%; }
-.product-price {padding-top: 10px; }
+
 div.price input {
 	width: 20%;
 	height: 25px;
@@ -58,7 +58,15 @@ div.price input {
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
+	
+	var offset = $(".container-fluid").offset();
+	
+	var cate = ${cateNo};		
+	$('.cate').children().removeClass('active');
+	$('#cate'+cate).addClass('active');		
+	
 	$('#findBtn').click(function(){
+		$('html, body').animate({scrollTop : offset.top});
 		var keyword=$('#keyword').val();
 		if(keyword.trim()=="")
 		{
@@ -80,7 +88,8 @@ $(function(){
 	
 	$('#findPriceBtn').click(function(){
 		var lowPrice=$('#lowPrice').val();
-		var highPrice=$('#highPrice').val();			
+		var highPrice=$('#highPrice').val();	
+		$('html, body').animate({scrollTop : offset.top});
 		
 		$.ajax({
 			type:'post',
@@ -94,6 +103,10 @@ $(function(){
 	});
 	
 	$('#findDetailBtn').click(function(){
+		
+		
+	    $('html, body').animate({scrollTop : offset.top});
+	    
 		var carsizeArr=[];
 		var carfueltypeArr=[];
 		$("input[name=chk1]:checked").each(function(){
@@ -249,10 +262,10 @@ $(function(){
 							</div>
 							<div class="product-sorting">
 								<div class="shop-product-sorting nav cate">								
-									<a class="active" href="car.do?cateNo=1">전체 </a>								
-									<a class="" href="car.do?cateNo=2">최신순 </a>								 
-									<a class="" href="car.do?cateNo=3">연비순 </a>								
-									<a class="" href="car.do?cateNo=4">가격순</a>								
+									<a id="cate1" class="active" href="car.do?cateNo=1">전체 </a>								
+									<a id="cate2" class="" href="car.do?cateNo=2">최신순 </a>								 
+									<a id="cate3" class="" href="car.do?cateNo=3">연비순 </a>								
+									<a id="cate4" class="" href="car.do?cateNo=4">가격순</a>								
 								</div>
 							</div>
 						</div>
@@ -264,8 +277,8 @@ $(function(){
 							<div class="paginations text-center mt-20">
 								<ul>
 									<c:if test="${curpage>BLOCK }">
-										<li><a
-											href="car.do?page=${startPage-1 }&cateNo=${cateNo}"><i
+										<li>
+										<a href="car.do?page=${startPage-1 }&cateNo=${cateNo}"><i
 												class="fa fa-angle-left"></i></a></li>
 									</c:if>
 									<c:forEach var="i" begin="${startPage }" end="${endPage }">
@@ -297,26 +310,7 @@ $(function(){
 
 	</div>
 	<jsp:include page="../cmmn/default-footer.jsp"></jsp:include>
-	<!-- <div class="footer-bottom ptb-35 black-bg">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-12">
-					<div class="copyright">
-						<p>
-							©Copyright, 2018 All Rights Reserved by <a
-								href="https://freethemescloud.com/">Free themes Cloud</a>
-						</p>
-					</div>
-				</div>
-				<div class="col-md-4 col-12">
-					<div class="footer-payment-method">
-						<a href="#"><img alt=""
-							src="../images/car_img/icon-img/payment.png"></a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> -->
+
 	<!-- all js here -->
 	<script src="../js/car_js/bootstrap.min.js"></script>
 	<script src="../js/car_js/isotope.pkgd.min.js"></script>

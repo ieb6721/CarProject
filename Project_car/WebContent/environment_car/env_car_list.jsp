@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html>
 <head>
@@ -30,13 +31,106 @@
 
 <style type="text/css">
 .col-lg-6 {width: 30%; }
-.product-price {padding-top: 10px; }
+
+div.price input {
+	width: 20%;
+	height: 25px;
+}
 div.price input {
 	width: 20%;
 	height: 25px;
 }
 
+.button-group input{
+  display: none;
+}
+
+.button-group input:checked + label,
+.button-group input:checked + label:active {
+  color: white;
+  background-color: #ffb52f;
+}
+
+.product-tags .button-group label:hover {
+    border: 1px solid #ffb52f;
+    background-color: #ffb52f;
+    color: #fff;
+}
+
 </style>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	
+	var offset = $(".container-fluid").offset();
+	
+	var cate = ${cateNo};		
+	$('.cate').children().removeClass('active');
+	$('#cate'+cate).addClass('active');		
+	
+	$('#findBtn').click(function(){
+		$('html, body').animate({scrollTop : offset.top});
+		var keyword=$('#keyword').val();
+		if(keyword.trim()=="")
+		{
+			alert("검색어 입력");
+			$('#keyword').focus();
+			return;
+		}			
+		
+		$.ajax({
+			type:'post',
+			url:'env_car_search.do',
+			data:{"keyword":keyword},
+			success:function(response)
+			{
+				$('#print').html(response)
+			}
+		});
+	});
+	
+	$('#findPriceBtn').click(function(){
+		$('html, body').animate({scrollTop : offset.top});
+		var lowPrice=$('#lowPrice').val();
+		var highPrice=$('#highPrice').val();			
+		
+		$.ajax({
+			type:'post',
+			url:'env_carPrice_search.do',
+			data:{"lowPrice":lowPrice, "highPrice":highPrice},
+			success:function(response)
+			{
+				$('#print').html(response)
+			}
+		});
+	});
+	
+	$('#findDetailBtn').click(function(){
+		$('html, body').animate({scrollTop : offset.top});
+		var carsizeArr=[];
+		var carfueltypeArr=[];
+		$("input[name=chk1]:checked").each(function(){
+			carsizeArr.push($(this).val());
+		});
+		$("input[name=chk2]:checked").each(function(){
+			carfueltypeArr.push($(this).val());
+		});				
+		
+		$.ajax({
+			type:'post',
+			url:'env_carDetail_search.do',
+			traditional : true,
+			data:{"carsizeArr":carsizeArr, "carfueltypeArr":carfueltypeArr},
+			success:function(response)
+			{	
+				$('#print').html(response)
+			}
+		});
+	});
+});
+</script>
+
 </head>
 <body>
 	<div class="wrapper">
@@ -60,16 +154,7 @@ div.price input {
 					
 					<!-- 왼쪽 사이드바 -->
 					<div class="col-lg-3">
-						<div class="product-sidebar-area pr-60">
-							<div class="sidebar-widget pb-55">
-								<h3 class="sidebar-widget">Search Products</h3>
-								<div class="sidebar-search">
-									<form action="#">
-										<input type="text" placeholder="Search Products...">
-										<button><i class="ti-search"></i></button>
-									</form>
-								</div>
-							</div>
+						<div class="product-sidebar-area pr-60">							
 							<div class="sidebar-widget pb-50">
 								<h3 class="sidebar-widget">categories</h3>
 								<div class="widget-categories">
@@ -80,77 +165,75 @@ div.price input {
 									</ul>
 								</div>							
 							</div>
+							<!-- 자동차 검색(차 이름) -->
+							<div class="sidebar-widget pb-55" style="margin-bottom: 0px;">
+								<h3 class="sidebar-widget">Search Car</h3>
+								<div class="sidebar-search">
+									<form>
+										<input type="text" placeholder="Search Products..." id="keyword">										
+										<button type="button" id="findBtn">
+											<i class="ti-search"></i>											
+										</button>
+									</form>
+								</div>
+							</div>
+							
+							<!-- 자동차 검색(가격) -->
 							<div class="sidebar-widget mb-55">
 								<h3 class="sidebar-widget">by price</h3>
 								<div class="price_filter mr-60">
 									<div class="price_slider_amount">
 										<div class="price">
-											<input type="text" name="minprice"/> 만원 ~ 
-											<input type="text" name="minprice"/> 만원  					
-										    <button type="button" class="btn btn-xs btn-warning"><i class="ti-search"></i></button>
+											<form>
+												<input type="text" name="minprice" id="lowPrice"/> 만원 ~ 
+												<input type="text" name="minprice" id="highPrice"/> 만원  					
+											    <button type="button" class="btn btn-xs btn-warning" id="findPriceBtn">
+											    	<i class="ti-search"></i>
+											    </button>
+										    </form>
 										</div>
 									</div>
 								</div>
 							</div>
-							<div class="sidebar-widget mb-55">
-								<h3 class="sidebar-widget">Recently Viewed</h3>
-								<div class="product-compare">
-									<ul>
-										<li><a href="#">Gloriori GSX 250 R <span>
-											<i class="fa fa-trash-o"></i></span></a>
-										</li>
-										<li><a href="#">Klager GSX 250 R<span>
-											<i class="fa fa-trash-o" aria-hidden="true"></i></span></a>
-										</li>
-										<li><a href="#">Maxclon ZPE 54 <span>
-											<i class="fa fa-trash-o" aria-hidden="true"></i></span></a>
-										</li>
-									</ul>
-								</div>
-								<div class="compare-text-btn">
-									<div class="compare-text">
-										<h5>Clear All</h5>
-									</div>									
-								</div>
-							</div>
-							<div class="sidebar-widget">
-								<h3 class="sidebar-widget">best seller</h3>
-								<div class="best-seller">
-									<div class="single-best-seller">
-										<div class="best-seller-img">
-											<a href="#"><img
-												src="../images/car_img/product/product-12.jpg" alt=""></a>
-										</div>
-										<div class="best-seller-text">
-											<h3>
-												<a href="#">Minimal White Shoes</a>
-											</h3>
-											<span>$39.9</span>
-										</div>
+							
+							<!-- 자동차 상세검색(체크박스) -->
+							<div class="sidebar-widget mb-45">
+								<h3 class="sidebar-widget">Detail Search</h3>
+								<div class="product-tags">
+									<div class="button-group">
+										<h6>차종</h6>
+											<input id="checkbox1" type="checkbox" value="경형" name="chk1"> 
+											<label class="button" for="checkbox1">경형</label> 
+											<input id="checkbox2" type="checkbox" value="소형" name="chk1"> 
+											<label class="button" for="checkbox2">소형</label> 
+											<input id="checkbox3" type="checkbox" value="준중형" name="chk1"> 
+											<label class="button" for="checkbox3">준중형</label>
+											<input id="checkbox4" type="checkbox" value="중형" name="chk1"> 
+											<label class="button" for="checkbox4">중형</label>
+											<input id="checkbox5" type="checkbox" value="준대형" name="chk1"> 
+											<label class="button" for="checkbox5">준대형</label> 
+											<input id="checkbox6" type="checkbox" value="대형" name="chk1"> 
+											<label class="button" for="checkbox6">대형</label> 
+											<input id="checkbox7" type="checkbox" value="스포츠카" name="chk1"> 
+											<label class="button" for="checkbox7">스포츠카</label> 
 									</div>
-									<div class="single-best-seller">
-										<div class="best-seller-img">
-											<a href="#"><img
-												src="../images/car_img/product/product-13.jpg" alt=""></a>
-										</div>
-										<div class="best-seller-text">
-											<h3>
-												<a href="#">Minimal White Shoes</a>
-											</h3>
-											<span>$39.9</span>
-										</div>
+									<hr>
+									<div class="button-group">
+										<h6>연료</h6>											
+											<input id="checkbox10" type="checkbox" value="LPG" name="chk2"> 
+											<label class="button" for="checkbox10">LPG</label>
+											<input id="checkbox11" type="checkbox" value="전기" name="chk2"> 
+											<label class="button" for="checkbox11">전기</label>		
+											<input id="checkbox12" type="checkbox" value="수소" name="chk2"> 
+											<label class="button" for="checkbox12">수소</label>									
 									</div>
-									<div class="single-best-seller">
-										<div class="best-seller-img">
-											<a href="#"><img
-												src="../images/car_img/product/product-14.jpg" alt=""></a>
-										</div>
-										<div class="best-seller-text">
-											<h3>
-												<a href="#">Minimal White Shoes</a>
-											</h3>
-											<span>$39.9</span>
-										</div>
+									<hr>
+									<div class="sidebar-search" style="padding-bottom: 80px;">
+										<form>
+											<button type="button" id="findDetailBtn">
+												<i class="ti-search"></i>											
+											</button>
+										</form>
 									</div>
 								</div>
 							</div>
@@ -164,10 +247,10 @@ div.price input {
 								<h4>친환경 자동차 구매</h4>
 							</div>	
 							<div class="product-sorting">
-								<div class="shop-product-sorting nav">
-									<a data-toggle="tab" href="#new-product">최신순</a> 
-									<a data-toggle="tab" href="#use-product">연비순</a> 
-									<a data-toggle="tab" href="#accessory-product">가격순</a>
+								<div class="shop-product-sorting nav cate">								
+									<a id="cate1" class="active" href="env_car_list.do?cateNo=1">전체 </a>								
+									<a id="cate2" class="" href="env_car_list.do?cateNo=2">최신순 </a>		
+									<a id="cate3" class="" href="env_car_list.do?cateNo=3">가격순</a>								
 								</div>
 							</div>
 						</div>
@@ -175,1729 +258,42 @@ div.price input {
 							<div id="new-product"
 								class="product-grid product-view tab-pane active">
 								<div class="row">
-									<div class="product-width col-md-6 col-xl-4 col-lg-6">
-										<div class="product-wrapper mb-35">
-											<div class="product-img">
-												<a href="product-details.html"> <img
-													src="../images/car_img/product/product-1.jpg" alt="">
-												</a>
-												<div class="product-item-dec">
-													<ul>
-														<li>2018</li>
-														<li>MANUAL</li>
-														<li>PETROL</li>
-														<li>270 CC</li>
-													</ul>
-												</div>
-												<div class="product-action">
-													<a class="action-plus-2 p-action-none" title="Add To Cart"
-														href="#"> <i class=" ti-shopping-cart"></i>
-													</a> <a class="action-cart-2" title="Wishlist" href="#"> <i
-														class=" ti-heart"></i>
-													</a> <a class="action-reload" title="Quick View"
-														data-toggle="modal" data-target="#exampleModal" href="#">
-														<i class=" ti-zoom-in"></i>
-													</a>
-												</div>
-												<div class="product-content-wrapper">
-													<div class="product-title-spreed">
-														<h4>
-															<a href="product-details.html">Gloriori GSX 250 R</a>
-														</h4>
-														<span>6600 RPM</span>
-													</div>
-													<div class="product-price">
-														<span>$2549</span>
-													</div>
-												</div>
-											</div>
-											<div class="product-list-details">
-												<h2>
-													<a href="product-details.html">Gloriori GSX 250 R</a>
-												</h2>
-												<div class="quick-view-rating">
-													<i class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i>
-												</div>
-												<div class="product-price">
-													<span>$2549</span>
-												</div>
-												<p>Lorem ipsum dolor sit amet, consectetur adipic it,
-													sed do eiusmod tempor incididunt ut labore et dolore mag
-													aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-													ullamco laboris nisi ut aliquip ex ea commodo it. Duis aute
-													irure dolor in reprehenderit in voluptate velit esse cillum
-													dolore eu fugiat nulla pariatur.</p>
-												<div class="shop-list-cart">
-													<a href="cart.html"><i class="ti-shopping-cart"></i>
-														Add to cart</a>
-												</div>
-											</div>
+									<%--자동차 리스트 출력 --%>
+									<div id="print">
+										<jsp:include page="${carList_jsp }"></jsp:include>
+
+										<div class="paginations text-center mt-20">
+											<ul>
+												<c:if test="${curpage>BLOCK }">
+													<li><a
+														href="env_car_list.do?page=${startPage-1 }&cateNo=${cateNo}"><i
+															class="fa fa-angle-left"></i></a></li>
+												</c:if>
+												<c:forEach var="i" begin="${startPage }" end="${endPage }">
+													<c:choose>
+														<c:when test="${curpage eq i }">
+															<c:set var="type" value="class=active"></c:set>
+														</c:when>
+														<c:otherwise>
+															<c:set var="type" value=""></c:set>
+														</c:otherwise>
+													</c:choose>
+													<li ${type }><a
+														href="env_car_list.do?page=${i }&cateNo=${cateNo}">${i }</a></li>
+												</c:forEach>
+												<c:if test="${endPage<allPage }">
+													<li><a
+														href="env_car_list.do?page=${endPage+1 }&cateNo=${cateNo}"><i
+															class="fa fa-angle-right"></i></a></li>
+												</c:if>
+											</ul>
 										</div>
 									</div>
-									<div class="product-width col-md-6 col-xl-4 col-lg-6">
-										<div class="product-wrapper mb-35">
-											<div class="product-img">
-												<a href="product-details.html"> <img
-													src="../images/car_img/product/product-2.jpg" alt="">
-												</a>
-												<div class="product-item-dec">
-													<ul>
-														<li>2018</li>
-														<li>MANUAL</li>
-														<li>PETROL</li>
-														<li>300 CC</li>
-													</ul>
-												</div>
-												<div class="product-action">
-													<a class="action-plus-2 p-action-none" title="Add To Cart"
-														href="#"> <i class=" ti-shopping-cart"></i>
-													</a> <a class="action-cart-2" title="Wishlist" href="#"> <i
-														class=" ti-heart"></i>
-													</a> <a class="action-reload" title="Quick View"
-														data-toggle="modal" data-target="#exampleModal" href="#">
-														<i class=" ti-zoom-in"></i>
-													</a>
-												</div>
-												<div class="product-content-wrapper">
-													<div class="product-title-spreed">
-														<h4>
-															<a href="product-details.html">Klager GSX 250 R</a>
-														</h4>
-														<span>6600 RPM</span>
-													</div>
-													<div class="product-price">
-														<span>$2549</span>
-													</div>
-												</div>
-											</div>
-											<div class="product-list-details">
-												<h2>
-													<a href="product-details.html">Klager GSX 250 R</a>
-												</h2>
-												<div class="quick-view-rating">
-													<i class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i>
-												</div>
-												<div class="product-price">
-													<span>$2549</span>
-												</div>
-												<p>Lorem ipsum dolor sit amet, consectetur adipic it,
-													sed do eiusmod tempor incididunt ut labore et dolore mag
-													aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-													ullamco laboris nisi ut aliquip ex ea commodo it. Duis aute
-													irure dolor in reprehenderit in voluptate velit esse cillum
-													dolore eu fugiat nulla pariatur.</p>
-												<div class="shop-list-cart">
-													<a href="cart.html"><i class="ti-shopping-cart"></i>
-														Add to cart</a>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="product-width col-md-6 col-xl-4 col-lg-6">
-										<div class="product-wrapper mb-35">
-											<div class="product-img">
-												<a href="product-details.html"> <img
-													src="../images/car_img/product/product-3.jpg" alt="">
-												</a>
-												<div class="product-item-dec">
-													<ul>
-														<li>2018</li>
-														<li>MANUAL</li>
-														<li>PETROL</li>
-														<li>250 CC</li>
-													</ul>
-												</div>
-												<div class="product-action">
-													<a class="action-plus-2 p-action-none" title="Add To Cart"
-														href="#"> <i class=" ti-shopping-cart"></i>
-													</a> <a class="action-cart-2" title="Wishlist" href="#"> <i
-														class=" ti-heart"></i>
-													</a> <a class="action-reload" title="Quick View"
-														data-toggle="modal" data-target="#exampleModal" href="#">
-														<i class=" ti-zoom-in"></i>
-													</a>
-												</div>
-												<div class="product-content-wrapper">
-													<div class="product-title-spreed">
-														<h4>
-															<a href="product-details.html">Matrio Max</a>
-														</h4>
-														<span>6600 RPM</span>
-													</div>
-													<div class="product-price">
-														<span>$2549</span>
-													</div>
-												</div>
-											</div>
-											<div class="product-list-details">
-												<h2>
-													<a href="product-details.html">Matrio Max</a>
-												</h2>
-												<div class="quick-view-rating">
-													<i class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i>
-												</div>
-												<div class="product-price">
-													<span>$2549</span>
-												</div>
-												<p>Lorem ipsum dolor sit amet, consectetur adipic it,
-													sed do eiusmod tempor incididunt ut labore et dolore mag
-													aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-													ullamco laboris nisi ut aliquip ex ea commodo it. Duis aute
-													irure dolor in reprehenderit in voluptate velit esse cillum
-													dolore eu fugiat nulla pariatur.</p>
-												<div class="shop-list-cart">
-													<a href="cart.html"><i class="ti-shopping-cart"></i>
-														Add to cart</a>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="product-width col-md-6 col-xl-4 col-lg-6">
-										<div class="product-wrapper mb-35">
-											<div class="product-img">
-												<a href="product-details.html"> <img
-													src="../images/car_img/product/product-4.jpg" alt="">
-												</a>
-												<div class="product-item-dec">
-													<ul>
-														<li>2018</li>
-														<li>MANUAL</li>
-														<li>PETROL</li>
-														<li>150 CC</li>
-													</ul>
-												</div>
-												<div class="product-action">
-													<a class="action-plus-2 p-action-none" title="Add To Cart"
-														href="#"> <i class=" ti-shopping-cart"></i>
-													</a> <a class="action-cart-2" title="Wishlist" href="#"> <i
-														class=" ti-heart"></i>
-													</a> <a class="action-reload" title="Quick View"
-														data-toggle="modal" data-target="#exampleModal" href="#">
-														<i class=" ti-zoom-in"></i>
-													</a>
-												</div>
-												<div class="product-content-wrapper">
-													<div class="product-title-spreed">
-														<h4>
-															<a href="product-details.html">Demonissi Gori</a>
-														</h4>
-														<span>6600 RPM</span>
-													</div>
-													<div class="product-price">
-														<span>$2549</span>
-													</div>
-												</div>
-											</div>
-											<div class="product-list-details">
-												<h2>
-													<a href="product-details.html">Demonissi Gori</a>
-												</h2>
-												<div class="quick-view-rating">
-													<i class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i>
-												</div>
-												<div class="product-price">
-													<span>$2549</span>
-												</div>
-												<p>Lorem ipsum dolor sit amet, consectetur adipic it,
-													sed do eiusmod tempor incididunt ut labore et dolore mag
-													aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-													ullamco laboris nisi ut aliquip ex ea commodo it. Duis aute
-													irure dolor in reprehenderit in voluptate velit esse cillum
-													dolore eu fugiat nulla pariatur.</p>
-												<div class="shop-list-cart">
-													<a href="cart.html"><i class="ti-shopping-cart"></i>
-														Add to cart</a>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="product-width col-md-6 col-xl-4 col-lg-6">
-										<div class="product-wrapper mb-35">
-											<div class="product-img">
-												<a href="product-details.html"> <img
-													src="../images/car_img/product/product-5.jpg" alt="">
-												</a>
-												<div class="product-item-dec">
-													<ul>
-														<li>2018</li>
-														<li>MANUAL</li>
-														<li>PETROL</li>
-														<li>280 CC</li>
-													</ul>
-												</div>
-												<div class="product-action">
-													<a class="action-plus-2 p-action-none" title="Add To Cart"
-														href="#"> <i class=" ti-shopping-cart"></i>
-													</a> <a class="action-cart-2" title="Wishlist" href="#"> <i
-														class=" ti-heart"></i>
-													</a> <a class="action-reload" title="Quick View"
-														data-toggle="modal" data-target="#exampleModal" href="#">
-														<i class=" ti-zoom-in"></i>
-													</a>
-												</div>
-												<div class="product-content-wrapper">
-													<div class="product-title-spreed">
-														<h4>
-															<a href="product-details.html">Maxclon ZPE 54</a>
-														</h4>
-														<span>6600 RPM</span>
-													</div>
-													<div class="product-price">
-														<span>$2549</span>
-													</div>
-												</div>
-											</div>
-											<div class="product-list-details">
-												<h2>
-													<a href="product-details.html">Maxclon ZPE 54</a>
-												</h2>
-												<div class="quick-view-rating">
-													<i class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i>
-												</div>
-												<div class="product-price">
-													<span>$2549</span>
-												</div>
-												<p>Lorem ipsum dolor sit amet, consectetur adipic it,
-													sed do eiusmod tempor incididunt ut labore et dolore mag
-													aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-													ullamco laboris nisi ut aliquip ex ea commodo it. Duis aute
-													irure dolor in reprehenderit in voluptate velit esse cillum
-													dolore eu fugiat nulla pariatur.</p>
-												<div class="shop-list-cart">
-													<a href="cart.html"><i class="ti-shopping-cart"></i>
-														Add to cart</a>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="product-width col-md-6 col-xl-4 col-lg-6">
-										<div class="product-wrapper mb-35">
-											<div class="product-img">
-												<a href="product-details.html"> <img
-													src="../images/car_img/product/product-6.jpg" alt="">
-												</a>
-												<div class="product-item-dec">
-													<ul>
-														<li>2018</li>
-														<li>MANUAL</li>
-														<li>PETROL</li>
-														<li>290 CC</li>
-													</ul>
-												</div>
-												<div class="product-action">
-													<a class="action-plus-2 p-action-none" title="Add To Cart"
-														href="#"> <i class=" ti-shopping-cart"></i>
-													</a> <a class="action-cart-2" title="Wishlist" href="#"> <i
-														class=" ti-heart"></i>
-													</a> <a class="action-reload" title="Quick View"
-														data-toggle="modal" data-target="#exampleModal" href="#">
-														<i class=" ti-zoom-in"></i>
-													</a>
-												</div>
-												<div class="product-content-wrapper">
-													<div class="product-title-spreed">
-														<h4>
-															<a href="product-details.html">Rigoniss Z 1000</a>
-														</h4>
-														<span>6600 RPM</span>
-													</div>
-													<div class="product-price">
-														<span>$2549</span>
-													</div>
-												</div>
-											</div>
-											<div class="product-list-details">
-												<h2>
-													<a href="product-details.html">Rigoniss Z 1000</a>
-												</h2>
-												<div class="quick-view-rating">
-													<i class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i>
-												</div>
-												<div class="product-price">
-													<span>$2549</span>
-												</div>
-												<p>Lorem ipsum dolor sit amet, consectetur adipic it,
-													sed do eiusmod tempor incididunt ut labore et dolore mag
-													aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-													ullamco laboris nisi ut aliquip ex ea commodo it. Duis aute
-													irure dolor in reprehenderit in voluptate velit esse cillum
-													dolore eu fugiat nulla pariatur.</p>
-												<div class="shop-list-cart">
-													<a href="cart.html"><i class="ti-shopping-cart"></i>
-														Add to cart</a>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="product-width col-md-6 col-xl-4 col-lg-6">
-										<div class="product-wrapper mb-35">
-											<div class="product-img">
-												<a href="product-details.html"> <img
-													src="../images/car_img/product/product-2.jpg" alt="">
-												</a>
-												<div class="product-item-dec">
-													<ul>
-														<li>2018</li>
-														<li>MANUAL</li>
-														<li>PETROL</li>
-														<li>220 CC</li>
-													</ul>
-												</div>
-												<div class="product-action">
-													<a class="action-plus-2 p-action-none" title="Add To Cart"
-														href="#"> <i class=" ti-shopping-cart"></i>
-													</a> <a class="action-cart-2" title="Wishlist" href="#"> <i
-														class=" ti-heart"></i>
-													</a> <a class="action-reload" title="Quick View"
-														data-toggle="modal" data-target="#exampleModal" href="#">
-														<i class=" ti-zoom-in"></i>
-													</a>
-												</div>
-												<div class="product-content-wrapper">
-													<div class="product-title-spreed">
-														<h4>
-															<a href="product-details.html">Klager GSX 250 R</a>
-														</h4>
-														<span>6600 RPM</span>
-													</div>
-													<div class="product-price">
-														<span>$2549</span>
-													</div>
-												</div>
-											</div>
-											<div class="product-list-details">
-												<h2>
-													<a href="product-details.html">Klager GSX 250 R</a>
-												</h2>
-												<div class="quick-view-rating">
-													<i class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i>
-												</div>
-												<div class="product-price">
-													<span>$2549</span>
-												</div>
-												<p>Lorem ipsum dolor sit amet, consectetur adipic it,
-													sed do eiusmod tempor incididunt ut labore et dolore mag
-													aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-													ullamco laboris nisi ut aliquip ex ea commodo it. Duis aute
-													irure dolor in reprehenderit in voluptate velit esse cillum
-													dolore eu fugiat nulla pariatur.</p>
-												<div class="shop-list-cart">
-													<a href="cart.html"><i class="ti-shopping-cart"></i>
-														Add to cart</a>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="product-width col-md-6 col-xl-4 col-lg-6">
-										<div class="product-wrapper mb-35">
-											<div class="product-img">
-												<a href="product-details.html"> <img
-													src="../images/car_img/product/product-1.jpg" alt="">
-												</a>
-												<div class="product-item-dec">
-													<ul>
-														<li>2018</li>
-														<li>MANUAL</li>
-														<li>PETROL</li>
-														<li>210 CC</li>
-													</ul>
-												</div>
-												<div class="product-action">
-													<a class="action-plus-2 p-action-none" title="Add To Cart"
-														href="#"> <i class=" ti-shopping-cart"></i>
-													</a> <a class="action-cart-2" title="Wishlist" href="#"> <i
-														class=" ti-heart"></i>
-													</a> <a class="action-reload" title="Quick View"
-														data-toggle="modal" data-target="#exampleModal" href="#">
-														<i class=" ti-zoom-in"></i>
-													</a>
-												</div>
-												<div class="product-content-wrapper">
-													<div class="product-title-spreed">
-														<h4>
-															<a href="product-details.html">Gloriori GSX 250 R</a>
-														</h4>
-														<span>6600 RPM</span>
-													</div>
-													<div class="product-price">
-														<span>$2549</span>
-													</div>
-												</div>
-											</div>
-											<div class="product-list-details">
-												<h2>
-													<a href="product-details.html">Gloriori GSX 250 R</a>
-												</h2>
-												<div class="quick-view-rating">
-													<i class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i>
-												</div>
-												<div class="product-price">
-													<span>$2549</span>
-												</div>
-												<p>Lorem ipsum dolor sit amet, consectetur adipic it,
-													sed do eiusmod tempor incididunt ut labore et dolore mag
-													aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-													ullamco laboris nisi ut aliquip ex ea commodo it. Duis aute
-													irure dolor in reprehenderit in voluptate velit esse cillum
-													dolore eu fugiat nulla pariatur.</p>
-												<div class="shop-list-cart">
-													<a href="cart.html"><i class="ti-shopping-cart"></i>
-														Add to cart</a>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="product-width col-md-6 col-xl-4 col-lg-6">
-										<div class="product-wrapper mb-35">
-											<div class="product-img">
-												<a href="product-details.html"> <img
-													src="../images/car_img/product/product-4.jpg" alt="">
-												</a>
-												<div class="product-item-dec">
-													<ul>
-														<li>2018</li>
-														<li>MANUAL</li>
-														<li>PETROL</li>
-														<li>250 CC</li>
-													</ul>
-												</div>
-												<div class="product-action">
-													<a class="action-plus-2 p-action-none" title="Add To Cart"
-														href="#"> <i class=" ti-shopping-cart"></i>
-													</a> <a class="action-cart-2" title="Wishlist" href="#"> <i
-														class=" ti-heart"></i>
-													</a> <a class="action-reload" title="Quick View"
-														data-toggle="modal" data-target="#exampleModal" href="#">
-														<i class=" ti-zoom-in"></i>
-													</a>
-												</div>
-												<div class="product-content-wrapper">
-													<div class="product-title-spreed">
-														<h4>
-															<a href="product-details.html">Demonissi Gori</a>
-														</h4>
-														<span>6600 RPM</span>
-													</div>
-													<div class="product-price">
-														<span>$2549</span>
-													</div>
-												</div>
-											</div>
-											<div class="product-list-details">
-												<h2>
-													<a href="product-details.html">Demonissi Gori</a>
-												</h2>
-												<div class="quick-view-rating">
-													<i class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i>
-												</div>
-												<div class="product-price">
-													<span>$2549</span>
-												</div>
-												<p>Lorem ipsum dolor sit amet, consectetur adipic it,
-													sed do eiusmod tempor incididunt ut labore et dolore mag
-													aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-													ullamco laboris nisi ut aliquip ex ea commodo it. Duis aute
-													irure dolor in reprehenderit in voluptate velit esse cillum
-													dolore eu fugiat nulla pariatur.</p>
-												<div class="shop-list-cart">
-													<a href="cart.html"><i class="ti-shopping-cart"></i>
-														Add to cart</a>
-												</div>
-											</div>
-										</div>
-									</div>
+									<%-- --%>
+
 								</div>
 							</div>
-							<div id="use-product" class="product-grid product-view tab-pane">
-								<div class="row">
-									<div class="product-width col-md-6 col-xl-4 col-lg-6">
-										<div class="product-wrapper mb-35">
-											<div class="product-img">
-												<a href="product-details.html"> <img
-													src="../images/car_img/product/product-6.jpg" alt="">
-												</a>
-												<div class="product-item-dec">
-													<ul>
-														<li>2018</li>
-														<li>MANUAL</li>
-														<li>PETROL</li>
-														<li>270 CC</li>
-													</ul>
-												</div>
-												<div class="product-action">
-													<a class="action-plus-2 p-action-none" title="Add To Cart"
-														href="#"> <i class=" ti-shopping-cart"></i>
-													</a> <a class="action-cart-2" title="Wishlist" href="#"> <i
-														class=" ti-heart"></i>
-													</a> <a class="action-reload" title="Quick View"
-														data-toggle="modal" data-target="#exampleModal" href="#">
-														<i class=" ti-zoom-in"></i>
-													</a>
-												</div>
-												<div class="product-content-wrapper">
-													<div class="product-title-spreed">
-														<h4>
-															<a href="product-details.html">Gloriori GSX 250 R</a>
-														</h4>
-														<span>6600 RPM</span>
-													</div>
-													<div class="product-price">
-														<span>$2549</span>
-													</div>
-												</div>
-											</div>
-											<div class="product-list-details">
-												<h2>
-													<a href="product-details.html">Gloriori GSX 250 R</a>
-												</h2>
-												<div class="quick-view-rating">
-													<i class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i>
-												</div>
-												<div class="product-price">
-													<span>$2549</span>
-												</div>
-												<p>Lorem ipsum dolor sit amet, consectetur adipic it,
-													sed do eiusmod tempor incididunt ut labore et dolore mag
-													aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-													ullamco laboris nisi ut aliquip ex ea commodo it. Duis aute
-													irure dolor in reprehenderit in voluptate velit esse cillum
-													dolore eu fugiat nulla pariatur.</p>
-												<div class="shop-list-cart">
-													<a href="cart.html"><i class="ti-shopping-cart"></i>
-														Add to cart</a>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="product-width col-md-6 col-xl-4 col-lg-6">
-										<div class="product-wrapper mb-35">
-											<div class="product-img">
-												<a href="product-details.html"> <img
-													src="../images/car_img/product/product-5.jpg" alt="">
-												</a>
-												<div class="product-item-dec">
-													<ul>
-														<li>2018</li>
-														<li>MANUAL</li>
-														<li>PETROL</li>
-														<li>300 CC</li>
-													</ul>
-												</div>
-												<div class="product-action">
-													<a class="action-plus-2 p-action-none" title="Add To Cart"
-														href="#"> <i class=" ti-shopping-cart"></i>
-													</a> <a class="action-cart-2" title="Wishlist" href="#"> <i
-														class=" ti-heart"></i>
-													</a> <a class="action-reload" title="Quick View"
-														data-toggle="modal" data-target="#exampleModal" href="#">
-														<i class=" ti-zoom-in"></i>
-													</a>
-												</div>
-												<div class="product-content-wrapper">
-													<div class="product-title-spreed">
-														<h4>
-															<a href="product-details.html">Klager GSX 250 R</a>
-														</h4>
-														<span>6600 RPM</span>
-													</div>
-													<div class="product-price">
-														<span>$2549</span>
-													</div>
-												</div>
-											</div>
-											<div class="product-list-details">
-												<h2>
-													<a href="product-details.html">Klager GSX 250 R</a>
-												</h2>
-												<div class="quick-view-rating">
-													<i class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i>
-												</div>
-												<div class="product-price">
-													<span>$2549</span>
-												</div>
-												<p>Lorem ipsum dolor sit amet, consectetur adipic it,
-													sed do eiusmod tempor incididunt ut labore et dolore mag
-													aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-													ullamco laboris nisi ut aliquip ex ea commodo it. Duis aute
-													irure dolor in reprehenderit in voluptate velit esse cillum
-													dolore eu fugiat nulla pariatur.</p>
-												<div class="shop-list-cart">
-													<a href="cart.html"><i class="ti-shopping-cart"></i>
-														Add to cart</a>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="product-width col-md-6 col-xl-4 col-lg-6">
-										<div class="product-wrapper mb-35">
-											<div class="product-img">
-												<a href="product-details.html"> <img
-													src="../images/car_img/product/product-4.jpg" alt="">
-												</a>
-												<div class="product-item-dec">
-													<ul>
-														<li>2018</li>
-														<li>MANUAL</li>
-														<li>PETROL</li>
-														<li>250 CC</li>
-													</ul>
-												</div>
-												<div class="product-action">
-													<a class="action-plus-2 p-action-none" title="Add To Cart"
-														href="#"> <i class=" ti-shopping-cart"></i>
-													</a> <a class="action-cart-2" title="Wishlist" href="#"> <i
-														class=" ti-heart"></i>
-													</a> <a class="action-reload" title="Quick View"
-														data-toggle="modal" data-target="#exampleModal" href="#">
-														<i class=" ti-zoom-in"></i>
-													</a>
-												</div>
-												<div class="product-content-wrapper">
-													<div class="product-title-spreed">
-														<h4>
-															<a href="product-details.html">Matrio Max</a>
-														</h4>
-														<span>6600 RPM</span>
-													</div>
-													<div class="product-price">
-														<span>$2549</span>
-													</div>
-												</div>
-											</div>
-											<div class="product-list-details">
-												<h2>
-													<a href="product-details.html">Matrio Max</a>
-												</h2>
-												<div class="quick-view-rating">
-													<i class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i>
-												</div>
-												<div class="product-price">
-													<span>$2549</span>
-												</div>
-												<p>Lorem ipsum dolor sit amet, consectetur adipic it,
-													sed do eiusmod tempor incididunt ut labore et dolore mag
-													aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-													ullamco laboris nisi ut aliquip ex ea commodo it. Duis aute
-													irure dolor in reprehenderit in voluptate velit esse cillum
-													dolore eu fugiat nulla pariatur.</p>
-												<div class="shop-list-cart">
-													<a href="cart.html"><i class="ti-shopping-cart"></i>
-														Add to cart</a>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="product-width col-md-6 col-xl-4 col-lg-6">
-										<div class="product-wrapper mb-35">
-											<div class="product-img">
-												<a href="product-details.html"> <img
-													src="../images/car_img/product/product-3.jpg" alt="">
-												</a>
-												<div class="product-item-dec">
-													<ul>
-														<li>2018</li>
-														<li>MANUAL</li>
-														<li>PETROL</li>
-														<li>150 CC</li>
-													</ul>
-												</div>
-												<div class="product-action">
-													<a class="action-plus-2 p-action-none" title="Add To Cart"
-														href="#"> <i class=" ti-shopping-cart"></i>
-													</a> <a class="action-cart-2" title="Wishlist" href="#"> <i
-														class=" ti-heart"></i>
-													</a> <a class="action-reload" title="Quick View"
-														data-toggle="modal" data-target="#exampleModal" href="#">
-														<i class=" ti-zoom-in"></i>
-													</a>
-												</div>
-												<div class="product-content-wrapper">
-													<div class="product-title-spreed">
-														<h4>
-															<a href="product-details.html">Demonissi Gori</a>
-														</h4>
-														<span>6600 RPM</span>
-													</div>
-													<div class="product-price">
-														<span>$2549</span>
-													</div>
-												</div>
-											</div>
-											<div class="product-list-details">
-												<h2>
-													<a href="product-details.html">Demonissi Gori</a>
-												</h2>
-												<div class="quick-view-rating">
-													<i class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i>
-												</div>
-												<div class="product-price">
-													<span>$2549</span>
-												</div>
-												<p>Lorem ipsum dolor sit amet, consectetur adipic it,
-													sed do eiusmod tempor incididunt ut labore et dolore mag
-													aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-													ullamco laboris nisi ut aliquip ex ea commodo it. Duis aute
-													irure dolor in reprehenderit in voluptate velit esse cillum
-													dolore eu fugiat nulla pariatur.</p>
-												<div class="shop-list-cart">
-													<a href="cart.html"><i class="ti-shopping-cart"></i>
-														Add to cart</a>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="product-width col-md-6 col-xl-4 col-lg-6">
-										<div class="product-wrapper mb-35">
-											<div class="product-img">
-												<a href="product-details.html"> <img
-													src="../images/car_img/product/product-2.jpg" alt="">
-												</a>
-												<div class="product-item-dec">
-													<ul>
-														<li>2018</li>
-														<li>MANUAL</li>
-														<li>PETROL</li>
-														<li>280 CC</li>
-													</ul>
-												</div>
-												<div class="product-action">
-													<a class="action-plus-2 p-action-none" title="Add To Cart"
-														href="#"> <i class=" ti-shopping-cart"></i>
-													</a> <a class="action-cart-2" title="Wishlist" href="#"> <i
-														class=" ti-heart"></i>
-													</a> <a class="action-reload" title="Quick View"
-														data-toggle="modal" data-target="#exampleModal" href="#">
-														<i class=" ti-zoom-in"></i>
-													</a>
-												</div>
-												<div class="product-content-wrapper">
-													<div class="product-title-spreed">
-														<h4>
-															<a href="product-details.html">Maxclon ZPE 54</a>
-														</h4>
-														<span>6600 RPM</span>
-													</div>
-													<div class="product-price">
-														<span>$2549</span>
-													</div>
-												</div>
-											</div>
-											<div class="product-list-details">
-												<h2>
-													<a href="product-details.html">Maxclon ZPE 54</a>
-												</h2>
-												<div class="quick-view-rating">
-													<i class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i>
-												</div>
-												<div class="product-price">
-													<span>$2549</span>
-												</div>
-												<p>Lorem ipsum dolor sit amet, consectetur adipic it,
-													sed do eiusmod tempor incididunt ut labore et dolore mag
-													aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-													ullamco laboris nisi ut aliquip ex ea commodo it. Duis aute
-													irure dolor in reprehenderit in voluptate velit esse cillum
-													dolore eu fugiat nulla pariatur.</p>
-												<div class="shop-list-cart">
-													<a href="cart.html"><i class="ti-shopping-cart"></i>
-														Add to cart</a>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="product-width col-md-6 col-xl-4 col-lg-6">
-										<div class="product-wrapper mb-35">
-											<div class="product-img">
-												<a href="product-details.html"> <img
-													src="../images/car_img/product/product-1.jpg" alt="">
-												</a>
-												<div class="product-item-dec">
-													<ul>
-														<li>2018</li>
-														<li>MANUAL</li>
-														<li>PETROL</li>
-														<li>290 CC</li>
-													</ul>
-												</div>
-												<div class="product-action">
-													<a class="action-plus-2 p-action-none" title="Add To Cart"
-														href="#"> <i class=" ti-shopping-cart"></i>
-													</a> <a class="action-cart-2" title="Wishlist" href="#"> <i
-														class=" ti-heart"></i>
-													</a> <a class="action-reload" title="Quick View"
-														data-toggle="modal" data-target="#exampleModal" href="#">
-														<i class=" ti-zoom-in"></i>
-													</a>
-												</div>
-												<div class="product-content-wrapper">
-													<div class="product-title-spreed">
-														<h4>
-															<a href="product-details.html">Rigoniss Z 1000</a>
-														</h4>
-														<span>6600 RPM</span>
-													</div>
-													<div class="product-price">
-														<span>$2549</span>
-													</div>
-												</div>
-											</div>
-											<div class="product-list-details">
-												<h2>
-													<a href="product-details.html">Rigoniss Z 1000</a>
-												</h2>
-												<div class="quick-view-rating">
-													<i class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i>
-												</div>
-												<div class="product-price">
-													<span>$2549</span>
-												</div>
-												<p>Lorem ipsum dolor sit amet, consectetur adipic it,
-													sed do eiusmod tempor incididunt ut labore et dolore mag
-													aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-													ullamco laboris nisi ut aliquip ex ea commodo it. Duis aute
-													irure dolor in reprehenderit in voluptate velit esse cillum
-													dolore eu fugiat nulla pariatur.</p>
-												<div class="shop-list-cart">
-													<a href="cart.html"><i class="ti-shopping-cart"></i>
-														Add to cart</a>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="product-width col-md-6 col-xl-4 col-lg-6">
-										<div class="product-wrapper mb-35">
-											<div class="product-img">
-												<a href="product-details.html"> <img
-													src="../images/car_img/product/product-6.jpg" alt="">
-												</a>
-												<div class="product-item-dec">
-													<ul>
-														<li>2018</li>
-														<li>MANUAL</li>
-														<li>PETROL</li>
-														<li>220 CC</li>
-													</ul>
-												</div>
-												<div class="product-action">
-													<a class="action-plus-2 p-action-none" title="Add To Cart"
-														href="#"> <i class=" ti-shopping-cart"></i>
-													</a> <a class="action-cart-2" title="Wishlist" href="#"> <i
-														class=" ti-heart"></i>
-													</a> <a class="action-reload" title="Quick View"
-														data-toggle="modal" data-target="#exampleModal" href="#">
-														<i class=" ti-zoom-in"></i>
-													</a>
-												</div>
-												<div class="product-content-wrapper">
-													<div class="product-title-spreed">
-														<h4>
-															<a href="product-details.html">Klager GSX 250 R</a>
-														</h4>
-														<span>6600 RPM</span>
-													</div>
-													<div class="product-price">
-														<span>$2549</span>
-													</div>
-												</div>
-											</div>
-											<div class="product-list-details">
-												<h2>
-													<a href="product-details.html">Klager GSX 250 R</a>
-												</h2>
-												<div class="quick-view-rating">
-													<i class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i>
-												</div>
-												<div class="product-price">
-													<span>$2549</span>
-												</div>
-												<p>Lorem ipsum dolor sit amet, consectetur adipic it,
-													sed do eiusmod tempor incididunt ut labore et dolore mag
-													aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-													ullamco laboris nisi ut aliquip ex ea commodo it. Duis aute
-													irure dolor in reprehenderit in voluptate velit esse cillum
-													dolore eu fugiat nulla pariatur.</p>
-												<div class="shop-list-cart">
-													<a href="cart.html"><i class="ti-shopping-cart"></i>
-														Add to cart</a>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="product-width col-md-6 col-xl-4 col-lg-6">
-										<div class="product-wrapper mb-35">
-											<div class="product-img">
-												<a href="product-details.html"> <img
-													src="../images/car_img/product/product-5.jpg" alt="">
-												</a>
-												<div class="product-item-dec">
-													<ul>
-														<li>2018</li>
-														<li>MANUAL</li>
-														<li>PETROL</li>
-														<li>210 CC</li>
-													</ul>
-												</div>
-												<div class="product-action">
-													<a class="action-plus-2 p-action-none" title="Add To Cart"
-														href="#"> <i class=" ti-shopping-cart"></i>
-													</a> <a class="action-cart-2" title="Wishlist" href="#"> <i
-														class=" ti-heart"></i>
-													</a> <a class="action-reload" title="Quick View"
-														data-toggle="modal" data-target="#exampleModal" href="#">
-														<i class=" ti-zoom-in"></i>
-													</a>
-												</div>
-												<div class="product-content-wrapper">
-													<div class="product-title-spreed">
-														<h4>
-															<a href="product-details.html">Gloriori GSX 250 R</a>
-														</h4>
-														<span>6600 RPM</span>
-													</div>
-													<div class="product-price">
-														<span>$2549</span>
-													</div>
-												</div>
-											</div>
-											<div class="product-list-details">
-												<h2>
-													<a href="product-details.html">Gloriori GSX 250 R</a>
-												</h2>
-												<div class="quick-view-rating">
-													<i class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i>
-												</div>
-												<div class="product-price">
-													<span>$2549</span>
-												</div>
-												<p>Lorem ipsum dolor sit amet, consectetur adipic it,
-													sed do eiusmod tempor incididunt ut labore et dolore mag
-													aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-													ullamco laboris nisi ut aliquip ex ea commodo it. Duis aute
-													irure dolor in reprehenderit in voluptate velit esse cillum
-													dolore eu fugiat nulla pariatur.</p>
-												<div class="shop-list-cart">
-													<a href="cart.html"><i class="ti-shopping-cart"></i>
-														Add to cart</a>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="product-width col-md-6 col-xl-4 col-lg-6">
-										<div class="product-wrapper mb-35">
-											<div class="product-img">
-												<a href="product-details.html"> <img
-													src="../images/car_img/product/product-4.jpg" alt="">
-												</a>
-												<div class="product-item-dec">
-													<ul>
-														<li>2018</li>
-														<li>MANUAL</li>
-														<li>PETROL</li>
-														<li>250 CC</li>
-													</ul>
-												</div>
-												<div class="product-action">
-													<a class="action-plus-2 p-action-none" title="Add To Cart"
-														href="#"> <i class=" ti-shopping-cart"></i>
-													</a> <a class="action-cart-2" title="Wishlist" href="#"> <i
-														class=" ti-heart"></i>
-													</a> <a class="action-reload" title="Quick View"
-														data-toggle="modal" data-target="#exampleModal" href="#">
-														<i class=" ti-zoom-in"></i>
-													</a>
-												</div>
-												<div class="product-content-wrapper">
-													<div class="product-title-spreed">
-														<h4>
-															<a href="product-details.html">Demonissi Gori</a>
-														</h4>
-														<span>6600 RPM</span>
-													</div>
-													<div class="product-price">
-														<span>$2549</span>
-													</div>
-												</div>
-											</div>
-											<div class="product-list-details">
-												<h2>
-													<a href="product-details.html">Demonissi Gori</a>
-												</h2>
-												<div class="quick-view-rating">
-													<i class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i>
-												</div>
-												<div class="product-price">
-													<span>$2549</span>
-												</div>
-												<p>Lorem ipsum dolor sit amet, consectetur adipic it,
-													sed do eiusmod tempor incididunt ut labore et dolore mag
-													aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-													ullamco laboris nisi ut aliquip ex ea commodo it. Duis aute
-													irure dolor in reprehenderit in voluptate velit esse cillum
-													dolore eu fugiat nulla pariatur.</p>
-												<div class="shop-list-cart">
-													<a href="cart.html"><i class="ti-shopping-cart"></i>
-														Add to cart</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div id="accessory-product"
-								class="product-grid product-view tab-pane">
-								<div class="row">
-									<div class="product-width col-md-6 col-xl-4 col-lg-6">
-										<div class="product-wrapper mb-35">
-											<div class="product-img">
-												<a href="product-details.html"> <img
-													src="../images/car_img/product/product-7.jpg" alt="">
-												</a>
-												<div class="product-item-dec">
-													<ul>
-														<li>2018</li>
-														<li>MANUAL</li>
-														<li>PETROL</li>
-														<li>270 CC</li>
-													</ul>
-												</div>
-												<div class="product-action">
-													<a class="action-plus-2 p-action-none" title="Add To Cart"
-														href="#"> <i class=" ti-shopping-cart"></i>
-													</a> <a class="action-cart-2" title="Wishlist" href="#"> <i
-														class=" ti-heart"></i>
-													</a> <a class="action-reload" title="Quick View"
-														data-toggle="modal" data-target="#exampleModal" href="#">
-														<i class=" ti-zoom-in"></i>
-													</a>
-												</div>
-												<div class="product-content-wrapper">
-													<div class="product-title-spreed">
-														<h4>
-															<a href="product-details.html">Aeri Carbon Helmet</a>
-														</h4>
-														<span>6600 RPM</span>
-													</div>
-													<div class="product-price">
-														<span>$2549</span>
-													</div>
-												</div>
-											</div>
-											<div class="product-list-details">
-												<h2>
-													<a href="product-details.html">Aeri Carbon Helmet</a>
-												</h2>
-												<div class="quick-view-rating">
-													<i class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i>
-												</div>
-												<div class="product-price">
-													<span>$2549</span>
-												</div>
-												<p>Lorem ipsum dolor sit amet, consectetur adipic it,
-													sed do eiusmod tempor incididunt ut labore et dolore mag
-													aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-													ullamco laboris nisi ut aliquip ex ea commodo it. Duis aute
-													irure dolor in reprehenderit in voluptate velit esse cillum
-													dolore eu fugiat nulla pariatur.</p>
-												<div class="shop-list-cart">
-													<a href="cart.html"><i class="ti-shopping-cart"></i>
-														Add to cart</a>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="product-width col-md-6 col-xl-4 col-lg-6">
-										<div class="product-wrapper mb-35">
-											<div class="product-img">
-												<a href="product-details.html"> <img
-													src="../images/car_img/product/product-8.jpg" alt="">
-												</a>
-												<div class="product-item-dec">
-													<ul>
-														<li>2018</li>
-														<li>MANUAL</li>
-														<li>PETROL</li>
-														<li>300 CC</li>
-													</ul>
-												</div>
-												<div class="product-action">
-													<a class="action-plus-2 p-action-none" title="Add To Cart"
-														href="#"> <i class=" ti-shopping-cart"></i>
-													</a> <a class="action-cart-2" title="Wishlist" href="#"> <i
-														class=" ti-heart"></i>
-													</a> <a class="action-reload" title="Quick View"
-														data-toggle="modal" data-target="#exampleModal" href="#">
-														<i class=" ti-zoom-in"></i>
-													</a>
-												</div>
-												<div class="product-content-wrapper">
-													<div class="product-title-spreed">
-														<h4>
-															<a href="product-details.html">Reckles Jacket</a>
-														</h4>
-														<span>6600 RPM</span>
-													</div>
-													<div class="product-price">
-														<span>$2549</span>
-													</div>
-												</div>
-											</div>
-											<div class="product-list-details">
-												<h2>
-													<a href="product-details.html">Reckles Jacket</a>
-												</h2>
-												<div class="quick-view-rating">
-													<i class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i>
-												</div>
-												<div class="product-price">
-													<span>$2549</span>
-												</div>
-												<p>Lorem ipsum dolor sit amet, consectetur adipic it,
-													sed do eiusmod tempor incididunt ut labore et dolore mag
-													aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-													ullamco laboris nisi ut aliquip ex ea commodo it. Duis aute
-													irure dolor in reprehenderit in voluptate velit esse cillum
-													dolore eu fugiat nulla pariatur.</p>
-												<div class="shop-list-cart">
-													<a href="cart.html"><i class="ti-shopping-cart"></i>
-														Add to cart</a>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="product-width col-md-6 col-xl-4 col-lg-6">
-										<div class="product-wrapper mb-35">
-											<div class="product-img">
-												<a href="product-details.html"> <img
-													src="../images/car_img/product/product-9.jpg" alt="">
-												</a>
-												<div class="product-item-dec">
-													<ul>
-														<li>2018</li>
-														<li>MANUAL</li>
-														<li>PETROL</li>
-														<li>250 CC</li>
-													</ul>
-												</div>
-												<div class="product-action">
-													<a class="action-plus-2 p-action-none" title="Add To Cart"
-														href="#"> <i class=" ti-shopping-cart"></i>
-													</a> <a class="action-cart-2" title="Wishlist" href="#"> <i
-														class=" ti-heart"></i>
-													</a> <a class="action-reload" title="Quick View"
-														data-toggle="modal" data-target="#exampleModal" href="#">
-														<i class=" ti-zoom-in"></i>
-													</a>
-												</div>
-												<div class="product-content-wrapper">
-													<div class="product-title-spreed">
-														<h4>
-															<a href="product-details.html">Softy Original Glove</a>
-														</h4>
-														<span>6600 RPM</span>
-													</div>
-													<div class="product-price">
-														<span>$2549</span>
-													</div>
-												</div>
-											</div>
-											<div class="product-list-details">
-												<h2>
-													<a href="product-details.html">Softy Original Glove</a>
-												</h2>
-												<div class="quick-view-rating">
-													<i class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i>
-												</div>
-												<div class="product-price">
-													<span>$2549</span>
-												</div>
-												<p>Lorem ipsum dolor sit amet, consectetur adipic it,
-													sed do eiusmod tempor incididunt ut labore et dolore mag
-													aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-													ullamco laboris nisi ut aliquip ex ea commodo it. Duis aute
-													irure dolor in reprehenderit in voluptate velit esse cillum
-													dolore eu fugiat nulla pariatur.</p>
-												<div class="shop-list-cart">
-													<a href="cart.html"><i class="ti-shopping-cart"></i>
-														Add to cart</a>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="product-width col-md-6 col-xl-4 col-lg-6">
-										<div class="product-wrapper mb-35">
-											<div class="product-img">
-												<a href="product-details.html"> <img
-													src="../images/car_img/product/product-10.jpg" alt="">
-												</a>
-												<div class="product-item-dec">
-													<ul>
-														<li>2018</li>
-														<li>MANUAL</li>
-														<li>PETROL</li>
-														<li>150 CC</li>
-													</ul>
-												</div>
-												<div class="product-action">
-													<a class="action-plus-2 p-action-none" title="Add To Cart"
-														href="#"> <i class=" ti-shopping-cart"></i>
-													</a> <a class="action-cart-2" title="Wishlist" href="#"> <i
-														class=" ti-heart"></i>
-													</a> <a class="action-reload" title="Quick View"
-														data-toggle="modal" data-target="#exampleModal" href="#">
-														<i class=" ti-zoom-in"></i>
-													</a>
-												</div>
-												<div class="product-content-wrapper">
-													<div class="product-title-spreed">
-														<h4>
-															<a href="product-details.html">Flicky Traco Boot</a>
-														</h4>
-														<span>6600 RPM</span>
-													</div>
-													<div class="product-price">
-														<span>$2549</span>
-													</div>
-												</div>
-											</div>
-											<div class="product-list-details">
-												<h2>
-													<a href="product-details.html">Flicky Traco Boot</a>
-												</h2>
-												<div class="quick-view-rating">
-													<i class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i>
-												</div>
-												<div class="product-price">
-													<span>$2549</span>
-												</div>
-												<p>Lorem ipsum dolor sit amet, consectetur adipic it,
-													sed do eiusmod tempor incididunt ut labore et dolore mag
-													aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-													ullamco laboris nisi ut aliquip ex ea commodo it. Duis aute
-													irure dolor in reprehenderit in voluptate velit esse cillum
-													dolore eu fugiat nulla pariatur.</p>
-												<div class="shop-list-cart">
-													<a href="cart.html"><i class="ti-shopping-cart"></i>
-														Add to cart</a>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="product-width col-md-6 col-xl-4 col-lg-6">
-										<div class="product-wrapper mb-35">
-											<div class="product-img">
-												<a href="product-details.html"> <img
-													src="../images/car_img/product/product-11.jpg" alt="">
-												</a>
-												<div class="product-item-dec">
-													<ul>
-														<li>2018</li>
-														<li>MANUAL</li>
-														<li>PETROL</li>
-														<li>280 CC</li>
-													</ul>
-												</div>
-												<div class="product-action">
-													<a class="action-plus-2 p-action-none" title="Add To Cart"
-														href="#"> <i class=" ti-shopping-cart"></i>
-													</a> <a class="action-cart-2" title="Wishlist" href="#"> <i
-														class=" ti-heart"></i>
-													</a> <a class="action-reload" title="Quick View"
-														data-toggle="modal" data-target="#exampleModal" href="#">
-														<i class=" ti-zoom-in"></i>
-													</a>
-												</div>
-												<div class="product-content-wrapper">
-													<div class="product-title-spreed">
-														<h4>
-															<a href="product-details.html">Flicky Traco Boot</a>
-														</h4>
-														<span>6600 RPM</span>
-													</div>
-													<div class="product-price">
-														<span>$2549</span>
-													</div>
-												</div>
-											</div>
-											<div class="product-list-details">
-												<h2>
-													<a href="product-details.html">Flicky Traco Boot</a>
-												</h2>
-												<div class="quick-view-rating">
-													<i class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i>
-												</div>
-												<div class="product-price">
-													<span>$2549</span>
-												</div>
-												<p>Lorem ipsum dolor sit amet, consectetur adipic it,
-													sed do eiusmod tempor incididunt ut labore et dolore mag
-													aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-													ullamco laboris nisi ut aliquip ex ea commodo it. Duis aute
-													irure dolor in reprehenderit in voluptate velit esse cillum
-													dolore eu fugiat nulla pariatur.</p>
-												<div class="shop-list-cart">
-													<a href="cart.html"><i class="ti-shopping-cart"></i>
-														Add to cart</a>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="product-width col-md-6 col-xl-4 col-lg-6">
-										<div class="product-wrapper mb-35">
-											<div class="product-img">
-												<a href="product-details.html"> <img
-													src="../images/car_img/product/product-7.jpg" alt="">
-												</a>
-												<div class="product-item-dec">
-													<ul>
-														<li>2018</li>
-														<li>MANUAL</li>
-														<li>PETROL</li>
-														<li>290 CC</li>
-													</ul>
-												</div>
-												<div class="product-action">
-													<a class="action-plus-2 p-action-none" title="Add To Cart"
-														href="#"> <i class=" ti-shopping-cart"></i>
-													</a> <a class="action-cart-2" title="Wishlist" href="#"> <i
-														class=" ti-heart"></i>
-													</a> <a class="action-reload" title="Quick View"
-														data-toggle="modal" data-target="#exampleModal" href="#">
-														<i class=" ti-zoom-in"></i>
-													</a>
-												</div>
-												<div class="product-content-wrapper">
-													<div class="product-title-spreed">
-														<h4>
-															<a href="product-details.html">Aeri Carbon Helmet</a>
-														</h4>
-														<span>6600 RPM</span>
-													</div>
-													<div class="product-price">
-														<span>$2549</span>
-													</div>
-												</div>
-											</div>
-											<div class="product-list-details">
-												<h2>
-													<a href="product-details.html">Aeri Carbon Helmet</a>
-												</h2>
-												<div class="quick-view-rating">
-													<i class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i>
-												</div>
-												<div class="product-price">
-													<span>$2549</span>
-												</div>
-												<p>Lorem ipsum dolor sit amet, consectetur adipic it,
-													sed do eiusmod tempor incididunt ut labore et dolore mag
-													aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-													ullamco laboris nisi ut aliquip ex ea commodo it. Duis aute
-													irure dolor in reprehenderit in voluptate velit esse cillum
-													dolore eu fugiat nulla pariatur.</p>
-												<div class="shop-list-cart">
-													<a href="cart.html"><i class="ti-shopping-cart"></i>
-														Add to cart</a>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="product-width col-md-6 col-xl-4 col-lg-6">
-										<div class="product-wrapper mb-35">
-											<div class="product-img">
-												<a href="product-details.html"> <img
-													src="../images/car_img/product/product-8.jpg" alt="">
-												</a>
-												<div class="product-item-dec">
-													<ul>
-														<li>2018</li>
-														<li>MANUAL</li>
-														<li>PETROL</li>
-														<li>220 CC</li>
-													</ul>
-												</div>
-												<div class="product-action">
-													<a class="action-plus-2 p-action-none" title="Add To Cart"
-														href="#"> <i class=" ti-shopping-cart"></i>
-													</a> <a class="action-cart-2" title="Wishlist" href="#"> <i
-														class=" ti-heart"></i>
-													</a> <a class="action-reload" title="Quick View"
-														data-toggle="modal" data-target="#exampleModal" href="#">
-														<i class=" ti-zoom-in"></i>
-													</a>
-												</div>
-												<div class="product-content-wrapper">
-													<div class="product-title-spreed">
-														<h4>
-															<a href="product-details.html">Reckles Jacket</a>
-														</h4>
-														<span>6600 RPM</span>
-													</div>
-													<div class="product-price">
-														<span>$2549</span>
-													</div>
-												</div>
-											</div>
-											<div class="product-list-details">
-												<h2>
-													<a href="product-details.html">Reckles Jacket</a>
-												</h2>
-												<div class="quick-view-rating">
-													<i class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i>
-												</div>
-												<div class="product-price">
-													<span>$2549</span>
-												</div>
-												<p>Lorem ipsum dolor sit amet, consectetur adipic it,
-													sed do eiusmod tempor incididunt ut labore et dolore mag
-													aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-													ullamco laboris nisi ut aliquip ex ea commodo it. Duis aute
-													irure dolor in reprehenderit in voluptate velit esse cillum
-													dolore eu fugiat nulla pariatur.</p>
-												<div class="shop-list-cart">
-													<a href="cart.html"><i class="ti-shopping-cart"></i>
-														Add to cart</a>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="product-width col-md-6 col-xl-4 col-lg-6">
-										<div class="product-wrapper mb-35">
-											<div class="product-img">
-												<a href="product-details.html"> <img
-													src="../images/car_img/product/product-9.jpg" alt="">
-												</a>
-												<div class="product-item-dec">
-													<ul>
-														<li>2018</li>
-														<li>MANUAL</li>
-														<li>PETROL</li>
-														<li>210 CC</li>
-													</ul>
-												</div>
-												<div class="product-action">
-													<a class="action-plus-2 p-action-none" title="Add To Cart"
-														href="#"> <i class=" ti-shopping-cart"></i>
-													</a> <a class="action-cart-2" title="Wishlist" href="#"> <i
-														class=" ti-heart"></i>
-													</a> <a class="action-reload" title="Quick View"
-														data-toggle="modal" data-target="#exampleModal" href="#">
-														<i class=" ti-zoom-in"></i>
-													</a>
-												</div>
-												<div class="product-content-wrapper">
-													<div class="product-title-spreed">
-														<h4>
-															<a href="product-details.html">Softy Original Glove</a>
-														</h4>
-														<span>6600 RPM</span>
-													</div>
-													<div class="product-price">
-														<span>$2549</span>
-													</div>
-												</div>
-											</div>
-											<div class="product-list-details">
-												<h2>
-													<a href="product-details.html">Softy Original Glove</a>
-												</h2>
-												<div class="quick-view-rating">
-													<i class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i>
-												</div>
-												<div class="product-price">
-													<span>$2549</span>
-												</div>
-												<p>Lorem ipsum dolor sit amet, consectetur adipic it,
-													sed do eiusmod tempor incididunt ut labore et dolore mag
-													aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-													ullamco laboris nisi ut aliquip ex ea commodo it. Duis aute
-													irure dolor in reprehenderit in voluptate velit esse cillum
-													dolore eu fugiat nulla pariatur.</p>
-												<div class="shop-list-cart">
-													<a href="cart.html"><i class="ti-shopping-cart"></i>
-														Add to cart</a>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="product-width col-md-6 col-xl-4 col-lg-6">
-										<div class="product-wrapper mb-35">
-											<div class="product-img">
-												<a href="product-details.html"> <img
-													src="../images/car_img/product/product-10.jpg" alt="">
-												</a>
-												<div class="product-item-dec">
-													<ul>
-														<li>2018</li>
-														<li>MANUAL</li>
-														<li>PETROL</li>
-														<li>250 CC</li>
-													</ul>
-												</div>
-												<div class="product-action">
-													<a class="action-plus-2 p-action-none" title="Add To Cart"
-														href="#"> <i class=" ti-shopping-cart"></i>
-													</a> <a class="action-cart-2" title="Wishlist" href="#"> <i
-														class=" ti-heart"></i>
-													</a> <a class="action-reload" title="Quick View"
-														data-toggle="modal" data-target="#exampleModal" href="#">
-														<i class=" ti-zoom-in"></i>
-													</a>
-												</div>
-												<div class="product-content-wrapper">
-													<div class="product-title-spreed">
-														<h4>
-															<a href="product-details.html">Flicky Traco Boot</a>
-														</h4>
-														<span>6600 RPM</span>
-													</div>
-													<div class="product-price">
-														<span>$2549</span>
-													</div>
-												</div>
-											</div>
-											<div class="product-list-details">
-												<h2>
-													<a href="product-details.html">Flicky Traco Boot</a>
-												</h2>
-												<div class="quick-view-rating">
-													<i class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i> <i
-														class="fa fa-star reting-color"></i>
-												</div>
-												<div class="product-price">
-													<span>$2549</span>
-												</div>
-												<p>Lorem ipsum dolor sit amet, consectetur adipic it,
-													sed do eiusmod tempor incididunt ut labore et dolore mag
-													aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-													ullamco laboris nisi ut aliquip ex ea commodo it. Duis aute
-													irure dolor in reprehenderit in voluptate velit esse cillum
-													dolore eu fugiat nulla pariatur.</p>
-												<div class="shop-list-cart">
-													<a href="cart.html"><i class="ti-shopping-cart"></i>
-														Add to cart</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="paginations text-center mt-20">
-							<ul>
-								<li><a href="#"><i class="fa fa-angle-left"></i></a></li>
-								<li><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li class="active"><a href="#"><i
-										class="fa fa-angle-right"></i></a></li>
-							</ul>
-						</div>
+						</div>						
 					</div>
 				</div>
 			</div>

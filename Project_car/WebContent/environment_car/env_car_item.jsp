@@ -26,8 +26,8 @@
 						<div class="product-width col-md-6 col-xl-4 col-lg-6">
 							<div class="product-wrapper mb-35">
 								<div class="product-img" style="height: 300px;">
-									<a href="car_detail.do?cno=${vo.car_num }"> 
-									<img src="${vo.car_poster }" alt="">
+									<a href="../car/car_detail.do?cno=${vo.car_num }"> 
+										<img src="${vo.car_poster }" alt="">
 									</a>
 
 									<div class="product-action">
