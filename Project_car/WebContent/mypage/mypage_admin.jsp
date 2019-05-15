@@ -27,7 +27,7 @@
 <script type="text/javascript">
 	$(function() {
 		$('#approval').click(function() {
-			alert("승인 요청 하였습니다.");
+			alert("승인 요청했습니다.");
 		});
 	});
 </script>

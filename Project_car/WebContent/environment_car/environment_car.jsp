@@ -27,6 +27,7 @@
 <link rel="stylesheet" href="../css/car_css/bundle.css">
 <link rel="stylesheet" href="../css/car_css/style.css">
 <link rel="stylesheet" href="../css/car_css/responsive.css">
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR" rel="stylesheet">
 <script src="../js/car_js/vendor/modernizr-2.8.3.min.js"></script>
 <!-- 차트 -->
 <script>
@@ -146,6 +147,10 @@
 <jsp:include page="../cmmn/default-nav.jsp"></jsp:include>
 
 <style type="text/css">
+.blog-post-body p, .blog-post-body ul{
+	font-family: 'Noto Serif KR', serif;
+	font-size: 20px;
+}
 .col-lg-6 {
 	width: 30%;
 }
@@ -202,21 +207,15 @@ div.blog-post-body ul li {
 								<h2>
 									<a href="post.html">자동차로 인한 대기오염 해결</a>
 								</h2>
-								<p>▶ 수도권에서 발생하는 미세먼지의 30%이상이 경유차 등 자동차에서 배출되는 오염물질로서, 자동차로
+								<p> 수도권에서 발생하는 미세먼지의 30%이상이 경유차 등 자동차에서 배출되는 오염물질로서, 자동차로
 									인한 대기오염이 심각해지고 있습니다. 또한, 아파트 주변도로, 지하주차장 등 국민 생활에 밀접한 곳에서 발생하는
 									자동차 배출가스는 인체 위해도가 매우 높아 '12년에 국제암연구소에서 1군 발암물질로 지정하기도 하였습니다.
 									내연기관차를 친환경차인 전기차로 대체해나갈 경우 자동차로 인한 대기오염 문제를 획기적으로 해결할 수 있습니다.
 									자동차에서 배출되는 유해물질은 일산화탄소(CO), 탄화수소(HC), 질소산화물(NOx), 미세먼지(PM)등이
 									있습니다.</p>
-
 							</div>
 							<div id="chartContainer" style="height: 370px; width: 100%;"></div>
 							<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-							<div class="blog-post-image text-center">
-								<a href="https://www.ev.or.kr/portal/evcar?pMENUMST_ID=21540">
-									<img src="../images/env_car/gas_compare.jpg" alt="">
-								</a>
-							</div>
 						</article>
 
 						<article class="blog-post">
@@ -226,7 +225,7 @@ div.blog-post-body ul li {
 										href="https://www.ev.or.kr/portal/ecoeffect?pMENUMST_ID=21541">전기차의
 										작동원리</a>
 								</h2>
-								<p>▶ 전기차는 고전압 배터리에서 전기에너지를 전기모터로 공급하여 구동력을 발생시키는 차량으로, 화석연료를
+								<p> 전기차는 고전압 배터리에서 전기에너지를 전기모터로 공급하여 구동력을 발생시키는 차량으로, 화석연료를
 									전혀 사용하지 않는 무공해 차량입니다.</p>
 								<ul>
 									<li>구분점 내연기관차와 달리 엔진이 없이 배터리와 모터만으로 차량 구동</li>

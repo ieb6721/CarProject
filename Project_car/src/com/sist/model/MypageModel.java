@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import com.sist.controller.RequestMapping;
 import com.sist.dao.AccDAO;
@@ -23,14 +24,11 @@ public class MypageModel {
 	@RequestMapping("mypage/mypage_acc.do")
 	public String AccModel(HttpServletRequest request) {
 		
-		/*
 		HttpSession session=request.getSession();
 		String id=(String)session.getAttribute("id");
-		List<AccVO> list1=MypageDAO.accPayAcc(id);
-		List<Acc_payVO> list2=MypageDAO.accPayAccPay(id);
-		request.setAttribute("list1", list1);
-		request.setAttribute("list2", list2);
-		*/
+		List<AccTotalVO> list=MypageDAO.accPay(id);
+		request.setAttribute("list", list);
+
 		return "mypage_acc.jsp";
 	}
 	
@@ -86,6 +84,16 @@ public class MypageModel {
 		}
 		
 		return "mypage_admin.jsp";
+	}
+	
+	@RequestMapping("mypage/reservation_cancel.do")
+	public String reservation_cancel(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		
+		MypageDAO.reserveDelete(id);
+		
+		return "mypage_main.do";
 	}
 	
 	

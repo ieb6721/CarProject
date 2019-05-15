@@ -16,26 +16,15 @@ public class MainModel {
 		
 //		뉴스 최신순
 		List<NewsVO> list=MainDAO.newsMainData();
-//		System.out.println("메인뉴스:"+list.size());
 		request.setAttribute("nList", list);
 		
 //		차 연비 순위
 		List<CarVO> list1=MainDAO.carEfficiency();
-//		System.out.println("연비효율:"+list1.size());
-//		for(CarVO vo:list1)
-//		{
-//			System.out.println(vo.getCar_name());
-//		}
 		request.setAttribute("eList", list1);
 		
 //		차 출시일 순위
 		List<CarVO> list2=MainDAO.carRegdate();
 		request.setAttribute("rList", list2);
-//		for(CarVO vo:list2)
-//		{
-//			System.out.println(vo.getCar_name());
-//		}
-		
 		
 //		차 가격순위
 		List<CarVO> list3=MainDAO.carPriceList();
@@ -44,12 +33,13 @@ public class MainModel {
 //		악세서리 순위
 		List<AccVO> list4=MainDAO.carAccList();
 		request.setAttribute("aList", list4);
+//		System.out.println(list4.size());
 		
 //		차량 브랜드
 		
 		String car_company="국산";
 		List<BrandVO> list6=MainDAO.kBrandList(car_company);
-
+//		System.out.println(list6.size());
 		request.setAttribute("kBrandList", list6);
 		
 		
@@ -66,7 +56,7 @@ public class MainModel {
 		request.setAttribute("amBrandList", list9);
 		
 		
-		
+//		차량 인기순
 		List<CarVO> list5=MainDAO.carPopularList();
 		request.setAttribute("poList", list5);
 		
@@ -77,6 +67,8 @@ public class MainModel {
 		return "main.jsp";
 	}
 	
+	
+//	차량 관련 동영상
 	@RequestMapping("main/test.do")
 	public String popup(HttpServletRequest request)
 	{

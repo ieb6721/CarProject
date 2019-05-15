@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <div class="htc__product__rightidebar">
 	<!-- Start Product View -->
 	<div class="row">
@@ -28,18 +29,23 @@
 											<tbody>
 											 <c:forEach var="vo" items="${list }">
 												<tr>
-													<td class="product-thumbnail" style="padding-top: 20px;">${vo.model }</td>
-													<td class="product-name" style="padding-top: 20px;">${vo.agency_name }</td>
-													<td class="product-price" style="padding-top: 20px;">${vo.reserve_date }</td>
+													<td class="product-thumbnail" style="padding-top: 13px;">${vo.model }</td>
+													<td class="product-name" style="padding-top: 13px;">${vo.agency_name }</td>
+													<td class="product-price" style="padding-top: 13px;">${vo.reserve_date }</td>
 													<c:if test="${vo.approval_num == 0 }">
-													<td class="product-price" style="padding-top: 20px;">예약 대기</td>
+													<td class="product-price" style="padding-top: 13px;">예약 대기</td>
 													</c:if>
 													<c:if test="${vo.approval_num == 1 }">
-													<td class="product-price" style="padding-top: 20px;">예약 완료</td>
+													<td class="product-price" style="padding-top: 13px;">예약 완료</td>
 													</c:if>
-													
-													<td class="product-quantity"><input type="button"
-														class="btn btn-sm btn-active" value="취소"></td>
+													<c:if test="${vo.approval_num == 0 }">
+													<td class="product-quantity">
+														<input type="button" id="reservation_cancel" class="btn btn-sm btn-active" value="취소">
+													</td>
+													</c:if>	
+													<c:if test="${vo.approval_num == 1 }">
+													<td class="product-price" style="padding-top: 13px;">취소 불가</td>
+													</c:if>
 												</tr>
 											</c:forEach>
 											</tbody>
