@@ -27,17 +27,27 @@ public class CarDetailModel {
 		response.addCookie(cookie);
 		//
 		
+		//가격이 미정인 자동차들의 car_num을 리스트로 받는다
+		List<String> nopricelist = new ArrayList<String>();
+		nopricelist = CarDetailDAO.nopriceList();
 		
 		CarVO compvo = CarDetailDAO.carCompare(cno);
-		request.setAttribute("compvo", compvo);
 		
+		//car_list에서 넘어온 cno가 리스트에 cno안에 들어있으면 
+		for(String nocno : nopricelist){
+			if(nocno.equals(cno)){
+				//자신을 제외한 랜덤
+				compvo = CarDetailDAO.nopriceRand(cno);
+			}
+		}
+
+		request.setAttribute("compvo", compvo);
+	
 		List<Car_model_trimVO> modellist = CarDetailDAO.carDetailModel(cno);
 		request.setAttribute("modellist", modellist);
 		
 		List<Car_model_trimVO> trimlist = CarDetailDAO.carDetailTrim(cno);
 		request.setAttribute("trimlist", trimlist);
-		
-		
 		
 		return "car_detail.jsp";
 	}
