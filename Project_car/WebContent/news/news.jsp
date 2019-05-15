@@ -23,6 +23,13 @@
 	height: 70px;
 	font-size: 24px;
 }
+
+.fa-angle-end:before{
+	content:">>";
+}
+.fa-angle-start:before{
+	content:"<<";
+}
 </style>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -215,12 +222,26 @@
 			</ul>
 		</div>
 	</div>
-	<!-- pagination end --> --%>
+			<!-- pagination end --> --%>
 	
 	
+	
+<!-- 스타일 태그안에 추가해주기
+
+.fa-angle-end:before{
+	content:">>";
+}
+.fa-angle-start:before{
+	content:"<<";
+} 
+
+-->
 					<div class="paginations text-center mt-20">
 							<ul>
 								<c:if test="${curpage>BLOCK }">
+									<li>
+									  <a href="news.do?page=1"><i class="fa fa-angle-start"></i></a>
+									</li>
 									<li>
 										<a href="news.do?page=${startPage-1 }&newsno=${newsno}"><i class="fa fa-angle-left"></i></a>
 									</li>
@@ -239,6 +260,9 @@
 								<c:if test="${endPage<allPage }">
 									<li>
 										<a href="news.do?page=${endPage+1 }&news_no=${news_no}"><i class="fa fa-angle-right"></i></a>
+									</li>
+									<li>
+										<a href="news.do?page=${totalpage}"><i class="fa fa-angle-end"></i></a>
 									</li>
 								</c:if>
 							</ul>

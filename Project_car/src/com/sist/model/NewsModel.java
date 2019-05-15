@@ -1,6 +1,8 @@
 package com.sist.model;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import com.sist.vo.*;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.*;
@@ -52,9 +54,71 @@ public class NewsModel {
 	public String news_detail_Model(HttpServletRequest request) {
 		String news_no = request.getParameter("news_no");
 		NewsVO vo = NewsDAO.newsDetailData(Integer.parseInt(news_no));
+		List<News_replyVO> list=NewsDAO.newsReplyList(Integer.parseInt(news_no));
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
 		
+		request.setAttribute("id", id);
+		request.setAttribute("list", list);
 		request.setAttribute("nvo", vo);
 		return "newsDetail.jsp";
 	}
+	
+	
+	@RequestMapping("news/news_replyInsert.do")
+	public String news_reply_Model(HttpServletRequest request)
+	{
+		try
+		{
+			request.setCharacterEncoding("UTF-8");
+		}catch(Exception ex) {}
+		
+		String news_no=request.getParameter("news_no");
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
+		String pwd=(String)session.getAttribute("cookie_pwd");
+		String content=request.getParameter("content");
 
+		News_replyVO vo=new News_replyVO();
+		
+		vo.setNews_no(Integer.parseInt(news_no));
+		vo.setPwd(pwd); 
+		vo.setId(id);
+		vo.setContent(content);	
+		
+		NewsDAO.newsReplyInsert(vo);
+		return "redirect:newsDetail.do?news_no="+news_no;
+	}
+
+	@RequestMapping("news/news_reply_update.do")
+	public String news_update_Model(HttpServletRequest request)
+	{
+		try
+		{
+			request.setCharacterEncoding("UTF-8");
+		}catch(Exception e) {}
+		String news_no=request.getParameter("news_no");
+		String content=request.getParameter("content");
+		String no=request.getParameter("no");
+		
+
+		News_replyVO vo=new News_replyVO();
+		
+		vo.setNews_no(Integer.parseInt(news_no));
+		vo.setContent(content);
+		vo.setNo(no);
+		
+		NewsDAO.newsReplyUpdate(vo);
+		return "redirect:newsDetail.do?news_no="+news_no;
+	}
+	
+	@RequestMapping("news/news_reply_delete.do")
+	public String news_delete_Model(HttpServletRequest request)
+	{
+		String news_no=request.getParameter("news_no");
+		String no=request.getParameter("no");
+		
+		NewsDAO.newsReplyDelete(Integer.parseInt(no));
+		return "redirect:newsDetail.do?news_no="+news_no;
+	}
 }

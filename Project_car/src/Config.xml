@@ -15,6 +15,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<typeAliases>
 		<!-- VO 등록 -->
 		<typeAlias type="com.sist.vo.NewsVO" alias="NewsVO"/>
+		<typeAlias type="com.sist.vo.News_replyVO" alias="News_replyVO"/>
 		<typeAlias type="com.sist.vo.BrandVO" alias="BrandVO"/>
 		<typeAlias type="com.sist.vo.AccVO" alias="AccVO"/>
 		<typeAlias type="com.sist.vo.Acc_payVO" alias="Acc_payVO"/>
@@ -55,6 +56,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<mappers>
 	<mapper resource="com/sist/mapper/acc-mapper.xml"/>
 		<mapper resource="com/sist/mapper/news-mapper.xml"/>
+		<mapper resource="com/sist/mapper/news_reply-mapper.xml"/>
 		<mapper resource="com/sist/mapper/charge-mapper.xml"/>
 		<mapper resource="com/sist/mapper/member-mapper.xml"/>
 		<mapper resource="com/sist/mapper/Environment_info-mapper.xml"/>
