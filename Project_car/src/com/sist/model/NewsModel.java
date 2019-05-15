@@ -76,14 +76,14 @@ public class NewsModel {
 		String news_no=request.getParameter("news_no");
 		HttpSession session=request.getSession();
 		String id=(String)session.getAttribute("id");
-		String pwd=(String)session.getAttribute("cookie_pwd");
+		String pwd=(String)session.getAttribute("pwd");
 		String content=request.getParameter("content");
 
 		News_replyVO vo=new News_replyVO();
 		
-		vo.setNews_no(Integer.parseInt(news_no));
-		vo.setPwd(pwd); 
 		vo.setId(id);
+		vo.setNews_no(Integer.parseInt(news_no));
+		vo.setPwd(pwd); 	
 		vo.setContent(content);	
 		
 		NewsDAO.newsReplyInsert(vo);

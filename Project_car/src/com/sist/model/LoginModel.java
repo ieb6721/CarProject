@@ -27,6 +27,7 @@ public class LoginModel {
 	  {
 		  HttpSession session=request.getSession();
 		  session.setAttribute("id", id);
+		  session.setAttribute("pwd", pwd);
 		  session.setAttribute("name", vo.getName());
 	  }
 	  
