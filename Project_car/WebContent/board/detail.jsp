@@ -214,6 +214,17 @@ body .btn-block:active { -webkit-box-shadow: none; -moz-box-shadow: none; box-sh
 								<tr id="m${rvo.no }" class="rupdate" style="display: none">
 									<td class="in">
 										<form method="post" action="reply_update.do">
+											<input type=hidden name=bno value=""> 
+											<input type=hidden name=no value="">
+											<textarea rows="3" cols="80" name="msg" style="float: left">내용</textarea>
+											<input type="submit" value="댓글수정" style="height: 65px" class="btn btn-danger">
+										</form>
+									</td>
+								</tr>
+								
+								<tr id="m${rvo.no }" class="rupdate" style="display: none">
+									<td class="in">
+										<form method="post" action="reply_update.do">
 											<input type=hidden name=bno value="${vo.no }"> 
 											<input type=hidden name=no value="${rvo.no }">
 											<textarea rows="3" cols="80" name="msg" style="float: left">${rvo.msg }</textarea>
@@ -221,6 +232,7 @@ body .btn-block:active { -webkit-box-shadow: none; -moz-box-shadow: none; box-sh
 										</form>
 									</td>
 								</tr>
+								
 							</c:forEach>
 						</table>
 						
