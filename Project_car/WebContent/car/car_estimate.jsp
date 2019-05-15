@@ -229,9 +229,7 @@ button#selected_option {
 				
 				window.location.href = "../mypage/mypage_main.do";
 				
-			}
-			
-			
+			}						
 		});
 	});
 	
@@ -460,7 +458,7 @@ button#selected_option {
 			</div>
 
 			<div class="col-sm-6" style="padding-left: 100px;">
-				<img src="http://autoimg.danawa.com/photo/3652/model_360.png" width="80%">
+				<img src="${carvo.car_poster}" width="80%">
 				<div class="product_detail">
 					<h1>${carvo.car_name }</h1>
 					<ul class="pro__prize">

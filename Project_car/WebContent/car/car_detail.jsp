@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,10 +35,10 @@ $(function(){
 		var winWidth = 800;
 		
 		var popupX = screen.width / 2 - winWidth / 2;
-		//&nbsp;만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음
+		//만들 팝업창 좌우 크기의 절반 만큼 보정값으로 빼주었음
 
 		var popupY= screen.height / 2 - winHeight / 2;
-		//&nbsp;만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
+		//만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
 
 		var popupOption = "scrollbars=yes, status=no, width=" + winWidth + ", height=" 
 						+ winHeight + ', left='+ popupX + ', top='+ popupY;
@@ -71,8 +72,19 @@ $(function(){
 						<div class="sin__desc">
 							<button class="btn btn-md btn-warning brand"
 							onclick="location='car_brand.do?keyword=${carvo.brand_name}'">${carvo.brand_name}</button>
-							<button class="btn btn-md btn-primary"
-								onclick="location='car_estimate.do?cno=${carvo.car_num}'">견적</button>
+							<c:forEach var="modelvo" items="${modellist}">
+								<c:set var="model_num" value="${modelvo.model_num}" />
+								<c:if test="${fn:contains(model_num, '모델없음')}">
+									<c:set var="nomodel" value="0"/>
+								</c:if>
+								<c:if test="${!fn:contains(model_num, '모델없음')}">
+									<c:set var="nomodel" value="1"/>
+								</c:if>
+							</c:forEach>
+							<c:if test="${nomodel == 1}">
+									<button class="btn btn-md btn-primary"
+										onclick="location='car_estimate.do?cno=${carvo.car_num}'">견적</button>
+							</c:if>							
 							<button class="btn btn-md btn-success"
 								onclick="location='car.do'">목록</button>
 						</div>
@@ -85,30 +97,39 @@ $(function(){
 
 	<div class="container text-center">
 		<h3 class="text-left" style="padding-left: 100px">시판중인 모델</h3>
+		<c:forEach var="modelvo" items="${modellist}">
+			<c:set var="model_num" value="${modelvo.model_num}"/>
+			<c:if test="${fn:contains(model_num, '모델없음')}">
+				<h3>시판중인 모델이 없습니다.</h3>
+			</c:if>
+		</c:forEach>
 		<br>
 		<div class="row">
 			<c:forEach var="modelvo" items="${modellist}">
-				<dl class="accordion">
-					<dt class="accordion-title">${modelvo.model_name}</dt>
-					<dd class="accordion-list">
-						<ul>
-							<li>								
-								<c:forEach var="trimvo" items="${trimlist}">
-									<c:if test="${modelvo.model_num eq trimvo.model_num}">
-										<div class="item name">${trimvo.trim_name}</div>
-										<div class="item fuel">${trimvo.trim_fuel_type}</div>
-										<div class="item engine">${trimvo.trim_cc}</div>
-										<div class="item mileage">${trimvo.trim_efficiency}</div>
-										<div class="item price">${trimvo.trim_price}</div>
-										<div class="item button">
-											<button class="btn btn-sm btn-info spec" value="${trimvo.trim_num}">제원</button>										
-										</div>
-									</c:if>
-								</c:forEach>
-							</li>
-						</ul>
-					</dd>
-				</dl>
+				<c:set var="model_num" value="${modelvo.model_num}"/>
+				<c:if test="${!fn:contains(model_num, '모델없음')}">
+					<dl class="accordion">
+						<dt class="accordion-title">${modelvo.model_name}</dt>
+						<dd class="accordion-list">
+							<ul>
+								<li>								
+									<c:forEach var="trimvo" items="${trimlist}">
+										<c:if test="${modelvo.model_num eq trimvo.model_num}">
+											<div class="item name">${trimvo.trim_name}</div>
+											<div class="item fuel">${trimvo.trim_fuel_type}</div>
+											<div class="item engine">${trimvo.trim_cc}</div>
+											<div class="item mileage">${trimvo.trim_efficiency}</div>
+											<div class="item price">${trimvo.trim_price}</div>
+											<div class="item button">
+												<button class="btn btn-sm btn-info spec" value="${trimvo.trim_num}">제원</button>										
+											</div>
+										</c:if>
+									</c:forEach>
+								</li>
+							</ul>
+						</dd>
+					</dl>
+				</c:if>
 			</c:forEach>
 
 			<script

@@ -18,14 +18,7 @@ public class CarDetailDAO {
 		SqlSession session = null;
 		try {
 			session = ssf.openSession(); // connection연결
-			
-			// 조회수 증가 
-			session.update("carHitIncrement",cno);
-			// 저장한다 
-			session.commit();
-			
 			vo = session.selectOne("carDetailData", cno);
-//			System.out.println("cno:"+vo.getCar_hit());
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
@@ -140,6 +133,37 @@ public class CarDetailDAO {
 		}
 	}
 	
+	public static List<String> nopriceList(){
+		SqlSession session = null;
+		List<String> nopriceList = new ArrayList<String>();
+		try {
+			session = ssf.openSession();
+			nopriceList = session.selectList("nopriceList");
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (session != null)
+				session.close();
+		}
+		
+		return nopriceList;	
+	}
+	
+	public static CarVO nopriceRand(String cno){
+		SqlSession session = null;
+		CarVO rand = new CarVO();
+		try {
+			session = ssf.openSession();
+			rand = session.selectOne("nopriceRand", cno);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (session != null)
+				session.close();
+		}
+		
+		return rand;	
+	}
 	
 	
 }
