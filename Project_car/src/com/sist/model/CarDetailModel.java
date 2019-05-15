@@ -3,6 +3,7 @@ package com.sist.model;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.sist.controller.RequestMapping;
 import com.sist.dao.CarDAO;
@@ -16,13 +17,19 @@ public class CarDetailModel {
 	@RequestMapping("car/car_detail.do")
 	public String car_detail(HttpServletRequest request,HttpServletResponse response)
 	{		
-		System.out.println("asd");
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");		
+		
 		String cno=request.getParameter("cno");
 		CarVO carvo=CarDetailDAO.carDetailData(cno);
 		request.setAttribute("carvo", carvo);
 		
-		//
-		Cookie cookie=new Cookie("cno"+cno, cno);
+		//최근본목록 쿠키 추가		
+		if(id==null)
+		{
+			id="NOID";
+		}
+		Cookie cookie=new Cookie(id+cno, cno);
 		cookie.setMaxAge(60*60*24);
 		response.addCookie(cookie);
 		//

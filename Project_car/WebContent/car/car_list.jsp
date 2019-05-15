@@ -65,7 +65,7 @@
 									</div>
 								</div>
 
-								<div class="product-list-details">
+								<!-- <div class="product-list-details">
 									<h2>
 										<a href="product-details.html">Gloriori GSX 250 R</a>
 									</h2>
@@ -88,6 +88,57 @@
 									<div class="shop-list-cart">
 										<a href="cart.html"><i class="ti-shopping-cart"></i> Add
 											to cart</a>
+									</div>
+								</div> -->
+							</div>
+						</div>
+
+						<!-- modal -->
+						<div class="modal fade" id="exampleModal" tabindex="-1"
+							role="dialog" aria-hidden="true">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span class="icofont icofont-close" aria-hidden="true"></span>
+							</button>
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-body">
+										<!-- <div class="qwick-view-left">
+							<div class="quick-view-learg-img">
+								<div class="quick-view-tab-content tab-content">
+									<div class="tab-pane active show fade" id="modal1"
+										role="tabpanel">
+										<img src="../images/car_img/quick-view/l1.jpg" alt="">
+									</div>
+									<div class="tab-pane fade" id="modal2" role="tabpanel">
+										<img src="../images/car_img/quick-view/l2.jpg" alt="">
+									</div>
+									<div class="tab-pane fade" id="modal3" role="tabpanel">
+										<img src="../images/car_img/quick-view/l3.jpg" alt="">
+									</div>
+								</div>
+							</div>
+						</div> -->
+										<div class="qwick-view-right">
+											<div class="qwick-view-content">
+												<img src="${vo.car_poster }">
+												<h3>${vo.car_name }</h3>
+												<div class="rating-number">
+													<div class="quick-view-rating">
+														<i class="fa fa-star reting-color"></i> <i
+															class="fa fa-star reting-color"></i> <i
+															class="fa fa-star reting-color"></i> <i
+															class="fa fa-star reting-color"></i> <i
+															class="fa fa-star reting-color"></i>
+													</div>
+												</div>
+												<div class="quickview-plus-minus">
+													<div class="quickview-btn-cart">
+														<a class="btn-style" href="#">Close</a>
+													</div>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
