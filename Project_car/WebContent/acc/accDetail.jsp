@@ -59,6 +59,24 @@ input.pr {
 	margin-top: 150px;
 }
 </style>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#buyBtn').click(function() {
+		var result = confirm('구매하시겠습니까?'); 
+		if(result) { //yes
+			buy();
+		} else { //no
+			
+		}
+		
+	}); 
+		
+});
+		
+</script>
+ 
 <body onload="init()">
 	<script language="JavaScript">
 		var sell_price;
@@ -106,6 +124,13 @@ input.pr {
 					/\B(?=(\d{3})+(?!\d))/g, ",");
 
 		}
+		
+		function buy()
+		{
+			var f=document.form;
+			f.submit();
+		}
+		
 	</script>
 
 
@@ -264,16 +289,17 @@ input.pr {
 
 													<div class="ht__pro__desc">
 														<div class="sin__desc cal">
-															<form name="form" method="get">
+															<form name="form" method="post" action="../acc/acc_buy.do" >
 																<div class=count>
 																	수량 : <input type="hidden" name="sell_price"
-																		value="${vo.product_dc_price}"> <input
-																		type="button" class="btn btn-xs btn-primary"
-																		value=" + " onclick="add();"> <input
-																		type="text" class="pi" name="amount" value="1"
-																		size="1" onchange="change(); readonly"> <input
-																		type="button" class="btn btn-xs btn-danger"
-																		value=" - " onclick="del();">
+																		value="${vo.product_dc_price}"> 
+																		<input type="hidden" name="product_id"
+																		value="${vo.product_id}"> 
+																		<input type="button" class="btn btn-xs btn-primary"
+																		value=" + " onclick="add();"> 
+																		<input type="text" class="pi" name="amount" value="1" 
+																		size="1" onchange="change(); readonly"> 
+																		<input type="button" class="btn btn-xs btn-danger"value=" - " onclick="del();">
 																</div>
 
 																<div class=price>
@@ -291,9 +317,17 @@ input.pr {
 																<a href="../acc/acc_insert.do?product_id=${vo.product_id }"
 																	class="btn btn-sm btn-success">찜</a>
 															</c:if>
-															<input type=button class="btn btn-md btn-danger"
-																value="목록" onclick="javascript:history.back()">
+															<c:if test="${sessionScope.id!=null }">
+															     <input type=button class="btn btn-md btn-danger" 
+																	class="btn btn-sm btn-success" value="구매" id="buyBtn">
+																	<!--  onclick="buy()" -->
+															</c:if>
+															
 														</div>
+														<div>
+														<input type=button class="btn btn-md btn-danger"
+																value="목록" onclick="javascript:history.back()" style="margin-left: 600px;">
+														</div> 
 
 													</div>
 												</div>
