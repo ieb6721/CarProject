@@ -97,16 +97,25 @@
 		   var tel2 = $('#tel2').val();
 		   var email1 = $('#email1').val();
 		   var email2 = $('#email2').val();
+		   var sessionId = $('#sessionId').val();
 		  
 		   if (name.trim() === "") {
 			   alert("이름을 입력해주세요!");
+			   $('#res_name').focus();
 		   } else if (id.trim() === "") {
 			   alert("회원 아이디를 입력해주세요!");
+			   $('#memberId').focus();
+		   } else if (id.trim() != sessionId) {
+			   alert("로그인한 아이디와 입력한 아이디가 다릅니다!");
+			   $('#memberId').focus();
 		   } else if (tel1.trim() === "" || tel2.trim() === "") {
 			   alert("전화번호를 입력해주세요!");
+			   $('.tel0').focus();
 		   } else if (email1.trim() === "" || email2.trim() === "") {
 			   alert("이메일을 입력해주세요!");
-		   }
+			   $('#email1').focus();
+		   } else
+			   alert('신청자 정보 입력완료!');
 		      
 		   $('em.applicant_info').text(name + "\u00A0\u00A0"  + tel0 + "-" + tel1 + "-" +tel2);   
 		   
@@ -145,7 +154,8 @@
 		   var tel1 = $('#tel1').val();
 		   var tel2 = $('#tel2').val();
 		   var email1 = $('#email1').val();
-		   var email2 = $('#email2').val();
+		   var email2 = $('#email2').val();	
+		   var sessionId = $('#sessionId').val();
 		   
 		   if ($('.reserve_place').text() === "") {
 			   alert("시승하실 장소를 선택해주세요!");
@@ -158,18 +168,26 @@
 			   return false;
 		   } else if (name.trim() === "") {
 			   alert("신청자 정보의 이름을 입력해주세요!");
+			   $('#res_name').focus();
 			   return false;
 		   } else if (id.trim() === "") {
 			   alert("신청자 정보의 회원 아이디를 입력해주세요!");
+			   $('#memberId').focus();
 			   return false;
-		   }  else if (tel1.trim() === "" || tel2.trim() === "") {
+		   } else if (id.trim() != sessionId) {
+			   alert("로그인한 아이디와 입력한 아이디가 다릅니다!");
+			   $('#memberId').focus();
+			   return false;
+		   } else if (tel1.trim() === "" || tel2.trim() === "") {
 			   alert("신청자 정보의 전화번호를 입력해주세요!");
+			   $('.tel0').focus();
 			   return false;
 		   } else if (email1.trim() === "" || email2.trim() === "") {
-			   alert("신청자 정보의 이메일을 입력해주세요!");
+			   alert("신청자 정보의 이메일을 입력해주세요!");	
+			   $('#email1').focus();
 			   return false;
 		   } else if ($('.applicant_info').text()==="") {
-			   alert('신청자 정보의 다음 버튼을 눌러주세요!')
+			   alert('신청자 정보의 다음 버튼을 눌러주세요!');
 			   return false;
 		   } else if ($("input:checkbox[id='ex_chk1']").is(":checked") === false) {
 			   alert('개인정보 수집에 동의해주세요!');
@@ -178,8 +196,14 @@
 			   alert('개인정보 취급 위탁에 동의해주세요!');
 			   return false;
 		   } else {
-			   alert('예약이 완료되었습니다. 관리자가 승인할 때까지 기다려주세요!');	
-			   return true;
+			   if (confirm("시승예약을 완료하시겠습니까?")) {
+				   alert('예약이 완료되었습니다. 관리자가 승인할 때까지 기다려주세요! \r\n시승예약정보는 마이페이지에서 확인가능합니다.');	
+				   return true;   
+			   } else {
+				   return false;
+			   }
+				  
+			   
 		   }
 		
 		     
@@ -339,7 +363,7 @@ h2.monthH2{padding-left: 30px;}
       <input type="hidden" name="modelData" id="modelData">
       <input type="hidden" name="calendarData" id="calendarData">
       <input type="hidden" name="agencyData" id="agencyData">
-      
+      <input type="hidden" name="sesssionId" value="${sessionScope.id }" id="sessionId">
 	      
 	      <div class="con">
 	         <h2 class="rs">시승 신청 <em>Book a Test Drive</em></h2>	    
@@ -417,8 +441,13 @@ h2.monthH2{padding-left: 30px;}
 				 		<tr>
 				  			<td>      
 				  			 <select name="month" id="m" year="${year }">
-						 	 	<c:forEach var="i" begin="1" end="12" >
+						 	 	<c:forEach var="i" begin="5" end="12" >
 									<option value="${i }">${i } </option>
+									<c:if test="${i } gt > 12" >
+										<c:forEach var="j" begin="1" end="4">
+											<option value="${i }"> </option>
+										</c:forEach>
+									</c:if>
 								</c:forEach>
 				  			 </select>
 				  			</td>

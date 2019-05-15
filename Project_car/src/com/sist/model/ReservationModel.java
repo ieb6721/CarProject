@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import com.sist.controller.RequestMapping;
 import com.sist.vo.Driver_reserveVO;
@@ -39,10 +41,13 @@ public class ReservationModel {
 	    cal.set(Calendar.YEAR,year);
 	    cal.set(Calendar.MONTH,month-1);
 	    cal.set(Calendar.DATE,1);
-	    
-	
+
 	    request.setAttribute("year", year);
 	    request.setAttribute("month", month);
+	    
+	    HttpSession session = request.getSession();
+	    String id = (String) session.getAttribute("id");	    
+	    session.setAttribute("id", id);
 
 		return "reservation.jsp";
 	}
@@ -100,7 +105,7 @@ public class ReservationModel {
 		String tel0 = request.getParameter("tel0");
 		String tel1 = request.getParameter("tel1");
 		String tel2 = request.getParameter("tel2");
-		System.out.println(tel0);
+
 		Driver_reserveVO vo = new Driver_reserveVO();
 		vo.setModel(modelData);
 		vo.setReserve_date(calendarData);
