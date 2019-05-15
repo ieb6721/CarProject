@@ -86,7 +86,7 @@
     margin-top: 100px;
 }
 input[type=text], input[type=email], input[type=password] {
-    width:50%;
+    width:70%;
 }
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
@@ -290,6 +290,75 @@ $(function(){
 						</div>
 						
 						
+							<section class="htc__product__area--2 pb--100 product-details-res">
+			<div class="container">
+				<div class="row bottom">
+					<div class="col-xs-12">
+						<div class="section__title--2 text-center">
+							<h2 class="title__line">최근 본 상품</h2>
+							<!-- <p>But I must explain to you how all this mistaken idea</p> -->
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="product__wrap clearfix">
+					
+					<c:forEach var="vo" items="${cookieList }" varStatus="s">
+					
+						<!-- Start Single Product -->
+						<div class="col-md-3 col-lg-3 col-sm-6 col-xs-12">
+							<div class="category">
+								<div class="ht__cat__thumb">
+									<c:if test="${cookieList.size() == 0 }">
+											<h5>최근 본 목록이 없습니다.</h5>
+										</c:if>	
+										
+										<c:if test="${cookieList.size() != 0 && s.index<10}">		
+										
+									<a href="acc_detail.do?product_id=${vo.product_id }"> 
+								<img src="${vo.product_main_img}" alt="product images">
+									</a>
+								</div>
+								<div class="fr__hover__info">
+									<ul class="product__action">
+										<%-- <li>
+										
+										<a href="../acc/accDetail.do?product_id1=${vo.product_id }" class="btn btn-xs btn-info">삭제</a>
+										<!-- <a href="wishlist.html"> -->
+										</li> --%>
+
+										<li><a href="cart.html"><i class="icon-handbag icons"></i></a></li>
+
+										<li><a href="#"><i class="icon-shuffle icons"></i></a></li>
+									</ul>
+								</div>
+								<div class="fr__product__inner">
+									<h4>
+										<a href="acc_detail.do?product_id=${vo.product_id }">${vo.product_name }</a>
+									</h4>
+									<%-- <ul class="fr__pro__prize">
+										<li class="old__prize">${vo.product_origin_price }</li>
+										<li>${vo.product_dc_price }원</li>
+									</ul> --%>
+								</div>
+							</div>
+							</c:if>	
+						</div>
+						</c:forEach>
+						<!-- End Single Product -->
+						
+					
+					</div>
+				</div>
+			</div>
+		</section>
+						
+						
+						
+						
+						
+						
+						
 						<!-- End Pagenation -->
 					</div>
 					
@@ -301,24 +370,22 @@ $(function(){
 						class="col-lg-3 col-lg-pull-9 col-md-3 col-md-pull-9 col-sm-12 col-xs-12 smt-40 xmt-40">
 						<div class="htc__product__leftsidebar">
 							<!-- Start Prize Range -->
-
-							<div class="content-shopby">
-								<div class="price_filter s-filter clear"></div>
-							</div>
-						</div>
-						<!-- End Prize Range -->
-						
-						<div class="htc__category">
-								<h4 class="title__line--4">Search Products</h4>
+							<div class="sidebar-widget pb-55" style="margin-bottom: 0px;">
+								<h3 class="sidebar-widget">Search Car</h3>
 								<div class="sidebar-search">
 									<form>
-										<input type="text" placeholder="Search Products..." id="keyword" >										
-										<button type="button" class="btn btn-lg"  value="검색" id="findBtn">
+										<input type="text" placeholder="Search Products..." id="keyword">										
+										<button type="button" id="findBtn">
 											<i class="ti-search"></i>											
 										</button>
 									</form>
 								</div>
 							</div>
+							
+						</div>
+						<!-- End Prize Range -->
+						
+						
 						
 						
 						

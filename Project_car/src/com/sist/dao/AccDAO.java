@@ -5,8 +5,8 @@ import java.util.*;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import com.sist.vo.AccVO;
-import com.sist.vo.CarVO;
+import com.sist.vo.*;
+
 
 /*
  * 
@@ -141,6 +141,64 @@ public class AccDAO {
 	    			session.close();
 			}
 			return list;
+		}
+	   
+
+		// 찜 저장
+		public static void accInsert(Acc_payVO vo) {
+			SqlSession session = null;
+			try {
+				// session생성
+				session = ssf.openSession(true);
+				session.insert("accInsert", vo);
+
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			} finally {
+				if (session != null)
+					session.close();
+			}
+		}
+
+
+		// 확인
+		public static int accOkCount(Acc_payVO vo) {
+			int count = 0;
+			SqlSession session = null;
+			try {
+				// session생성
+				session = ssf.openSession();
+				count=session.selectOne("accOkCount", vo);
+
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			} finally {
+				if (session != null)
+					session.close();
+			}
+
+			return count;
+
+		}
+		//목록 출력
+		public static List<String> accGetData(String id)
+		{
+			List<String> list=new ArrayList<String>();
+			SqlSession session=null;
+			
+			try {
+				session=ssf.openSession();
+				list=session.selectList("accGetData",id);
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+			finally {
+				if (session != null)
+					session.close();
+				
+			}
+			return list;
+			
 		}
 		
 

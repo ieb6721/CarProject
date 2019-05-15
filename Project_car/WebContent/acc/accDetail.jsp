@@ -61,53 +61,52 @@ input.pr {
 </style>
 <body onload="init()">
 	<script language="JavaScript">
+		var sell_price;
+		var amount;
 
-var sell_price;
-var amount;
+		function init() {
+			sell_price = parseInt((document.form.sell_price.value).replace(",",
+					""));
 
- function init () {
-	sell_price = parseInt((document.form.sell_price.value).replace(",",""));
-		
-		//(document.form.sell_price.value).replace(",","");
-	
-	amount = document.form.amount.value;
-	document.form.sum.value = sell_price;
-	change();
-	
-} 
+			//(document.form.sell_price.value).replace(",","");
 
-function add () {
-	hm = document.form.amount;
-	sum = document.form.sum;
-	hm.value ++ ;
+			amount = document.form.amount.value;
+			document.form.sum.value = sell_price;
+			change();
 
-	sum.value = (parseInt(hm.value) * sell_price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
-
-function del () {
-	hm = document.form.amount;
-	sum = document.form.sum;
-		if (hm.value > 1) {
-			hm.value -- ;
-			sum.value = (parseInt(hm.value) * sell_price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		}
-}
 
-function change () {
-	hm = document.form.amount;
-	sum = document.form.sum;
+		function add() {
+			hm = document.form.amount;
+			sum = document.form.sum;
+			hm.value++;
 
-		if (hm.value < 0) {
-			hm.value = 0;
+			sum.value = (parseInt(hm.value) * sell_price).toString().replace(
+					/\B(?=(\d{3})+(?!\d))/g, ",");
 		}
-	sum.value = (parseInt(hm.value) * sell_price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-	
-}  
+		function del() {
+			hm = document.form.amount;
+			sum = document.form.sum;
+			if (hm.value > 1) {
+				hm.value--;
+				sum.value = (parseInt(hm.value) * sell_price).toString()
+						.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			}
+		}
 
+		function change() {
+			hm = document.form.amount;
+			sum = document.form.sum;
 
+			if (hm.value < 0) {
+				hm.value = 0;
+			}
+			sum.value = (parseInt(hm.value) * sell_price).toString().replace(
+					/\B(?=(\d{3})+(?!\d))/g, ",");
 
-</script>
+		}
+	</script>
 
 
 	<!-- Body main wrapper start -->
@@ -268,11 +267,13 @@ function change () {
 															<form name="form" method="get">
 																<div class=count>
 																	수량 : <input type="hidden" name="sell_price"
-																		value="${vo.product_dc_price}"> 
-																		<input type="button" class="btn btn-xs btn-primary" value=" + " onclick="add();"> 
-																		
-																		<input type="text" class="pi" name="amount" value="1" size="1" onchange="change(); readonly">
-																		 <input type="button" class="btn btn-xs btn-danger" value=" - " onclick="del();">
+																		value="${vo.product_dc_price}"> <input
+																		type="button" class="btn btn-xs btn-primary"
+																		value=" + " onclick="add();"> <input
+																		type="text" class="pi" name="amount" value="1"
+																		size="1" onchange="change(); readonly"> <input
+																		type="button" class="btn btn-xs btn-danger"
+																		value=" - " onclick="del();">
 																</div>
 
 																<div class=price>
@@ -286,10 +287,12 @@ function change () {
 													</div>
 													<div class="ht__pro__desc">
 														<div class="sin__desc pull-center">
-															<input type=button class="btn btn-md btn-primary"
-																value="찜"> 
-																<input type=button class="btn btn-md btn-danger" value="목록"
-																onclick="javascript:history.back()" >
+															 <c:if test="${sessionScope.id!=null && count==0 }">
+																<a href="../acc/acc_insert.do?product_id=${vo.product_id }"
+																	class="btn btn-sm btn-success">찜</a>
+															</c:if>
+															<input type=button class="btn btn-md btn-danger"
+																value="목록" onclick="javascript:history.back()">
 														</div>
 
 													</div>
@@ -309,61 +312,7 @@ function change () {
 
 
 		<!-- Start Product Area -->
-		<section class="htc__product__area--2 pb--100 product-details-res">
-			<div class="container">
-				<div class="row bottom">
-					<div class="col-xs-12">
-						<div class="section__title--2 text-center">
-							<h2 class="title__line">최근 본 상품</h2>
-							<!-- <p>But I must explain to you how all this mistaken idea</p> -->
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="product__wrap clearfix">
-					
-					<c:forEach var="vo" items="${list }">
-					
-						<!-- Start Single Product -->
-						<div class="col-md-3 col-lg-3 col-sm-6 col-xs-12">
-							<div class="category">
-								<div class="ht__cat__thumb">
-									<a href="product-details.html"> 
-								<img src="${vo.product_main_img}" alt="product images">
-									</a>
-								</div>
-								<div class="fr__hover__info">
-									<ul class="product__action">
-										<li>
-										
-										<a href="../acc/accDetail.do?product_id1=${vo.product_id }" class="btn btn-xs btn-info">삭제</a>
-										<!-- <a href="wishlist.html"> -->
-										</a></li>
 
-										<li><a href="cart.html"><i class="icon-handbag icons"></i></a></li>
-
-										<li><a href="#"><i class="icon-shuffle icons"></i></a></li>
-									</ul>
-								</div>
-								<div class="fr__product__inner">
-									<h4>
-										<a href="product-details.html">${vo.product_name }</a>
-									</h4>
-									<ul class="fr__pro__prize">
-										<li class="old__prize">${vo.product_origin_price }</li>
-										<li>${vo.product_dc_price }원</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						</c:forEach>
-						<!-- End Single Product -->
-						
-					
-					</div>
-				</div>
-			</div>
-		</section>
 
 	</div>
 	<!-- Body main wrapper end -->
