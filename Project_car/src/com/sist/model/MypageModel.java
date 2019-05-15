@@ -23,19 +23,18 @@ public class MypageModel {
 	@RequestMapping("mypage/mypage_acc.do")
 	public String AccModel(HttpServletRequest request) {
 		
-		/*
+		
 		HttpSession session=request.getSession();
 		String id=(String)session.getAttribute("id");
-		List<AccVO> list1=MypageDAO.accPayAcc(id);
-		List<Acc_payVO> list2=MypageDAO.accPayAccPay(id);
-		request.setAttribute("list1", list1);
-		request.setAttribute("list2", list2);
-		*/
+		List<AccTotalVO> list=MypageDAO.accPay(id);
+		request.setAttribute("list", list);
+		
 		return "mypage_acc.jsp";
 	}
 	
 	@RequestMapping("mypage/mypage_accCart.do")
 	public String AccCartModel(HttpServletRequest request) {
+		
 		
 		HttpSession session=request.getSession();
 		String id=(String)session.getAttribute("id");
@@ -86,7 +85,7 @@ public class MypageModel {
 		}
 		
 		return "mypage_admin.jsp";
-	}
+	}		
 	
 	
 }

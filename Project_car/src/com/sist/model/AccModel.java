@@ -74,7 +74,7 @@ public class AccModel {
 		return "../acc/accDetail.jsp";
 	}
 	
-	/*@RequestMapping("mypage/mypage_accCart.do")
+	@RequestMapping("mypage/mypage_accCart.do")
 	public String mypage(HttpServletRequest request)
 	{
 		HttpSession session=request.getSession();
@@ -95,7 +95,8 @@ public class AccModel {
 		//request.setAttribute("acc_jsp", "../mypage/mypage_accCart.jsp");
 		
 		return "../acc/acc.jsp";
-	}*/
+	}
+	
 	@RequestMapping("acc/acc.do")
 	public String acc_list(HttpServletRequest request) {
 		
@@ -196,7 +197,8 @@ public class AccModel {
 		return "acc_list.jsp";
 	}
 	//cart Insert
-	@RequestMapping("acc/acc_insert.do")
+
+    @RequestMapping("acc/acc_insert.do")
 	public String acc_insert(HttpServletRequest request)
 	{
 		String product_id=request.getParameter("product_id");
@@ -210,6 +212,31 @@ public class AccModel {
 		
 		AccDAO.accInsert(vo);
 		return "redirect:../acc/accDetail.do?product_id="+product_id;
+	}
+	
+	
+	@RequestMapping("acc/acc_buy.do")
+	public String acc_buy(HttpServletRequest request)
+	{
+		
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
+		String product_id=request.getParameter("product_id");
+		String quantity=request.getParameter("amount");
+		//Insert
+		
+		System.out.println(id);
+		System.out.println(product_id);
+		System.out.println(quantity);
+		
+		Acc_payVO vo=new Acc_payVO();
+		vo.setId(id);
+		vo.setProduct_id(product_id);
+		vo.setQuantity(Integer.parseInt(quantity));
+		
+		AccDAO.acc_buy(vo);
+		
+		return "redirect:../mypage/mypage_main.do";
 	}
 
 
