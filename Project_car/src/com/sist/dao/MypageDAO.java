@@ -33,11 +33,11 @@ public class MypageDAO {
 	}
 
 	// 예약 승인하기
-	public static void reserveOkUpdate(String id) {
+	public static void reserveOkUpdate(int no) {
 		SqlSession session = null;
 		try {
 			session = ssf.openSession(true);
-			session.update("reserveOkUpdate", id);
+			session.update("reserveOkUpdate", no);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -70,11 +70,11 @@ public class MypageDAO {
 	}
 
 	// 예약 취소
-	public static void reserveDelete(String id) {
+	public static void reserveDelete(int no) {
 		SqlSession session = null;
 		try {
 			session = ssf.openSession(true);
-			session.delete("reserveDelete", id);
+			session.delete("reserveDelete", no);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

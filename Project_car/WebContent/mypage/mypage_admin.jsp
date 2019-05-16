@@ -26,8 +26,15 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 	$(function() {
-		$('#approval').click(function() {
+		
+		/* $("input:hidden[name='no']").val(no); */
+		
+		$('.approval').click(function() {
+			var no = $(this).attr("appNo");
+			$("input:hidden[name='no']").val(no);
+			
 			alert("승인 요청했습니다.");
+			 $('#frm2').submit();
 		});
 	});
 </script>
@@ -68,7 +75,7 @@
 										<div class="container">
 											<div class="row">
 												<div class="col-md-12 col-sm-12 col-xs-12">
-													<form action="#">
+													<form action="mypage_admin.do" method="post" id="frm2">
 														<div class="table-content table-responsive">
 															<table class="table table-hover">
 																<thead>
@@ -84,6 +91,7 @@
 																</thead>
 																<tbody>
 																 <c:forEach var="vo" items="${list }">
+																 	
 																	<tr>
 																	    <td class="product-name" style="padding-top: 20px;">${vo.model }</td>
 																		<td class="product-name" style="padding-top: 20px;">${vo.agency_name }</td>
@@ -93,7 +101,8 @@
 																		<td class="product-quantity" style="padding-top: 20px;">${vo.reserve_date }</td>
 																		<td class="product-subtotal">
 																			<c:if test="${vo.approval_num == 0 }">
-																				<a class="btn btn-sm btn-primary" href="mypage_admin.do?id=${vo.id }" id="approval">승인</a>
+																				<input type="button" class="btn btn-sm btn-primary approval" appNo="${vo.no }" value="승인"/>
+																				<input class="ff" type="hidden" name="no" value="">
 																			</c:if>
 																			<c:if test="${vo.approval_num == 1 }">
 																				예약 완료

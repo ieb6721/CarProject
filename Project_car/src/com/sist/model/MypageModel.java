@@ -42,7 +42,7 @@ public class MypageModel {
 		//jjim
 		List<AccVO> aList=new ArrayList<AccVO>();
 		List<String> iList=AccDAO.accGetData(id);
-		System.out.println(iList.size());
+
 		for(String product_id:iList)
 		{
 			AccVO v=AccDAO.accDetailData(product_id);
@@ -50,7 +50,6 @@ public class MypageModel {
 		}
 		//jjim end
 		request.setAttribute("aList", aList);
-		System.out.println(aList.size());
 		
 		return "mypage_accCart.jsp";
 	}
@@ -63,9 +62,7 @@ public class MypageModel {
 		
 		List<MyEstimateVO> mList=MypageDAO.myEstimate(id);
 		request.setAttribute("mList", mList);
-		for(MyEstimateVO vo : mList){
-			System.out.println(vo.getMy_model_name());
-		}
+		
 		return "mypage_estimate.jsp";
 	}
 	
@@ -81,19 +78,27 @@ public class MypageModel {
 	
 	@RequestMapping("mypage/mypage_admin.do")
 	public String adminModel(HttpServletRequest request) {
-		String id = request.getParameter("id");
-		if (id == null) {
+		String no = request.getParameter("no");
+		if (no == null) {
 			List<Driver_reserveVO> list=MypageDAO.adminMypage();
 			request.setAttribute("list", list);
 		} else {
-			MypageDAO.reserveOkUpdate(id);
+			MypageDAO.reserveOkUpdate(Integer.parseInt(no));
 			
 			List<Driver_reserveVO> list=MypageDAO.adminMypage();
 			request.setAttribute("list", list);
 		}
 		
 		return "mypage_admin.jsp";
-	}		
+	}			
+	
+	@RequestMapping("mypage/reservation_cancel.do")
+	public String reservationCancelModel(HttpServletRequest request) {
+		String no = request.getParameter("no");
+
+		MypageDAO.reserveDelete(Integer.parseInt(no));
+		return "redirect:mypage_main.do";
+	}
 	
 	
 }

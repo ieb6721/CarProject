@@ -1,5 +1,6 @@
 package com.sist.vo;
 
+
 public class Driver_reserveVO {
 	private String model;
 	private String reserve_date;

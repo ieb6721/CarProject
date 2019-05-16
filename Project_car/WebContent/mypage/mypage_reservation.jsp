@@ -1,7 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<head>
+<script type="text/javascript">
+$('.reservation_cancel').click(function() {
+	var no = $(this).attr("cancelNo");
+	$("input:hidden[name='no']").val(no);
 
+	if (confirm("시승예약을 취소하시겠습니까?")) {
+			
+       alert("시승 예약이 취소되었습니다.");      
+    }
+	
+	$('#frm').submit(); 
+
+});
+</script>
+</head>
 <div class="htc__product__rightidebar">
 	<!-- Start Product View -->
 	<div class="row">
@@ -14,8 +29,8 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-md-12 col-sm-12 col-xs-12">
-								<form action="#">
-									<div class="table-content table-responsive">
+								<form method="post" action="reservation_cancel.do" id="frm">
+									<div class="table-content table-responsive">							
 										<table class="table table-hover">
 											<thead>
 												<tr class="active">
@@ -39,8 +54,9 @@
 													<td class="product-price" style="padding-top: 13px;">예약 완료</td>
 													</c:if>
 													<c:if test="${vo.approval_num == 0 }">
-													<td class="product-quantity">
-														<input type="button" id="reservation_cancel" class="btn btn-sm btn-active" value="취소">
+													<td class="product-quantity">																																	
+														<input type="button" class="btn btn-sm btn-active reservation_cancel" value="취소" cancelNo="${vo.no }">
+														<input type="hidden" name="no" value="">																															
 													</td>
 													</c:if>	
 													<c:if test="${vo.approval_num == 1 }">
@@ -48,8 +64,9 @@
 													</c:if>
 												</tr>
 											</c:forEach>
-											</tbody>
+											</tbody>									
 										</table>
+													
 									</div>									
 								</form>
 							</div>
