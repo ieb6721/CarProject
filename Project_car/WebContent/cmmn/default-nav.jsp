@@ -67,7 +67,9 @@
 				<li class="menu"><a href="#" onclick="pageSubmitFn('car')">신차</a></li>
 				<li class="menu"><a href="#" onclick="pageSubmitFn('environment')">친환경차</a></li>
 				<li class="menu"><a href="#" onclick="pageSubmitFn('guide')">가이드</a></li>
-				<li class="menu"><a href="#" onclick="pageSubmitFn('reservation')">시승예약</a></li>
+				<c:if test="${sessionScope.id!=null && sessionScope.id!='admin' }">
+					<li class="menu"><a href="#" onclick="pageSubmitFn('reservation')">시승예약</a></li>
+				</c:if>
 				<li class="menu"><a href="#" onclick="pageSubmitFn('news')">뉴스</a></li>
 				<li class="menu"><a href="#" onclick="pageSubmitFn('accessory')">액세서리</a></li>
 			   <c:if test="${sessionScope.id!=null }">

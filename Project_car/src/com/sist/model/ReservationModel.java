@@ -48,8 +48,8 @@ public class ReservationModel {
 	    
 	    HttpSession session = request.getSession();
 	    String id = (String) session.getAttribute("id");	    
-	    session.setAttribute("id", id);
-
+	    session.setAttribute("loginId", id);
+	   
 		return "reservation.jsp";
 	}
 	
