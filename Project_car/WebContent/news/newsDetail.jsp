@@ -4,6 +4,7 @@
    import="java.util.*,java.text.*,com.sist.dao.*,com.sist.vo.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html>
 <html class="no-js" lang="">
 <head>
@@ -50,6 +51,12 @@ $(function(){
 });
 
 </script>
+<style>
+.button submit-btn{
+	float:right;
+} 
+</style>
+
 </head>
 <body class="single-blog-1">
    
@@ -129,19 +136,13 @@ $(function(){
                
                
               <!-- /.about-author -->
-                     <div class="comments-area" style="
-    width: 652px;
-    padding-left: 126px;
-    padding-right: 126px;
-">
+                     <div class="comments-area" style="width: 652px;padding-left: 126px;padding-right: 126px;">
                         <h6 class="title">&nbsp;&nbsp;comments</h6>
                         <!-- /.single-comment -->
 							<ul class="comments-list">
 								<li class="single-comment">
 									<div class="comment-box">										
-										<div class="comment-info" style="
-    width: 458px;
-">
+										<div class="comment-info" style="width: 458px;">
 										  <c:forEach var="rvo" items="${list }">
 											<p class="author-name">
 												<a href="#" style="line-height:30px;">${rvo.id }</a>
@@ -155,14 +156,15 @@ $(function(){
 										    
 										 
 										    <table class="table">
+										    
 										    <tr id="trId${rvo.no }" class="rupdate" style="display:none;">
-					                           <td class="in">
+					                           <td class="in text-right ">
 					                              <form method="post" action="news_reply_update.do">
 					                                 <input type=hidden name=news_no value="${rvo.news_no }">
 					                                 <input type=hidden name=no value="${rvo.no}">
-					                                 <textarea rows="3" cols="80" name="content" style="float: left"></textarea>
-					                                 <br>
-					                                 <input type="submit" value="수정" style="height: 65px;float: left;padding-left: 0px;padding-right: 0px;width: 400px;" class="btn btn-danger">
+					                                 <textarea rows="3" cols="80" name="content" style="float: left;width: 440px;"></textarea>
+					                                 
+					                                 <input type="submit" value="수정" class="btn btn-sm btn-info" style="margin-top: 3px">
 					                              </form>
 					                           </td>
 					                        </tr>
@@ -170,22 +172,24 @@ $(function(){
 					                      					                        
 										 </c:forEach>	
 												
-												
 										</div>
 									</div>
 									
 									<!-- /.comments-area -->
-	                     <div class="comment-form-area" style="
-    margin-left: 0px;
-    padding-right: 0px;
-">
-	                        <p>leave a comment</p>
-	                        <form action="news_replyInsert.do?news_no=${nvo.news_no }" method="post">
-	                           <textarea placeholder="Message" name="content"></textarea>
-	                           <button type="submit" class="submit-btn">submit</button>
-	                        </form>
-	                     </div>
-                     <!-- /.comment-form-area -->
+									<c:if test="${sessionScope.id == null }">
+										<p>로그인 후 댓글을 입력할 수 있습니다.</p>
+										<a href="../login/login.do" type="button" class="btn3">로그인</a>
+									</c:if>
+									<c:if test="${sessionScope.id != null }">
+					                     <div class="comment-form-area" style="margin-left: 0px;padding-right: 0px;">
+					                        <p>leave a comment</p>
+					                        <form action="news_replyInsert.do?news_no=${nvo.news_no }" method="post">
+					                           <textarea placeholder="Message" name="content"></textarea>
+					                           <button type="submit" class="submit-btn">submit</button>
+					                        </form>
+					                     </div>
+					                </c:if>
+                     				<!-- /.comment-form-area -->
 								</li>
 							</ul>
 						</div>
