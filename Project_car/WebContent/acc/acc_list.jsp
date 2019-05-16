@@ -35,73 +35,20 @@
                                              <li>
                                                 <button type="button" class="btn btn-info btn-lg subbtn"
                                                    data-toggle="modal" data-target="#myModal1"
-                                                   style="padding: 0px;">
+                                                   style="padding: 0px;" 
+                                                   mTitle="${vo.product_name }" mImage="${vo.product_sub_img1 }">
                                                    <img alt="" src="${vo.product_sub_img1 }" width="50"
                                                       height="50">
                                                 </button>
                                              </li>
 
-                                             <li>
-                                                <button type="button" class="btn btn-info btn-lg subbtn"
-                                                   data-toggle="modal" data-target="#myModal"
-                                                   style="padding: 0px;">
-                                                   <img alt="" src="${vo.product_sub_img2 }" width="50"
-                                                      height="50">
-                                                </button>
-                                             </li>
+                                    
 
                                              <%-- <a class="btn"><img alt=""
                                                    src="${vo.product_sub_img1 }"></a> --%>
 
-                                             <div class="modal fade" id="myModal1" role="dialog">
-                                                <div class="modal-dialog">
-
-                                                   <!-- Modal content-->
-                                                   <div class="modal-content">
-                                                      <div class="modal-header">
-                                                         <button type="button" class="close"
-                                                            data-dismiss="modal">&times;</button>
-                                                         <h4 class="modal-title">${vo.product_name }</h4>
-                                                      </div>
-                                                      <div class="modal-body">
-                                                         <p>
-                                                            <img src="${vo.product_sub_img1 }" width="800"
-                                                               height="800">
-                                                         </p>
-                                                      </div>
-                                                      <div class="modal-footer">
-                                                         <button type="button" class="btn btn-default"
-                                                            data-dismiss="modal">Close</button>
-                                                      </div>
-                                                   </div>
-
-                                                </div>
-                                             </div>
-
-                                             <div class="modal fade" id="myModal" role="dialog">
-                                                <div class="modal-dialog">
-
-                                                   <!-- Modal content-->
-                                                   <div class="modal-content">
-                                                      <div class="modal-header">
-                                                         <button type="button" class="close"
-                                                            data-dismiss="modal">&times;</button>
-                                                         <h4 class="modal-title">${vo.product_name }</h4>
-                                                      </div>
-                                                      <div class="modal-body">
-                                                         <p>
-                                                            <img src="${vo.product_sub_img2 }" width="400"
-                                                               height="400">
-                                                         </p>
-                                                      </div>
-                                                      <div class="modal-footer">
-                                                         <button type="button" class="btn btn-default"
-                                                            data-dismiss="modal">Close</button>
-                                                      </div>
-                                                   </div>
-
-                                                </div>
-                                             </div>
+                                           
+                               
 
 
 
@@ -113,7 +60,7 @@
                                           </h4>
                                           <ul class="fr__pro__prize">
                                              <li class="old__prize">${vo.product_origin_price }
-                                                -></li>
+                                                &nbsp;&nbsp;&nbsp;-></li>
                                              <li>${vo.product_dc_price }원</li>
                                           </ul>
                                        </div>
@@ -122,7 +69,32 @@
 
                               </c:forEach>
                               <!-- End Single Product -->
+								 <div class="modal fade" id="myModal1" role="dialog">
+                                                <div class="modal-dialog">
 
+                                                   <!-- Modal content-->
+                                                   <div class="modal-content">
+                                                      <div class="modal-header">
+                                                         <button type="button" class="close"
+                                                            data-dismiss="modal">&times;</button>
+                                                         <h4 class="modal-title" id="mTitle"></h4>
+                                                      </div>
+                                                      <div class="modal-body">
+                                                         <p>
+                                                            <img src="" width="400"
+                                                               height="400" id="mImage">
+                                                         </p>
+                                                      </div>
+                                                      <div class="modal-footer">
+                                                         <button type="button" class="btn btn-default"
+                                                            data-dismiss="modal">Close</button>
+                                                      </div>
+                                                   </div>
+
+                                                </div>
+                                             </div>
+                                             
+                                             
                            </div>
                            <div role="tabpanel" id="list-view"
                               class="single-grid-view tab-pane fade clearfix">

@@ -74,7 +74,10 @@ STOCK
  SELECT product_id FROM acc_cart
  WHERE id=#{id}
  </select>
- 
+ <delete id="accDelete" parameterType="int">
+ DELETE FROM cart
+ WHERE cno=#{cno}
+ </delete>
 
  <insert id="acc_buy" parameterType="Acc_payVO">
  INSERT INTO acc_pay VALUES(

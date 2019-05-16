@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fm" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+
 <!doctype html>
 <html class="no-js">
 <head>
@@ -11,6 +12,7 @@
 <title>Product Grid || Asbab - eCommerce HTML5 Template</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 
 <!-- Place favicon.ico in the root directory -->
 <link rel="shortcut icon" type="image/x-icon"
@@ -41,6 +43,10 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
+<!--font  -->
+<link href="NanumGothicFont.css" rel="stylesheet" type="text/css"/>
+
+
 <!-- page CSS-->
 <link rel="stylesheet" href="../css/car_css/animate.css">
 <link rel="stylesheet" href="../css/car_css/owl.carousel.min.css">
@@ -53,6 +59,8 @@
 <link rel="stylesheet" href="../css/car_css/bundle.css">
 <link rel="stylesheet" href="../css/car_css/style.css">
 <link rel="stylesheet" href="../css/car_css/responsive.css">
+<script src="../js/car_js/vendor/modernizr-2.8.3.min.js"></script>
+<link rel="shortcut icon" type="image/x-icon" href="../images/car_img/favicon.png">
 <script src="../js/car_js/vendor/modernizr-2.8.3.min.js"></script>
 <!-- page end -->
 
@@ -87,16 +95,34 @@
 .mt-20 {
     margin-top: 100px;
 }
-input[type=text], input[type=email], input[type=password] {
-    width:70%;
-}
+
 div.col-lg-pull-9 {
     right: 90%;
+}
+.ti-search:before {
+    content: "\e610";
+}
+.zmdi-chevron-up:before {
+    content: '∧';
+}
+.old__prize{
+ text-decoration:line-through 
 }
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
+	
+	//modal
+	$('.subbtn').click(function(){
+		var mImage=$(this).attr('mImage');
+		var mTitle=$(this).attr('mTitle');
+		
+		$('#mImage').attr("src",mImage);
+		$('#mTitle').text(mTitle);
+	});
+	
+	
 	$('#findBtn').click(function(){
 		var keyword=$('#keyword').val();
 		if(keyword.trim()=="")
@@ -278,7 +304,7 @@ $(function(){
 						class="col-lg-3 col-lg-pull-9 col-md-3 col-md-pull-9 col-sm-12 col-xs-12 smt-40 xmt-40">
 						<div class="htc__product__leftsidebar">
 							<!-- Start Prize Range -->
-							<div class="sidebar-widget pb-55" style="margin-bottom: 0px;">
+					<div class="sidebar-widget pb-55" style="margin-bottom: 0px;">
 								<h3 class="sidebar-widget">Search Acc</h3>
 								<div class="sidebar-search">
 									<form>
@@ -345,9 +371,10 @@ $(function(){
 									</h5>
 									
 								</div>
+								</c:if>	
 							</div>
 							</div>
-							</c:if>	
+							
 						
 						</c:forEach>
 						<!-- End Single Product -->

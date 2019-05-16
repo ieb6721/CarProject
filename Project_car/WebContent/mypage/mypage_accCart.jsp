@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!doctype html>
 <html class="no-js">
 <head>
@@ -50,7 +51,7 @@
 	<!-- Start Product View -->
 
 	<div class="row">
-		<h2 class="headName">액세서리 장바구니</h2>
+		<h2 class="headName">액세서리 찜</h2>
 		<div class="shop__grid__view__wrap">
 			<div role="tabpanel" id="grid-view"
 				class="single-grid-view tab-pane fade in active clearfix">
@@ -67,6 +68,7 @@
 												<tr class="active">
 													<th class="product-thumbnail">products</th>
 													<th class="product-name">name of products</th>
+													<th class="product-content">content</th>
 													<th class="product-price">Price</th>
 													
 													
@@ -74,19 +76,30 @@
 												</tr>
 											</thead>
 											<tbody>
-												<c:forEach var="vo" items="${aList }">
+<c:forEach var="vo" items="${aList }" varStatus="s">
 													<tr>
-
-														<td class="product-thumbnail"><a href="#"><img
-																src="${vo.product_main_img}" alt="product img" width="60%"/></a></td>
-														<td class="product-name"><a href="#">${vo.product_name }</a>
+														
+														<c:if test="${aList.size() != 0 && s.index<6}">
+														
+														<td class="product-thumbnail"><a href="../acc/accDetail.do?product_id=${vo.product_id }"><img
+																src="${vo.product_main_img}" alt="product img" width="63%"/></a></td>
+														<td class="product-name" style="padding-top: 30px;"><a href="../acc/accDetail.do?product_id=${vo.product_id }">${vo.product_name }</a>
 															<ul class="pro__prize">
 
 																<li></li>
 															</ul></td>
-														<td class="product-price"><span class="amount">${vo.product_dc_price }원</span></td>
-														
-														
+															<c:set var="t" value="${vo.product_explain }"/>
+															
+														<c:choose>
+														<c:when test="${fn:length(vo.product_explain)>10 }">	
+												    <td class="product-content" id="content" style="padding-top: 30px;">${fn : substring(vo.product_explain, "0", "100")}...</td>
+													
+													</c:when>
+													</c:choose>
+													
+													
+														<td class="product-price" style="padding-top: 30px;"><span class="amount">${vo.product_dc_price }원</span></td>
+													</c:if>
 													</tr>
 												</c:forEach>
 

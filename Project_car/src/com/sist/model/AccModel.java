@@ -43,6 +43,18 @@ public class AccModel {
 		{
 			id="NOID";
 		}
+		
+		Cookie[] cookies=request.getCookies();
+		for(int i=0;i<cookies.length;i++)
+		{
+			if(cookies[i].getName().equals(id+product_id))
+			{
+				cookies[i].setMaxAge(0);
+				response.addCookie(cookies[i]);
+				break;
+			}
+		}
+		
 		Cookie cookie=new Cookie(id+product_id,product_id);
 		cookie.setMaxAge(60*60*24);
 		response.addCookie(cookie);

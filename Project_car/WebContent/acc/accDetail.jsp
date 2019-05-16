@@ -58,6 +58,9 @@ input.pr {
 .bottom {
 	margin-top: 150px;
 }
+.old__prize{
+ text-decoration:line-through 
+}
 </style>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
@@ -70,6 +73,14 @@ $(document).ready(function(){
 		} else { //no
 			
 		}
+		
+	}); 
+		
+});
+$(document).ready(function(){
+	$('#jjimBtn').click(function() {
+		
+		alert('찜으로 이동했습니다!!')
 		
 	}); 
 		
@@ -130,6 +141,7 @@ $(document).ready(function(){
 			var f=document.form;
 			f.submit();
 		}
+
 		
 	</script>
 
@@ -234,9 +246,16 @@ $(document).ready(function(){
 						</div>
 
 
-						<div class="col-md-7 col-lg-7 col-sm-12 col-xs-12 smt-40 xmt-40">
+						<div class="col-md-7 col-lg-7 col-sm-12 col-xs-12 smt-40 xmt-40" id="">
 							<div class="ht__product__dtl">
+							<c:if test="${sessionScope.id!=null && count==0 }">
+																<a href="../acc/acc_insert.do?product_id=${vo.product_id }"
+																	 id="jjimBtn">
+																<img  src="like_2.png" width="60px" height="60px" style="float: right" >
+																	</a>
+															</c:if>
 								<h2>${vo.product_name }</h2>
+								
 								<h6>
 									Model: <span>${vo.product_id }</span>
 								</h6>
@@ -303,9 +322,14 @@ $(document).ready(function(){
 																</div>
 
 																<div class=price>
-																	금액 : <input type="text" class="pr" name="sum" size="11"
+																	합계 : <input type="text" class="pr" name="sum" size="11"
 																		readonly value="${vo.product_dc_price}"> 원
 																</div>
+																<c:if test="${sessionScope.id!=null }">
+															     <input type=button class="btn btn-md btn-primary" 
+																	 value="구매하기" id="buyBtn" style="float: right">
+																	<!--  onclick="buy()" -->
+															</c:if>
 															</form>
 														</div>
 
@@ -313,20 +337,13 @@ $(document).ready(function(){
 													</div>
 													<div class="ht__pro__desc">
 														<div class="sin__desc pull-center">
-															<c:if test="${sessionScope.id!=null && count==0 }">
-																<a href="../acc/acc_insert.do?product_id=${vo.product_id }"
-																	class="btn btn-sm btn-success">찜</a>
-															</c:if>
-															<c:if test="${sessionScope.id!=null }">
-															     <input type=button class="btn btn-md btn-danger" 
-																	class="btn btn-sm btn-success" value="구매" id="buyBtn">
-																	<!--  onclick="buy()" -->
-															</c:if>
+															
+															
 															
 														</div>
 														<div>
 														<input type=button class="btn btn-md btn-danger"
-																value="목록" onclick="javascript:history.back()" style="margin-left: 600px;">
+																value="목록" onclick="location.href=document.referrer" style="margin-left: 600px;">
 														</div> 
 
 													</div>
