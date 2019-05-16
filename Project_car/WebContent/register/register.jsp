@@ -334,13 +334,13 @@ function checkPwd(){
             return false;
         }
         
-        //아이디 길이 체크 (4~12자)
+     /*    //아이디 길이 체크 (4~12자)
        if(document.registerFrm.id.value.length<4 || document.registerFrm.id.value.length>12) {
             alert("아이디를 4~12자까지 입력해주세요.")
             document.registerFrm.id.focus();
             document.registerFrm.id.select();
             return false;
-        }
+        } */
            //비밀번호 입력여부 체크
         if(document.registerFrm.pwd.value == "") {
             alert("비밀번호를 입력해주세요.")
