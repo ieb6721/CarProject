@@ -65,6 +65,33 @@
 		});
 	}
 	
+	function ajaxClick4() {
+		$.ajax({
+			
+			type: 'post',
+			url: 'guide_parking_method.do',
+			success: function(res) {
+				$('#tipDiv').html(res);
+			}
+			
+			
+		});
+	}
+	
+	function ajaxClick5() {
+		$.ajax({
+			
+			type: 'post',
+			url: 'guide_night_driving.do',
+			success: function(res) {
+				$('#tipDiv').html(res);
+			}
+			
+			
+		});
+	}
+	
+	
 	
 </script>
 </head>
@@ -98,6 +125,8 @@
 							<li><a style="cursor: pointer" onclick="ajaxClick1()">첫차 구매</a></li>
 							<li><a style="cursor: pointer" onclick="ajaxClick2()">정비소 고르기</a></li>
 							<li><a style="cursor: pointer" onclick="ajaxClick3()">중립 기어</a></li>
+							<li><a style="cursor: pointer" onclick="ajaxClick4()">주차 방법</a></li>
+							<li><a style="cursor: pointer" onclick="ajaxClick5()">밤길 운전</a></li>
 						</ul>
 					</div>				
 				</div>

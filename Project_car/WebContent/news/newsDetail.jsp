@@ -28,7 +28,9 @@
 <link rel="stylesheet" href="../css/news_css/style.css">
 <link rel="stylesheet" href="../css/news_css/responsive.css">
 <script src="../js/news_js/vendor/modernizr-2.8.3.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+
 <script type="text/javascript">
 var i=0;
 $(function(){
@@ -49,7 +51,15 @@ $(function(){
 		}
 	});
 });
-
+$(function(){
+	$('.submit-btn').click(function(){
+		if($('#trim').val()=="")
+		{
+			alert("내용을 입력해주세요.");
+			return false;
+		}
+	});
+});
 </script>
 <style>
 .button submit-btn{
@@ -61,6 +71,10 @@ $(function(){
     font-weight: 600;
     margin-right: 5px;
     text-transform: uppercase;
+}
+
+.comment-info p.author-name a:hover {
+    color: #66cc99;
 }
 </style>
 
@@ -151,7 +165,7 @@ $(function(){
 										<div class="comment-info" style="width: 458px;">
 										  <c:forEach var="rvo" items="${list }">
 											<p class="author-name">
-												<a href="#" style="line-height:30px;">${rvo.id }</a>
+												<tr style="line-height:30px;">${rvo.id }</tr>
 											</p>
 											<span class="comment-date">${rvo.regdate }</span>
 												<pre style="white-space: pre-line; width: 458px;">${rvo.content }</pre>
@@ -188,7 +202,8 @@ $(function(){
 					                     <div class="comment-form-area" style="margin-left: 0px;padding-right: 0px;">
 					                        <p>leave a comment</p>
 					                        <form action="news_replyInsert.do?news_no=${nvo.news_no }" method="post">
-					                           <textarea placeholder="Message" name="content"></textarea>
+					                          <!--  <input type="text" id="trimtest" value = " abc" /> -->
+					                           <textarea placeholder="Message" name="content" id="trim" ></textarea>
 					                           <button type="submit" class="submit-btn">submit</button>
 					                        </form>
 					                     </div>
