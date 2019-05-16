@@ -16,7 +16,14 @@ public class MypageModel {
 
 	@RequestMapping("mypage/mypage_main.do")
 	public String MainModel(HttpServletRequest request) {
-
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
+		
+		List<MyEstimateVO> mList=MypageDAO.myEstimate(id);
+		request.setAttribute("mList", mList);
+		for(MyEstimateVO vo : mList){
+			System.out.println(vo.getMy_model_name());
+		}
 		return "mypage_main.jsp";
 	}
 	
