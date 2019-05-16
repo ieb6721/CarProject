@@ -13,12 +13,12 @@
 			</h2>
 			<ul class="post-meta">
 				<li>March 18, 2019</li>
-				<li>By <a href="#">마카롱</a></li>
-				<li><a href="#">정비소 고르기</a>,<a href="#">CATEGORIES</a></li>
-				<li><a href="#">Comments</a></li>
+				<li>By 마카롱</li>
+				<li>정비소 고르기,CATEGORIES</li>
+				<li>Comments</li>
 			</ul>
 			<br>
-			<a href="#"><img src="../images/guide_img/blog/20.png" alt="" /></a>
+			<img src="../images/guide_img/blog/20.png" alt="" />
 			<br>
 			<P>단골 식당에 가면 왠지 모르게 마음이 편안해진다. 맛이 뛰어나거나 투철한 서비스 정신 때문이 아니다. 우리가
 				익히 잘 알고 있는 맛과 가격, 분위기를 예상할 수 있어 신뢰감과 편안함을 느낄 수 있기 때문일 것이다.</p>
@@ -31,7 +31,7 @@
 			<br>
 			<h4>1. 가까운 곳부터 물색</h4>
 			<div class="blog-content-img">
-				<a href="#"><img src="../images/guide_img/blog/21.jpg" alt="" /></a>
+				<img src="../images/guide_img/blog/21.jpg" alt="" />
 			</div>
 			<P>서울 사람이 부산에 단골 식당이 있다고 매주 갈 수는 없는 노릇이다. 정비소도 마찬가지다. 거리가 멀다면 속히
 				점검과 정비가 필요한 경우에도 차일피일 미루게 된다.</p>
@@ -41,7 +41,7 @@
 			<br>
 			<h4>2. 정비장의 환경, 공구 상태 파악</h4>
 			<div class="blog-content-img">
-				<a href="#"><img src="../images/guide_img/blog/22.jpg" alt="" /></a>
+				<img src="../images/guide_img/blog/22.jpg" alt="" />
 			</div>
 			<P>개인적인 경험상 정비 환경이 깨끗한 곳이라면, 그만큼 내 차도 깨끗하게 다루는 경우가 많았다. 또한 자신의 일에
 				자부심이 있는 사람일수록 주변 환경을 어지럽히지는 않는다.</p>
@@ -59,7 +59,7 @@
 				"조금 더 타보고 올게요"하고 다른 정비소에 차를 잘 아는 지인을 대동하는 편이 낫다.</P>
 			<br>
 			<h4>4. 차를 대하는 태도를 보자</h4>
-			<a href="#"><img src="../images/guide_img/blog/24.jpg" alt="" /></a>
+			<img src="../images/guide_img/blog/24.jpg" alt="" />
 		</div>
 		<P>내가 지켜보고 있는데도 차 문을 쾅 닫거나 알피엠을 레드존까지 붕붕 밟는 정비사라면, 믿고 맡기기 힘들다.
 			타이어나 휠을 갈아 낄 때에도 쇠망치보다 고무 망치로 살살 두드려 차에 흠집을 내지 않으려 하는 정비소를 선택하자.</p>
@@ -69,7 +69,7 @@
 		<br>
 		<h4>5. 사전에 충분히 비교해보자</h4>
 		<div class="blog-content-img">
-			<a href="#"><img src="../images/guide_img/blog/25.jpg" alt="" /></a>
+		<img src="../images/guide_img/blog/25.jpg" alt="" />
 		</div>
 		<p>일일이 좋은 정비소를 찾기 위해 발로 뛰기 전에, 스마트폰 앱과 인터넷 등으로 내 주변 정비소들을 비교해보자.
 			주변 지인들에게 물어보는 것보다 이 방법을 추천한다. 친구들도 이미 속고 있을 지도 모르기 때문이다.</p>
@@ -78,7 +78,7 @@
 			선택하는 것도 좋다.</p>
 		<br>
 		<div class="blog-content-img">
-			<a href="#"><img src="../images/guide_img/blog/26.png" alt="" /></a>
+			<img src="../images/guide_img/blog/26.png" alt="" />
 		</div>
 		<p>또한 스마트폰 앱 하나로 내 주변 좋은 정비소들이 어디 있는지 찾아보자. 실제로 정비소를 이용한 고객들의 후기와,
 			같은 차를 타는 운전자들의 정비 비용들도 알 수 있어 보다 쉽게 정비소들을 비교해 볼 수 있다.</p>

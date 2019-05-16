@@ -55,6 +55,13 @@ $(function(){
 .button submit-btn{
 	float:right;
 } 
+.post-tags span a {
+    color: #999;
+    font-style: italic;
+    font-weight: 600;
+    margin-right: 5px;
+    text-transform: uppercase;
+}
 </style>
 
 </head>
@@ -91,7 +98,7 @@ $(function(){
       <div class="container">
          <div class="row">
             <div class="col-md-8 col-md-offset-2">
-               <div class="single-blog-details">
+               <div class="single-blog-details" style="margin-bottom: 50px;">
                   <h1 class="text-center">${nvo.title }</h1>
                   <div class="post-long-desc">
                   <p class="post-date">${nvo.news_date }</p>
@@ -117,9 +124,8 @@ $(function(){
                      </div>
                      <div class="post-tags pull-right">
                         <p>
-                           <span class="lbl">reporter&nbsp;-</span> <span> 
-                           <a href="#">${nvo.reporter }</a>
-                           </span>
+                           <span class="lbl">reporter&nbsp;-</span> 
+                           <span style="color: #999;font-style: italic;font-weight: 600;margin-right: 5px;text-transform: uppercase;">${nvo.reporter }</span>
                         </p>
                      </div>
                      
@@ -163,7 +169,6 @@ $(function(){
 					                                 <input type=hidden name=news_no value="${rvo.news_no }">
 					                                 <input type=hidden name=no value="${rvo.no}">
 					                                 <textarea rows="3" cols="80" name="content" style="float: left;width: 440px;"></textarea>
-					                                 
 					                                 <input type="submit" value="수정" class="btn btn-sm btn-info" style="margin-top: 3px">
 					                              </form>
 					                           </td>
@@ -177,8 +182,7 @@ $(function(){
 									
 									<!-- /.comments-area -->
 									<c:if test="${sessionScope.id == null }">
-										<p>로그인 후 댓글을 입력할 수 있습니다.</p>
-										<a href="../login/login.do" type="button" class="btn3">로그인</a>
+										<a href="../login/login.do" type="button" class="btn3" style="margin-left:100px;margin-bottom: 100px;'">로그인 후 댓글을 입력할 수 있습니다.click</a>
 									</c:if>
 									<c:if test="${sessionScope.id != null }">
 					                     <div class="comment-form-area" style="margin-left: 0px;padding-right: 0px;">

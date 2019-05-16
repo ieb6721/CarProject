@@ -33,46 +33,21 @@
 </style>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<!-- favicon
-		============================================ -->
 <link rel="shortcut icon" type="image/x-icon"
 	href="../images/news_img/favicon.ico">
-
-<!-- Google Fonts
-		============================================ -->
 <link
 	href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'
 	rel='stylesheet' type='text/css'>
-
-<!-- Bootstrap CSS
-		============================================ -->
 <link rel="stylesheet" href="../css/news_css/bootstrap.min.css">
-<!-- font-awesome CSS
-		============================================ -->
 <link rel="stylesheet" href="../css/news_css/font-awesome.min.css">
-<!-- owl.carousel CSS
-		============================================ -->
 <link rel="stylesheet" href="../css/news_css/owl.carousel.css">
 <link rel="stylesheet" href="../css/news_css/owl.theme.css">
 <link rel="stylesheet" href="../css/news_css/owl.transitions.css">
-<!-- meanmenu CSS
-		============================================ -->
 <link rel="stylesheet" href="../css/news_css/meanmenu.css">
-<!-- normalize CSS
-		============================================ -->
 <link rel="stylesheet" href="../css/news_css/normalize.css">
-<!-- main CSS
-		============================================ -->
 <link rel="stylesheet" href="../css/news_css/main.css">
-<!-- style CSS
-		============================================ -->
 <link rel="stylesheet" href="../css/news_css/style.css">
-<!-- responsive CSS
-		============================================ -->
 <link rel="stylesheet" href="../css/news_css/responsive.css">
-<!-- modernizr JS
-		============================================ -->
 <script src="../js/news_js/vendor/modernizr-2.8.3.min.js"></script>
 <!-- all css here -->
 <link rel="stylesheet" href="../css/car_css/animate.css">
@@ -87,12 +62,8 @@
 <link rel="stylesheet" href="../css/car_css/style.css">
 <link rel="stylesheet" href="../css/car_css/responsive.css">
 <script src="../js/car_js/vendor/modernizr-2.8.3.min.js"></script>
-
 </head>
 <body>
-	<!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
 	<jsp:include page="../cmmn/default-nav.jsp"></jsp:include>
 
 
@@ -177,7 +148,7 @@
 								</h6>
 								<%-- ${fn:substring("1234"),시작인덱스, 종료인덱스} --%>
 								<p class="post-short-desc">${fn:substring(vo.content,0,97) }</p>
-								<a href="newsDetail.jsp" class="continue-link">Continue
+								<a href="newsDetail.do?news_no=${vo.news_no }" class="continue-link">Continue
 									Reading...</a>
 							</div>
 						</div>

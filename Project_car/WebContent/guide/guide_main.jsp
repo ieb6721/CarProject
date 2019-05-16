@@ -91,12 +91,6 @@
 			<div class="row">
 				<div class="col-md-3 col-sm-12">
 					<div class="blog-widget">
-						<form id="search" action="#">
-							<input type="text" placeholder="Search in here" />
-							<button>Search</button>
-						</form>
-					</div>
-					<div class="blog-widget">
 						<div class="widget-title">
 							<h3>Categories</h3>
 						</div>
@@ -104,7 +98,6 @@
 							<li><a style="cursor: pointer" onclick="ajaxClick1()">첫차 구매</a></li>
 							<li><a style="cursor: pointer" onclick="ajaxClick2()">정비소 고르기</a></li>
 							<li><a style="cursor: pointer" onclick="ajaxClick3()">중립 기어</a></li>
-							
 						</ul>
 					</div>				
 				</div>
