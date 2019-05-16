@@ -238,7 +238,7 @@ button#selected_option {
 			}
 		});
 		
-	
+	});
 	var option_name = "";
 	
 	function numberWithCommas(x) {
