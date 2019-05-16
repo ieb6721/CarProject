@@ -129,19 +129,25 @@ $(function(){
                
                
               <!-- /.about-author -->
-                     <div class="comments-area">
+                     <div class="comments-area" style="
+    width: 652px;
+    padding-left: 126px;
+    padding-right: 126px;
+">
                         <h6 class="title">&nbsp;&nbsp;comments</h6>
                         <!-- /.single-comment -->
 							<ul class="comments-list">
 								<li class="single-comment">
 									<div class="comment-box">										
-										<div class="comment-info">
+										<div class="comment-info" style="
+    width: 458px;
+">
 										  <c:forEach var="rvo" items="${list }">
 											<p class="author-name">
 												<a href="#" style="line-height:30px;">${rvo.id }</a>
 											</p>
 											<span class="comment-date">${rvo.regdate }</span>
-												<pre style="white-space: pre-line; width: 920px;">${rvo.content }</pre>
+												<pre style="white-space: pre-line; width: 458px;">${rvo.content }</pre>
 											<c:if test="${sessionScope.id==rvo.id }">
 										    	<span class="btn btn-sm btn-success updateNewsReply" id="ulike${rvo.no }">수정</span>
 										    	<a href="news_reply_delete.do?news_no=${rvo.news_no }&no=${rvo.no}" type="button" class="btn btn-sm btn-success">삭제</a>
@@ -155,7 +161,8 @@ $(function(){
 					                                 <input type=hidden name=news_no value="${rvo.news_no }">
 					                                 <input type=hidden name=no value="${rvo.no}">
 					                                 <textarea rows="3" cols="80" name="content" style="float: left"></textarea>
-					                                 <input type="submit" value="댓글수정" style="height: 65px" class="btn btn-danger">
+					                                 <br>
+					                                 <input type="submit" value="수정" style="height: 65px;float: left;padding-left: 0px;padding-right: 0px;width: 400px;" class="btn btn-danger">
 					                              </form>
 					                           </td>
 					                        </tr>
@@ -166,13 +173,12 @@ $(function(){
 												
 										</div>
 									</div>
-								</li>
-							</ul>
-						</div>
-                     
-                     
-                     <!-- /.comments-area -->
-	                     <div class="comment-form-area">
+									
+									<!-- /.comments-area -->
+	                     <div class="comment-form-area" style="
+    margin-left: 0px;
+    padding-right: 0px;
+">
 	                        <p>leave a comment</p>
 	                        <form action="news_replyInsert.do?news_no=${nvo.news_no }" method="post">
 	                           <textarea placeholder="Message" name="content"></textarea>
@@ -180,6 +186,12 @@ $(function(){
 	                        </form>
 	                     </div>
                      <!-- /.comment-form-area -->
+								</li>
+							</ul>
+						</div>
+                     
+                     
+                     
             </div>
          </div>
       </div>
