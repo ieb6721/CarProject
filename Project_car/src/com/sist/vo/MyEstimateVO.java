@@ -1,12 +1,21 @@
 package com.sist.vo;
 
+import java.util.Date;
+
 public class MyEstimateVO {
+	private Date estimate_date;
 	private String my_car_poster;
 	private String my_car_name;
 	private String my_model_name;
 	private String my_trim_name;
 	private int my_totalPrice;
 	
+	public Date getEstimate_date() {
+		return estimate_date;
+	}
+	public void setEstimate_date(Date estimate_date) {
+		this.estimate_date = estimate_date;
+	}
 	public String getMy_car_poster() {
 		return my_car_poster;
 	}

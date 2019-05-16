@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html class="no-js">
 <head>
@@ -24,6 +25,41 @@
 .ht__bradcaump__area { height: 500px; }
 .breadcrumb-item { font-size: 45px; position: relative; top: 90px;}
 .headName { position: relative; left: 450px; }
+.pro__prize {
+	display: block;
+}
+
+.pro__prize li.old__prize {
+	color: #313131;
+}
+
+th.estimate_date {
+	width: 10%;
+}
+
+th.product-car-name {
+	width: 20%;
+}
+
+th.product-model-name {
+	width: 30%;
+}
+
+th.product-cancel{
+	width: 5%;
+}
+.table-content table td {
+	font-size: 15px;
+}
+
+#estimate_table > tbody > tr > td{
+	vertical-align: middle;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.zmdi-chevron-up:before {
+    content: '∧';
+}
 </style>
 </head>
 <body>
@@ -57,20 +93,24 @@
 							<div class="col-md-12 col-sm-12 col-xs-12">
 								<form action="#">
 									<div class="table-content table-responsive">
-										<table class="table table-hover">
+										<table class="table table-hover" id="estimate_table">
 											<thead>
 												<tr class="active">
+													<th class="estimate_date">신청일</th>
 													<th class="product-thumbnail"></th>
 													<th class="product-car-name">차량명</th>
 													<th class="product-model-name">모델명</th>
 													<th class="product-total-price">총 가격</th>
-													<th class="product-cancel"></th>
+													<th class="product-cancel">취소</th>
 
 												</tr>
 											</thead>
 											<tbody>
 												<c:forEach var="vo" items="${mList }">
 													<tr>
+														<td class="product-estimate_date">	
+															<fmt:formatDate pattern = "yyyy-MM-dd" value = "${vo.estimate_date}" />			
+														</td>
 														<td class="product-thumbnail">													
 															<img src="${vo.my_car_poster }" alt="product img" />
 														</td>
@@ -83,7 +123,7 @@
 																<li>${vo.my_trim_name }</li>
 															</ul>														
 														</td>
-														<td class="product-quantity">${vo.my_totalPrice }</td>
+														<td class="product-quantity"><fmt:formatNumber value="${vo.my_totalPrice}" pattern="#,###" />원</td>
 														<td class="product-subtotal">
 															<button class="btn">취소</button>
 														</td>

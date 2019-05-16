@@ -357,7 +357,7 @@ $(function() {
 						}
 					});
 					
-					window.location.href = "../mypage/mypage_main.do";
+					window.location.href = "../mypage/mypage_estimate.do";
 					
 				}else{
 					var estimate_budget = $('#budget').text().replace(/,/g , '');

@@ -32,12 +32,13 @@
    
    <!-- 마이페이지 견적 내역 -->
    <select id="myEstimate" resultType="MyEstimateVO" parameterType="String">
-   		SELECT car_estimate.estimate_total_price as my_totalPrice, car_trim.trim_name as my_trim_name, car_model.model_name as my_model_name, car.car_name as my_car_name, car.car_poster as my_car_poster
+   		SELECT estimate_date, car_estimate.estimate_total_price as my_totalPrice, car_trim.trim_name as my_trim_name, car_model.model_name as my_model_name, car.car_name as my_car_name, car.car_poster as my_car_poster
 		FROM car_estimate, car_trim, car_model, car
 		WHERE car_estimate.id=#{id}
 			AND car_estimate.trim_num=car_trim.trim_num 
 			AND car_trim.model_num=car_model.model_num 
 			AND car_model.car_num=car.car_num
+		ORDER BY estimate_date desc 
    </select>
 </mapper>
 
