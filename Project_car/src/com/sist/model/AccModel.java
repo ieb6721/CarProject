@@ -235,7 +235,7 @@ public class AccModel {
 		
 		AccDAO.acc_buy(vo);
 		
-		return "redirect:../mypage/mypage_main.do";
+		return "redirect:../mypage/mypage_acc.do";
 	}
 
 

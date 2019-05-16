@@ -29,7 +29,7 @@
 		} else if (menu === 'registration modification') {
 			location.href = "../register/registerModification.do";
 		} else if (menu === 'mypage') {
-			location.href = "../mypage/mypage_main.do";
+			location.href = "../mypage/mypage_estimate.do";
 		} else if (menu === 'mypage_admin') {
 			location.href = "../mypage/mypage_admin.do";
 		} else if (menu === 'board') {
