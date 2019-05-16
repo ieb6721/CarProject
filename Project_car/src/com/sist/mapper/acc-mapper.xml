@@ -56,26 +56,24 @@ STOCK
 		WHERE product_name LIKE '%'||#{keyword}||'%'
 	</select>
 	
-
-  
+ <!-- 찜 저장 -->
  <insert id="accInsert" parameterType="Acc_payVO">
  INSERT INTO acc_cart VALUES(
  SYSDATE,
  #{id},
- #{product_id},
- #{quantity}
+ #{product_id}
  )
  </insert>
-
+  <!-- 찜 확인 -->
  <select id="accOkCount" parameterType="Acc_payVO" resultType="int">
  SELECT COUNT(*) FROM acc_cart 
  WHERE product_id=#{product_id} AND id=#{id}
  </select>
-
+<!-- 찜 목록 -->
  <select id="accGetData" parameterType="String" resultType="String">
  SELECT product_id FROM acc_cart
  WHERE id=#{id}
- </select> 
+ </select>
  
 
  <insert id="acc_buy" parameterType="Acc_payVO">

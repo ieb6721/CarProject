@@ -19,7 +19,7 @@ public class AccDAO {
 		
 	}
 	
-	public static List<AccVO> accListData()
+	/*	public static List<AccVO> accListData()
 	{
 		List<AccVO> list =new ArrayList<AccVO>();
 		//연결 =>SqlSession (Connection ,PreparedStatement)
@@ -38,7 +38,7 @@ public class AccDAO {
 				session.close();
 		}
 		return list;
-	}
+	}*/
 	
 	public static AccVO accDetailData(String product_id)
 	{
@@ -56,7 +56,6 @@ public class AccDAO {
 		}
 		return list;
 	}
-	
 	   public static List<AccVO> accListData(Map map)
 	   {
 		   List<AccVO> list=new ArrayList<AccVO>();
@@ -104,7 +103,6 @@ public class AccDAO {
 		   }
 		   return list;
 	   }
-	   
 	   public static List<AccVO> accCate(String name)
 		{
 			List<AccVO> list =new ArrayList<AccVO>();
@@ -125,7 +123,6 @@ public class AccDAO {
 			}
 			return list;
 		}
-	   
 	   public static List<AccVO> accSearchData(String keyword)
 		{
 			List<AccVO> list=new ArrayList<AccVO>();
@@ -184,10 +181,7 @@ public class AccDAO {
 			return count;
 
 		}
-		
-	   
 		//목록 출력
-		
 		public static List<String> accGetData(String id)
 		{
 			List<String> list=new ArrayList<String>();

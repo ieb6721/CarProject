@@ -313,7 +313,7 @@ $(document).ready(function(){
 													</div>
 													<div class="ht__pro__desc">
 														<div class="sin__desc pull-center">
-															 <c:if test="${sessionScope.id!=null && count==0 }">
+															<c:if test="${sessionScope.id!=null && count==0 }">
 																<a href="../acc/acc_insert.do?product_id=${vo.product_id }"
 																	class="btn btn-sm btn-success">찜</a>
 															</c:if>

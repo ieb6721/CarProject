@@ -74,7 +74,7 @@ public class AccModel {
 		return "../acc/accDetail.jsp";
 	}
 	
-	@RequestMapping("mypage/mypage_accCart.do")
+/*	@RequestMapping("mypage/mypage_accCart.do")
 	public String mypage(HttpServletRequest request)
 	{
 		HttpSession session=request.getSession();
@@ -95,7 +95,7 @@ public class AccModel {
 		//request.setAttribute("acc_jsp", "../mypage/mypage_accCart.jsp");
 		
 		return "../acc/acc.jsp";
-	}
+	}*/
 	
 	@RequestMapping("acc/acc.do")
 	public String acc_list(HttpServletRequest request) {
@@ -197,8 +197,7 @@ public class AccModel {
 		return "acc_list.jsp";
 	}
 	//cart Insert
-
-    @RequestMapping("acc/acc_insert.do")
+	@RequestMapping("acc/acc_insert.do")
 	public String acc_insert(HttpServletRequest request)
 	{
 		String product_id=request.getParameter("product_id");

@@ -81,13 +81,17 @@
 }
 
 .dam {
-	height: 380px;
+	width: 400px;
+	height: 400px;
 }
 .mt-20 {
     margin-top: 100px;
 }
 input[type=text], input[type=email], input[type=password] {
     width:70%;
+}
+div.col-lg-pull-9 {
+    right: 90%;
 }
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
@@ -130,7 +134,7 @@ $(function(){
 			<!-- Start Search Popap -->
 			<div class="search__area">
 				<div class="container">
-					<div class="row">
+					<div class="row" style="width: 1300px;">
 						<div class="col-md-12">
 							<div class="search__inner">
 								<form action="#" method="get">
@@ -233,35 +237,7 @@ $(function(){
 					<div
 						class="col-lg-9 col-lg-push-3 col-md-9 col-md-push-3 col-sm-12 col-xs-12" id="print">
 						<jsp:include page="${accList_jsp }"></jsp:include>
-						<!-- Start Pagenation -->
-						<%-- <div class="row">
-							<div class="col-xs-12">
-								<ul class="htc__pagenation">
-
-									<c:if test="${curpage>BLOCK }">
-										<li><a href="acc.do?page=1&&no=${no}">&lt;&lt;</a></li>
-										<li><a href="acc.do?page=${startPage-1}&&no=${no}">&lt;</a></li>
-
-									</c:if>
-
-									<c:forEach var="i" begin="${startPage}" end="${endPage}">
-
-										<li><a href="acc.do?page=${i }&&no=${no}">${i }</a></li>
-										<!-- <li class="active"><a href="#">3</a></li>
-									<li><a href="#">19</a></li> -->
-
-									</c:forEach>
-
-									<c:if test="${endPage<allPage }">
-										<li><a href="acc.do?page=${endPage+1}&&no=${no}">></a></li>
-										<li><a href="acc.do?page=${totalpage}&&no=${no}">>></a></li>
-									</c:if>
-
-								</ul>
-							</div>
-						</div> --%>
-						
-						
+			
 					<div class="paginations text-center mt-20">
 							<ul>
 								<c:if test="${curpage>BLOCK }">
@@ -289,76 +265,7 @@ $(function(){
 								</c:if>
 							</ul>
 						</div>
-						
-						
-							<section class="htc__product__area--2 pb--100 product-details-res">
-			<div class="container">
-				<div class="row bottom">
-					<div class="col-xs-12">
-						<div class="section__title--2 text-center">
-							<h2 class="title__line">최근 본 상품</h2>
-							<!-- <p>But I must explain to you how all this mistaken idea</p> -->
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="product__wrap clearfix">
-					
-					<c:forEach var="vo" items="${cookieList }" varStatus="s">
-					
-						<!-- Start Single Product -->
-						<div class="col-md-3 col-lg-3 col-sm-6 col-xs-12">
-							<div class="category">
-								<div class="ht__cat__thumb">
-									<c:if test="${cookieList.size() == 0 }">
-											<h5>최근 본 목록이 없습니다.</h5>
-										</c:if>	
-										
-										<c:if test="${cookieList.size() != 0 && s.index<10}">		
-										
-									<a href="acc_detail.do?product_id=${vo.product_id }"> 
-								<img src="${vo.product_main_img}" alt="product images">
-									</a>
-								</div>
-								<div class="fr__hover__info">
-									<ul class="product__action">
-										<%-- <li>
-										
-										<a href="../acc/accDetail.do?product_id1=${vo.product_id }" class="btn btn-xs btn-info">삭제</a>
-										<!-- <a href="wishlist.html"> -->
-										</li> --%>
-
-										<li><a href="cart.html"><i class="icon-handbag icons"></i></a></li>
-
-										<li><a href="#"><i class="icon-shuffle icons"></i></a></li>
-									</ul>
-								</div>
-								<div class="fr__product__inner">
-									<h4>
-										<a href="acc_detail.do?product_id=${vo.product_id }">${vo.product_name }</a>
-									</h4>
-									<%-- <ul class="fr__pro__prize">
-										<li class="old__prize">${vo.product_origin_price }</li>
-										<li>${vo.product_dc_price }원</li>
-									</ul> --%>
-								</div>
-							</div>
-							</c:if>	
-						</div>
-						</c:forEach>
-						<!-- End Single Product -->
-						
-					
-					</div>
-				</div>
-			</div>
-		</section>
-						
-						
-						
-						
-						
-						
+		
 						
 						<!-- End Pagenation -->
 					</div>
@@ -372,7 +279,7 @@ $(function(){
 						<div class="htc__product__leftsidebar">
 							<!-- Start Prize Range -->
 							<div class="sidebar-widget pb-55" style="margin-bottom: 0px;">
-								<h3 class="sidebar-widget">Search Car</h3>
+								<h3 class="sidebar-widget">Search Acc</h3>
 								<div class="sidebar-search">
 									<form>
 										<input type="text" placeholder="Search Products..." id="keyword">										
@@ -408,39 +315,49 @@ $(function(){
 
 							</ul>
 						</div>
-						<!-- End Category Area -->
+						
+						<div class="htc__tag">
+							<h4 class="title__line--4">최근 본 상품</h4>
+			
+					<c:forEach var="vo" items="${cookieList }" varStatus="s">
+					<div class="col-lg-6">
+						<!-- Start Single Product -->
+						
+							<div class="category" style="width: 120px;">
+							
+								<div class="ht__cat__thumb">
+									<c:if test="${cookieList.size() == 0 }">
+											<h5>최근 본 목록이 없습니다.</h5>
+										</c:if>	
+										
+										<c:if test="${cookieList.size() != 0 && s.index<6}">		
+										
+									  <a href="../acc/accDetail.do?product_id=${vo.product_id }">
+								<img src="${vo.product_main_img}" alt="product images" >
+									</a>
+								</div>
+								<div class="fr__hover__info">
+			
+								</div>
+								<div class="fr__product__inner">
+									<h5>
+										<a href="acc_detail.do?product_id=${vo.product_id }">${vo.product_name }</a>
+									</h5>
+									
+								</div>
+							</div>
+							</div>
+							</c:if>	
+						
+						</c:forEach>
+						<!-- End Single Product -->
 
-						<!-- Start Pro Color -->
-
-						<!-- End Pro Size -->
-						<!-- Start Tag Area -->
-						<!-- <div class="htc__tag">
-							<h4 class="title__line--4">tags</h4>
-							<ul class="ht__tag__list">
-								<li><a href="#">시트/커버</a></li>
-								<li><a href="#">낱개판매코너</a></li>
-								<li><a href="#">램프/전기용품/네온</a></li>
-								<li><a href="#">내장용품</a></li>
-								<li><a href="#">모바일액세서리</a></li>
-								<li><a href="#">세차용품</a></li>
-								<li><a href="#">수납용품</a></li>
-								<li><a href="#">시트/커버</a></li>
-								<li><a href="#">안전/편의용품</a></li>
-								<li><a href="#">정비용품</a></li>
-							</ul>
-						</div> -->
-						<!-- End Tag Area -->
-						<!-- Start Compare Area -->
-
-
-						<!-- End Compare Area -->
+						</div>
+				
 
 					</div>
 				</div>
-				
-				
 
-				
 			</div>
 
 	</section>
