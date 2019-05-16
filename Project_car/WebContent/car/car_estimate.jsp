@@ -238,7 +238,6 @@ button#selected_option {
 			}
 		});
 		
-	});
 	
 	var option_name = "";
 	
