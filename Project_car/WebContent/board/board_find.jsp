@@ -25,13 +25,14 @@
 /* 전체적인 틀 */
 #contain { margin-left: 400px; }
 .ht__bradcaump__area { height: 500px; }
-.headName { position: relative; left: 480px; margin-top: 40px; margin-bottom: 40px; }
+.headName { position: relative; left: 480px; margin-top: 40px; margin-bottom: 40px; float: left;}
 select.input-sm{ width: 72px;}
 input.input-sm{ width: 224px;}
 li.menuBtn{float: left;}
 ul.paginations{list-style: none;}
-td.insert{width:46px;}
+a.insert{width:46px; position:relative; left: 930px; top: 39px;}
 td.insert a {position:relative; right:30px;}
+
 /*---------*/
 /* 테이블  */
 th, td { padding: 6px 8px; vertical-align: top; white-space: nowrap;}
@@ -81,11 +82,8 @@ ul.pagination { margin-top: 0px; margin-bottom: 0px;}
 						<!-- Start Product View -->
 						<div class="row">
 							<h2 class="headName">검색결과:${count }개</h2>
-							<c:if test="${count==0 }">
-								<tr>
-									<td class="text-center">검색결과가 없습니다.</td>
-								</tr>
-							</c:if>				
+							<a class="btn btn-sm btn-info insert" href="board.do">목록</a>
+											
 							<table class="table table-hover">							
 								<tr>
 									<th width=10% class="text-center">번호</th>
