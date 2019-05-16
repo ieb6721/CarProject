@@ -14,7 +14,16 @@ public class Car_estimateVO {
 	private int estimate_debt;
 	private int estimate_months;
 	private int monthly_installment;
+	private String option_choice;
 	
+	
+	
+	public String getOption_choice() {
+		return option_choice;
+	}
+	public void setOption_choice(String option_choice) {
+		this.option_choice = option_choice;
+	}
 	public String getId() {
 		return id;
 	}

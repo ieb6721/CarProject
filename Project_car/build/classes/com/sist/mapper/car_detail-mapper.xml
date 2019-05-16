@@ -84,16 +84,16 @@
 		INSERT INTO car_estimate VALUES(
 			#{id}, #{model_num}, #{trim_num}, SYSDATE, #{estimate_car_price}, 
 			#{estimate_option_price}, #{estimate_total_price},
-			 #{estimate_budget}, #{estimate_debt}, #{estimate_months}, #{monthly_installment}
+			 #{estimate_budget}, #{estimate_debt}, #{estimate_months}, #{monthly_installment}, #{option_choice} 
 		)
 	</insert>
 	
 	<insert id="estimate_without" parameterType="Car_estimateVO">
 		INSERT INTO car_estimate 
-		(id, model_num, trim_num, ESTIMATE_DATE, estimate_car_price, estimate_option_price, estimate_total_price) 
+		(id, model_num, trim_num, ESTIMATE_DATE, estimate_car_price, estimate_option_price, estimate_total_price, option_choice) 
 		VALUES(
 			#{id}, #{model_num}, #{trim_num}, SYSDATE, #{estimate_car_price}, 
-			#{estimate_option_price}, #{estimate_total_price} 						
+			#{estimate_option_price}, #{estimate_total_price}, #{option_choice} 						
 		)
 	</insert>
 </mapper>

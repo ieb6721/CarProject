@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+]\<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html">
@@ -188,50 +188,59 @@ button#selected_option {
 			var model_num = $('.model_num').val();
 			var trim_num = $('.optionBtn').val();	
 			
-			if($("#installment").css("display") == "none"){
-				$.ajax({
-					type : 'post',
-					url : 'estimate_ok.do',
-					data : {
-						"estimate_car_price" : estimate_car_price,
-						"estimate_option_price" : estimate_option_price,
-						"estimate_total_price" : estimate_total_price,
-						"model_num" : model_num,
-						"trim_num" : trim_num,
-						"debt" : "no"
-					}
-				});
-				
-				window.location.href = "../mypage/mypage_main.do";
-				
+			if(${sessionScope.id == null}){
+				alert("로그인 해주세요");
+				window.location.href = "../login/login.do";				
 			}else{
-				var estimate_budget = $('#budget').text().replace(/,/g , '');
-				var estimate_debt = $('.debt').text().replace(/,/g , ''); 	
-				var estimate_months = $('.months').text().replace(/[^0-9]/g, '');	
-				var monthly_installment = Math.floor(parseInt(estimate_debt) / parseInt(estimate_months)); 	
-				
-				$.ajax({
-					type : 'post',
-					url : 'estimate_ok.do',
-					data : {
-						"estimate_car_price" : estimate_car_price,
-						"estimate_option_price" : estimate_option_price,
-						"estimate_total_price" : estimate_total_price,
-						"estimate_budget" : estimate_budget,
-						"estimate_debt" : estimate_debt,
-						"estimate_months" : estimate_months,
-						"monthly_installment" : monthly_installment,
-						"model_num" : model_num,
-						"trim_num" : trim_num,
-						"debt" : "yes"
-					}
-				});
-				
-				window.location.href = "../mypage/mypage_main.do";
-				
-			}						
+				if($("#installment").css("display") == "none"){
+					$.ajax({
+						type : 'post',
+						url : 'estimate_ok.do',
+						data : {
+							"estimate_car_price" : estimate_car_price,
+							"estimate_option_price" : estimate_option_price,
+							"estimate_total_price" : estimate_total_price,
+							"model_num" : model_num,
+							"trim_num" : trim_num,
+							"debt" : "no",
+							"option_name" : option_name
+						}
+					});
+					
+					window.location.href = "../mypage/mypage_main.do";
+					
+				}else{
+					var estimate_budget = $('#budget').text().replace(/,/g , '');
+					var estimate_debt = $('.debt').text().replace(/,/g , ''); 	
+					var estimate_months = $('.months').text().replace(/[^0-9]/g, '');	
+					var monthly_installment = Math.floor(parseInt(estimate_debt) / parseInt(estimate_months)); 	
+					
+					$.ajax({
+						type : 'post',
+						url : 'estimate_ok.do',
+						data : {
+							"estimate_car_price" : estimate_car_price,
+							"estimate_option_price" : estimate_option_price,
+							"estimate_total_price" : estimate_total_price,
+							"estimate_budget" : estimate_budget,
+							"estimate_debt" : estimate_debt,
+							"estimate_months" : estimate_months,
+							"monthly_installment" : monthly_installment,
+							"model_num" : model_num,
+							"trim_num" : trim_num,
+							"debt" : "yes",
+							"option_name" : option_name
+						}
+					});
+					
+					window.location.href = "../mypage/mypage_main.do";					
+				}		
+			}
 		});
+		
 	});
+	
+	var option_name = "";
 	
 	function numberWithCommas(x) {
 	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -253,11 +262,15 @@ button#selected_option {
     		$('.selectTitle > span').remove();
     		
     		$('div.recipe_info').show();
+    		offset = $("div.recipe_info").offset();
+            $('html, body').animate({scrollTop : offset.top});
     		
     		//옵션 선택된 가격 가져오기
 	    	$('input:checkbox[name=chk]').each(function() {
-	    	       if($(this).is(':checked'))
+	    	       if($(this).is(':checked')){
 	    	          price.push($(this).val());
+	    	       		option_name = option_name + $(this).attr('opname') + ","
+	    	       }
 	    	    });
 	    	
 	    	for(var i = 0; i<price.length; i++){

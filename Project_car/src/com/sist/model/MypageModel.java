@@ -55,9 +55,17 @@ public class MypageModel {
 		return "mypage_accCart.jsp";
 	}
 	
+	//마이페이지 견적 내역
 	@RequestMapping("mypage/mypage_estimate.do")
 	public String estimateModel(HttpServletRequest request) {
-	
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
+		
+		List<MyEstimateVO> mList=MypageDAO.myEstimate(id);
+		request.setAttribute("mList", mList);
+		for(MyEstimateVO vo : mList){
+			System.out.println(vo.getMy_model_name());
+		}
 		return "mypage_estimate.jsp";
 	}
 	

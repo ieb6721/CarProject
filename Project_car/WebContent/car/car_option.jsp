@@ -12,7 +12,7 @@
 		<div class="col-sm-6 contents scroll" id="option">
 			<ul class="checkList">
 				<c:forEach var="vo" items="${oList}">
-					<li><label><input type="checkbox"
+					<li><label><input type="checkbox" opname="${vo.option_name}" 
 							value="${vo.option_price}" name=chk>
 							&nbsp;${vo.option_name}</label>
 						<span class="price">${vo.option_price}원</span></li>

@@ -26,6 +26,13 @@ public class CarEstimateModel {
 
 	@RequestMapping("car/estimate_ok.do")
 	public String estimate_ok(HttpServletRequest request) {
+		try {
+			// 한글 변환
+			request.setCharacterEncoding("UTF-8");
+			// 컴파일 예외처리 => 반드시 컴파일 전에 예외처리를 한다
+		} catch (Exception ex) {
+		}
+		
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 
@@ -35,6 +42,7 @@ public class CarEstimateModel {
 		String debt = request.getParameter("debt");
 		String model_num = request.getParameter("model_num");
 		String trim_num = request.getParameter("trim_num");
+		String option_name = request.getParameter("option_name");
 
 		Car_estimateVO vo = new Car_estimateVO();
 		vo.setId(id);
@@ -43,6 +51,7 @@ public class CarEstimateModel {
 		vo.setEstimate_car_price(Integer.parseInt(estimate_car_price));
 		vo.setEstimate_option_price(Integer.parseInt(estimate_option_price));
 		vo.setEstimate_total_price(Integer.parseInt(estimate_total_price));
+		vo.setOption_choice(option_name);
 
 		if (debt.equals("yes")) {
 			String estimate_budget = request.getParameter("estimate_budget");

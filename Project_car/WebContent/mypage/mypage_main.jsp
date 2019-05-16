@@ -105,7 +105,7 @@
 										<div class="container">
 											<div class="row">
 												<div class="col-md-12 col-sm-12 col-xs-12">
-													<form action="#">
+													
 														<div class="table-content table-responsive">
 															<table class="table table-hover">
 																<thead>
@@ -135,7 +135,9 @@
 																</tbody>
 															</table>
 														</div>
-														<div class="row">
+														
+														
+														<!-- <div class="row">
 															<div class="col-md-12 col-sm-12 col-xs-12">
 																<div class="buttons-cart--inner">
 																	<div class="buttons-cart">
@@ -146,8 +148,8 @@
 																	</div>
 																</div>
 															</div>
-														</div>
-													</form>
+														</div> -->
+													
 												</div>
 											</div>
 										</div>

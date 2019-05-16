@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="htc__product__rightidebar">
 	<!-- Start Product View -->
 	<div class="row">
@@ -18,28 +18,35 @@
 										<table class="table table-hover">
 											<thead>
 												<tr class="active">
-													<th class="product-thumbnail">products</th>
-													<th class="product-name">name of products</th>
-													<th class="product-price">Price</th>
-													<th class="product-quantity">Quantity</th>
-													<th class="product-subtotal">Total</th>
+													<th class="product-thumbnail"></th>
+													<th class="product-car-name">차량명</th>
+													<th class="product-model-name">모델명</th>
+													<th class="product-total-price">총 가격</th>
+													<th class="product-cancel"></th>
 
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<td class="product-thumbnail"><a href="#"><img
-															src="images/product-2/cart-img/1.jpg" alt="product img" /></a></td>
-													<td class="product-name"><a href="#">New Dress For
-															Sunday</a>
-														<ul class="pro__prize">
-															<li class="old__prize">$82.5</li>
-															<li>$75.2</li>
-														</ul></td>
-													<td class="product-price"><span class="amount">￡165.00</span></td>
-													<td class="product-quantity"></td>
-													<td class="product-subtotal">￡165.00</td>
-												</tr>
+												<c:forEach var="vo" items="${mList }">
+													<tr>
+														<td class="product-thumbnail">													
+															<img src="${vo.my_car_poster }" alt="product img" />
+														</td>
+														<td class="product-name">
+															<a href="#">${vo.my_car_name }</a>
+														</td>
+														<td class="product-price">
+															<ul class="pro__prize">
+																<li class="old__prize">${vo.my_model_name }</li>
+																<li>${vo.my_trim_name }</li>
+															</ul>														
+														</td>
+														<td class="product-quantity">${vo.my_totalPrice }</td>
+														<td class="product-subtotal">
+															<button class="btn">취소</button>
+														</td>
+													</tr>
+												</c:forEach>
 											</tbody>
 										</table>
 									</div>
