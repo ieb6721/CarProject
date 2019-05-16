@@ -25,7 +25,7 @@
    
    <!-- 액세서리 주문내역 -->
     <select id="accPay" resultType="AccTotalVO" parameterType="String">
-      SELECT  acc.product_name, acc.product_main_img, acc.product_id, acc.product_origin_price, acc.product_origin_price, acc.product_dc_price, acc_pay.quantity 
+      SELECT  acc.product_name, acc.product_main_img, acc.product_id, acc.product_origin_price, acc.product_origin_price, acc.product_dc_price, acc_pay.quantity, acc_pay.pay_date 
        FROM acc_pay,acc 
        WHERE acc_pay.product_id=acc.product_id AND acc_pay.id=#{id}
    </select>

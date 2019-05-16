@@ -2,7 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<style>
+.old__prize{
+ text-decoration:line-through 
+}
+</style>
 <div class="htc__product__rightidebar">
 	<!-- Start Product View -->
 	<div class="row">
@@ -20,30 +24,33 @@
 										<table class="table table-hover">
 											<thead>
 												<tr class="active">
-													<th class="product-thumbnail">products</th>
-													<th class="product-name">name of products</th>
-													<th class="product-price">Price</th>
-													<th class="product-quantity">Quantity</th>
-													<th class="product-subtotal">Total</th>
+												    <th class="product-name" width="20%">order date</th>
+													<th class="product-thumbnail" width="20%">products</th>
+													<th class="product-name" width="25%">name of products</th>
+													<th class="product-price" width="15%">Price</th>
+													<th class="product-quantity" width="10%">Quantity</th>
+													<th class="product-subtotal" width="10%">Total</th>
 
 												</tr>
 											</thead>
 											<tbody>
 												<c:forEach var="vo" items="${list }">
 												<tr>
+											    	<td class="product-name" style="padding-top: 100px;font-size: medium;font-weight: 600;">
+													${fn:substring(vo.pay_date,0,20) }</td>
 													<td class="product-thumbnail"><a href="../acc/accDetail.do?product_id=${vo.product_id }">
 													<img src="${vo.product_main_img }" /></a></td>
-													<td class="product-name" style="padding-top: 80px;">
+													<td class="product-name" style="padding-top: 100px;">
 													<a href="../acc/accDetail.do?product_id=${vo.product_id }">${vo.product_name }</a></td>
-													<td class="product-price" style="padding-top: 70px;">
+													<td class="product-price" style="padding-top: 92px;">
 													<ul class="pro__prize">
 															<li class="old__prize">${vo.product_origin_price }</li>
 															<li id="price">${vo.product_dc_price }</li>
 														</ul>
 													</td>
-													<td class="product-quantity" id="quantity" style="padding-top: 80px;">${vo.quantity }</td>
+													<td class="product-quantity" id="quantity" style="padding-top: 97px;font-size: medium;font-weight: 600;">${vo.quantity }</td>
 													<c:set var="t" value="${vo.product_dc_price }"/>
-												    <td class="product-subtotal" id="total" style="padding-top: 80px;">${fn : replace (t, ",", "")*vo.quantity}원</td>
+												    <td class="product-subtotal" id="total" style="padding-top: 100px;">${fn : replace (t, ",", "")*vo.quantity}원</td>
 												</tr>
 							           	</c:forEach>
 											</tbody>
