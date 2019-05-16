@@ -1,4 +1,4 @@
-]\<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html">
@@ -113,57 +113,117 @@ tbody {
     font-weight: 900;
     color:red;
 }
-
-button#selected_option {
-    width: 100%;
-}
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
-	$(function() {
+$(function() {
+	
+	//가격 단위에 콤마 붙이기
+	function numberWithCommas(x) {
+	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+	
+	//차량 모델 선택하면 옵션 선택창 나타남
+	$('.optionBtn').click(function() {
+		var trim_num = $(this).val();
+		$('.selectTitle > span').remove();
 		
-		$('.optionBtn').click(function() {
-			var trim_num = $(this).val();
+		//견적 요청 버튼
+		$('.pay_btn').show();
+		
+		$.ajax({
+			type : 'post',
+			url : 'car_option.do',
+			data : {
+				"trim_num" : trim_num
+			},
+			success : function(response) {
+				$('#print').html(response);
+			}
+		});
+		
+		$('.accordion-list > ul > li').removeClass('selected_trim');
+		$(this).parent().parent().addClass('selected_trim');
+		
+		var model_name = $(this).parent().parent().parent().parent().siblings("dt").text();
+		var trim_name = $(this).parent().siblings('.name').text();
+		var fuel = $(this).parent().siblings('.fuel').text();
+		var engine = $(this).parent().siblings('.engine').text();
+		var mileage = $(this).parent().siblings('.mileage').text();	
+		var trim_price = $(this).parent().siblings('.price').text();
+		
+		$('.old__prize').text(model_name);
+		$('.selected_trim_name').text(trim_name);
+		$('.pro__info').text(fuel+' | '+engine+' | '+mileage);
+		
+		$('.car_price').text(numberWithCommas(trim_price));
+		//옵션 가격 0으로 돌리기 
+		$('tr > .total_option_price').text('0'); 
+		$('.selected_total').text(trim_price+'원');
+		$('div.recipe_info').show();
+	});			
 
-			$.ajax({
-				type : 'post',
-				url : 'car_option.do',
-				data : {
-					"trim_num" : trim_num
-				},
-				success : function(response) {
-					$('#print').html(response);
-				}
-			});
-			
-			$('.accordion-list > ul > li').removeClass('selected_trim');
-			$(this).parent().parent().addClass('selected_trim');
-			
-			var model_name = $(this).parent().parent().parent().parent().siblings("dt").text();
-			var trim_name = $(this).parent().siblings('.name').text();
-			var fuel = $(this).parent().siblings('.fuel').text();
-			var engine = $(this).parent().siblings('.engine').text();
-			var mileage = $(this).parent().siblings('.mileage').text();	
-			var trim_price = $(this).parent().siblings('.price').text();
-			
-			$('.old__prize').text(model_name);
-			$('.selected_trim_name').text(trim_name);
-			$('.pro__info').text(fuel+' | '+engine+' | '+mileage);
-			
-			$('.car_price').text(numberWithCommas(trim_price));
-			//옵션 가격 0으로 돌리기 
-			$('tr > .total_option_price').text('0'); 
-			$('.selected_total').text(trim_price+'원');
-		});	
+	//옵션 체크 박스 누를 때마다 가격과 이름 가져와서 뿌리기
+	$('#print').click(function() {
+		var car_price = $('.car_price').text().replace(/,/g , '');
+		var total_price = 0; //차 가격+옵션가격
+		var option_name = "";
+		var price = [];
+		$('input:checkbox[name=chk]').each(function() {
+			if($(this).is(':checked')){
+				price.push($(this).val());
+		    	option_name = option_name + $(this).attr('opname') + ","
+		    }
+		});
 		
-		//할부 납입 선택 버튼
-		var i = 0;
-		$('#installmentBtn').click(function() {
+		var total_option_price = 0;
+		for(var i = 0; i < price.length; i++){
+    		total_option_price += parseInt(price[i].replace(/,/g , ''));
+    	}		
+		
+    	total_price = parseInt(car_price) + total_option_price;	    	    	
+    	
+    	//차량기본 정보 recipe 출력 
+    	$('tr > .total_option_price').text(numberWithCommas(total_option_price));    	
+    	$('.selected_total').text(numberWithCommas(total_price)+'원');
+	});
+	
+	//할부 납입 선택 버튼
+	var i = 0;
+	$('#installmentBtn').click(function() {
+		var car_price = $('.car_price').text().replace(/,/g , '');   	
+    	
+    	if(car_price == '-'){
+    		$('div.selectTitle > span').remove();
+    		$('div.selectTitle').append('<span>모델을 선택해주세요.</span>');
+    		
+    		var offset = $("header").offset();
+            $('html, body').animate({scrollTop : offset.top});
+    		
+    	} else {
+    		$('.selectTitle > span').remove();
+    		
+    		$('div.recipe_info').show();
+    		offset = $("div.recipe_info").offset();
+            $('html, body').animate({scrollTop : offset.top});
 			if(i == 0){
 				i=1;
 				$('#installment').show();
 				$('#installmentBtn').text("할부 납입 취소");
+				$('#installmentInfo').show();
 				
+				var budget = $('output').text().replace(/,/g , '');
+		    	$('#budget').text(numberWithCommas(budget*10000));
+		    	
+		    	var budget = $('output').text().replace(/,/g , '');
+		    	$('#budget').text(numberWithCommas(budget*10000));
+		    	    	
+		    	var estimate_car_price = $('.car_price').text().replace(/,/g , '');
+				var estimate_option_price = $('.total_option_price').text().replace(/,/g , '');	
+		    	var total_price = parseInt(estimate_car_price) + parseInt(estimate_option_price);
+		    	var debt = total_price - parseInt(budget)*10000;
+		    	//할부 원금 출력
+        		$('td.debt').text(numberWithCommas(debt));			
 								
 			}else{
 				i=0;
@@ -172,15 +232,105 @@ button#selected_option {
 				$('.pay_btn').hide();
 				$('#installmentInfo').hide();
 			}
-		});
-		
-		$('a.buttonGroup-button').click(function() {
+    	}
+	});
+	
+	//초기 납입금 조절시 얼마인지 가져오기 
+	$('.slider').click(function() {
+		var budget = $('output').text().replace(/,/g , '');
+    	$('#budget').text(numberWithCommas(budget*10000));
+    	    	
+    	var estimate_car_price = $('.car_price').text().replace(/,/g , '');
+		var estimate_option_price = $('.total_option_price').text().replace(/,/g , '');	
+    	var total_price = parseInt(estimate_car_price) + parseInt(estimate_option_price);
+    	var debt = total_price - parseInt(budget)*10000;	
+    	
+    	//할부 기간 선택한 다음에 초기납입금을 다시 조절한 경우
+    	if ($('a.buttonGroup-button').hasClass('selected')) {
+    		if(debt < 0){
+        		$('td.debt').text('초기 납입금이 총 금액보다 큽니다.');
+        		$('.pay_btn').hide();
+        	}else{
+        		//할부 원금 출력
+        		$('td.debt').text(numberWithCommas(debt));
+        		        
+    	    	var months = $('.buttonGroup-button.selected').text();
+    	   		$('td.months').text(months);
+    	  			
+      			var numberMonths = parseInt(months.replace(/[^0-9]/g), '');
+     			var monthly = Math.floor(debt / numberMonths);
+    	   			
+       			//할부 기간이 길어서 월 납입 금액이 음수가 될 때
+       			if(monthly < 0){
+       				$('.option_recipe_monthly').text('할부기간을 줄여주세요.');
+       				
+       			}else{
+       				$('.option_recipe_monthly').text(numberWithCommas(monthly)+'원');
+       				
+       				//견적 요청 버튼
+       				$('.pay_btn').show();			   				
+       			}     		        		
+        	}
+		}else{			
+			$('td.debt').text(numberWithCommas(debt));
+		}  	
+	});	
+	
+	//할부 기간 버튼 클릭 
+	$('a.buttonGroup-button').click(function() {
+		var budget = $('output').text().replace(/,/g , '');
+    	$('#budget').text(numberWithCommas(budget*10000));
+    	    	
+    	var estimate_car_price = $('.car_price').text().replace(/,/g , '');
+		var estimate_option_price = $('.total_option_price').text().replace(/,/g , '');	
+    	var total_price = parseInt(estimate_car_price) + parseInt(estimate_option_price);
+    	var debt = total_price - parseInt(budget)*10000;	
+    	
+		setTimeout(function() {
 			if ($('a.buttonGroup-button').hasClass('selected')) {
+				if(debt < 0){
+	        		$('td.debt').text('초기 납입금이 총 금액보다 큽니다.');
+	        		$('.pay_btn').hide();
+	        	}else{
+	        		//할부 원금 출력
+	        		$('td.debt').text(numberWithCommas(debt));
+	        		        
+	    	    	var months = $('.buttonGroup-button.selected').text();
+	    	   		$('td.months').text(months);
+	    	  			
+	      			var numberMonths = parseInt(months.replace(/[^0-9]/g), '');
+	     			var monthly = Math.floor(debt / numberMonths);
+	    	   			
+	       			//할부 기간이 길어서 월 납입 금액이 음수가 될 때
+	       			if(monthly < 0){
+	       				$('.option_recipe_monthly').text('할부기간을 줄여주세요.');
+	       				
+	       			}else{
+	       				$('.option_recipe_monthly').text(numberWithCommas(monthly)+'원');
+	       				
+	       				//견적 요청 버튼
+	       				$('.pay_btn').show();			   				
+	       			}     		        		
+	        	}   
+			}else{	
 				$('.pay_btn').hide();
-			}
-		});
-		
-		$('.pay_btn').click(function() {
+				$('.option_recipe_monthly').text('할부기간을 선택해주세요');
+				  		      	        
+			}	
+			}, 200);
+					
+	});
+	
+	//최종 견적 요청 버튼
+	$('.pay_btn').click(function() {
+		var result = confirm('구매하시겠습니까?'); 
+		if(result) { //yes
+			var option_name = "";
+			$('input:checkbox[name=chk]').each(function() {
+				if($(this).is(':checked')){
+			    	option_name = option_name + $(this).attr('opname') + ","
+			    }
+			});
 			var estimate_car_price = $('.car_price').text().replace(/,/g , '');
 			var estimate_option_price = $('.total_option_price').text().replace(/,/g , '');
 			var estimate_total_price = parseInt(estimate_car_price) + parseInt(estimate_option_price);	
@@ -230,111 +380,17 @@ button#selected_option {
 							"trim_num" : trim_num,
 							"debt" : "yes",
 							"option_name" : option_name
-						}
-					});
-					
+								}
+					});					
 					window.location.href = "../mypage/mypage_main.do";					
 				}		
 			}
-		});
-		
+		} else { //no
+			
+		}
 	});
-	var option_name = "";
 	
-	function numberWithCommas(x) {
-	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	}
-	
-	function selected_option() {	
-    	var price = [];
-    	var total_option_price = 0;
-    	var car_price = $('.car_price').text().replace(/,/g , '');   	
-    	
-    	if(car_price == '-'){
-    		$('div.selectTitle > span').remove();
-    		$('div.selectTitle').append('<span>모델을 선택해주세요.</span>');
-    		
-    		var offset = $("header").offset();
-            $('html, body').animate({scrollTop : offset.top});
-    		
-    	} else {
-    		$('.selectTitle > span').remove();
-    		
-    		$('div.recipe_info').show();
-    		offset = $("div.recipe_info").offset();
-            $('html, body').animate({scrollTop : offset.top});
-    		
-    		//옵션 선택된 가격 가져오기
-	    	$('input:checkbox[name=chk]').each(function() {
-	    	       if($(this).is(':checked')){
-	    	          price.push($(this).val());
-	    	       		option_name = option_name + $(this).attr('opname') + ","
-	    	       }
-	    	    });
-	    	
-	    	for(var i = 0; i<price.length; i++){
-	    		total_option_price += parseInt(price[i].replace(/,/g , ''));
-	    	}
-	    	
-	    	var total_price = parseInt(car_price) + total_option_price;
-	    	
-	    	
-	    	/* 차량기본 정보 recipe 출력 */
-	    	$('tr > .total_option_price').text(numberWithCommas(total_option_price));    	
-	    	$('.selected_total').text(numberWithCommas(total_price)+'원');
-	    	
-	    	// 할부 납입 선택하고 견적 요청
-	    	if($("#installment").css("display") != "none"){
-	    		$('#installmentInfo').show();
-	    		$('.pay_btn').hide();
-	    		
-	    		//초기 납입금 가져오기
-	    		var budget = $('output').text().replace(/,/g , '');
-		    	$('#budget').text(numberWithCommas(budget*10000));
-		    	
-		    	//할부 원금 계산
-		    	var debt = total_price - budget*10000;	    	
-		    	if(debt < 0){
-		    		$('td.debt').text('초기 납입금이 총 금액보다 큽니다.');
-		    		$('.pay_btn').hide();
-		    	}else{
-		    		//할부 원금 출력
-		    		$('td.debt').text(numberWithCommas(debt));
-		    		
-		    		//할부 기간이 선택됐을 때
-			    	if ($('.buttonGroup-button').hasClass('selected')) {
-			    		var months = $('.buttonGroup-button.selected').text();
-			   			$('td.months').text(months);
-			   			
-			   			var numberMonths = parseInt(months.replace(/[^0-9]/g), '');
-			   			var monthly = Math.floor(debt / numberMonths);
-			   			
-			   			//할부 기간이 길어서 월 납입 금액이 음수가 될 때
-			   			if(monthly < 0){
-			   				$('.option_recipe_monthly').text('할부기간을 줄여주세요.');
-			   				
-			   			}else{
-			   				$('.option_recipe_monthly').text(numberWithCommas(monthly)+'원');
-			   				
-			   				//견적 요청 버튼
-			   				$('.pay_btn').show();			   				
-			   			}
-		    			
-		    		}else{
-		    			$('.pay_btn').hide();
-			    		$('td.months').text('할부기간을 선택해 주세요');
-			    	}
-		    	}	
-	    	}else if($("#installment").css("display") == "none"){
-	    		//할부 없이 견적 요청
-	    		$('#installmentInfo').hide();
-	    		$('.pay_btn').show();	    		
-	    	}
-	    	
-	    	
-    	}
-	};
-	
+});	
 </script>
 </head>
 <body>
@@ -390,7 +446,7 @@ button#selected_option {
 			
 			
 			<div class="row text-center" id=installment style="display:none">
-				<div class="col-sm-6"
+				<div class="col-sm-6 slider"
 					style="border: 1px solid; width: 50%; height: 150px;">
 					<jsp:include page="car_estimate_slider.jsp"></jsp:include>
 				</div>
@@ -411,10 +467,7 @@ button#selected_option {
 						</form>
 					</div>
 				</div>
-			</div>
-			<hr>
-				<button id="selected_option" onclick="selected_option();" class="optionSelectPrint btn btn-md btn-warning">모델/옵션/할부 선택 완료</button>
-			<hr>		
+			</div>		
 		</div>
 
 		<div class="container recipe_info" style="display:none">
