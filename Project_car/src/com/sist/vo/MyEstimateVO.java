@@ -3,6 +3,7 @@ package com.sist.vo;
 import java.util.Date;
 
 public class MyEstimateVO {
+	private int eno;
 	private Date estimate_date;
 	private String my_car_poster;
 	private String my_car_name;
@@ -10,6 +11,13 @@ public class MyEstimateVO {
 	private String my_trim_name;
 	private int my_totalPrice;
 	
+	
+	public int getEno() {
+		return eno;
+	}
+	public void setEno(int eno) {
+		this.eno = eno;
+	}
 	public Date getEstimate_date() {
 		return estimate_date;
 	}

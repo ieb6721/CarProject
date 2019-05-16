@@ -128,4 +128,64 @@ public class MypageDAO {
 
 	}
 
+	// 마이페이지 견적내역 취소
+	public static void estimate_cancel(int eno) {
+
+		SqlSession session = null;
+
+		try {
+			session = ssf.openSession(true);
+			session.delete("estimate_cancel", eno);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			if (session != null)
+				session.close();
+
+		}
+
+	}
+
+	// 마이페이지 견적내역1
+	public static Car_estimateVO estimatevo_detail(int eno) {
+
+		Car_estimateVO evo = new Car_estimateVO();
+		SqlSession session = null;
+
+		try {
+			session = ssf.openSession();
+			evo = session.selectOne("estimate_detail", eno);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			if (session != null)
+				session.close();
+		}
+		return evo;
+	}
+
+	// 마이페이지 견적내역2
+	public static String estimate_carnum(String model_num) {
+
+		String car_num = "";
+		SqlSession session = null;
+
+		try {
+			session = ssf.openSession();
+			car_num = session.selectOne("estimate_carnum", model_num);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			if (session != null)
+				session.close();
+		}
+		return car_num;
+	}
+
 }

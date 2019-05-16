@@ -84,15 +84,16 @@
 		INSERT INTO car_estimate VALUES(
 			#{id}, #{model_num}, #{trim_num}, SYSDATE, #{estimate_car_price}, 
 			#{estimate_option_price}, #{estimate_total_price},
-			 #{estimate_budget}, #{estimate_debt}, #{estimate_months}, #{monthly_installment}, #{option_choice} 
+			 #{estimate_budget}, #{estimate_debt}, #{estimate_months}, #{monthly_installment}, #{option_choice},
+			 (SELECT NVL(MAX(eno)+1,1) FROM car_estimate)
 		)
 	</insert>
 	
 	<insert id="estimate_without" parameterType="Car_estimateVO">
 		INSERT INTO car_estimate 
-		(id, model_num, trim_num, ESTIMATE_DATE, estimate_car_price, estimate_option_price, estimate_total_price, option_choice) 
+		(eno, id, model_num, trim_num, ESTIMATE_DATE, estimate_car_price, estimate_option_price, estimate_total_price, option_choice) 
 		VALUES(
-			#{id}, #{model_num}, #{trim_num}, SYSDATE, #{estimate_car_price}, 
+			(SELECT NVL(MAX(eno)+1,1) FROM car_estimate), #{id}, #{model_num}, #{trim_num}, SYSDATE, #{estimate_car_price}, 
 			#{estimate_option_price}, #{estimate_total_price}, #{option_choice} 						
 		)
 	</insert>

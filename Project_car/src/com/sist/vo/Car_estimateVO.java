@@ -15,9 +15,15 @@ public class Car_estimateVO {
 	private int estimate_months;
 	private int monthly_installment;
 	private String option_choice;
+	private int eno;
 	
 	
-	
+	public int getEno() {
+		return eno;
+	}
+	public void setEno(int eno) {
+		this.eno = eno;
+	}
 	public String getOption_choice() {
 		return option_choice;
 	}

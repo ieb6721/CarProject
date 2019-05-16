@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import com.sist.controller.RequestMapping;
 import com.sist.dao.AccDAO;
+import com.sist.dao.CarDetailDAO;
 import com.sist.dao.MypageDAO;
 import com.sist.vo.*;
 
@@ -71,6 +72,30 @@ public class MypageModel {
 		request.setAttribute("mList", mList);
 		
 		return "mypage_estimate.jsp";
+	}
+	
+	//마이페이지 견적 내역 취소
+	@RequestMapping("mypage/estimate_cancel.do")
+	public String estimate_cancel(HttpServletRequest request) {
+		String eno=request.getParameter("eno");
+		
+		MypageDAO.estimate_cancel(Integer.parseInt(eno));
+		
+		return "mypage_estimate.do";
+	}
+	
+	@RequestMapping("mypage/estimate_detail.do")
+	public String estimate_detail(HttpServletRequest request) {
+		String eno=request.getParameter("eno");
+		
+		Car_estimateVO car_estimate_vo = MypageDAO.estimatevo_detail(Integer.parseInt(eno));
+		String car_num = MypageDAO.estimate_carnum(car_estimate_vo.getModel_num());
+		CarVO carvo = CarDetailDAO.carDetailData(car_num);
+		
+		request.setAttribute("car_estimate_vo", car_estimate_vo);
+		request.setAttribute("carvo", carvo);
+		
+		return "mypage_estimate_detail.jsp";
 	}
 	
 	@RequestMapping("mypage/mypage_reservation.do")

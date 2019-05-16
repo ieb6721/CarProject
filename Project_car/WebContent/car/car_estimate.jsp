@@ -382,7 +382,7 @@ $(function() {
 							"option_name" : option_name
 								}
 					});					
-					window.location.href = "../mypage/mypage_main.do";					
+					window.location.href = "../mypage/mypage_estimate.do";					
 				}		
 			}
 		} else { //no
