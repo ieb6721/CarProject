@@ -86,7 +86,7 @@ $(function(){
 										onclick="location='car_estimate.do?cno=${carvo.car_num}'">견적</button>
 							</c:if>							
 							<button class="btn btn-md btn-success"
-								onclick="javascript:history.back()">목록</button>
+								onclick="location.href=document.referrer">목록</button>
 						</div>
 					</div>
 				</div>

@@ -29,6 +29,18 @@ public class CarDetailModel {
 		{
 			id="NOID";
 		}
+		
+		Cookie[] cookies=request.getCookies();
+		for(int i=0;i<cookies.length;i++)
+		{
+			if(cookies[i].getName().equals(id+cno))
+			{
+				cookies[i].setMaxAge(0);
+				response.addCookie(cookies[i]);
+				break;
+			}
+		}
+		
 		Cookie cookie=new Cookie(id+cno, cno);
 		cookie.setMaxAge(60*60*24);
 		response.addCookie(cookie);
@@ -88,12 +100,43 @@ public class CarDetailModel {
 	
 	@RequestMapping("car/car_brand.do")
 	public String car_search(HttpServletRequest request) {
+		
+		
 		try {
 			// 한글 변환
 			request.setCharacterEncoding("UTF-8");
 			// 컴파일 예외처리 => 반드시 컴파일 전에 예외처리를 한다
 		} catch (Exception ex) {
 		}
+		
+		// 최근본 목록
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+
+		Cookie[] cookies = request.getCookies();
+
+		List<CarVO> cookieList1 = new ArrayList<CarVO>();
+
+		if (id == null) {
+			id = "NOID";
+		}
+
+		for (int i = 0; i < cookies.length; i++) {
+			if (cookies[i].getName().startsWith(id)) {
+				String value = cookies[i].getValue();
+				CarVO cvo = CarDetailDAO.carDetailData(value);
+				cookieList1.add(cvo);
+			}
+		}
+
+		List<CarVO> cookieList = new ArrayList<CarVO>();
+		for (int i = cookieList1.size() - 1; i >= 0; i--) {
+			CarVO v = cookieList1.get(i);
+			cookieList.add(v);
+		}
+
+		request.setAttribute("cookieList", cookieList);
+		//
 
 		String keyword = request.getParameter("keyword");
 		List<CarVO> list = CarDAO.carSearchData(keyword);

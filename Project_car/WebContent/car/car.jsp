@@ -53,11 +53,32 @@ div.price input {
     background-color: #ffb52f;
     color: #fff;
 }
+
+.fa-angle-end:before{
+	content:">>";
+}
+.fa-angle-start:before{
+	content:"<<";
+}
+.icofont-rounded-up:before{
+	content:"∧";
+}
+
 </style>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
+	
+	//modal
+	$('.action-reload').click(function(){
+		var mPoster=$(this).attr('posterVal');
+		var mName=$(this).attr('nameVal');
+		
+		$('#mPoster').attr("src",mPoster);
+		$('#mName').text(mName);
+	});
+	
 	
 	var offset = $(".container-fluid").offset();
 	
@@ -278,8 +299,13 @@ $(function(){
 								<ul>
 									<c:if test="${curpage>BLOCK }">
 										<li>
-										<a href="car.do?page=${startPage-1 }&cateNo=${cateNo}"><i
-												class="fa fa-angle-left"></i></a></li>
+										  	<a href="car.do?page=1&cateNo=${cateNo}"><i class="fa fa-angle-start"></i></a>
+										</li>
+										<li>
+											<a href="car.do?page=${startPage-1 }&cateNo=${cateNo}">
+												<i class="fa fa-angle-left"></i>
+											</a>
+										</li>
 									</c:if>
 									<c:forEach var="i" begin="${startPage }" end="${endPage }">
 										<c:choose>
@@ -293,8 +319,16 @@ $(function(){
 										<li ${type }><a href="car.do?page=${i }&cateNo=${cateNo}">${i }</a></li>
 									</c:forEach>
 									<c:if test="${endPage<allPage }">
-										<li><a href="car.do?page=${endPage+1 }&cateNo=${cateNo}"><i
-												class="fa fa-angle-right"></i></a></li>
+										<li>
+											<a href="car.do?page=${endPage+1 }&cateNo=${cateNo}">
+												<i class="fa fa-angle-right"></i>
+											</a>
+										</li>
+										<li>
+											<a href="car.do?page=${allPage}&cateNo=${cateNo}">
+												<i class="fa fa-angle-end"></i>											
+											</a>
+										</li>
 									</c:if>
 								</ul>
 							</div>
