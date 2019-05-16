@@ -11,6 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" type="image/x-icon" href="../images/accessory_img/favicon.ico">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="../css/main_css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/accessory_css/owl.carousel.min.css">
 <link rel="stylesheet" href="../css/accessory_css/owl.theme.default.min.css">
 <link rel="stylesheet" href="../css/accessory_css/core.css">
@@ -18,6 +19,7 @@
 <link rel="stylesheet" href="../css/accessory_css/style.css">
 <link rel="stylesheet" href="../css/accessory_css/responsive.css">
 <link rel="stylesheet" href="../css/accessory_css/custom.css">
+<script src="../js/accessory_js/vendor/modernizr-3.5.0.min.js"></script>
 
 <style type="text/css">
 #contain { margin-left: 200px;}
@@ -28,19 +30,26 @@
  text-decoration:line-through 
 }
 </style>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
-$('.reservation_cancel').click(function() {
-	var no = $(this).attr("cancelNo");
-	$("input:hidden[name='no']").val(no);
-
-	if (confirm("시승예약을 취소하시겠습니까?")) {
+	$(function() {
+		$('.reservation_cancel').click(function() {
 			
-       alert("시승 예약이 취소되었습니다.");      
-    }
+			var no = $(this).attr("cancelNo");
+			$("input:hidden[name='no']").val(no);
+		
+			if (confirm("시승예약을 취소하시겠습니까?")) {
+					
+		       alert("시승 예약이 취소되었습니다.");      
+		    }
+			
+			$('#frm').submit(); 
+		
+		});
+		
+	});
 	
-	$('#frm').submit(); 
-
-});
+	
 </script>
 </head>
 <body>
@@ -88,14 +97,14 @@ $('.reservation_cancel').click(function() {
 											<tbody>
 											 <c:forEach var="vo" items="${list }">
 												<tr>
-													<td class="product-thumbnail" style="padding-top: 13px;">${vo.model }</td>
-													<td class="product-name" style="padding-top: 13px;">${vo.agency_name }</td>
-													<td class="product-price" style="padding-top: 13px;">${vo.reserve_date }</td>
+													<td class="product-thumbnail" style="padding-top: 13px;font-size: medium;font-weight: 600;">${vo.model }</td>
+													<td class="product-name" style="padding-top: 13px;font-size: medium;font-weight: 600;">${vo.agency_name }</td>
+													<td class="product-price" style="padding-top: 13px;font-size: medium;font-weight: 600;">${vo.reserve_date }</td>
 													<c:if test="${vo.approval_num == 0 }">
-													<td class="product-price" style="padding-top: 13px;">예약 대기</td>
+													<td class="product-price" style="padding-top: 13px;font-size: medium;font-weight: 600;">예약 대기</td>
 													</c:if>
 													<c:if test="${vo.approval_num == 1 }">
-													<td class="product-price" style="padding-top: 13px;">예약 완료</td>
+													<td class="product-price" style="padding-top: 13px;font-size: medium;font-weight: 600;">예약 완료</td>
 													</c:if>
 													<c:if test="${vo.approval_num == 0 }">
 													<td class="product-quantity">																																	
@@ -104,7 +113,7 @@ $('.reservation_cancel').click(function() {
 													</td>
 													</c:if>	
 													<c:if test="${vo.approval_num == 1 }">
-													<td class="product-price" style="padding-top: 13px;">취소 불가</td>
+													<td class="product-price" style="padding-top: 13px;font-size: medium;font-weight: 600;">취소 불가</td>
 													</c:if>
 												</tr>
 											</c:forEach>

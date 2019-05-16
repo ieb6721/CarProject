@@ -104,7 +104,7 @@ public class MypageModel {
 		String no = request.getParameter("no");
 
 		MypageDAO.reserveDelete(Integer.parseInt(no));
-		return "redirect:mypage_main.do";
+		return "redirect:mypage_reservation.do";
 	}
 	
 	
