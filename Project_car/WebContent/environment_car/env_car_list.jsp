@@ -63,6 +63,15 @@ div.price input {
 <script type="text/javascript">
 $(function(){
 	
+	//modal
+	$('.action-reload').click(function(){
+		var mPoster=$(this).attr('posterVal');
+		var mName=$(this).attr('nameVal');
+		
+		$('#mPoster').attr("src",mPoster);
+		$('#mName').text(mName);
+	});
+	
 	var offset = $(".container-fluid").offset();
 	
 	var cate = ${cateNo};		

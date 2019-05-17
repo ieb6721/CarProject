@@ -6,6 +6,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.qwick-view-content{
+	width: 700px;
+	height: 500px; 
+	padding-left: 100px;
+}
+
+#mPoster{
+	width: 600px;
+	height: 300px;	
+}
+
+.cbtn{
+	margin-left: 500px;
+}
+</style>
 </head>
 <body>
 	<div class="grid-list-product-wrapper tab-content">
@@ -31,13 +47,14 @@
 									</a>
 
 									<div class="product-action">
-										<a class="action-plus-2 p-action-none" title="Add To Cart" href="car_estimate.do?cno=${vo.car_num }"> 
+										<a class="action-plus-2 p-action-none" title="Add To Cart" href="../car/car_estimate.do?cno=${vo.car_num }"> 
 											<i class=" ti-shopping-cart"></i>
 										</a> 
 										<!-- <a class="action-cart-2" title="Wishlist" href="#"> 
 											<i class=" ti-heart"></i>
 										</a>  -->
-										<a class="action-reload" title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
+										<a class="action-reload" title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#"
+											posterVal="${vo.car_poster }" nameVal="${vo.car_name }">
 											<i class=" ti-zoom-in"></i>
 										</a>
 									</div>
@@ -53,15 +70,31 @@
 												</c:forEach>
 												<a href="product-details.html">${vo.car_name }</a>
 											</h4>
-											<h5>${vo.car_price }만원</h5>
+											
+											<c:if test="${vo.car_price eq '미정' }">
+												<h5>가격 ${vo.car_price }</h5>
+											</c:if>
+											<c:if test="${vo.car_price != '미정' }">
+												<h5>${vo.car_price }만원</h5>
+											</c:if>
+											
 										</div>
 									</div>
 									<div class="product-item-dec" style="top: 250px">
 										<ul>
-											<li>${vo.car_launchDate }출시</li>
-											<li>${vo.car_size }</li>
-											<li>${vo.car_fuelType }</li>
-											<li>복합연비 ${vo.car_efficiency }</li>
+											<li>${vo.car_launchDate }출시	</li>
+											
+											<c:if test="${vo.car_size != null}">
+												<li>${vo.car_size }</li>
+											</c:if>											
+											
+											<c:if test="${vo.car_fuelType != null }">
+												<li>${vo.car_fuelType }</li>
+											</c:if>											
+											
+											<c:if test="${vo.car_efficiency != null }">
+												<li>복합연비 ${vo.car_efficiency }</li>
+											</c:if>
 										</ul>
 									</div>
 								</div>
@@ -76,20 +109,13 @@
 									<div class="modal-body">
 										<div class="qwick-view">
 											<div class="qwick-view-content">
-												<img src="${vo.car_poster }">
-												<h3>${vo.car_name }</h3>
-												<div class="rating-number">
-													<div class="quick-view-rating">
-														<i class="fa fa-star reting-color"></i> <i
-															class="fa fa-star reting-color"></i> <i
-															class="fa fa-star reting-color"></i> <i
-															class="fa fa-star reting-color"></i> <i
-															class="fa fa-star reting-color"></i>
-													</div>
-												</div>
+												<img src="" id="mPoster">
+
 												<div class="quickview-plus-minus">
 													<div class="quickview-btn-cart">
-														<a class="btn-style" data-dismiss="modal" aria-label="Close">Close</a>
+														<h1 id="mName"></h1>
+														<br> <a class="btn-style cbtn" data-dismiss="modal"
+															aria-label="Close">Close</a>
 													</div>
 												</div>
 											</div>
