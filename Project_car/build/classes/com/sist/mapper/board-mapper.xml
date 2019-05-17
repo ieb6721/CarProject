@@ -54,7 +54,7 @@
 		SELECT no, bno, id, name, msg, TO_CHAR(regdate, 'YYYY-MM-DD HH24:MI:SS') as dbday 
 		FROM reply
 		WHERE bno=#{bno}
-		ORDER BY no DESC
+		ORDER BY no ASC
 	</select>
 	
 	<!-- 댓글 쓰기 -->

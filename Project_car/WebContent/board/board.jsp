@@ -107,7 +107,7 @@ ul.pagination { margin-top: 0px; margin-bottom: 0px;}
 								<c:forEach var="vo" items="${list }">
 									<tr>
 										<td width=10% class="text-center">${vo.no }	</td>
-										<td width=45% class="text-center"><a href="../board/detail.do?no=${vo.no }" id="detail">${vo.subject }</a>
+										<td width=45% class="text-left"><a href="../board/detail.do?no=${vo.no }" id="detail">${vo.subject }</a>
 										&nbsp;
 								           <c:if test="${vo.rcount>0 }">
 								            (${vo.rcount })
