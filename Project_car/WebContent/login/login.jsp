@@ -71,6 +71,10 @@
 		            setCookie("key", $("#lid").val(), 7); // 7일 동안 쿠키 보관
 		        }
 		    });
+		    
+		    
+		    
+		    
 		});
 		 
 		function setCookie(cookieName, value, exdays){
@@ -101,6 +105,14 @@
 		}
 
 	
+		
+		function loginOk(){
+			
+			$('#logBtn').trigger("click");
+			
+		}
+
+		
 	$(function(){
 	$('#logBtn').click(function(){
 		var id=$('#lid').val();
@@ -189,7 +201,8 @@
                                     </div>
                                     <div class="login-form">
                                             <input type="text" name="user-id" placeholder="ID" id="lid">
-                                            <input type="password" name="user-password" placeholder="Password" id="lpwd">
+                                            <input type="password" name="user-password" placeholder="Password" id="lpwd"
+                                            onkeypress="if(event.keyCode == 13){ loginOk(); return; }">
                                             <div class="button-box">
                                                 <div class="login-toggle-btn">
                                                     <input type="checkbox" id="idSaveCheck">

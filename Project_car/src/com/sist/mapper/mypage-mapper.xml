@@ -27,7 +27,7 @@
     <select id="accPay" resultType="AccTotalVO" parameterType="String">
       SELECT  acc.product_name, acc.product_main_img, acc.product_id, acc.product_origin_price, acc.product_origin_price, acc.product_dc_price, acc_pay.quantity, acc_pay.pay_date 
        FROM acc_pay,acc 
-       WHERE acc_pay.product_id=acc.product_id AND acc_pay.id=#{id}
+       WHERE acc_pay.product_id=acc.product_id AND acc_pay.id=#{id} ORDER BY acc_pay.pay_date DESC
    </select>
    
    <!-- 마이페이지 견적 내역 -->
