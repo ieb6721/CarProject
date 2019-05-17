@@ -66,42 +66,4 @@ public class MainModel {
 		
 		return "main.jsp";
 	}
-	
-//	차량 관련 동영상
-	@RequestMapping("main/test0.do")
-	public String popup(HttpServletRequest request)
-	{
-		return "test0.jsp";
-	}
-	
-	@RequestMapping("main/test1.do")
-	public String popup1(HttpServletRequest request)
-	{
-		
-		return "test1.jsp";
-	}
-	
-	@RequestMapping("main/test2.do")
-	public String popup2(HttpServletRequest request)
-	{
-		return "test2.jsp";
-	}
-	
-	@RequestMapping("main/test3.do")
-	public String popup3(HttpServletRequest request)
-	{
-		return "test3.jsp";
-	}
-	
-	@RequestMapping("main/test4.do")
-	public String popup4(HttpServletRequest request)
-	{
-		return "test4.jsp";
-	}
-	
-	@RequestMapping("main/test5.do")
-	public String popup5(HttpServletRequest request)
-	{
-		return "test5.jsp";
-	}
 }

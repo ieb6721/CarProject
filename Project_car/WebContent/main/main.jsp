@@ -13,14 +13,13 @@
 <script type="text/javascript" src="../shadow/js/shadowbox.js"></script>
 <script type="text/javascript">
 
-	Shadowbox.init({
+	/* Shadowbox.init({
 		players : [ "iframe" ]
 	});
 
 	$(function() {
 		$('.carVideo').click(function() {
 			var no = $(this).attr('video-data');
-			/* alert(no); */
 			
 			 Shadowbox.open({
 					content : 'test'+no+'.do',
@@ -28,6 +27,13 @@
 					width : 602,
 					height : 352
 				});
+		});
+	}); */
+	$(function() {
+		$('.carVideo').click(function() {
+			var no = $(this).attr('video-data');
+			$('#box').attr('src',no);
+			/* alert(no); */
 		});
 	});
 </script>
@@ -160,6 +166,8 @@ header {
 	<header class="title">
 		<a href="main.do"><img src="../images/main_img/pickcar.png"></a>
 	</header>
+
+
 	<div class="container">
 		<div class="bg_feature"></div>
 		<section class="main-slider">
@@ -312,36 +320,69 @@ header {
 							<div class="car-video-box">
 								<div class="box1">
 									
-									<div class="col-sm-8 car-video carVideo" video-data="0">
+									<div class="col-sm-8 car-video carVideo" video-data="https://www.youtube.com/embed/ZIoTZo8p12g" 
+									data-toggle="modal" data-target="#exampleModal">
 											<img src="https://i.ytimg.com/vi/ZIoTZo8p12g/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLARWycarVideo2_s8BxLoCr3pSdDQ9hO0Jw"
 											style="width: 500px; height: 305px;" />
 									</div>
 									
-									<div class="col-sm-4 car-video1 carVideo" video-data="1">
+									<div class="col-sm-4 car-video1 carVideo" video-data="https://www.youtube.com/embed/w1psOj77-4E"
+									data-toggle="modal" data-target="#exampleModal">
 											<img src="https://i.ytimg.com/vi/w1psOj77-4E/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBYvyEedX2PmmTW5Sg29ZMAObuPOA"
 											style="width: 220px; height: 142px;" />
 									</div>
 									
-									<div class="col-sm-4 car-video1 carVideo" video-data="2">
+									<div class="col-sm-4 car-video1 carVideo" video-data="https://www.youtube.com/embed/g-L0QAJo6W4"
+									data-toggle="modal" data-target="#exampleModal">
 											<img src="https://i.ytimg.com/vi/g-L0QAJo6W4/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLC_diaOEsdL-UrMpZ7feh1hzXeheg"
 											style="width: 220px; height: 142px;" />
 									</div>
 								</div>
 
 								<div class="box2">
-									<div class="col-sm-4 car-video1 carVideo" video-data="3">
+									<div class="col-sm-4 car-video1 carVideo" video-data="https://www.youtube.com/embed/4RqNYxLfEmY"
+									data-toggle="modal" data-target="#exampleModal">
 											<img src="https://i.ytimg.com/vi/4RqNYxLfEmY/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLCxlTTsBoGaygL73GyRgqdKVsufAg"
 											style="width: 220px; height: 143px;" />
 									</div>
 
-									<div class="col-sm-4 car-video1 carVideo" video-data="4">
+									<div class="col-sm-4 car-video1 carVideo" video-data="https://www.youtube.com/embed/znV572zbOeM"
+									data-toggle="modal" data-target="#exampleModal">
 											<img src="https://i.ytimg.com/vi/znV572zbOeM/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLDD37vHJC84QqChWCDJIkM_n0-dMw"
 											style="width: 220px; height: 143px;" />
 									</div>
 
-									<div class="col-sm-4  car-video1 carVideo" video-data="5">
+									<div class="col-sm-4  car-video1 carVideo" video-data="https://www.youtube.com/embed/VBxCm5TYktM"
+									data-toggle="modal" data-target="#exampleModal">
 											<img src="https://i.ytimg.com/vi/VBxCm5TYktM/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLCZYHBRxRJ3_qCgulsCWxlgE-6qZw"
 											style="width: 220px; height: 142px;" />
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+						<!-- modal -->
+						<div class="modal fade" id="exampleModal" tabindex="-1"
+							role="dialog" aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-body"
+										style="padding-left: 0px; padding-top: 0px; padding-right: 0px; background-color: black;">
+										<div class="qwick-view">
+											<div class="qwick-view-content">
+												<iframe id="box" width="100%" height="350" src=""
+													frameborder="0"></iframe>
+
+												<div class="quickview-plus-minus">
+													<div class="quickview-btn-cart text-right"
+														style="padding-right: 10px; height: 10px; background-color: black">
+														<a class="btn-style" data-dismiss="modal"
+															aria-label="Close"><font style="color: white; font-weight: bold;">닫기</font></a>
+													</div>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
