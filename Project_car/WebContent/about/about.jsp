@@ -61,8 +61,8 @@ span.bar-width::after {content: ''; height: 16px; width: 16px; position: absolut
     
     }
    .col-md-3 img{
-   	width: 240px;
-   	height: 240px;
+      width: 240px;
+      height: 240px;
    } 
  .about-content{
  
@@ -70,8 +70,8 @@ span.bar-width::after {content: ''; height: 16px; width: 16px; position: absolut
     line-height: 46px;
     color: #3b3b3b;
     text-align: center;
-    	position:relative;
- 	bottom:80px;
+       position:relative;
+    bottom:80px;
   
   }
   .about-content:after{
@@ -91,16 +91,16 @@ span.bar-width::after {content: ''; height: 16px; width: 16px; position: absolut
   color: #3b3b3b;
   }
 .teamImg{
-	width: 100%;
-	height: 450px;
+   width: 100%;
+   height: 450px;
 }
 .teamNameGroup{
-	padding-top: 50px;
+   padding-top: 50px;
 }
 .teamName{
-	padding-right: 50px;
-	font-family: 'Raleway', sans-serif;
-	font-size: 20px;
+   padding-right: 50px;
+   font-family: 'Raleway', sans-serif;
+   font-size: 20px;
 }
 </style>    
 </head>
@@ -115,7 +115,7 @@ span.bar-width::after {content: ''; height: 16px; width: 16px; position: absolut
         <h1>About us</h1>
     </div>
     
-    			
+             
     <section id="about-us">
         <div class="container">
             <div class="row">
@@ -137,19 +137,19 @@ span.bar-width::after {content: ''; height: 16px; width: 16px; position: absolut
             
             
              <div class="col-md-12">
-                 <div class="about-img">
-                     <img src="../images/about_img/about4.jpg" alt="" class="teamImg" >
+                 <div class="about-img" align="center">
+                     <img src="about.jpg" alt="" class="teamImg" style="height: 600px;width: 800px;">
                  </div>
              </div>
              
              <div class="col-md-12 text-center teamNameGroup" >
-             	<span class="teamName">기라성</span>
-             	<span class="teamName">윤수지</span>
-             	<span class="teamName">임소희</span>
-             	<span class="teamName">조아라</span>
-             	<span class="teamName">손성환</span>
-             	<span class="teamName">이다미</span>
-             	<span class="teamName">조성정</span>
+                <span class="teamName">기라성</span>
+                <span class="teamName">윤수지</span>
+                <span class="teamName">임소희</span>
+                <span class="teamName">조아라</span>
+                <span class="teamName">손성환</span>
+                <span class="teamName">이다미</span>
+                <span class="teamName">조성정</span>
              </div>
                 
      
@@ -175,14 +175,14 @@ Recommend hydrogen cars and electric cars as alternatives to air pollution and f
                     <div class="about-img">
                        
                       
-                              <img src="about.jpg">
+                              <img src="../images/about_img/eco_car.png" alt="">
                                 
                           <h3>Eco-friendly car</h3>
                           
        
                     </div>
                     </div>
-					<div class="col-md-3">
+               <div class="col-md-3">
                     <div class="about-img">
                          <img src="../images/about_img/car_price.png" alt="">
                                 
@@ -219,7 +219,7 @@ Recommend hydrogen cars and electric cars as alternatives to air pollution and f
     
 
 
-	<jsp:include page="../cmmn/default-footer.jsp"></jsp:include>
+   <jsp:include page="../cmmn/default-footer.jsp"></jsp:include>
 
 
     <script src="../js/about_js/jquery.js"></script>
