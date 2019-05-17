@@ -90,8 +90,18 @@ span.bar-width::after {content: ''; height: 16px; width: 16px; position: absolut
    font-size: 20px;
   color: #3b3b3b;
   }
-
-
+.teamImg{
+	width: 100%;
+	height: 450px;
+}
+.teamNameGroup{
+	padding-top: 50px;
+}
+.teamName{
+	padding-right: 50px;
+	font-family: 'Raleway', sans-serif;
+	font-size: 20px;
+}
 </style>    
 </head>
 <!--/head-->
@@ -110,34 +120,40 @@ span.bar-width::after {content: ''; height: 16px; width: 16px; position: absolut
         <div class="container">
             <div class="row">
                       
-                    <div class="about-content">
+                 <div class="about-content">
+                 
+                     <h1>인생뽑차</h1>
+                   <br>
+                     <p>인생뽑차는 스마트한 자동차 구매를 위해 고객에게 최상의 자동차 관련 컨텐츠를 제공합니다.</p>
+                     <p>신차 견적 서비스,모델 비교,초보자들을 위한 가이드,친환경 자동차 추천 등의 서비스로</p>
+                    <p> 고객이 편리하고 더 나은 선택을 할 수 있도록 만들어줍니다. 
                     
-                        <h1>인생뽑차</h1>
-                      <br>
-                        <p>인생뽑차는 스마트한 자동차 구매를 위해 고객에게 최상의 자동차 관련 컨텐츠를 제공합니다.</p>
-                        <p>신차 견적 서비스,모델 비교,초보자들을 위한 가이드,친환경 자동차 추천 등의 서비스로</p>
-                       <p> 고객이 편리하고 더 나은 선택을 할 수 있도록 만들어줍니다. 
-                       
-                       </p>
-                       <br>
-                      
-                    </div>
-                </div>
+                    </p>
+                    <br>
+                   
+                 </div>
+             </div>
             
             
             
-                <div class="col-md-6">
-                    <div class="about-img">
-                        <img src="../images/about_img/about4.jpg" alt="">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="about-img">
-                        <img src="../images/about_img/about6.jpg" alt="">
-                    </div>
-                </div>
+             <div class="col-md-12">
+                 <div class="about-img">
+                     <img src="../images/about_img/about4.jpg" alt="" class="teamImg" >
+                 </div>
+             </div>
+             
+             <div class="col-md-12 text-center teamNameGroup" >
+             	<span class="teamName">기라성</span>
+             	<span class="teamName">윤수지</span>
+             	<span class="teamName">임소희</span>
+             	<span class="teamName">조아라</span>
+             	<span class="teamName">손성환</span>
+             	<span class="teamName">이다미</span>
+             	<span class="teamName">조성정</span>
+             </div>
+                
      
-            </div>
+           
         </div>
     </section>
 
@@ -200,118 +216,7 @@ Recommend hydrogen cars and electric cars as alternatives to air pollution and f
     </section>
     <!--/#middle-->
     
-    <section id="team-area">
-        <div class="container">
-            <div class="center fadeInDown">
-                <h2>Our Service</h2>
-                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> et dolore magna aliqua. Ut enim ad minim veniam</p>
-            </div>
-            <div class="row">
-                <div class="col-md-4 col-sm-6 single-team">
-                    <div class="inner">
-                        <div class="team-img">
-                            <img src="../images/about_img/team1.png" alt="">
-                        </div>
-                        <div class="team-content">
-                            <h4>Jeffery Poole</h4>
-                            <span class="desg">UI/UX Designer</span>
-                            <div class="team-social">
-                                <a class="fa fa-facebook" href="#"></a>
-                                <a class="fa fa-twitter" href="#"></a>
-                                <a class="fa fa-linkedin" href="#"></a>
-                                <a class="fa fa-pinterest" href="#"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 single-team">
-                    <div class="inner">
-                        <div class="team-img">
-                            <img src="../images/about_img/team2.png" alt="">
-                        </div>
-                        <div class="team-content">
-                            <h4>Isabelle Dean</h4>
-                            <span class="desg">UI/UX Designer</span>
-                            <div class="team-social">
-                                <a class="fa fa-facebook" href="#"></a>
-                                <a class="fa fa-twitter" href="#"></a>
-                                <a class="fa fa-linkedin" href="#"></a>
-                                <a class="fa fa-pinterest" href="#"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 single-team">
-                    <div class="inner">
-                        <div class="team-img">
-                            <img src="../images/about_img/team3.png" alt="">
-                        </div>
-                        <div class="team-content">
-                            <h4>Mike Kennedy</h4>
-                            <span class="desg">UI/UX Designer</span>
-                            <div class="team-social">
-                                <a class="fa fa-facebook" href="#"></a>
-                                <a class="fa fa-twitter" href="#"></a>
-                                <a class="fa fa-linkedin" href="#"></a>
-                                <a class="fa fa-pinterest" href="#"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 single-team">
-                    <div class="inner">
-                        <div class="team-img">
-                            <img src="../images/about_img/team4.png" alt="">
-                        </div>
-                        <div class="team-content">
-                            <h4>Edwin Gross</h4>
-                            <span class="desg">UI/UX Designer</span>
-                            <div class="team-social">
-                                <a class="fa fa-facebook" href="#"></a>
-                                <a class="fa fa-twitter" href="#"></a>
-                                <a class="fa fa-linkedin" href="#"></a>
-                                <a class="fa fa-pinterest" href="#"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 single-team">
-                    <div class="inner">
-                        <div class="team-img">
-                            <img src="../images/about_img/team5.png" alt="">
-                        </div>
-                        <div class="team-content">
-                            <h4>Mable Schwartz</h4>
-                            <span class="desg">UI/UX Designer</span>
-                            <div class="team-social">
-                                <a class="fa fa-facebook" href="#"></a>
-                                <a class="fa fa-twitter" href="#"></a>
-                                <a class="fa fa-linkedin" href="#"></a>
-                                <a class="fa fa-pinterest" href="#"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 single-team">
-                    <div class="inner">
-                        <div class="team-img">
-                            <img src="../images/about_img/team6.png" alt="">
-                        </div>
-                        <div class="team-content">
-                            <h4>Adele Washington</h4>
-                            <span class="desg">UI/UX Designer</span>
-                            <div class="team-social">
-                                <a class="fa fa-facebook" href="#"></a>
-                                <a class="fa fa-twitter" href="#"></a>
-                                <a class="fa fa-linkedin" href="#"></a>
-                                <a class="fa fa-pinterest" href="#"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    
 
 
 	<jsp:include page="../cmmn/default-footer.jsp"></jsp:include>
