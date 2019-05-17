@@ -98,5 +98,5 @@
       		<foreach collection="carfueltypeArr" item="type" open="(" close=")" separator="OR">
       			car_fueltype LIKE '%'||#{type}||'%' 
       		</foreach>
-   </select>
+   </select> 
 </mapper>

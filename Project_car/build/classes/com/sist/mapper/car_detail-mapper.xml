@@ -96,5 +96,5 @@
 			(SELECT NVL(MAX(eno)+1,1) FROM car_estimate), #{id}, #{model_num}, #{trim_num}, SYSDATE, #{estimate_car_price}, 
 			#{estimate_option_price}, #{estimate_total_price}, #{option_choice} 						
 		)
-	</insert>
+	</insert> 
 </mapper>
