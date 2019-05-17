@@ -212,9 +212,6 @@ $(function(){
 								</li>
 							</ul>
 						</div>
-                     
-                     
-                     
             </div>
          </div>
       </div>

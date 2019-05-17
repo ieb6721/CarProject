@@ -5,11 +5,13 @@
   <!-- 댓글 추가 -->
   <insert id="newsReplyInsert" parameterType="News_replyVO">
     INSERT INTO news_reply VALUES (#{id},#{news_no},#{pwd},#{content},SYSDATE,(SELECT NVL(MAX(no)+1,1) FROM news_reply))
+    
   </insert>
   
   <!-- 댓글 목록 -->
   <select id="newsReplyList" parameterType="int" resultType="News_replyVO">
   	SELECT id,content,regdate,news_no,no FROM news_reply WHERE news_no=#{news_no}
+  	ORDER BY NO
   </select>
   
   <!-- 댓글 수정 -->

@@ -136,8 +136,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
+		</div>	</div>
 
 	<!-- footer start -->
 	<jsp:include page="../cmmn/default-footer.jsp"></jsp:include>
