@@ -60,6 +60,15 @@ $(function(){
 		}
 	});
 });
+$(function(){
+	$('.update').click(function(){
+		if($('#trim2').val()=="")
+		{
+			alert("내용을 입력해주세요.");
+			return false;
+		}
+	});
+});
 </script>
 <style>
 .button submit-btn{
@@ -182,8 +191,8 @@ $(function(){
 					                              <form method="post" action="news_reply_update.do">
 					                                 <input type=hidden name=news_no value="${rvo.news_no }">
 					                                 <input type=hidden name=no value="${rvo.no}">
-					                                 <textarea rows="3" cols="80" name="content" style="float: left;width: 440px;">${rvo.content }</textarea>
-					                                 <input type="submit" value="수정" class="btn btn-sm btn-info" style="margin-top: 3px">
+					                                 <textarea rows="3" cols="80" name="content" style="float: left;width: 440px;" id="trim2">${rvo.content }</textarea>
+					                                 <input type="submit" value="수정" class="btn btn-sm btn-info update" style="margin-top: 3px">
 					                              </form>
 					                           </td>
 					                        </tr>

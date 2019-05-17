@@ -154,7 +154,7 @@ public class CarDetailDAO {
 		CarVO rand = new CarVO();
 		try {
 			session = ssf.openSession();
-			rand = session.selectOne("nopriceRand", cno);
+			rand = session.selectOne("nopriceRand",cno);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
@@ -164,6 +164,6 @@ public class CarDetailDAO {
 		
 		return rand;	
 	}
-	
+	 
 	
 }

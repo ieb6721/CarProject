@@ -152,9 +152,9 @@ public class CarDetailModel {
 		request.setAttribute("allPage", 1);
 		request.setAttribute("curpage", 1);
 		request.setAttribute("strPage", 1);
-		request.setAttribute("cateNo", 1);	
+		request.setAttribute("cateNo",1);	
 	    
 		return "car.jsp";
 	}
-	
+	 
 }

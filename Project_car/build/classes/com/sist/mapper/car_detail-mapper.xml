@@ -73,7 +73,7 @@
 	</select>
 	
 	<select id="carOptionData" resultType="Car_optionVO" parameterType="String">
-		SELECT car_model.car_num,car_model.model_num,car_model.model_name,car_trim.trim_num,car_trim.trim_name,
+		SELECT car_model.car_num,car_model.model_num,car_model.model_name,car_trim.trim_num, car_trim.trim_name,
 		        car_option.option_name,car_option.option_price
 		FROM car,car_model,car_trim,car_option
 		WHERE car.car_num=car_model.car_num AND car_model.model_num=car_trim.model_num AND car_trim.trim_num=car_option.trim_num
@@ -96,5 +96,5 @@
 			(SELECT NVL(MAX(eno)+1,1) FROM car_estimate), #{id}, #{model_num}, #{trim_num}, SYSDATE, #{estimate_car_price}, 
 			#{estimate_option_price}, #{estimate_total_price}, #{option_choice} 						
 		)
-	</insert>
+	</insert> 
 </mapper>
