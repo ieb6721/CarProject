@@ -175,7 +175,7 @@ Recommend hydrogen cars and electric cars as alternatives to air pollution and f
                     <div class="about-img">
                        
                       
-                              <img src="../images/about_img/eco_car.png" alt="">
+                              <img src="about.jpg">
                                 
                           <h3>Eco-friendly car</h3>
                           
