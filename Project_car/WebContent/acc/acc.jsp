@@ -310,7 +310,7 @@ $(function(){
 									<form>
 										<input type="text" placeholder="Search Products..." id="keyword">										
 										<button type="button" id="findBtn">
-											<i class="ti-search"></i>											
+											검색											
 										</button>
 									</form>
 								</div>

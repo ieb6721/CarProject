@@ -187,5 +187,24 @@ public class MypageDAO {
 		}
 		return car_num;
 	}
+	
+	public static void acc_cancel(int ano) {
+
+		SqlSession session = null;
+
+		try {
+			session = ssf.openSession(true);
+			session.delete("acc_cancel", ano);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			if (session != null)
+				session.close();
+
+		}
+
+	}
 
 }

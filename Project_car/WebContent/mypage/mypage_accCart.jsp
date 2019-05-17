@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!doctype html>
 <html class="no-js">
 <head>
@@ -10,23 +10,41 @@
 <title>인생 뽑차</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="shortcut icon" type="image/x-icon" href="../images/accessory_img/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon"
+	href="../images/accessory_img/favicon.ico">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="stylesheet" href="../css/accessory_css/owl.carousel.min.css">
-<link rel="stylesheet" href="../css/accessory_css/owl.theme.default.min.css">
+<link rel="stylesheet"
+	href="../css/accessory_css/owl.theme.default.min.css">
 <link rel="stylesheet" href="../css/accessory_css/core.css">
-<link rel="stylesheet" href="../css/accessory_css/shortcode/shortcodes.css">
+<link rel="stylesheet"
+	href="../css/accessory_css/shortcode/shortcodes.css">
 <link rel="stylesheet" href="../css/accessory_css/style.css">
 <link rel="stylesheet" href="../css/accessory_css/responsive.css">
 <link rel="stylesheet" href="../css/accessory_css/custom.css">
 
 <style type="text/css">
-#contain { margin-left: 200px;}
-.ht__bradcaump__area { height: 500px; }
-.breadcrumb-item { font-size: 45px; position: relative; top: 90px;}
-.headName { position: relative; left: 450px; }
-.old__prize{
- text-decoration:line-through 
+#contain {
+	margin-left: 200px;
+}
+
+.ht__bradcaump__area {
+	height: 500px;
+}
+
+.breadcrumb-item {
+	font-size: 45px;
+	position: relative;
+	top: 90px;
+}
+
+.headName {
+	position: relative;
+	left: 450px;
+}
+
+.old__prize {
+	text-decoration: line-through
 }
 </style>
 </head>
@@ -48,77 +66,85 @@
 					id="print">
 					<div class="htc__product__rightidebar">
 						<div class="htc__product__rightidebar">
-	<!-- Start Product View -->
+							<!-- Start Product View -->
 
-	<div class="row">
-		<h2 class="headName">액세서리 찜</h2>
-		<div class="shop__grid__view__wrap">
-			<div role="tabpanel" id="grid-view"
-				class="single-grid-view tab-pane fade in active clearfix">
-				<!-- cart-main-area start -->
+							<div class="row">
+								<h2 class="headName">액세서리 찜</h2>
+								<div class="shop__grid__view__wrap">
+									<div role="tabpanel" id="grid-view"
+										class="single-grid-view tab-pane fade in active clearfix">
+										<!-- cart-main-area start -->
 
-				<div class="cart-main-area ptb--30 bg__white">
-					<div class="container">
-						<div class="row">
-							<div class="col-md-12 col-sm-12 col-xs-12">
-								<form action="#">
-									<div class="table-content table-responsive">
-										<table class="table table-hover">
-											<thead>
-												<tr class="active">
-													<th class="product-thumbnail">products</th>
-													<th class="product-name">name of products</th>
-													<th class="product-content">content</th>
-													<th class="product-price">Price</th>
-													
-													
+										<div class="cart-main-area ptb--30 bg__white">
+											<div class="container">
+												<div class="row">
+													<div class="col-md-12 col-sm-12 col-xs-12">
+														<form action="#">
+															<div class="table-content table-responsive">
+																<table class="table table-hover">
+																	<thead>
+																		<tr class="active">
+																			<th class="product-thumbnail">products</th>
+																			<th class="product-name">name of products</th>
+																			<th class="product-content">content</th>
+																			<th class="product-price">Price</th>
+																			<th class="product-cancel">cancel</th>
 
-												</tr>
-											</thead>
-											<tbody>
-<c:forEach var="vo" items="${aList }" varStatus="s">
-													<tr>
-														
-														<c:if test="${aList.size() != 0 && s.index<6}">
-														
-														<td class="product-thumbnail"><a href="../acc/accDetail.do?product_id=${vo.product_id }"><img
-																src="${vo.product_main_img}" alt="product img" width="63%"/></a></td>
-														<td class="product-name" style="padding-top: 30px;"><a href="../acc/accDetail.do?product_id=${vo.product_id }">${vo.product_name }</a>
-															<ul class="pro__prize">
 
-																<li></li>
-															</ul></td>
-															<c:set var="t" value="${vo.product_explain }"/>
-															
-														<c:choose>
-														<c:when test="${fn:length(vo.product_explain)>10 }">	
-												    <td class="product-content" id="content" style="padding-top: 30px;">${fn : substring(vo.product_explain, "0", "100")}...</td>
-													
-													</c:when>
-													</c:choose>
-													
-													
-														<td class="product-price" style="padding-top: 30px;"><span class="amount">${vo.product_dc_price }원</span></td>
-													</c:if>
-													</tr>
-												</c:forEach>
+																		</tr>
+																	</thead>
+																	<tbody>
+																		<c:forEach var="vo" items="${aList }" varStatus="s">
+																			<tr>
 
-											</tbody>
-										</table>
+
+																				<td class="product-thumbnail"><a
+																					href="../acc/accDetail.do?product_id=${vo.product_id }"><img
+																						src="${vo.product_main_img}" alt="product img"
+																						width="63%" /></a></td>
+																				<td class="product-name" style="padding-top: 30px;"><a
+																					href="../acc/accDetail.do?product_id=${vo.product_id }">${vo.product_name }</a>
+																					<ul class="pro__prize">
+
+																						<li></li>
+																					</ul></td>
+																				<c:set var="t" value="${vo.product_explain }" />
+
+																				<c:choose>
+																					<c:when test="${fn:length(vo.product_explain)>10 }">
+																						<td class="product-content" id="content"
+																							style="padding-top: 30px;">${fn : substring(vo.product_explain, "0", "100")}...</td>
+
+																					</c:when>
+																				</c:choose>
+
+
+																				<td class="product-price" style="padding-top: 30px;"><span
+																					class="amount">${vo.product_dc_price }원</span></td>
+																				<td class="product-cancel" style="padding-top: 30px;"><a
+																					class="btn btn-sm btn-danger"
+																					href="acc_cancel.do?ano=${vo.ano}">취소</a></td>
+
+
+																			</tr>
+																		</c:forEach>
+
+																	</tbody>
+																</table>
+															</div>
+
+
+														</form>
+													</div>
+												</div>
+											</div>
+										</div>
+
 									</div>
 
-
-								</form>
+								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-
-			</div>
-
-		</div>
-	</div>
-</div>				
 					</div>
 				</div>
 				<div

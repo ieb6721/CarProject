@@ -17,133 +17,84 @@ import com.sist.vo.*;
 
 public class AccModel {
 
-
 	@RequestMapping("acc/accDetail.do")
-	public String acc_detail(HttpServletRequest request ,HttpServletResponse response) {
-				
-		HttpSession session=request.getSession();
+	public String acc_detail(HttpServletRequest request, HttpServletResponse response) {
+
+		HttpSession session = request.getSession();
 		String product_id = request.getParameter("product_id");
-		String id=(String)session.getAttribute("id");
+		String id = (String) session.getAttribute("id");
 
 		AccVO vo = AccDAO.accDetailData(product_id);
-		
-		
-		//장바구니
-		Acc_payVO avo=new Acc_payVO();
+
+		// 장바구니
+		Acc_cartVO avo = new Acc_cartVO();
 		avo.setId(id);
 		avo.setProduct_id(product_id);
-		
-		int count=AccDAO.accOkCount(avo);
+
+		int count = AccDAO.accOkCount(avo);
 		request.setAttribute("count", count);
-		//장바구니 end
-		
-		
-		//최근 본 목록 쿠키 추가 
-		if(id==null)
-		{
-			id="NOID";
+		// 장바구니 end
+
+		// 최근 본 목록 쿠키 추가
+		if (id == null) {
+			id = "NOID";
 		}
-		
-		Cookie[] cookies=request.getCookies();
-		for(int i=0;i<cookies.length;i++)
-		{
-			if(cookies[i].getName().equals(id+product_id))
-			{
+
+		Cookie[] cookies = request.getCookies();
+		for (int i = 0; i < cookies.length; i++) {
+			if (cookies[i].getName().equals(id + product_id)) {
 				cookies[i].setMaxAge(0);
 				response.addCookie(cookies[i]);
 				break;
 			}
 		}
-		
-		Cookie cookie=new Cookie(id+product_id,product_id);
-		cookie.setMaxAge(60*60*24);
+
+		Cookie cookie = new Cookie(id + product_id, product_id);
+		cookie.setMaxAge(60 * 60 * 24);
 		response.addCookie(cookie);
-		//end
-		
-		
-		
-		List<AccVO> list=new ArrayList<AccVO>();
-		
+		// end
 
-		/*for (int i = 0; i < cookies.length; i++) {
-			if (cookies[i].getName().startsWith("product_id")) {
-				String value = cookies[i].getValue();
-				AccVO rvo = AccDAO.accDetailData(value);
-				list.add(rvo);
-			}
+		List<AccVO> list = new ArrayList<AccVO>();
 
-		}
-		*/
-		
-	
 		request.setAttribute("list", list);
-		
-		
 
 		request.setAttribute("vo", vo);
 		request.setAttribute("acc_jsp", "../acc/accDetail.jsp");
 
 		return "../acc/accDetail.jsp";
 	}
-	
-/*	@RequestMapping("mypage/mypage_accCart.do")
-	public String mypage(HttpServletRequest request)
-	{
-		HttpSession session=request.getSession();
-		String id=(String)session.getAttribute("id");
-		
-		//jjim
-		List<AccVO> aList=new ArrayList<AccVO>();
-		List<String> iList=AccDAO.accGetData(id);
-		
-		for(String product_id:iList)
-		{
-			AccVO v=AccDAO.accDetailData(product_id);
-			aList.add(v);
-		}
-		//jjim end
-		request.setAttribute("aList", aList);
-		System.out.println(aList.size());
-		//request.setAttribute("acc_jsp", "../mypage/mypage_accCart.jsp");
-		
-		return "../acc/acc.jsp";
-	}*/
-	
+
 	@RequestMapping("acc/acc.do")
 	public String acc_list(HttpServletRequest request) {
-		
-		HttpSession session=request.getSession();
-		String id=(String)session.getAttribute("id");
-		
-		Cookie[] cookies=request.getCookies();
-				
-		List<AccVO> cookieList1=new ArrayList<AccVO>();	
-		
-		if(id==null)
-		{
-			id="NOID";
-		}	
-		
-		for(int i=0; i<cookies.length; i++)
-		{
-			if(cookies[i].getName().startsWith(id))
-			{
-				String value=cookies[i].getValue();
-				
-				AccVO avo=AccDAO.accDetailData(value);
+
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+
+		Cookie[] cookies = request.getCookies();
+
+		List<AccVO> cookieList1 = new ArrayList<AccVO>();
+
+		if (id == null) {
+			id = "NOID";
+		}
+
+		for (int i = 0; i < cookies.length; i++) {
+			if (cookies[i].getName().startsWith(id)) {
+				String value = cookies[i].getValue();
+
+				AccVO avo = AccDAO.accDetailData(value);
 				cookieList1.add(avo);
 			}
 		}
+
+		List<AccVO> cookieList = new ArrayList<AccVO>();
+		for (int i = cookieList1.size() - 1; i >= 0; i--) {
+			AccVO v = cookieList1.get(i);
+			cookieList.add(v);
+		}
 		
-		List<AccVO> cookieList=new ArrayList<AccVO>();
-		for(int i=cookieList1.size()-1;i>=0;i--)
-		   {
-			   AccVO v=cookieList1.get(i);
-			   cookieList.add(v);
-		   }
-		System.out.println(cookieList.size());
-		request.setAttribute("cookieList", cookieList);	
-		
+		request.setAttribute("cookieList", cookieList);
+
 		String[] cateList = { "전체", "시트", "거치대", "가리개", "방향제", "목쿠션", "핸들커버", "먼지털이" };
 		String strPage = request.getParameter("page");
 		String no = request.getParameter("no");
@@ -185,7 +136,6 @@ public class AccModel {
 
 		request.setAttribute("accList_jsp", "acc_list.jsp");
 
-
 		return "../acc/acc.jsp";
 	}
 
@@ -202,53 +152,48 @@ public class AccModel {
 
 		List<AccVO> list = AccDAO.accSearchData(keyword);
 
-		System.out.println(list.size());
+		
 
 		request.setAttribute("alist", list);
 
 		return "acc_list.jsp";
 	}
-	//cart Insert
+
+	// cart Insert
 	@RequestMapping("acc/acc_insert.do")
-	public String acc_insert(HttpServletRequest request)
-	{
-		String product_id=request.getParameter("product_id");
-		//Insert
-		HttpSession session=request.getSession();
-		String id=(String)session.getAttribute("id");
-		
-		Acc_payVO vo=new Acc_payVO();
+	public String acc_insert(HttpServletRequest request) {
+		String product_id = request.getParameter("product_id");
+		// Insert
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+
+		Acc_cartVO vo = new Acc_cartVO();
 		vo.setId(id);
 		vo.setProduct_id(product_id);
-		
+
 		AccDAO.accInsert(vo);
-		return "redirect:../acc/accDetail.do?product_id="+product_id;
+		return "redirect:../acc/accDetail.do?product_id=" + product_id;
 	}
-	
-	
+
 	@RequestMapping("acc/acc_buy.do")
-	public String acc_buy(HttpServletRequest request)
-	{
+	public String acc_buy(HttpServletRequest request) {
+
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+		String product_id = request.getParameter("product_id");
+		String quantity = request.getParameter("amount");
+		// Insert
+
 		
-		HttpSession session=request.getSession();
-		String id=(String)session.getAttribute("id");
-		String product_id=request.getParameter("product_id");
-		String quantity=request.getParameter("amount");
-		//Insert
-		
-		System.out.println(id);
-		System.out.println(product_id);
-		System.out.println(quantity);
-		
-		Acc_payVO vo=new Acc_payVO();
+
+		Acc_payVO vo = new Acc_payVO();
 		vo.setId(id);
 		vo.setProduct_id(product_id);
 		vo.setQuantity(Integer.parseInt(quantity));
-		
+
 		AccDAO.acc_buy(vo);
-		
+
 		return "redirect:../mypage/mypage_acc.do";
 	}
-
 
 }

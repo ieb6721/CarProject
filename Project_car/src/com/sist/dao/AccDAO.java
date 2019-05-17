@@ -8,9 +8,6 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import com.sist.vo.*;
 
 
-/*
- * 
- */
 public class AccDAO {
 	private static SqlSessionFactory ssf;
 	static
@@ -19,27 +16,6 @@ public class AccDAO {
 		
 	}
 	
-	/*	public static List<AccVO> accListData()
-	{
-		List<AccVO> list =new ArrayList<AccVO>();
-		//연결 =>SqlSession (Connection ,PreparedStatement)
-		SqlSession session=null;
-		try {
-			session=ssf.openSession();
-			list=session.selectList("accListData");
-
-			
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			
-		}
-		finally {
-			if(session!=null)
-				session.close();
-		}
-		return list;
-	}*/
-	
 	public static AccVO accDetailData(String product_id)
 	{
 		AccVO list =new AccVO();
@@ -47,6 +23,22 @@ public class AccDAO {
 		try {
 			session=ssf.openSession();
 			list=session.selectOne("accDetailData",product_id);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		finally {
+			if(session!=null)
+			session.close();
+		}
+		return list;
+	}
+	public static Acc_jjimVO accDetailData2(String product_id)
+	{
+		Acc_jjimVO list =new Acc_jjimVO();
+		SqlSession session=null;
+		try {
+			session=ssf.openSession();
+			list=session.selectOne("accDetailData2",product_id);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -146,7 +138,7 @@ public class AccDAO {
 	   
 
 		// 찜 저장
-		public static void accInsert(Acc_payVO vo) {
+		public static void accInsert(Acc_cartVO vo) {
 			SqlSession session = null;
 			try {
 				// session생성
@@ -163,7 +155,7 @@ public class AccDAO {
 
 
 		// 확인
-		public static int accOkCount(Acc_payVO vo) {
+		public static int accOkCount(Acc_cartVO vo) {
 			int count = 0;
 			SqlSession session = null;
 			try {
@@ -182,9 +174,9 @@ public class AccDAO {
 
 		}
 		//목록 출력
-		public static List<String> accGetData(String id)
+		public static List<Acc_jjimVO> accGetData(String id)
 		{
-			List<String> list=new ArrayList<String>();
+			List<Acc_jjimVO> list=new ArrayList<Acc_jjimVO>();
 			SqlSession session=null;
 			
 			try {

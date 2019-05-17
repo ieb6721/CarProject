@@ -19,6 +19,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.sist.vo.BrandVO" alias="BrandVO"/>
 		<typeAlias type="com.sist.vo.AccVO" alias="AccVO"/>
 		<typeAlias type="com.sist.vo.Acc_payVO" alias="Acc_payVO"/>
+		<typeAlias type="com.sist.vo.Acc_cartVO" alias="Acc_cartVO"/>
+		<typeAlias type="com.sist.vo.Acc_jjimVO" alias="Acc_jjimVO"/>
 		<typeAlias type="com.sist.vo.CarVO" alias="CarVO"/>
 		<typeAlias type="com.sist.vo.ChargeVO" alias="ChargeVO"/>
 		<typeAlias type="com.sist.vo.MemberVO" alias="MemberVO"/>

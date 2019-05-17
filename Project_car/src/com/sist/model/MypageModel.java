@@ -39,7 +39,7 @@ public class MypageModel {
 		
 		return "mypage_acc.jsp";
 	}
-	
+	//¾Ç¼¼»ç¸® Âò ³»¿ª
 	@RequestMapping("mypage/mypage_accCart.do")
 	public String AccCartModel(HttpServletRequest request) {
 		
@@ -48,14 +48,12 @@ public class MypageModel {
 		String id=(String)session.getAttribute("id");
 		
 		//jjim
-		List<AccVO> aList=new ArrayList<AccVO>();
-		List<String> iList=AccDAO.accGetData(id);
-
-		for(String product_id:iList)
-		{
-			AccVO v=AccDAO.accDetailData(product_id);
-			aList.add(v);
+		List<Acc_jjimVO> aList=AccDAO.accGetData(id);
+		
+		for (int i = 0; i < aList.size(); i++) {
+			System.out.println(aList.get(i));
 		}
+		
 		//jjim end
 		request.setAttribute("aList", aList);
 		
@@ -131,6 +129,16 @@ public class MypageModel {
 		MypageDAO.reserveDelete(Integer.parseInt(no));
 		return "redirect:mypage_reservation.do";
 	}
+	
+	@RequestMapping("mypage/acc_cancel.do")
+	public String acc_cancel(HttpServletRequest request) {
+		String ano=request.getParameter("ano");
+		
+		MypageDAO.acc_cancel(Integer.parseInt(ano));
+		
+		return "mypage_accCart.do";
+	}
+	
 	
 	
 }
