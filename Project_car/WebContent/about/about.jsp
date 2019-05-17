@@ -141,7 +141,7 @@ span.bar-width::after {content: ''; height: 16px; width: 16px; position: absolut
                      <img src="about.jpg" alt="" class="teamImg" style="height: 600px;width: 800px;">
                  </div>
              </div>
-             
+                
              <div class="col-md-12 text-center teamNameGroup" >
                 <span class="teamName">기라성</span>
                 <span class="teamName">윤수지</span>
