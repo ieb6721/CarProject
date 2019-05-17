@@ -87,7 +87,7 @@
    
    <!-- 자동차 상세 검색(체크박스) -->
    <select id="carDetailSearchData" resultType="CarVO" parameterType="java.util.Map">
-      SELECT car_num,car_name,car_poster,car_price,car_launchdate,car_efficiency,car_size,car_fueltype,brand_name 
+      SELECT car_num,car_name,car_poster,car_price,car_launchdate,car_efficiency,car_size,car_fueltype, brand_name 
       FROM car 
       WHERE 
       	car_size IN

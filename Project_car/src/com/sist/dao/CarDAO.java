@@ -198,7 +198,7 @@ public class CarDAO {
         try
         {	        	
            session=ssf.openSession();
-           list=session.selectList("carDetailSearchData",arrMap);
+           list=session.selectList("carDetailSearchData", arrMap);
         }
         catch(Exception ex)
         {

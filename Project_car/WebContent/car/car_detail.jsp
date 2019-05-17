@@ -96,7 +96,7 @@ $(function(){
 	</div>
 
 	<div class="container text-center">
-		<h3 class="text-left" style="padding-left: 100px">시판중인 모델</h3>
+		<h3 class="text-left" style="padding-left: 100px">시판중인 모델 </h3>
 		<c:forEach var="modelvo" items="${modellist}">
 			<c:set var="model_num" value="${modelvo.model_num}"/>
 			<c:if test="${fn:contains(model_num, '모델없음')}">
