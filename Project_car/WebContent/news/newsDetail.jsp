@@ -182,7 +182,7 @@ $(function(){
 					                              <form method="post" action="news_reply_update.do">
 					                                 <input type=hidden name=news_no value="${rvo.news_no }">
 					                                 <input type=hidden name=no value="${rvo.no}">
-					                                 <textarea rows="3" cols="80" name="content" style="float: left;width: 440px;" placeholder="${rvo.content }"></textarea>
+					                                 <textarea rows="3" cols="80" name="content" style="float: left;width: 440px;">${rvo.content }</textarea>
 					                                 <input type="submit" value="수정" class="btn btn-sm btn-info" style="margin-top: 3px">
 					                              </form>
 					                           </td>
