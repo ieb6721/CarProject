@@ -80,7 +80,7 @@ $(document).ready(function(){
 $(document).ready(function(){
 	$('#jjimBtn').click(function() {
 		
-		alert('찜으로 이동했습니다!!')
+		alert('해당 상품을 찜했습니다!!')
 		
 	}); 
 		
