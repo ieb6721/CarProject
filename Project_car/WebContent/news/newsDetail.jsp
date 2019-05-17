@@ -182,7 +182,7 @@ $(function(){
 					                              <form method="post" action="news_reply_update.do">
 					                                 <input type=hidden name=news_no value="${rvo.news_no }">
 					                                 <input type=hidden name=no value="${rvo.no}">
-					                                 <textarea rows="3" cols="80" name="content" style="float: left;width: 440px;"></textarea>
+					                                 <textarea rows="3" cols="80" name="content" style="float: left;width: 440px;" placeholder="${rvo.content }"></textarea>
 					                                 <input type="submit" value="수정" class="btn btn-sm btn-info" style="margin-top: 3px">
 					                              </form>
 					                           </td>
@@ -202,7 +202,6 @@ $(function(){
 					                     <div class="comment-form-area" style="margin-left: 0px;padding-right: 0px;">
 					                        <p>leave a comment</p>
 					                        <form action="news_replyInsert.do?news_no=${nvo.news_no }" method="post">
-					                          <!--  <input type="text" id="trimtest" value = " abc" /> -->
 					                           <textarea placeholder="Message" name="content" id="trim" ></textarea>
 					                           <button type="submit" class="submit-btn">submit</button>
 					                        </form>
