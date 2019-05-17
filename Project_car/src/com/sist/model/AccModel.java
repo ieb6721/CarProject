@@ -172,7 +172,7 @@ public class AccModel {
 		vo.setProduct_id(product_id);
 
 		AccDAO.accInsert(vo);
-		return "redirect:../acc/accDetail.do?product_id=" + product_id;
+		return "redirect:../mypage/mypage_accCart.do";
 	}
 
 	@RequestMapping("acc/acc_buy.do")
