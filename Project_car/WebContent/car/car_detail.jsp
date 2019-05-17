@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +22,7 @@ ul {
 	font-size: 20px;
 }
 
-.compare_table td, th{
+.compare_table td, th {
 	width: 30%;
 }
 </style>
@@ -66,25 +66,29 @@ $(function(){
 						<li class="old__prize">${carvo.car_launchDate }</li>
 						<li>${carvo.car_price }만원</li>
 					</ul>
-					<p class="pro__info">복합연비 ${carvo.car_efficiency } | ${carvo.car_size }
-						| ${carvo.car_fuelType }</p>
+					<p class="pro__info">복합연비 ${carvo.car_efficiency } |
+						${carvo.car_size } | ${carvo.car_fuelType }</p>
 					<div class="ht__pro__desc">
 						<div class="sin__desc">
 							<button class="btn btn-md btn-warning brand"
-							onclick="location='car_brand.do?keyword=${carvo.brand_name}'">${carvo.brand_name}</button>
+								onclick="location='car_brand.do?keyword=${carvo.brand_name}'">${carvo.brand_name}</button>
 							<c:forEach var="modelvo" items="${modellist}">
 								<c:set var="model_num" value="${modelvo.model_num}" />
 								<c:if test="${fn:contains(model_num, '모델없음')}">
-									<c:set var="nomodel" value="0"/>
+									<c:set var="nomodel" value="0" />
 								</c:if>
 								<c:if test="${!fn:contains(model_num, '모델없음')}">
-									<c:set var="nomodel" value="1"/>
+									<c:set var="nomodel" value="1" />
 								</c:if>
+
 							</c:forEach>
+							<c:if test="${fn:contains(carvo.car_price, '미정')}">
+								<c:set var="nomodel" value="0" />
+							</c:if>
 							<c:if test="${nomodel == 1}">
-									<button class="btn btn-md btn-primary"
-										onclick="location='car_estimate.do?cno=${carvo.car_num}'">견적</button>
-							</c:if>							
+								<button class="btn btn-md btn-primary"
+									onclick="location='car_estimate.do?cno=${carvo.car_num}'">견적</button>
+							</c:if>
 							<button class="btn btn-md btn-success"
 								onclick="location.href=document.referrer">목록</button>
 						</div>
@@ -96,9 +100,9 @@ $(function(){
 	</div>
 
 	<div class="container text-center">
-		<h3 class="text-left" style="padding-left: 100px">시판중인 모델 </h3>
+		<h3 class="text-left" style="padding-left: 100px">시판중인 모델</h3>
 		<c:forEach var="modelvo" items="${modellist}">
-			<c:set var="model_num" value="${modelvo.model_num}"/>
+			<c:set var="model_num" value="${modelvo.model_num}" />
 			<c:if test="${fn:contains(model_num, '모델없음')}">
 				<h3>시판중인 모델이 없습니다.</h3>
 			</c:if>
@@ -106,14 +110,13 @@ $(function(){
 		<br>
 		<div class="row">
 			<c:forEach var="modelvo" items="${modellist}">
-				<c:set var="model_num" value="${modelvo.model_num}"/>
+				<c:set var="model_num" value="${modelvo.model_num}" />
 				<c:if test="${!fn:contains(model_num, '모델없음')}">
 					<dl class="accordion">
 						<dt class="accordion-title">${modelvo.model_name}</dt>
 						<dd class="accordion-list">
 							<ul>
-								<li>								
-									<c:forEach var="trimvo" items="${trimlist}">
+								<li><c:forEach var="trimvo" items="${trimlist}">
 										<c:if test="${modelvo.model_num eq trimvo.model_num}">
 											<div class="item name">${trimvo.trim_name}</div>
 											<div class="item fuel">${trimvo.trim_fuel_type}</div>
@@ -121,11 +124,11 @@ $(function(){
 											<div class="item mileage">${trimvo.trim_efficiency}</div>
 											<div class="item price">${trimvo.trim_price}</div>
 											<div class="item button">
-												<button class="btn btn-sm btn-info spec" value="${trimvo.trim_num}">제원</button>										
+												<button class="btn btn-sm btn-info spec"
+													value="${trimvo.trim_num}">제원</button>
 											</div>
 										</c:if>
-									</c:forEach>
-								</li>
+									</c:forEach></li>
 							</ul>
 						</dd>
 					</dl>
@@ -150,9 +153,18 @@ $(function(){
 				<div class="well">
 					<div class="sin__desc">
 						<button class="btn btn-md btn-warning"
-						onclick="location='car_brand.do?keyword=${carvo.brand_name}'">${carvo.brand_name}</button>
-						<button class="btn btn-md btn-primary"
+							onclick="location='car_brand.do?keyword=${carvo.brand_name}'">${carvo.brand_name}</button>
+						<c:if test="${!fn:contains(carvo.car_price, '미정')}">
+							<c:set var="nomodel" value="0" />
+						</c:if>
+						<c:if test="${fn:contains(carvo.car_price, '미정')}">
+							<c:set var="nomodel" value="0" />
+						</c:if>
+						<c:if test="${nomodel == 1}">
+							<button class="btn btn-md btn-primary"
 								onclick="location='car_estimate.do?cno=${carvo.car_num}'">견적</button>
+						</c:if>
+
 					</div>
 				</div>
 			</div>
@@ -160,7 +172,7 @@ $(function(){
 				<img src="http://img.chuing.net/i/NGQGVp/Preview.x.jpg" width="60%">
 				<table class="table compare_table">
 					<tr>
-						<td> ${carvo.car_efficiency }</td>
+						<td>${carvo.car_efficiency }</td>
 						<th class="text-center">복합연비</th>
 						<td>${compvo.car_efficiency }</td>
 					</tr>
@@ -191,15 +203,15 @@ $(function(){
 				<p>${compvo.car_name}</p>
 				<div class="well">
 					<button class="btn btn-md btn-warning"
-					onclick="location='car_brand.do?keyword=${compvo.brand_name}'">${compvo.brand_name}</button>
+						onclick="location='car_brand.do?keyword=${compvo.brand_name}'">${compvo.brand_name}</button>
 					<button class="btn btn-md btn-primary"
-							onclick="location='car_detail.do?cno=${compvo.car_num}'">상세보기</button>
+						onclick="location='car_detail.do?cno=${compvo.car_num}'">상세보기</button>
 				</div>
 			</div>
 		</div>
 		<hr>
 	</div>
-	 
+
 	<jsp:include page="../cmmn/default-footer.jsp"></jsp:include>
 </body>
 </html>
