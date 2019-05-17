@@ -302,7 +302,7 @@ function checkPwd(){
 //==========================================================================
   function sendIt() {
         var email = document.registerFrm.email1.value;
-        var tell = document.registerFrm.tel1.value;
+        var tel1 = document.registerFrm.tel1.value;
         var tel2 = document.registerFrm.tel2.value;
         var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
         var msg, ss, cc;
@@ -356,7 +356,7 @@ function checkPwd(){
         }
         
         if(document.registerFrm.pwd_check.value == "") {
-            alert("PWDCheck를 입력해주세요.")
+            alert("PasswordCheck를 입력해주세요.")
             document.registerFrm.pwd_check.focus();
             return false;
         }
@@ -415,20 +415,36 @@ function checkPwd(){
             return false;
         }
         
+
         if (!isNumeric(tel1)) {
-            alert("전화번호는 숫자로 입력하세요.");
+            alert("연락처는 숫자로 입력하세요.");
             document.registerFrm.tel1.value = "";
             document.registerFrm.tel1.focus();
             return false;
         } 
         
         if (!isNumeric(tel2)) {
-            alert("전화번호는 숫자로 입력하세요.");
+            alert("연락처는 숫자로 입력하세요.");
             document.registerFrm.tel2.value = "";
             document.registerFrm.tel2.focus();
             return false;
         } 
-
+        
+        if(!(document.registerFrm.tel1.value.length==4 || document.registerFrm.tel1.value.length==3)) {
+            alert("연락처는 3자 혹은 4자로 입력해주세요.")
+            document.registerFrm.tel1.focus();
+            document.registerFrm.tel1.select();
+            return false;
+        }
+        
+        if(!(document.registerFrm.tel2.value.length==4)) {
+            alert("연락처는 4자 입력해주세요.")
+            document.registerFrm.tel2.focus();
+            document.registerFrm.tel2.select();
+            return false;
+        }
+     
+        
         if (document.registerFrm.email1.value == "") {
             alert("이메일을 입력하지 않았습니다.")
             document.registerFrm.email1.focus();
